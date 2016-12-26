@@ -78,7 +78,7 @@ public:
             
             setVisible (true);
             
-            DeviceManager::createDeviceTypes();
+            DeviceManager::loadDeviceConfig();
         }
 
         void closeButtonPressed() override

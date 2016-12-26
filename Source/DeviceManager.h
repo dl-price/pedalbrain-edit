@@ -16,8 +16,11 @@
 
 class DeviceManager {
 public:
-    static LinkedListPointer<Manufacturer> manufacturers;
-    static void createDeviceTypes();
+    //static Manufacturer manufacturers[3];
+    static Manufacturer manufacturers[];
+    static DeviceType deviceTypes[];
+    
+    static void loadDeviceConfig();
 
 };
 

@@ -11,6 +11,8 @@
 #include "includes.h"
 #include "DeviceManager.h"
 
-void DeviceManager::createDeviceTypes() {
+void DeviceManager::loadDeviceConfig()
+{
     
 }
+

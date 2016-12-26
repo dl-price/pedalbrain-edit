@@ -21,6 +21,7 @@
 //[/Headers]
 
 #include "DevicesTab.h"
+#include "../includes.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...

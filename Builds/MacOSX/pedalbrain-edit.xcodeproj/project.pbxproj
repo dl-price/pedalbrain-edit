@@ -19,6 +19,7 @@
 		1963F3E7B53F8EB6A4388DE7 = {isa = PBXBuildFile; fileRef = 7395FEB6979123FC1912C34A; };
 		5B93D8CA42F247981C2D11A2 = {isa = PBXBuildFile; fileRef = 269EB17C1F36606B8860FB6B; };
 		957258F420CCFF0F1BBCD835 = {isa = PBXBuildFile; fileRef = F6E92AE12E8A4AFD8D724BD1; };
+		A821E2153464B4C5089E2D77 = {isa = PBXBuildFile; fileRef = B3A39AB8F52AE4AB558EF5F0; };
 		535564D56FC6FF6E60F8D920 = {isa = PBXBuildFile; fileRef = 08B7FFDD194D82AAACEEE5AC; };
 		E13F2C2B3D6909DD8AABA1C1 = {isa = PBXBuildFile; fileRef = 28C58B56A0A149814FCFB05D; };
 		7B17D4D0253DBAD8956A3C23 = {isa = PBXBuildFile; fileRef = 935A1799CE5A703C7EF3D8BF; };
@@ -856,6 +857,7 @@
 		B2E7729909A6CC1259651301 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_CallOutBox.cpp"; path = "../../../../../../../Applications/JUCE/modules/juce_gui_basics/windows/juce_CallOutBox.cpp"; sourceTree = "SOURCE_ROOT"; };
 		B3478D16E521003F33FAD1A6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "juce_gui_extra.mm"; path = "../../../../../../../Applications/JUCE/modules/juce_gui_extra/juce_gui_extra.mm"; sourceTree = "SOURCE_ROOT"; };
 		B3635F7DA26D75EC5BF5E550 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_SVGParser.cpp"; path = "../../../../../../../Applications/JUCE/modules/juce_gui_basics/drawables/juce_SVGParser.cpp"; sourceTree = "SOURCE_ROOT"; };
+		B3A39AB8F52AE4AB558EF5F0 = {isa = PBXFileReference; lastKnownFileType = folder; name = Config; path = ../../Config; sourceTree = "<group>"; };
 		B3BD264D993986D574F3801E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "juce_mac_CoreGraphicsContext.mm"; path = "../../../../../../../Applications/JUCE/modules/juce_graphics/native/juce_mac_CoreGraphicsContext.mm"; sourceTree = "SOURCE_ROOT"; };
 		B45E15836E36E5B532B7C3BD = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_win32_HiddenMessageWindow.h"; path = "../../../../../../../Applications/JUCE/modules/juce_events/native/juce_win32_HiddenMessageWindow.h"; sourceTree = "SOURCE_ROOT"; };
 		B48F25B33AFFEA494F186682 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_ColourSelector.cpp"; path = "../../../../../../../Applications/JUCE/modules/juce_gui_extra/misc/juce_ColourSelector.cpp"; sourceTree = "SOURCE_ROOT"; };
@@ -2605,6 +2607,7 @@
 					4FD8C6A3505F7589BCE1C21F,
 					A9DFFF9C236020AE8D9351CF, ); name = "Juce Library Code"; sourceTree = "<group>"; };
 		657DA9A41F1CE8C2E00FF796 = {isa = PBXGroup; children = (
+					B3A39AB8F52AE4AB558EF5F0,
 					C0E60E1AD55D10DA8C2E107E,
 					08B7FFDD194D82AAACEEE5AC, ); name = Resources; sourceTree = "<group>"; };
 		283586AD534A128B11E855A4 = {isa = PBXGroup; children = (
@@ -2714,6 +2717,7 @@
 					2ADE14B3C8ABA5A86C6DE1D5,
 					149EE400F14A8F4E4B219D53, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 		F3D196E51B18C7EC1598C1B7 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
+					A821E2153464B4C5089E2D77,
 					535564D56FC6FF6E60F8D920, ); runOnlyForDeploymentPostprocessing = 0; };
 		D567B1AA034412A06ADBFB9F = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 					E13F2C2B3D6909DD8AABA1C1,

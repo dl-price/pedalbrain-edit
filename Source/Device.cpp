@@ -23,4 +23,9 @@ Device::~Device()
 {
 }
 
+Manufacturer::Manufacturer(String newName)
+{
+    name = newName;
+}
+
 

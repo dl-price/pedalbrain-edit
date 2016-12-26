@@ -16,18 +16,7 @@
 //==============================================================================
 /*
 */
-class DeviceType
-{
-public:
-    String name;
-};
 
-class Manufacturer
-{
-public:
-    String name;
-    LinkedListPointer<DeviceType> deviceTypes;
-};
 
 class Device
 {
@@ -43,6 +32,19 @@ public:
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
+};
+
+class Manufacturer
+{
+public:
+    String name;
+    Manufacturer(String newName);
+};
+
+class DeviceType
+{
+public:
+    String name;
 };
 
 
