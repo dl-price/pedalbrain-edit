@@ -5,9 +5,10 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
-      <FILE id="wlqrcC" name="MainComponent.cpp" compile="1" resource="0"
-            file="Source/MainComponent.cpp"/>
-      <FILE id="nXOAq1" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <GROUP id="{C0CCEBD0-EE76-8C55-A8B7-7E554272C135}" name="gui">
+        <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
+        <FILE id="Cl22ff" name="PedalEdit.h" compile="0" resource="0" file="Source/gui/PedalEdit.h"/>
+      </GROUP>
       <FILE id="HEOd8X" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
   </MAINGROUP>

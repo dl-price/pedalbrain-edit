@@ -9,7 +9,7 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "MainComponent.h"
+#include "PedalEdit.h"
 
 
 //==============================================================================
@@ -66,9 +66,15 @@ public:
                                                     DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);
-            setContentOwned (new MainContentComponent(), true);
+            PedalEdit* const contentComponent = new PedalEdit();
+            setContentOwned (contentComponent, true);
 
             centreWithSize (getWidth(), getHeight());
+            
+            //int guiX = (contentComponent->initialGuiX >= 0) ? contentComponent->initialGuiX : getX();
+            //int guiY = (contentComponent->initialGuiY >= 0) ? contentComponent->initialGuiY : getY();
+            //setTopLeftPosition(guiX, guiY);
+            
             setVisible (true);
         }
 
