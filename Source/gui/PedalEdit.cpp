@@ -10,12 +10,17 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalEdit.h"
+#include "GlobalTab.h"
 
 //==============================================================================
 PedalEdit::PedalEdit()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    
+    addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
+    superTabComponent->addTab("global", juce::Colours::blue, new GlobalTab(), false);
+    superTabComponent->addTab("next", juce::Colours::green, new Component(), false);
     
     setSize(600,400);
 
@@ -36,19 +41,14 @@ void PedalEdit::paint (Graphics& g)
 
     g.fillAll (Colours::white);   // clear the background
 
-    g.setColour (Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-    g.setColour (Colours::lightblue);
-    g.setFont (14.0f);
-    g.drawText ("PedalEdit", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
 }
 
 void PedalEdit::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
+    
+    superTabComponent->setBounds(10, 10, 500, 300);
 
 }
 

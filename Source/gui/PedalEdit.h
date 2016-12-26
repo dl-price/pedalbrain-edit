@@ -31,7 +31,10 @@ public:
     PopupMenu getMenuForIndex(int topLevelMenuIndex, const String& menuName) override;
     void menuItemSelected(int menuItemID, int topLevelMenuIndex) override;
 
-private:
+protected:
+    TabbedComponent* superTabComponent;
+    
+    private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalEdit)
 };
 

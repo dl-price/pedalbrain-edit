@@ -72,6 +72,7 @@ public:
             centreWithSize (getWidth(), getHeight());
             
             setMenuBar(contentComponent);
+            setResizable(true, true);
             
             setVisible (true);
         }
