@@ -34,7 +34,8 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class GlobalTab  : public Component
+class GlobalTab  : public Component,
+                   public ComboBoxListener
 {
 public:
     //==============================================================================
@@ -47,6 +48,7 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
 
 
@@ -55,6 +57,9 @@ private:
     //[/UserVariables]
 
     //==============================================================================
+    ScopedPointer<GroupComponent> groupComponent;
+    ScopedPointer<ComboBox> modelCombo;
+    ScopedPointer<ComboBox> currentSetListCombo;
 
 
     //==============================================================================

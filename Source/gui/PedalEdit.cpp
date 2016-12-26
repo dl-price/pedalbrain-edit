@@ -11,6 +11,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalEdit.h"
 #include "GlobalTab.h"
+#include "DevicesTab.h"
 
 //==============================================================================
 PedalEdit::PedalEdit()
@@ -19,8 +20,8 @@ PedalEdit::PedalEdit()
     // initialise any special settings that your component needs.
     
     addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
-    superTabComponent->addTab("global", juce::Colours::blue, new GlobalTab(), false);
-    superTabComponent->addTab("next", juce::Colours::green, new Component(), false);
+    superTabComponent->addTab("Global", juce::Colours::blue, new GlobalTab(), false);
+    superTabComponent->addTab("Devices", juce::Colours::green, new DevicesTab(), false);
     
     setSize(600,400);
 
@@ -48,7 +49,7 @@ void PedalEdit::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
     
-    superTabComponent->setBounds(10, 10, 500, 300);
+    superTabComponent->setBounds(10, 10, getWidth()-20, getHeight()-20);
 
 }
 

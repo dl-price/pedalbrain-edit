@@ -73,6 +73,7 @@ public:
             
             setMenuBar(contentComponent);
             setResizable(true, true);
+            setResizeLimits(1000, 700, 2000, 2000);
             
             setVisible (true);
         }
