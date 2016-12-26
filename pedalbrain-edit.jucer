@@ -13,6 +13,12 @@
         <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
         <FILE id="Cl22ff" name="PedalEdit.h" compile="0" resource="0" file="Source/gui/PedalEdit.h"/>
       </GROUP>
+      <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
+      <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>
+      <FILE id="I7R1F0" name="DeviceManager.cpp" compile="1" resource="0"
+            file="Source/DeviceManager.cpp"/>
+      <FILE id="LBqeCh" name="DeviceManager.h" compile="0" resource="0" file="Source/DeviceManager.h"/>
+      <FILE id="SQTLDU" name="includes.h" compile="0" resource="0" file="Source/includes.h"/>
       <FILE id="HEOd8X" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
   </MAINGROUP>

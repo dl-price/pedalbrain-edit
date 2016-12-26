@@ -34,7 +34,8 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class DevicesTab  : public Component
+class DevicesTab  : public Component,
+                    ListBoxModel
 {
 public:
     //==============================================================================
@@ -43,6 +44,11 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+
+    int getNumRows() override;
+    void paintListBoxItem(int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
+
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -52,11 +58,14 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+
+
     //[/UserVariables]
 
     //==============================================================================
     ScopedPointer<GroupComponent> deviceListGroup;
     ScopedPointer<GroupComponent> groupComponent;
+    ScopedPointer<ListBox> deviceTable;
 
 
     //==============================================================================

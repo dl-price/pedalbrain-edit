@@ -9,6 +9,7 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "includes.h"
 #include "PedalEdit.h"
 
 
@@ -76,6 +77,8 @@ public:
             setResizeLimits(1000, 700, 2000, 2000);
             
             setVisible (true);
+            
+            DeviceManager::createDeviceTypes();
         }
 
         void closeButtonPressed() override
