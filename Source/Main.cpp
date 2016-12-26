@@ -71,9 +71,7 @@ public:
 
             centreWithSize (getWidth(), getHeight());
             
-            //int guiX = (contentComponent->initialGuiX >= 0) ? contentComponent->initialGuiX : getX();
-            //int guiY = (contentComponent->initialGuiY >= 0) ? contentComponent->initialGuiY : getY();
-            //setTopLeftPosition(guiX, guiY);
+            setMenuBar(contentComponent);
             
             setVisible (true);
         }

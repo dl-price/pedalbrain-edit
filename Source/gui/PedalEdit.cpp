@@ -51,3 +51,22 @@ void PedalEdit::resized()
     // components that your component contains..
 
 }
+
+StringArray PedalEdit::getMenuBarNames()
+{
+    const char* const names[] = { "File", "Transfer", 0 };
+
+    return StringArray ((const char**) names);   
+}
+
+PopupMenu PedalEdit::getMenuForIndex(int topLevelMenuIndex, const String& menuName)
+{
+    PopupMenu menu;
+    
+    return menu;
+}
+
+void PedalEdit::menuItemSelected(int menuItemID, int topLevelMenuIndex)
+{
+    
+}

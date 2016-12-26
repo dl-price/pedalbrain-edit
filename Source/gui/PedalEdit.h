@@ -16,7 +16,9 @@
 //==============================================================================
 /*
 */
-class PedalEdit    : public Component
+class PedalEdit    
+                : public Component
+                , public MenuBarModel
 {
 public:
     PedalEdit();
@@ -24,6 +26,10 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    
+    StringArray getMenuBarNames() override;
+    PopupMenu getMenuForIndex(int topLevelMenuIndex, const String& menuName) override;
+    void menuItemSelected(int menuItemID, int topLevelMenuIndex) override;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalEdit)
