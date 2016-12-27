@@ -12,6 +12,7 @@
 #include "includes.h"
 #include "PedalEdit.h"
 #include "CellEdit.h"
+#include "BoardModel.h"
 
 
 //==============================================================================
@@ -24,6 +25,8 @@ public:
     const String getApplicationName() override       { return ProjectInfo::projectName; }
     const String getApplicationVersion() override    { return ProjectInfo::versionString; }
     bool moreThanOneInstanceAllowed() override       { return true; }
+    ReferenceCountedObjectPtr<BoardModel> boardModel;
+    
 
     //==============================================================================
     void initialise (const String& commandLine) override
@@ -35,6 +38,7 @@ public:
         }
         
         mainWindow = new MainWindow (getApplicationName());
+        boardModel = new BoardModel();
     }
 
     void shutdown() override
@@ -58,6 +62,8 @@ public:
         // this method is invoked, and the commandLine parameter tells you what
         // the other instance's command-line arguments were.
     }
+    
+
 
     //==============================================================================
     /*
@@ -116,6 +122,7 @@ public:
     };
 
 private:
+    
     ScopedPointer<MainWindow> mainWindow;
 };
 

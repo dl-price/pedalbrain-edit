@@ -21,6 +21,10 @@
         <FILE id="GG4buF" name="PedalView.cpp" compile="1" resource="0" file="Source/gui/PedalView.cpp"/>
         <FILE id="VmvqGx" name="PedalView.h" compile="0" resource="0" file="Source/gui/PedalView.h"/>
       </GROUP>
+      <FILE id="eggftH" name="BoardModel.cpp" compile="1" resource="0" file="Source/BoardModel.cpp"/>
+      <FILE id="ZTBYxL" name="BoardModel.h" compile="0" resource="0" file="Source/BoardModel.h"/>
+      <FILE id="OL727s" name="CellModel.cpp" compile="1" resource="0" file="Source/CellModel.cpp"/>
+      <FILE id="kLqffB" name="CellModel.h" compile="0" resource="0" file="Source/CellModel.h"/>
       <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
       <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>
       <FILE id="I7R1F0" name="DeviceManager.cpp" compile="1" resource="0"
@@ -28,6 +32,10 @@
       <FILE id="LBqeCh" name="DeviceManager.h" compile="0" resource="0" file="Source/DeviceManager.h"/>
       <FILE id="SQTLDU" name="includes.h" compile="0" resource="0" file="Source/includes.h"/>
       <FILE id="HEOd8X" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="UFg985" name="PageModel.cpp" compile="1" resource="0" file="Source/PageModel.cpp"/>
+      <FILE id="wqMwOx" name="PageModel.h" compile="0" resource="0" file="Source/PageModel.h"/>
+      <FILE id="otIi7Y" name="PresetModel.cpp" compile="1" resource="0" file="Source/PresetModel.cpp"/>
+      <FILE id="AbVpDn" name="PresetModel.h" compile="0" resource="0" file="Source/PresetModel.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
