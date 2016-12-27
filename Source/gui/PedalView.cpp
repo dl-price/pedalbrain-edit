@@ -60,14 +60,14 @@ void PedalView::resized()
     
     for (int i = 0;i < layoutCells.size();i++) {
         switch(i) {
-            case 1:
-                layoutCells[i]->setBounds(0, 0, 100, 100);
+            case 0:
+                layoutCells[i]->setBounds(0, 0, getWidth()/6, getHeight()/2);
                 break;
-            case 2 ... 5:
-                layoutCells[i]->setBounds(300 + 100*(i-3), 0, 100, 100);
+            case 1 ... 4:
+                layoutCells[i]->setBounds(getWidth()/6*(i+1), 0, getWidth()/6, getHeight()/2);
                 break;
             default:
-                layoutCells[i]->setBounds(100*(i-6), 100, 100, 100);
+                layoutCells[i]->setBounds(getWidth()/6*(i-5), getHeight()/2, getWidth()/6, getHeight()/2);
                 
         }
         
