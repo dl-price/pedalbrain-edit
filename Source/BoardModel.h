@@ -27,22 +27,26 @@ public:
 
 class BoardModel : public ReferenceCountedObject
 {
+    static BoardModel *s_instance;
 public:
     BoardModel();
     //~BoardModel();
     
     ReferenceCountedObjectPtr<BoardType> boardType;
     OwnedArray<PageModel> pages;
-
+    static BoardModel *instance();
+    
 private:
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardModel)
 };
 
 class EpicBoard : public BoardType
 {
 public:
-
+    //EpicBoard();
     int getMaxPages(){return 15;};
+    //int getMaxDevices(){return 16;};
 };
 
 

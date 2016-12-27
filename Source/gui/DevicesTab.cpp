@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "includes.h"
+#include "../Application.h"
 //[/Headers]
 
 #include "DevicesTab.h"
@@ -177,8 +178,8 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 int DevicesTab::getNumRows()
 {
-
-    return 16;
+    
+    return BoardModel::instance()->boardType->getMaxDevices();
 }
 
 void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, int height, bool rowIsSelected)

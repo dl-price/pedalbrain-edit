@@ -21,6 +21,7 @@
         <FILE id="GG4buF" name="PedalView.cpp" compile="1" resource="0" file="Source/gui/PedalView.cpp"/>
         <FILE id="VmvqGx" name="PedalView.h" compile="0" resource="0" file="Source/gui/PedalView.h"/>
       </GROUP>
+      <FILE id="UpmWiq" name="Application.h" compile="0" resource="0" file="Source/Application.h"/>
       <FILE id="eggftH" name="BoardModel.cpp" compile="1" resource="0" file="Source/BoardModel.cpp"/>
       <FILE id="ZTBYxL" name="BoardModel.h" compile="0" resource="0" file="Source/BoardModel.h"/>
       <FILE id="OL727s" name="CellModel.cpp" compile="1" resource="0" file="Source/CellModel.cpp"/>

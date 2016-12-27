@@ -9,27 +9,18 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Application.h"
 #include "includes.h"
 #include "PedalEdit.h"
 #include "CellEdit.h"
 #include "BoardModel.h"
 
 
-//==============================================================================
-class pedalbraineditApplication  : public JUCEApplication
-{
-public:
-    //==============================================================================
-    pedalbraineditApplication() {}
 
-    const String getApplicationName() override       { return ProjectInfo::projectName; }
-    const String getApplicationVersion() override    { return ProjectInfo::versionString; }
-    bool moreThanOneInstanceAllowed() override       { return true; }
-    ReferenceCountedObjectPtr<BoardModel> boardModel;
     
 
     //==============================================================================
-    void initialise (const String& commandLine) override
+    void pedalbraineditApplication::initialise (const String& commandLine)
     {
         // This method is where you should put your application's initialisation code..
 
@@ -38,10 +29,10 @@ public:
         }
         
         mainWindow = new MainWindow (getApplicationName());
-        boardModel = new BoardModel();
+        new BoardModel();
     }
 
-    void shutdown() override
+    void pedalbraineditApplication::shutdown()
     {
         // Add your application's shutdown code here..
 
@@ -49,14 +40,14 @@ public:
     }
 
     //==============================================================================
-    void systemRequestedQuit() override
+    void pedalbraineditApplication::systemRequestedQuit()
     {
         // This is called when the app is being asked to quit: you can ignore this
         // request and let the app carry on running, or call quit() to allow the app to close.
         quit();
     }
 
-    void anotherInstanceStarted (const String& commandLine) override
+    void pedalbraineditApplication::anotherInstanceStarted (const String& commandLine)
     {
         // When another instance of the app is launched while this one is running,
         // this method is invoked, and the commandLine parameter tells you what
@@ -65,15 +56,8 @@ public:
     
 
 
-    //==============================================================================
-    /*
-        This class implements the desktop window that contains an instance of
-        our MainContentComponent class.
-    */
-    class MainWindow    : public DocumentWindow
-    {
-    public:
-        MainWindow (String name)  : DocumentWindow (name,
+
+pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindow (name,
                                                     Colours::lightgrey,
                                                     DocumentWindow::allButtons)
         {
@@ -102,7 +86,7 @@ public:
             
         }
 
-        void closeButtonPressed() override
+        void pedalbraineditApplication::MainWindow::closeButtonPressed()
         {
             // This is called when the user tries to close this window. Here, we'll just
             // ask the app to quit when this happens, but you can change this to do
@@ -117,14 +101,9 @@ public:
            subclass also calls the superclass's method.
         */
 
-    private:
-        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
-    };
 
-private:
-    
-    ScopedPointer<MainWindow> mainWindow;
-};
+
+
 
 //==============================================================================
 // This macro generates the main() routine that launches the app.

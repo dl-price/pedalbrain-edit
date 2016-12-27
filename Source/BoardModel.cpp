@@ -12,14 +12,25 @@
 #include "BoardModel.h"
 
 //==============================================================================
+BoardModel *BoardModel::s_instance = 0;
+
 BoardModel::BoardModel()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    ReferenceCountedObjectPtr<BoardType> boardType = new EpicBoard();
-    //Logger::outputDebugString(String(boardType->getPages()));
+    boardType = new EpicBoard();
+    Logger::outputDebugString(String(boardType->getMaxDevices()));
+
 }
+
+BoardModel* BoardModel::instance()
+{
+    if(!s_instance)
+        s_instance = new BoardModel();
+    return s_instance;
+}
+
 
 /*BoardModel::~BoardModel()
 {
