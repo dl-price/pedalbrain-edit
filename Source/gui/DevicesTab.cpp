@@ -185,7 +185,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
 {
     if(rowIsSelected)
     {
-        g.setColour(Colours::blue);
+        g.setColour(Colours::cornflowerblue);
     }
     else {
         g.setColour(Colours::white);

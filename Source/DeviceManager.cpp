@@ -13,7 +13,13 @@
 
 void DeviceManager::loadDeviceConfig()
 {
-    File file = File(File::getSpecialLocation(File::SpecialLocationType::currentApplicationFile).getFullPathName() + "/Contents/Resources/Config/DeviceTypes.json");
+    File file;
+    if((SystemStats::getOperatingSystemType() & SystemStats::OperatingSystemType::MacOSX) !=0) {
+        file = File(File::getSpecialLocation(File::SpecialLocationType::currentApplicationFile).getFullPathName() + "/Contents/Resources/Config/DeviceTypes.json");
+    }
+    else if (SystemStats::getOperatingSystemType() == SystemStats::OperatingSystemType::iOS) {
+        file = File(File::getSpecialLocation(File::SpecialLocationType::currentApplicationFile).getFullPathName() + "/Config/DeviceTypes.json");
+    }
     
     var stuff = JSON::parse(file);
     
@@ -22,8 +28,20 @@ void DeviceManager::loadDeviceConfig()
     
     //Manufacturer mans[(sizeof(*stuff.getArray())/8)];
     
+    
+    
+    
+    Array<var> manArray = *stuff.getArray();
+    
+    int arraySize = manArray.size();
+    
     for(int i=0; i < sizeof(*stuff.getArray())/8; i++)
     {
+        
+        int dbug = sizeof(*stuff.getArray());
+        if(sizeof(*stuff.getArray()) == 0 ){
+            break;
+        }
         var manJson = (*stuff.getArray())[i];
         Manufacturer * newMan = new Manufacturer(manJson.getProperty("name", var()));
         DeviceManager::manufacturers.add(newMan);
