@@ -20,7 +20,7 @@ PedalView::PedalView()
     
     layoutCells = OwnedArray<LayoutCell>();
     
-    for(int i=1; i<=5;i++) {
+    for(int i=1; i<=11;i++) {
         LayoutCell *newCell = new LayoutCell();
         layoutCells.add(newCell);
         addAndMakeVisible(newCell);
@@ -59,7 +59,18 @@ void PedalView::resized()
     // components that your component contains..
     
     for (int i = 0;i < layoutCells.size();i++) {
-        layoutCells[i]->setBounds(40+100*i, 100*i, 100, 100);
+        switch(i) {
+            case 1:
+                layoutCells[i]->setBounds(0, 0, 100, 100);
+                break;
+            case 2 ... 5:
+                layoutCells[i]->setBounds(300 + 100*(i-3), 0, 100, 100);
+                break;
+            default:
+                layoutCells[i]->setBounds(100*(i-6), 100, 100, 100);
+                
+        }
+        
     }
 
 }
