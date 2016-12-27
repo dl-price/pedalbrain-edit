@@ -20,9 +20,18 @@
 class BoardType : public ReferenceCountedObject
 {
 public:
-
+    enum CellFeatures {
+        None = 0,
+        Led = 1<<0,
+        RgbLed = 1<<1,
+        Lcd = 1<<2,
+        Switch = 1<<3
+    };
     virtual int getMaxPages(){return 1;};
     virtual int getMaxDevices(){return 8;};
+    virtual int getCellNumber(){return 0;};
+    virtual CellFeatures getCellFeatures(int cell) {return CellFeatures::None ;};
+    
 };
 
 class BoardModel : public ReferenceCountedObject
@@ -47,6 +56,8 @@ public:
     //EpicBoard();
     int getMaxPages(){return 15;};
     int getMaxDevices(){return 16;};
+    int getCellNumber(){return 12;};
+    CellFeatures getCellFeatures(int cell);
 };
 
 

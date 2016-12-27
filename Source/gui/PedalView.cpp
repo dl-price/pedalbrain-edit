@@ -69,6 +69,7 @@ void PedalView::resized()
                 layoutCells[i]->setBounds(getWidth()/6*(i-5), getHeight()/2, getWidth()/6, getHeight()/2);
                 
         }
+        layoutCells[i]->features = BoardModel::getInstance()->boardType->getCellFeatures(i);
         
     }
 

@@ -41,9 +41,18 @@ void LayoutCell::paint (Graphics& g)
        drawing code..
     */
 
-
-    g.setColour (Colours::red);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+    switch(features)
+    {
+        case BoardType::Lcd:
+            g.setColour(Colours::blue);
+            break;
+        case BoardType::RgbLed:
+            g.setColour(Colours::green);
+            break;
+        default:
+            g.setColour(Colours::red);
+    }
+    g.fillRect (getLocalBounds());   // draw an outline around the component
 
     
 }

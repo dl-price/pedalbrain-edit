@@ -14,6 +14,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "CellEdit.h"
 //#include "../includes.h"
+#include "../BoardModel.h"
 
 //==============================================================================
 /*
@@ -28,6 +29,7 @@ public:
     void resized() override;
     void mouseUp(const MouseEvent &event) override;
     void mouseDoubleClick(const MouseEvent &event) override;
+    BoardType::CellFeatures features = BoardType::CellFeatures::None;
 
 private:
     ScopedPointer<CellEdit> cellEdit;
