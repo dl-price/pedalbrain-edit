@@ -26,6 +26,7 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     void mouseUp(const MouseEvent &event) override;
+    void mouseDoubleClick(const MouseEvent &event) override;
 
 private:
     ScopedPointer<Label> label;

@@ -54,5 +54,9 @@ void LayoutCell::resized()
 }
 
 void LayoutCell::mouseUp(const juce::MouseEvent &event) {
-    Logger::outputDebugString("Poked " + String(event.getNumberOfClicks()));
+    Logger::outputDebugString("Poked " + String(event.mods.isPopupMenu()));
+}
+
+void LayoutCell::mouseDoubleClick(const juce::MouseEvent &event) {
+    Logger::outputDebugString("Double click");
 }
