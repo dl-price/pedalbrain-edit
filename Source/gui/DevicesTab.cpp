@@ -18,9 +18,9 @@
 */
 
 //[Headers] You can add your own extra header files here...
+#include "includes.h"
 //[/Headers]
 
-#include "../includes.h"
 #include "DevicesTab.h"
 
 
@@ -82,9 +82,9 @@ DevicesTab::DevicesTab ()
     //[Constructor] You can add your own custom stuff here..
 
     deviceTable->setModel(this);
-    
+
     // Set up device type lists
-    
+
     for(int i = 0; i < DeviceManager::manufacturers.size();i++)
     {
         manufacturerCombo->addItem(DeviceManager::manufacturers[i]->name, i+1);
@@ -149,16 +149,16 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     if (comboBoxThatHasChanged == manufacturerCombo)
     {
         //[UserComboBoxCode_manufacturerCombo] -- add your combo box handling code here..
-        
+
         Manufacturer * man = DeviceManager::manufacturers[comboBoxThatHasChanged->getSelectedItemIndex()];
-        
+
         modelCombo->clear();
-        
+
         for(int i = 0; i < man->deviceTypes.size();i++)
         {
             modelCombo->addItem(man->deviceTypes[i]->name, i+1);
         }
-        
+
         //[/UserComboBoxCode_manufacturerCombo]
     }
     else if (comboBoxThatHasChanged == modelCombo)
@@ -213,9 +213,10 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="DevicesTab" componentName=""
-                 parentClasses="public Component, ListBoxModel" constructorParams=""
-                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component, ListBoxModel, ComboBoxListener"
+                 constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
+                 snapShown="1" overlayOpacity="0.330" fixedSize="0" initialWidth="600"
+                 initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
   <GROUPCOMPONENT name="device list group" id="1800231c5f32097d" memberName="deviceListGroup"
                   virtualName="" explicitFocusOrder="0" pos="1.504% 20 30.014% 40M"

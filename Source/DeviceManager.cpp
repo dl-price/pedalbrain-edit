@@ -23,13 +23,6 @@ void DeviceManager::loadDeviceConfig()
     
     var stuff = JSON::parse(file);
     
-    //delete [] DeviceManager::manufacturers;
-    //&(DeviceManager::manufacturers) = new Array<Manufacturer>[(sizeof(*stuff.getArray())/8)];
-    
-    //Manufacturer mans[(sizeof(*stuff.getArray())/8)];
-    
-    
-    
     
     Array<var> manArray = *stuff.getArray();
     

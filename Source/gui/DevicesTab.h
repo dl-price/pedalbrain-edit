@@ -36,7 +36,7 @@
 */
 class DevicesTab  : public Component,
                     ListBoxModel,
-                    public ComboBoxListener
+                    ComboBoxListener
 {
 public:
     //==============================================================================
