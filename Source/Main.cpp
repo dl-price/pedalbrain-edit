@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "includes.h"
 #include "PedalEdit.h"
+#include "CellEdit.h"
 
 
 //==============================================================================
@@ -71,6 +72,7 @@ public:
                                                     DocumentWindow::allButtons)
         {
             DeviceManager::loadDeviceConfig();
+            
             
             setUsingNativeTitleBar (true);
             PedalEdit* const contentComponent = new PedalEdit();

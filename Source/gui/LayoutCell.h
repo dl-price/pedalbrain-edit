@@ -12,6 +12,7 @@
 #define LAYOUTCELL_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "CellEdit.h"
 //#include "../includes.h"
 
 //==============================================================================
@@ -29,6 +30,7 @@ public:
     void mouseDoubleClick(const MouseEvent &event) override;
 
 private:
+    ScopedPointer<CellEdit> cellEdit;
     ScopedPointer<Label> label;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutCell)

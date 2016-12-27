@@ -11,6 +11,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../includes.h"
 #include "LayoutCell.h"
+//#include "../Main.cpp"
 
 //==============================================================================
 LayoutCell::LayoutCell()
@@ -22,6 +23,9 @@ LayoutCell::LayoutCell()
     label->setText("Label", NotificationType::dontSendNotification);
     label->setColour(Label::ColourIds::textColourId, Colours::white);
 
+    cellEdit = new CellEdit();
+    
+    //cellEdit->setAlpha(0);
 }
 
 LayoutCell::~LayoutCell()
@@ -50,6 +54,9 @@ void LayoutCell::resized()
     // components that your component contains..
     
     label->setBounds(0, 0, getWidth(), 24);
+    
+    cellEdit->setBounds(0, 0, TopLevelWindow::getTopLevelWindow(0)->getWidth(), TopLevelWindow::getTopLevelWindow(0)->getHeight());
+    
 
 }
 
@@ -59,4 +66,9 @@ void LayoutCell::mouseUp(const juce::MouseEvent &event) {
 
 void LayoutCell::mouseDoubleClick(const juce::MouseEvent &event) {
     Logger::outputDebugString("Double click");
+    
+    cellEdit->setBounds(TopLevelWindow::getTopLevelWindow(0)->getWidth(), TopLevelWindow::getTopLevelWindow(0)->getHeight(),TopLevelWindow::getTopLevelWindow(0)->getWidth(), TopLevelWindow::getTopLevelWindow(0)->getHeight());
+    TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(cellEdit);
+    Desktop::getInstance().getAnimator().animateComponent(cellEdit, Rectangle<int>(0, 0, TopLevelWindow::getTopLevelWindow(0)->getWidth(), TopLevelWindow::getTopLevelWindow(0)->getHeight()), 1, 300, false, 1, 1 ) ;
+    
 }

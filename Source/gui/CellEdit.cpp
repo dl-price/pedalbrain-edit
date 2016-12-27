@@ -32,6 +32,14 @@ CellEdit::CellEdit ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
+    addAndMakeVisible (label = new Label ("new label",
+                                          TRANS("label text")));
+    label->setFont (Font (15.00f, Font::plain));
+    label->setJustificationType (Justification::centredLeft);
+    label->setEditable (false, false, false);
+    label->setColour (TextEditor::textColourId, Colours::black);
+    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -48,6 +56,7 @@ CellEdit::~CellEdit()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
+    label = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -71,6 +80,7 @@ void CellEdit::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
+    label->setBounds (24, 48, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -95,6 +105,11 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
+  <LABEL name="new label" id="cf2f418798e75d1b" memberName="label" virtualName=""
+         explicitFocusOrder="0" pos="24 48 150 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="label text" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
+         bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
