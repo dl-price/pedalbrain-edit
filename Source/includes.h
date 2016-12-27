@@ -16,7 +16,9 @@
 #include "DeviceManager.h"
 #include "Device.h"
 #include "gui/GlobalTab.h"
+#include "gui/LayoutCell.h"
 #include "gui/LayoutTab.h"
+
 
 
 #endif  // INCLUDES_H_INCLUDED

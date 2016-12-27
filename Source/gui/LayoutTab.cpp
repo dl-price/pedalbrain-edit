@@ -39,6 +39,15 @@ LayoutTab::LayoutTab()
     pageNameLabel->setText("Page Name", NotificationType::dontSendNotification);
     
     addAndMakeVisible(pageNameEditor = new TextEditor());
+    
+    layoutCells = OwnedArray<LayoutCell>();
+    
+    for(int i=1; i<=5;i++) {
+        LayoutCell *newCell = new LayoutCell();
+        layoutCells.add(newCell);
+        addAndMakeVisible(newCell);
+        
+    }
 
 }
 
@@ -85,5 +94,9 @@ void LayoutTab::resized()
     pageUpButton->setBounds(pageCombo->getX()+pageCombo->getWidth()+20, 20, 40, 24);
     pageNameLabel->setBounds(pageUpButton->getX()+pageUpButton->getWidth()+20, 20, 100, 24);
     pageNameEditor->setBounds(pageNameLabel->getX()+pageNameLabel->getWidth()+20, 20, 200, 24);
+
+    for (int i = 0;i < layoutCells.size();i++) {
+        layoutCells[i]->setBounds(40+100*i, 100*i, 100, 100);
+    }
 
 }

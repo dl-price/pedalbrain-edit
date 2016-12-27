@@ -9,6 +9,7 @@
 */
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "../includes.h"
 #include "LayoutCell.h"
 
 //==============================================================================
@@ -34,13 +35,15 @@ void LayoutCell::paint (Graphics& g)
 
     g.fillAll (Colours::white);   // clear the background
 
-    g.setColour (Colours::grey);
+    g.setColour (Colours::red);
     g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 
     g.setColour (Colours::lightblue);
     g.setFont (14.0f);
     g.drawText ("LayoutCell", getLocalBounds(),
                 Justification::centred, true);   // draw some placeholder text
+    
+    Logger::outputDebugString("paint");
 }
 
 void LayoutCell::resized()
@@ -48,4 +51,8 @@ void LayoutCell::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
 
+}
+
+void LayoutCell::mouseUp(const juce::MouseEvent &event) {
+    Logger::outputDebugString("Poked " + String(event.getNumberOfClicks()));
 }
