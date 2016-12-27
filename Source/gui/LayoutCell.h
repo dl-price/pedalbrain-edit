@@ -29,7 +29,6 @@ public:
 
 private:
     ScopedPointer<Label> label;
-    ScopedPointer<Button> led;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutCell)
 };

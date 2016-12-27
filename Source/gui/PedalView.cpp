@@ -47,10 +47,6 @@ void PedalView::paint (Graphics& g)
     g.setColour (Colours::black);
     g.fillRect (getLocalBounds());   // draw an outline around the component
 
-    g.setColour (Colours::lightblue);
-    g.setFont (14.0f);
-    g.drawText ("PedalView", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
 }
 
 void PedalView::resized()
@@ -61,9 +57,12 @@ void PedalView::resized()
     for (int i = 0;i < layoutCells.size();i++) {
         switch(i) {
             case 0:
-                layoutCells[i]->setBounds(0, 0, getWidth()/6, getHeight()/2);
+                layoutCells[i]->setBounds(0, 0, getWidth()/6*3/4, getHeight()/2);
                 break;
-            case 1 ... 4:
+            case 1:
+                layoutCells[i]->setBounds(getWidth()/6*(i+1)+getWidth()/6/4, 0, getWidth()/6*3/4, getHeight()/2);
+                break;
+            case 2 ... 4:
                 layoutCells[i]->setBounds(getWidth()/6*(i+1), 0, getWidth()/6, getHeight()/2);
                 break;
             default:

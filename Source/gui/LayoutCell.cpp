@@ -17,6 +17,10 @@ LayoutCell::LayoutCell()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    
+    addAndMakeVisible(label = new Label());
+    label->setText("Label", NotificationType::dontSendNotification);
+    label->setColour(Label::ColourIds::textColourId, Colours::white);
 
 }
 
@@ -33,23 +37,19 @@ void LayoutCell::paint (Graphics& g)
        drawing code..
     */
 
-    g.fillAll (Colours::white);   // clear the background
 
     g.setColour (Colours::red);
     g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 
-    g.setColour (Colours::lightblue);
-    g.setFont (14.0f);
-    g.drawText ("LayoutCell", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
     
-    Logger::outputDebugString("paint");
 }
 
 void LayoutCell::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
+    
+    label->setBounds(0, 0, getWidth(), 24);
 
 }
 

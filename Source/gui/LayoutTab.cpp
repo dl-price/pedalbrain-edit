@@ -64,12 +64,6 @@ void LayoutTab::paint (Graphics& g)
     g.setColour (Colours::grey);
     g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 
-    
-    
-    g.setColour (Colours::lightblue);
-    g.setFont (14.0f);
-    g.drawText ("LayoutTab", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
 }
 
 void LayoutTab::resized()
