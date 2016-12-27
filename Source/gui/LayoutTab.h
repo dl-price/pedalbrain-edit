@@ -27,6 +27,13 @@ public:
     void resized() override;
 
 private:
+    ScopedPointer<Button> pageDownButton;
+    ScopedPointer<Button> pageUpButton;
+    ScopedPointer<ComboBox> pageCombo;
+    ScopedPointer<Label> pageNameLabel;
+    ScopedPointer<TextEditor> pageNameEditor;
+    
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutTab)
 };
 
