@@ -10,6 +10,8 @@
         <FILE id="ntISjz" name="DevicesTab.h" compile="0" resource="0" file="Source/gui/DevicesTab.h"/>
         <FILE id="Z952US" name="GlobalTab.cpp" compile="1" resource="0" file="Source/gui/GlobalTab.cpp"/>
         <FILE id="oSil95" name="GlobalTab.h" compile="0" resource="0" file="Source/gui/GlobalTab.h"/>
+        <FILE id="qa3UxS" name="LayoutCell.cpp" compile="1" resource="0" file="Source/gui/LayoutCell.cpp"/>
+        <FILE id="zvLHwE" name="LayoutCell.h" compile="0" resource="0" file="Source/gui/LayoutCell.h"/>
         <FILE id="SUXkQ9" name="LayoutTab.cpp" compile="1" resource="0" file="Source/gui/LayoutTab.cpp"/>
         <FILE id="JsQnDL" name="LayoutTab.h" compile="0" resource="0" file="Source/gui/LayoutTab.h"/>
         <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
