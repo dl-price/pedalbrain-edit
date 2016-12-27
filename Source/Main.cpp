@@ -66,6 +66,8 @@ public:
                                                     Colours::lightgrey,
                                                     DocumentWindow::allButtons)
         {
+            DeviceManager::loadDeviceConfig();
+            
             setUsingNativeTitleBar (true);
             PedalEdit* const contentComponent = new PedalEdit();
             setContentOwned (contentComponent, true);
@@ -78,7 +80,7 @@ public:
             
             setVisible (true);
             
-            DeviceManager::loadDeviceConfig();
+            
         }
 
         void closeButtonPressed() override

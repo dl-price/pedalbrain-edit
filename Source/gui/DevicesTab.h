@@ -35,7 +35,8 @@
                                                                     //[/Comments]
 */
 class DevicesTab  : public Component,
-                    ListBoxModel
+                    ListBoxModel,
+                    public ComboBoxListener
 {
 public:
     //==============================================================================
@@ -53,6 +54,7 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
 
 
@@ -66,6 +68,10 @@ private:
     ScopedPointer<GroupComponent> deviceListGroup;
     ScopedPointer<GroupComponent> groupComponent;
     ScopedPointer<ListBox> deviceTable;
+    ScopedPointer<Label> label;
+    ScopedPointer<Label> label2;
+    ScopedPointer<ComboBox> manufacturerCombo;
+    ScopedPointer<ComboBox> modelCombo;
 
 
     //==============================================================================
