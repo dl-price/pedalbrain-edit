@@ -20,7 +20,6 @@ BoardModel::BoardModel()
     // initialise any special settings that your component needs.
     
     boardType = new EpicBoard();
-    Logger::outputDebugString(String(boardType->getMaxDevices()));
 
 }
 

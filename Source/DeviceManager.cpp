@@ -52,7 +52,6 @@ void DeviceManager::loadDeviceConfig()
         
         for(int j=0; j < some.size();j++)
         {
-            Logger::outputDebugString(some[j].getProperty("name", var()));
             DeviceType * dev = new DeviceType(some[j].getProperty("name", var()));
             DeviceManager::deviceTypes.add(dev);
             newMan->deviceTypes.add(dev);
