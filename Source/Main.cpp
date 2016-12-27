@@ -79,8 +79,15 @@ public:
             centreWithSize (getWidth(), getHeight());
             
             setMenuBar(contentComponent);
+            if (SystemStats::getOperatingSystemType() != SystemStats::OperatingSystemType::iOS) {
             setResizable(true, true);
             setResizeLimits(1000, 700, 2000, 2000);
+            }
+            else
+            {
+                setResizable(false, false);
+                setFullScreen(true);
+            }
             
             setVisible (true);
             
