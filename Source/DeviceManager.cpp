@@ -11,6 +11,14 @@
 #include "includes.h"
 #include "DeviceManager.h"
 
+DeviceManager* DeviceManager::getInstance() {
+    if(!s_instance)
+        s_instance = new DeviceManager();
+    return s_instance;
+}
+
+DeviceManager *DeviceManager::s_instance = 0;
+
 void DeviceManager::loadDeviceConfig()
 {
     File file;
@@ -55,6 +63,12 @@ void DeviceManager::loadDeviceConfig()
     
 }
 
-OwnedArray<Manufacturer> DeviceManager::manufacturers = OwnedArray<Manufacturer>();
-OwnedArray<DeviceType> DeviceManager::deviceTypes = OwnedArray<DeviceType>();
+DeviceManager::DeviceManager()
+{
+    manufacturers = OwnedArray<Manufacturer>();
+    deviceTypes = OwnedArray<DeviceType>();
+}
+
+
+
 

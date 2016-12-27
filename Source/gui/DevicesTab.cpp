@@ -86,9 +86,9 @@ DevicesTab::DevicesTab ()
 
     // Set up device type lists
 
-    for(int i = 0; i < DeviceManager::manufacturers.size();i++)
+    for(int i = 0; i < DeviceManager::getInstance()->manufacturers.size();i++)
     {
-        manufacturerCombo->addItem(DeviceManager::manufacturers[i]->name, i+1);
+        manufacturerCombo->addItem(DeviceManager::getInstance()->manufacturers[i]->name, i+1);
     }
 
 
@@ -151,7 +151,7 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         //[UserComboBoxCode_manufacturerCombo] -- add your combo box handling code here..
 
-        Manufacturer * man = DeviceManager::manufacturers[comboBoxThatHasChanged->getSelectedItemIndex()];
+        Manufacturer * man = DeviceManager::getInstance()->manufacturers[comboBoxThatHasChanged->getSelectedItemIndex()];
 
         modelCombo->clear();
 

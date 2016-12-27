@@ -46,7 +46,7 @@ class EpicBoard : public BoardType
 public:
     //EpicBoard();
     int getMaxPages(){return 15;};
-    //int getMaxDevices(){return 16;};
+    int getMaxDevices(){return 16;};
 };
 
 

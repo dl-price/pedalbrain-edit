@@ -61,7 +61,7 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
                                                     Colours::lightgrey,
                                                     DocumentWindow::allButtons)
         {
-            DeviceManager::loadDeviceConfig();
+            DeviceManager::getInstance()->loadDeviceConfig();
             
             
             setUsingNativeTitleBar (true);

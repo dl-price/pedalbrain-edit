@@ -16,10 +16,15 @@
 
 class DeviceManager {
 public:
-    static OwnedArray<Manufacturer> manufacturers;
-    static OwnedArray<DeviceType> deviceTypes;
+    DeviceManager();
+    OwnedArray<Manufacturer> manufacturers;
+    OwnedArray<DeviceType> deviceTypes;
     
-    static void loadDeviceConfig();
+    void loadDeviceConfig();
+    static DeviceManager *getInstance();
+    
+private:
+    static DeviceManager *s_instance;
 
 };
 
