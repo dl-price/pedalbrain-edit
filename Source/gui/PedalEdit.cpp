@@ -9,6 +9,7 @@
 */
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "../includes.h"
 #include "PedalEdit.h"
 #include "GlobalTab.h"
 #include "DevicesTab.h"
@@ -22,6 +23,7 @@ PedalEdit::PedalEdit()
     addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
     superTabComponent->addTab("Global", juce::Colours::blue, new GlobalTab(), false);
     superTabComponent->addTab("Devices", juce::Colours::green, new DevicesTab(), false);
+    superTabComponent->addTab("Layout", juce::Colours::blue, new LayoutTab(), false);
     
     setSize(600,400);
 

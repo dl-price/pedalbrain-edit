@@ -15,6 +15,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DeviceManager.h"
 #include "Device.h"
+#include "gui/GlobalTab.h"
+#include "gui/LayoutTab.h"
 
 
 #endif  // INCLUDES_H_INCLUDED
