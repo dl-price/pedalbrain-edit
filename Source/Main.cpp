@@ -29,6 +29,10 @@ public:
     {
         // This method is where you should put your application's initialisation code..
 
+        if (SystemStats::getOperatingSystemType() == SystemStats::OperatingSystemType::iOS) {
+            Desktop::getInstance().setOrientationsEnabled(12);
+        }
+        
         mainWindow = new MainWindow (getApplicationName());
     }
 
