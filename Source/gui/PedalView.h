@@ -1,38 +1,37 @@
 /*
   ==============================================================================
 
-    LayoutCell.h
-    Created: 27 Dec 2016 6:13:24am
+    PedalView.h
+    Created: 27 Dec 2016 9:43:51am
     Author:  Daniel Price
 
   ==============================================================================
 */
 
-#ifndef LAYOUTCELL_H_INCLUDED
-#define LAYOUTCELL_H_INCLUDED
+#ifndef PEDALVIEW_H_INCLUDED
+#define PEDALVIEW_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "LayoutCell.h"
 //#include "../includes.h"
 
 //==============================================================================
 /*
 */
-class LayoutCell    : public Component
+class PedalView    : public Component
 {
 public:
-    LayoutCell();
-    ~LayoutCell();
+    PedalView();
+    ~PedalView();
 
     void paint (Graphics&) override;
     void resized() override;
-    void mouseUp(const MouseEvent &event) override;
 
 private:
-    ScopedPointer<Label> label;
-    ScopedPointer<Button> led;
+    OwnedArray<LayoutCell> layoutCells;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutCell)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };
 
 
-#endif  // LAYOUTCELL_H_INCLUDED
+#endif  // PEDALVIEW_H_INCLUDED

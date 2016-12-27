@@ -16,6 +16,8 @@
         <FILE id="JsQnDL" name="LayoutTab.h" compile="0" resource="0" file="Source/gui/LayoutTab.h"/>
         <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
         <FILE id="Cl22ff" name="PedalEdit.h" compile="0" resource="0" file="Source/gui/PedalEdit.h"/>
+        <FILE id="GG4buF" name="PedalView.cpp" compile="1" resource="0" file="Source/gui/PedalView.cpp"/>
+        <FILE id="VmvqGx" name="PedalView.h" compile="0" resource="0" file="Source/gui/PedalView.h"/>
       </GROUP>
       <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
       <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>

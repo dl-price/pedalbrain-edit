@@ -40,14 +40,9 @@ LayoutTab::LayoutTab()
     
     addAndMakeVisible(pageNameEditor = new TextEditor());
     
-    layoutCells = OwnedArray<LayoutCell>();
+    addAndMakeVisible(pedalView = new PedalView());
     
-    for(int i=1; i<=5;i++) {
-        LayoutCell *newCell = new LayoutCell();
-        layoutCells.add(newCell);
-        addAndMakeVisible(newCell);
-        
-    }
+    
 
 }
 
@@ -69,14 +64,7 @@ void LayoutTab::paint (Graphics& g)
     g.setColour (Colours::grey);
     g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 
-    int drawWidth = getWidth() - 40;
     
-    int drawHeight = getHeight() * 0.8;
-    
-    int drawY = (getHeight() - drawHeight)/2;
-    
-    g.setColour(juce::Colours::black);
-    g.fillRect(Rectangle<int>(20,drawY,drawWidth,drawHeight));
     
     g.setColour (Colours::lightblue);
     g.setFont (14.0f);
@@ -89,14 +77,20 @@ void LayoutTab::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
     
+    int drawWidth = getWidth() - 40;
+    
+    int drawHeight = getHeight() * 0.8;
+    
+    int drawY = (getHeight() - drawHeight)/2;
+    
+    pedalView->setBounds(Rectangle<int>(20,drawY,drawWidth,drawHeight));
+    
     pageDownButton->setBounds(20, 20, 40, 24);
     pageCombo->setBounds(100, 20, 100, 24);
     pageUpButton->setBounds(pageCombo->getX()+pageCombo->getWidth()+20, 20, 40, 24);
     pageNameLabel->setBounds(pageUpButton->getX()+pageUpButton->getWidth()+20, 20, 100, 24);
     pageNameEditor->setBounds(pageNameLabel->getX()+pageNameLabel->getWidth()+20, 20, 200, 24);
 
-    for (int i = 0;i < layoutCells.size();i++) {
-        layoutCells[i]->setBounds(40+100*i, 100*i, 100, 100);
-    }
+    
 
 }

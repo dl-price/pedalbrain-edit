@@ -12,7 +12,9 @@
 #define LAYOUTTAB_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "../includes.h"
+#include "PedalView.h"
+//#include "../includes.h"
+
 
 //==============================================================================
 /*
@@ -32,7 +34,8 @@ private:
     ScopedPointer<ComboBox> pageCombo;
     ScopedPointer<Label> pageNameLabel;
     ScopedPointer<TextEditor> pageNameEditor;
-    OwnedArray<LayoutCell> layoutCells;
+    ScopedPointer<PedalView> pedalView;
+    
     
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutTab)
