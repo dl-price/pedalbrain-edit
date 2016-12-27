@@ -24,7 +24,7 @@ BoardModel::BoardModel()
 
 }
 
-BoardModel* BoardModel::instance()
+BoardModel* BoardModel::getInstance()
 {
     if(!s_instance)
         s_instance = new BoardModel();

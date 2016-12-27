@@ -34,7 +34,7 @@ public:
     
     ReferenceCountedObjectPtr<BoardType> boardType;
     OwnedArray<PageModel> pages;
-    static BoardModel *instance();
+    static BoardModel *getInstance();
     
 private:
     
