@@ -23,7 +23,19 @@ Device::~Device()
 {
 }
 
+Manufacturer::Manufacturer()
+{
+    name = "";
+    deviceTypes = OwnedArray<DeviceType>();
+}
+
 Manufacturer::Manufacturer(String newName)
+{
+    name = newName;
+    deviceTypes = OwnedArray<DeviceType>();
+}
+
+DeviceType::DeviceType(String newName)
 {
     name = newName;
 }

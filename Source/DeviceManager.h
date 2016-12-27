@@ -16,9 +16,8 @@
 
 class DeviceManager {
 public:
-    //static Manufacturer manufacturers[3];
-    static Manufacturer manufacturers[];
-    static DeviceType deviceTypes[];
+    static OwnedArray<Manufacturer> manufacturers;
+    static OwnedArray<DeviceType> deviceTypes;
     
     static void loadDeviceConfig();
 

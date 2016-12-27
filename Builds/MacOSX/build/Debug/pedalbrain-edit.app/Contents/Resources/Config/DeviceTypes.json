@@ -1,0 +1,32 @@
+[
+  {
+    "name": "None",
+    "devices": [
+      {
+        "name": "None"
+      }
+    ]
+  },
+  {
+    "name": "Generic",
+    "devices": [
+      {
+        "name": "Generic"
+      }
+    ]
+  },
+  {
+    "name": "Strymon",
+    "devices": [
+      {
+        "name": "Mobius"
+      },
+      {
+        "name": "TimeLine"
+      },
+      {
+        "name": "BigSky"
+      }
+    ]
+  }
+]

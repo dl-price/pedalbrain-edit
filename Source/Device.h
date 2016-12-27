@@ -34,18 +34,23 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };
 
-class Manufacturer
-{
-public:
-    String name;
-    Manufacturer(String newName);
-};
-
 class DeviceType
 {
 public:
     String name;
+    DeviceType(String newName);
 };
+
+class Manufacturer
+{
+public:
+    String name;
+    OwnedArray<DeviceType> deviceTypes;
+    Manufacturer();
+    Manufacturer(String newName);
+};
+
+
 
 
 
