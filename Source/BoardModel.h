@@ -52,12 +52,13 @@ class BoardModel
 {
     static BoardModel *s_instance;
 public:
-    BoardModel();
+    BoardModel(BoardType *newType);
     //~BoardModel();
     
     ReferenceCountedObjectPtr<BoardType> boardType;
     OwnedArray<PageModel> pages;
     static BoardModel *getInstance();
+    void initFromNothing();
     
 private:
     

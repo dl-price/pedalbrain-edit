@@ -13,7 +13,7 @@
 
 //==============================================================================
 
-/*ComponentModel::ComponentModel()
+ComponentModel::ComponentModel()
 {
     
-}*/
+}

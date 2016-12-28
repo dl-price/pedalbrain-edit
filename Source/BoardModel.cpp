@@ -16,30 +16,33 @@
 //==============================================================================
 BoardModel *BoardModel::s_instance = 0;
 
-BoardModel::BoardModel()
+BoardModel::BoardModel(BoardType *newType)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
     pages = OwnedArray<PageModel>();
     
+    boardType = newType;
     
-    int yes = pages.size();
-    
+
+}
+
+void BoardModel::initFromNothing()
+{
     boardType = new EpicBoard();
     
     for (int i=0; i < boardType->getMaxPages(); i++)
     {
         pages.add(new PageModel());
     }
-
 }
 
 BoardModel* BoardModel::getInstance()
 {
     if(!s_instance)
     {
-        s_instance = new BoardModel();
+        s_instance = new BoardModel(new EpicBoard());
         Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
         Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
         Logger::outputDebugString("Board had: " + String(s_instance->boardType->getLCDNumber()) + " LCD screens");

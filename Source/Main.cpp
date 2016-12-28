@@ -14,6 +14,7 @@
 #include "PedalEdit.h"
 #include "CellEdit.h"
 #include "BoardModel.h"
+#include "BoardTypes/EpicBoard.h"
 
 
 
@@ -29,7 +30,7 @@
         }
         
         mainWindow = new MainWindow (getApplicationName());
-        new BoardModel();
+        new BoardModel(new EpicBoard());
     }
 
     void pedalbraineditApplication::shutdown()

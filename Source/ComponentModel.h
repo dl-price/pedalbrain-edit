@@ -19,7 +19,7 @@
 class ComponentModel 
 {
 public:
-    //ComponentModel();
+    ComponentModel();
 };
 
 
