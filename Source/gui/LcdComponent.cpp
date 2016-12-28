@@ -34,8 +34,8 @@ void LcdComponent::paint (Graphics& g)
 
     g.fillAll (Colours::white);   // clear the background
 
-    g.setColour (Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+    g.setColour (Colours::yellow);
+    g.fillRect (getLocalBounds());   // draw an outline around the component
 
     g.setColour (Colours::lightblue);
     g.setFont (14.0f);

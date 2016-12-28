@@ -24,9 +24,10 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../gui/PedalView.h"
 #include "../gui/PedalViewComponents.h"
+#include "../gui/LedComponent.h"
+#include "../gui/ButtonComponent.h"
 //[/Headers]
 
-#include "../gui/LedComponent.h"
 
 
 //==============================================================================
@@ -58,7 +59,9 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<LedComponent> component;
+    ScopedPointer<Label> label;
+    ScopedPointer<LedComponent> component2;
+    ScopedPointer<ButtonComponent> component;
 
 
     //==============================================================================
