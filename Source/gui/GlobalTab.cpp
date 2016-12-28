@@ -20,7 +20,6 @@
 //[Headers] You can add your own extra header files here...
 //[/Headers]
 
-#include "../includes.h"
 #include "GlobalTab.h"
 
 
@@ -57,7 +56,7 @@ GlobalTab::GlobalTab ()
     //[UserPreSize]
     //[/UserPreSize]
 
-    //setSize (600, 400);
+    setSize (600, 400);
 
 
     //[Constructor] You can add your own custom stuff here..

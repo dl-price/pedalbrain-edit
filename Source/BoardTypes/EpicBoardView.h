@@ -23,8 +23,10 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../gui/PedalView.h"
+#include "../gui/PedalViewComponents.h"
 //[/Headers]
 
+#include "../gui/LedComponent.h"
 
 
 //==============================================================================
@@ -56,7 +58,7 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Label> label;
+    ScopedPointer<LedComponent> component;
 
 
     //==============================================================================
