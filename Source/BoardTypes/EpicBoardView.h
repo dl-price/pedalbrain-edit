@@ -26,6 +26,7 @@
 #include "../gui/PedalViewComponents.h"
 #include "../gui/LedComponent.h"
 #include "../gui/ButtonComponent.h"
+#include "../gui/LcdComponent.h"
 //[/Headers]
 
 
@@ -62,6 +63,7 @@ private:
     ScopedPointer<Label> label;
     ScopedPointer<LedComponent> component2;
     ScopedPointer<ButtonComponent> component;
+    ScopedPointer<LcdComponent> component3;
 
 
     //==============================================================================

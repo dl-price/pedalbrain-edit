@@ -12,14 +12,16 @@
 #define BUTTONCOMPONENT_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "PedalViewComponents.h"
 
 //==============================================================================
 /*
 */
-class ButtonComponent    : public Component
+class ButtonComponent    : public PedalViewComponent
 {
 public:
     ButtonComponent();
+    ButtonComponent(int newId);
     ~ButtonComponent();
 
     void paint (Graphics&) override;

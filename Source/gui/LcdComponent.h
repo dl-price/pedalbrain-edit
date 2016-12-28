@@ -12,6 +12,7 @@
 #define LCDCOMPONENT_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "PedalViewComponents.h"
 
 //==============================================================================
 /*

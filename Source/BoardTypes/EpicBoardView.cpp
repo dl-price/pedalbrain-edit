@@ -43,8 +43,11 @@ EpicBoardView::EpicBoardView ()
     addAndMakeVisible (component2 = new LedComponent (1));
     component2->setName ("new component");
 
-    addAndMakeVisible (component = new ButtonComponent());
+    addAndMakeVisible (component = new ButtonComponent (2));
     component->setName ("new component");
+
+    addAndMakeVisible (component3 = new LcdComponent());
+    component3->setName ("new component");
 
 
     //[UserPreSize]
@@ -65,6 +68,7 @@ EpicBoardView::~EpicBoardView()
     label = nullptr;
     component2 = nullptr;
     component = nullptr;
+    component3 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -91,6 +95,7 @@ void EpicBoardView::resized()
     label->setBounds (241, 208, 150, 24);
     component2->setBounds (0, 0, 150, 24);
     component->setBounds (457, 280, 183, 120);
+    component3->setBounds (448, 104, 224, 144);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -125,6 +130,9 @@ BEGIN_JUCER_METADATA
                     params="1"/>
   <GENERICCOMPONENT name="new component" id="ddf151a0b324bd1a" memberName="component"
                     virtualName="" explicitFocusOrder="0" pos="457 280 183 120" class="ButtonComponent"
+                    params="2"/>
+  <GENERICCOMPONENT name="new component" id="7573fced4d31e22c" memberName="component3"
+                    virtualName="" explicitFocusOrder="0" pos="448 104 224 144" class="LcdComponent"
                     params=""/>
 </JUCER_COMPONENT>
 
