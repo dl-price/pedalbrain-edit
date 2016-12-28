@@ -60,10 +60,29 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Label> label;
     ScopedPointer<LedComponent> component2;
     ScopedPointer<ButtonComponent> component;
     ScopedPointer<LcdComponent> component3;
+    ScopedPointer<ButtonComponent> component4;
+    ScopedPointer<ButtonComponent> component5;
+    ScopedPointer<ButtonComponent> component6;
+    ScopedPointer<ButtonComponent> component7;
+    ScopedPointer<LedComponent> component8;
+    ScopedPointer<LedComponent> component9;
+    ScopedPointer<LedComponent> component10;
+    ScopedPointer<LedComponent> component11;
+    ScopedPointer<ButtonComponent> component12;
+    ScopedPointer<ButtonComponent> component13;
+    ScopedPointer<ButtonComponent> component14;
+    ScopedPointer<ButtonComponent> component15;
+    ScopedPointer<LedComponent> component16;
+    ScopedPointer<LedComponent> component17;
+    ScopedPointer<LedComponent> component18;
+    ScopedPointer<LedComponent> component19;
+    ScopedPointer<ButtonComponent> component20;
+    ScopedPointer<ButtonComponent> component21;
+    ScopedPointer<LedComponent> component22;
+    ScopedPointer<LedComponent> component23;
 
 
     //==============================================================================
