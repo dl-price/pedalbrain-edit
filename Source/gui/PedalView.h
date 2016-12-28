@@ -12,7 +12,6 @@
 #define PEDALVIEW_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "LayoutCell.h"
 //#include "../includes.h"
 
 //==============================================================================
@@ -28,7 +27,6 @@ public:
     void resized() override;
 
 private:
-    OwnedArray<LayoutCell> layoutCells;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };

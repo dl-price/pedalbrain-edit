@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PageModel.h"
+#include "gui/PedalView.h"
 
 //==============================================================================
 /*
@@ -32,6 +33,7 @@ public:
     virtual int getMaxDevices(){return 8;};
     virtual int getCellNumber(){return 0;};
     virtual CellFeatures getCellFeatures(int cell) {return CellFeatures::None ;};
+    virtual PedalView *createView() = 0;
     
 };
 
@@ -51,16 +53,7 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardModel)
 };
 
-class EpicBoard : public BoardType
-{
-public:
-    //EpicBoard();
-    String getName(){return "Epic Board";};
-    int getMaxPages(){return 15;};
-    int getMaxDevices(){return 16;};
-    int getCellNumber(){return 12;};
-    CellFeatures getCellFeatures(int cell);
-};
+
 
 
 #endif  // BOARDMODEL_H_INCLUDED

@@ -11,6 +11,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../includes.h"
 #include "LayoutTab.h"
+#include "../BoardModel.h"
 
 //==============================================================================
 LayoutTab::LayoutTab()
@@ -40,7 +41,7 @@ LayoutTab::LayoutTab()
     
     addAndMakeVisible(pageNameEditor = new TextEditor());
     
-    addAndMakeVisible(pedalView = new PedalView());
+    addAndMakeVisible(pedalView = BoardModel::getInstance()->boardType->createView());
     
     
 

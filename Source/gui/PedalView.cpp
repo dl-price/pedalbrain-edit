@@ -18,14 +18,14 @@ PedalView::PedalView()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    layoutCells = OwnedArray<LayoutCell>();
+    /*layoutCells = OwnedArray<LayoutCell>();
     
     for(int i=1; i<=11;i++) {
         LayoutCell *newCell = new LayoutCell();
         layoutCells.add(newCell);
         addAndMakeVisible(newCell);
         
-    }
+    }*/
 
 }
 
@@ -42,10 +42,10 @@ void PedalView::paint (Graphics& g)
        drawing code..
     */
 
-    g.fillAll (Colours::white);   // clear the background
+    /*g.fillAll (Colours::white);   // clear the background
 
     g.setColour (Colours::black);
-    g.fillRect (getLocalBounds());   // draw an outline around the component
+    g.fillRect (getLocalBounds());   // draw an outline around the component*/
 
 }
 
@@ -54,7 +54,7 @@ void PedalView::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
     
-    for (int i = 0;i < layoutCells.size();i++) {
+    /*for (int i = 0;i < layoutCells.size();i++) {
         switch(i) {
             case 0:
                 layoutCells[i]->setBounds(0, 0, getWidth()/6*3/4, getHeight()/2);
@@ -71,6 +71,6 @@ void PedalView::resized()
         }
         layoutCells[i]->features = BoardModel::getInstance()->boardType->getCellFeatures(i);
         
-    }
+    }*/
 
 }

@@ -10,6 +10,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "BoardModel.h"
+#include "BoardTypes/EpicBoardView.h"
+#include "BoardTypes/EpicBoard.h"
 
 //==============================================================================
 BoardModel *BoardModel::s_instance = 0;
@@ -33,22 +35,9 @@ BoardModel* BoardModel::getInstance()
     return s_instance;
 }
 
-BoardType::CellFeatures EpicBoard::getCellFeatures(int cell) {
-    if (cell==0)
-    {
-        return BoardType::CellFeatures::Lcd;
-    }
-    else if (cell<3)
-    {
-        return BoardType::CellFeatures::Switch;
-    }
-    else if (cell<8)
-    {
-        return BoardType::CellFeatures::RgbLed;
-    }
-    
-    return BoardType::CellFeatures::None;
-}
+
+
+
 
 /*BoardModel::~BoardModel()
 {

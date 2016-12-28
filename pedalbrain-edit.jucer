@@ -5,6 +5,13 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <GROUP id="{21E4EF04-D041-8725-3664-5A7D322C1E0C}" name="BoardTypes">
+        <FILE id="lLZ8gM" name="EpicBoard.cpp" compile="1" resource="0" file="Source/BoardTypes/EpicBoard.cpp"/>
+        <FILE id="v5BZcA" name="EpicBoard.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoard.h"/>
+        <FILE id="iU94OW" name="EpicBoardView.cpp" compile="1" resource="0"
+              file="Source/BoardTypes/EpicBoardView.cpp"/>
+        <FILE id="IG7gmH" name="EpicBoardView.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoardView.h"/>
+      </GROUP>
       <GROUP id="{C0CCEBD0-EE76-8C55-A8B7-7E554272C135}" name="gui">
         <FILE id="Fx0PDM" name="CellEdit.cpp" compile="1" resource="0" file="Source/gui/CellEdit.cpp"/>
         <FILE id="pcmeTK" name="CellEdit.h" compile="0" resource="0" file="Source/gui/CellEdit.h"/>
@@ -12,8 +19,6 @@
         <FILE id="ntISjz" name="DevicesTab.h" compile="0" resource="0" file="Source/gui/DevicesTab.h"/>
         <FILE id="Z952US" name="GlobalTab.cpp" compile="1" resource="0" file="Source/gui/GlobalTab.cpp"/>
         <FILE id="oSil95" name="GlobalTab.h" compile="0" resource="0" file="Source/gui/GlobalTab.h"/>
-        <FILE id="qa3UxS" name="LayoutCell.cpp" compile="1" resource="0" file="Source/gui/LayoutCell.cpp"/>
-        <FILE id="zvLHwE" name="LayoutCell.h" compile="0" resource="0" file="Source/gui/LayoutCell.h"/>
         <FILE id="SUXkQ9" name="LayoutTab.cpp" compile="1" resource="0" file="Source/gui/LayoutTab.cpp"/>
         <FILE id="JsQnDL" name="LayoutTab.h" compile="0" resource="0" file="Source/gui/LayoutTab.h"/>
         <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
