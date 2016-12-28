@@ -27,6 +27,7 @@ public:
         Lcd = 1<<2,
         Switch = 1<<3
     };
+    virtual String getName() = 0;
     virtual int getMaxPages(){return 1;};
     virtual int getMaxDevices(){return 8;};
     virtual int getCellNumber(){return 0;};
@@ -54,6 +55,7 @@ class EpicBoard : public BoardType
 {
 public:
     //EpicBoard();
+    String getName(){return "Epic Board";};
     int getMaxPages(){return 15;};
     int getMaxDevices(){return 16;};
     int getCellNumber(){return 12;};

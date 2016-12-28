@@ -26,7 +26,10 @@ BoardModel::BoardModel()
 BoardModel* BoardModel::getInstance()
 {
     if(!s_instance)
+    {
         s_instance = new BoardModel();
+        Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
+    }
     return s_instance;
 }
 
