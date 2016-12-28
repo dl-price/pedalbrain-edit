@@ -12,21 +12,16 @@
 #define BOARDMODEL_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "ComponentModel.h"
 #include "PageModel.h"
 #include "gui/PedalView.h"
+
+
 
 //==============================================================================
 /*
 */
-class LedModel : public ReferenceCountedObject
-{
-    
-};
 
-class ButtonModel : public ReferenceCountedObject
-{
-    
-};
 
 class BoardType : public ReferenceCountedObject
 {
@@ -47,6 +42,9 @@ public:
     virtual int getLedNumber(){return 0;};
     virtual int getButtonNumber(){return 0;};
     virtual int getLBNumber(){return 0;};
+    virtual int getLCDNumber(){return 0;};
+    virtual int getMaxComponents(){return 0;};
+    virtual ComponentModel *getBlankComponent(int newId) = 0;
     
 };
 

@@ -11,22 +11,24 @@
 #ifndef PAGEMODEL_H_INCLUDED
 #define PAGEMODEL_H_INCLUDED
 
+//#include "BoardModel.h"
+
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "CellModel.h"
+#include "ComponentModel.h"
+
 
 //==============================================================================
 /*
 */
-class PageModel    : public ReferenceCountedObject
+
+
+class PageModel 
 {
 public:
     PageModel();
     ~PageModel();
-    
-
-
-
-    
+    OwnedArray<ComponentModel> components;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

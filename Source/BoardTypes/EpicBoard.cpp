@@ -31,3 +31,7 @@ BoardType::CellFeatures EpicBoard::getCellFeatures(int cell) {
     
     return BoardType::CellFeatures::None;
 }
+
+ComponentModel *EpicBoard::getBlankComponent(int newId) {
+    return new ComponentModel();
+}

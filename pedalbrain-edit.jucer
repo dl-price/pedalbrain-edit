@@ -45,6 +45,10 @@
       <FILE id="ZTBYxL" name="BoardModel.h" compile="0" resource="0" file="Source/BoardModel.h"/>
       <FILE id="OL727s" name="CellModel.cpp" compile="1" resource="0" file="Source/CellModel.cpp"/>
       <FILE id="kLqffB" name="CellModel.h" compile="0" resource="0" file="Source/CellModel.h"/>
+      <FILE id="rtypEV" name="ComponentModel.cpp" compile="1" resource="0"
+            file="Source/ComponentModel.cpp"/>
+      <FILE id="tmUQtL" name="ComponentModel.h" compile="0" resource="0"
+            file="Source/ComponentModel.h"/>
       <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
       <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>
       <FILE id="I7R1F0" name="DeviceManager.cpp" compile="1" resource="0"

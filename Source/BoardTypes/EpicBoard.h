@@ -27,6 +27,9 @@ public:
     int getLedNumber(){return 11;};
     int getButtonNumber(){return 11;};
     int getLBNumber(){return 11;};
+    int getLCDNumber(){return 1;};
+    ComponentModel *getBlankComponent(int newId);
+    int getMaxComponents(){return 11;};
     
 };
 
