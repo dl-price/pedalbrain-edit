@@ -27,7 +27,7 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-    void comboBoxChanged(ComboBox *comboBoxThatHasChanged);
+    void comboBoxChanged(ComboBox *comboBoxThatHasChanged) override;
 
 private:
     ScopedPointer<Button> pageDownButton;
