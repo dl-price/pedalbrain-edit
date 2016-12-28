@@ -33,6 +33,16 @@ PedalView::~PedalView()
 {
 }
 
+int PedalView::getPage()
+{
+    return viewingPage;
+}
+
+void PedalView::setPage(int i) {
+    viewingPage = i;
+    Logger::outputDebugString(String(viewingPage));
+}
+
 void PedalView::paint (Graphics& g)
 {
     /* This demo code just fills the component's background and

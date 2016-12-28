@@ -33,7 +33,7 @@ LayoutTab::LayoutTab()
         pageCombo->addItem(String(i), i);
     }
     
-    //pageCombo->addListener(this);
+    pageCombo->addListener(this);
     
     
     addAndMakeVisible(pageNameLabel = new Label() );
@@ -88,4 +88,9 @@ void LayoutTab::resized()
 
     
 
+}
+
+void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
+{
+    pedalView->setPage(comboBoxThatHasChanged->getSelectedItemIndex()+1);
 }

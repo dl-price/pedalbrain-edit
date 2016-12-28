@@ -19,7 +19,7 @@
 //==============================================================================
 /*
 */
-class LayoutTab    : public Component
+class LayoutTab    : public Component, ComboBox::Listener
 {
 public:
     LayoutTab();
@@ -27,6 +27,7 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    void comboBoxChanged(ComboBox *comboBoxThatHasChanged);
 
 private:
     ScopedPointer<Button> pageDownButton;

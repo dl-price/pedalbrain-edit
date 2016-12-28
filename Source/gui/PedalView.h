@@ -25,8 +25,11 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    int getPage();
+    void setPage(int i);
 
 private:
+    int viewingPage = 1;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };
