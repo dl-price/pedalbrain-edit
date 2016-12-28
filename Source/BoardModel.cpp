@@ -31,6 +31,7 @@ BoardModel* BoardModel::getInstance()
     {
         s_instance = new BoardModel();
         Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
+        Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
     }
     return s_instance;
 }
