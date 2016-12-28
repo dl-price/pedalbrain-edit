@@ -34,12 +34,9 @@ void DeviceManager::loadDeviceConfig()
     
     Array<var> manArray = *stuff.getArray();
     
-    int arraySize = manArray.size();
-    
     for(int i=0; i < sizeof(*stuff.getArray())/8; i++)
     {
         
-        int dbug = sizeof(*stuff.getArray());
         if(sizeof(*stuff.getArray()) == 0 ){
             break;
         }
