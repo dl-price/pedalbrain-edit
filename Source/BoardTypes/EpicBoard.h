@@ -24,6 +24,9 @@ public:
     int getCellNumber(){return 12;};
     CellFeatures getCellFeatures(int cell);
     PedalView *createView();
+    int getLedNumber(){return 11;};
+    int getButtonNumber(){return 11;};
+    int getLBNumber(){return 11;};
     
 };
 

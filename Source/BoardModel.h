@@ -44,6 +44,9 @@ public:
     virtual int getCellNumber(){return 0;};
     virtual CellFeatures getCellFeatures(int cell) {return CellFeatures::None ;};
     virtual PedalView *createView() = 0;
+    virtual int getLedNumber() = 0;
+    virtual int getButtonNumber() = 0;
+    virtual int getLBNumber() = 0;
     
 };
 
