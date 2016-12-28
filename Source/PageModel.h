@@ -17,17 +17,15 @@
 //==============================================================================
 /*
 */
-class PageModel    : public Component
+class PageModel    : public ReferenceCountedObject
 {
 public:
     PageModel();
     ~PageModel();
     
-    ReferenceCountedArray<CellModel> cellModels;
 
-    void paint (Graphics&) override;
-    void resized() override;
-    
+
+
     
 
 private:

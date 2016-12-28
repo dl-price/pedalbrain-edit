@@ -18,6 +18,16 @@
 //==============================================================================
 /*
 */
+class LedModel : public ReferenceCountedObject
+{
+    
+};
+
+class ButtonModel : public ReferenceCountedObject
+{
+    
+};
+
 class BoardType : public ReferenceCountedObject
 {
 public:
@@ -37,7 +47,7 @@ public:
     
 };
 
-class BoardModel : public ReferenceCountedObject
+class BoardModel
 {
     static BoardModel *s_instance;
 public:

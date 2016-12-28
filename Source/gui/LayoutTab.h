@@ -37,8 +37,6 @@ private:
     ScopedPointer<TextEditor> pageNameEditor;
     ScopedPointer<PedalView> pedalView;
     
-    
-    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutTab)
 };
 
