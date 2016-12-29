@@ -20,10 +20,10 @@ ComponentEdit::ComponentEdit()
 
 }
 
-/*ComponentEdit::ComponentEdit(ComponentModel *model)
+ComponentEdit::ComponentEdit(ComponentModel *model)
 {
     //s_model = model;
-}*/
+}
 
 ComponentEdit::~ComponentEdit()
 {

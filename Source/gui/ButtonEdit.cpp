@@ -46,6 +46,11 @@ ButtonEdit::ButtonEdit ()
     //[/Constructor]
 }
 
+ButtonEdit::ButtonEdit(ComponentModel *model)
+{
+    s_model = model;
+}
+
 ButtonEdit::~ButtonEdit()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..

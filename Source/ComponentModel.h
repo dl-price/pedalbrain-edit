@@ -12,12 +12,14 @@
 #define COMPONENTMODEL_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+class ComponentModel;
 #include "gui/ComponentEdit.h"
 #include "gui/ButtonEdit.h"
 
 //==============================================================================
 /*
 */
+
 class ComponentModel
 {
 public:
