@@ -43,6 +43,7 @@ BoardModel* BoardModel::getInstance()
     if(!s_instance)
     {
         s_instance = new BoardModel(new EpicBoard());
+        s_instance->initFromNothing();
         Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
         Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
         Logger::outputDebugString("Board had: " + String(s_instance->boardType->getLCDNumber()) + " LCD screens");
