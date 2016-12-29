@@ -13,10 +13,15 @@
 
 ComponentEdit *ComponentModel::createEditWindow()
 {
-    return new ComponentEdit();
+    return new ComponentEdit(this);
 }
 
 ComponentEdit *ButtonModel::createEditWindow()
 {
-    return new ButtonEdit();
+    return new ButtonEdit(this);
+}
+
+void ButtonModel::saveFromEditWindow(ComponentEdit *window)
+{
+    delete window->getParentComponent();
 }

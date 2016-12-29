@@ -12,6 +12,7 @@
 #define PEDALEDIT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "ComponentEdit.h"
 
 //==============================================================================
 /*
@@ -30,6 +31,8 @@ public:
     StringArray getMenuBarNames() override;
     PopupMenu getMenuForIndex(int topLevelMenuIndex, const String& menuName) override;
     void menuItemSelected(int menuItemID, int topLevelMenuIndex) override;
+    
+    ComponentEdit *componentEditor;
 
 protected:
     TabbedComponent* superTabComponent;

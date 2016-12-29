@@ -10,7 +10,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
-//#include "../ComponentModel.h"
+#include "../ComponentModel.h"
 
 //==============================================================================
 ComponentEdit::ComponentEdit()
@@ -22,7 +22,8 @@ ComponentEdit::ComponentEdit()
 
 ComponentEdit::ComponentEdit(ComponentModel *model)
 {
-    //s_model = model;
+    ComponentEdit();
+    s_model = model;
 }
 
 ComponentEdit::~ComponentEdit()
@@ -54,4 +55,9 @@ void ComponentEdit::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
 
+}
+
+void ComponentEdit::save()
+{
+    s_model->saveFromEditWindow(this);
 }

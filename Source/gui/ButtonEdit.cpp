@@ -46,7 +46,7 @@ ButtonEdit::ButtonEdit ()
     //[/Constructor]
 }
 
-ButtonEdit::ButtonEdit(ComponentModel *model)
+ButtonEdit::ButtonEdit(ComponentModel *model) : ButtonEdit::ButtonEdit()
 {
     s_model = model;
 }
@@ -93,6 +93,7 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == textButton)
     {
         //[UserButtonCode_textButton] -- add your button handler code here..
+        save();
         //[/UserButtonCode_textButton]
     }
 

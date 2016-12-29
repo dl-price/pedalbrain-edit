@@ -12,21 +12,24 @@
 #define COMPONENTMODELS_H_INCLUDED
 
 #include "ComponentModel.h"
+#include "gui/ComponentEdit.h"
 
 
-class LedModel : public ComponentModel
+/*class LedModel : public ComponentModel
 {
 public:
     String type() const { return "Led"; }
-};
+};*/
 
 class ButtonModel : public ComponentModel
 {
+public:
     String type() const { return "Button"; }
     ComponentEdit *createEditWindow() override;
+    void saveFromEditWindow(ComponentEdit *window) override;
 };
 
-class LBModel : public ComponentModel
+/*class LBModel : public ComponentModel
 {
     String type() const { return "Led"; }
 };
@@ -34,7 +37,7 @@ class LBModel : public ComponentModel
 class LcdModel : public ComponentModel
 {
     String type() const { return "Lcd"; }
-};
+};*/
 
 
 #endif  // COMPONENTMODELS_H_INCLUDED

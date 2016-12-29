@@ -42,11 +42,12 @@ class ButtonEdit  : public ComponentEdit,
 public:
     //==============================================================================
     ButtonEdit ();
-    ButtonEdit(ComponentModel *model);
+
     ~ButtonEdit();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+        ButtonEdit(ComponentModel *model);
     //[/UserMethods]
 
     void paint (Graphics& g) override;

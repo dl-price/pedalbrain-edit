@@ -26,6 +26,7 @@ public:
     ComponentModel();
     String virtual type() const = 0;
     ComponentEdit virtual *createEditWindow();
+    void virtual saveFromEditWindow(ComponentEdit *window) = 0;
 };
 
 

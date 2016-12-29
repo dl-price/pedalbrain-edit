@@ -52,6 +52,11 @@ void PedalEdit::resized()
     // components that your component contains..
     
     superTabComponent->setBounds(10, 10, getWidth()-20, getHeight()-20);
+    
+    if(componentEditor)
+    {
+        //componentEditor->setBounds(0, 0, getWidth(), getHeight());
+    }
 
 }
 

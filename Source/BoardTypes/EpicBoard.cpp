@@ -35,15 +35,8 @@ BoardType::CellFeatures EpicBoard::getCellFeatures(int cell) {
 ComponentModel *EpicBoard::getBlankComponent(int newId) {
     
     switch (newId) {
-        case 0:
-            return new LcdModel();
-            break;
-            
-        case 1 ... 6:
-            return new ButtonModel();
-            break;
             
         default:
-            return new LedModel();
+            return new ButtonModel();
     }
 }
