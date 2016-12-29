@@ -12,7 +12,7 @@
 #define COMPONENTEDIT_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "../ComponentModel.h"
+//#include "../ComponentModel.h"
 
 //==============================================================================
 /*

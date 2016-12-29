@@ -13,10 +13,10 @@
 
 //==============================================================================
 
-/*ComponentModel::ComponentModel()
+ComponentModel::ComponentModel()
 {
     
-}*/
+}
 
 /*LedModel::LedModel()
 {
@@ -25,5 +25,10 @@
 
 ComponentEdit *ComponentModel::createEditWindow()
 {
-    return new ComponentEdit(this);
+    return new ComponentEdit();
+}
+
+ComponentEdit *ButtonModel::createEditWindow()
+{
+    return new ButtonEdit();
 }

@@ -10,7 +10,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
-#include "../ComponentModel.h"
+//#include "../ComponentModel.h"
 
 //==============================================================================
 ComponentEdit::ComponentEdit()
@@ -20,10 +20,10 @@ ComponentEdit::ComponentEdit()
 
 }
 
-ComponentEdit::ComponentEdit(ComponentModel *model)
+/*ComponentEdit::ComponentEdit(ComponentModel *model)
 {
-    s_model = model;
-}
+    //s_model = model;
+}*/
 
 ComponentEdit::~ComponentEdit()
 {

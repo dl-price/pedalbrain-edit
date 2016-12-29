@@ -21,7 +21,7 @@
 class ComponentModel
 {
 public:
-    //ComponentModel();
+    ComponentModel();
     String virtual type() const = 0;
     ComponentEdit virtual *createEditWindow();
 };
