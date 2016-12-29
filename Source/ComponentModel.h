@@ -12,6 +12,8 @@
 #define COMPONENTMODEL_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "gui/ComponentEdit.h"
+#include "gui/ButtonEdit.h"
 
 //==============================================================================
 /*
@@ -21,6 +23,7 @@ class ComponentModel
 public:
     //ComponentModel();
     String virtual type() const = 0;
+    ComponentEdit virtual *createEditWindow() {return new ComponentEdit();}
 };
 
 class LedModel : public ComponentModel
@@ -32,6 +35,7 @@ public:
 class ButtonModel : public ComponentModel
 {
     String type() const { return "Button"; }
+    ComponentEdit *createEditWindow() {return new ButtonEdit();}
 };
 
 class LBModel : public ComponentModel

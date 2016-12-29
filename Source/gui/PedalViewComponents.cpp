@@ -10,6 +10,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalViewComponents.h"
+#include "../BoardModel.h"
 
 //==============================================================================
 PedalViewComponent::PedalViewComponent()
@@ -26,6 +27,11 @@ PedalViewComponent::PedalViewComponent(int newId)
 
 PedalViewComponent::~PedalViewComponent()
 {
+}
+
+void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
+{
+    this->getParentComponent()->getParentComponent()->addAndMakeVisible(BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindow() );
 }
 
 

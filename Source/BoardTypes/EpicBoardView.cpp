@@ -35,7 +35,7 @@ EpicBoardView::EpicBoardView ()
     addAndMakeVisible (component2 = new LedComponent (1));
     component2->setName ("new component");
 
-    addAndMakeVisible (component = new ButtonComponent (2));
+    addAndMakeVisible (component = new ButtonComponent (1));
     component->setName ("new component");
 
     addAndMakeVisible (component3 = new LcdComponent());
@@ -44,13 +44,13 @@ EpicBoardView::EpicBoardView ()
     addAndMakeVisible (component4 = new ButtonComponent (2));
     component4->setName ("new component");
 
-    addAndMakeVisible (component5 = new ButtonComponent (2));
+    addAndMakeVisible (component5 = new ButtonComponent (3));
     component5->setName ("new component");
 
-    addAndMakeVisible (component6 = new ButtonComponent (2));
+    addAndMakeVisible (component6 = new ButtonComponent (4));
     component6->setName ("new component");
 
-    addAndMakeVisible (component7 = new ButtonComponent (2));
+    addAndMakeVisible (component7 = new ButtonComponent (5));
     component7->setName ("new component");
 
     addAndMakeVisible (component8 = new LedComponent (1));
@@ -89,7 +89,7 @@ EpicBoardView::EpicBoardView ()
     addAndMakeVisible (component19 = new LedComponent (1));
     component19->setName ("new component");
 
-    addAndMakeVisible (component20 = new ButtonComponent (2));
+    addAndMakeVisible (component20 = new ButtonComponent (6));
     component20->setName ("new component");
 
     addAndMakeVisible (component21 = new ButtonComponent (2));
@@ -215,7 +215,7 @@ BEGIN_JUCER_METADATA
                     params="1"/>
   <GENERICCOMPONENT name="new component" id="ddf151a0b324bd1a" memberName="component"
                     virtualName="" explicitFocusOrder="0" pos="0 216 152 32" class="ButtonComponent"
-                    params="2"/>
+                    params="1"/>
   <GENERICCOMPONENT name="new component" id="7573fced4d31e22c" memberName="component3"
                     virtualName="" explicitFocusOrder="0" pos="160 64 264 184" class="LcdComponent"
                     params=""/>
@@ -224,13 +224,13 @@ BEGIN_JUCER_METADATA
                     params="2"/>
   <GENERICCOMPONENT name="new component" id="cca2991e83211b03" memberName="component5"
                     virtualName="" explicitFocusOrder="0" pos="584 216 127 32" class="ButtonComponent"
-                    params="2"/>
+                    params="3"/>
   <GENERICCOMPONENT name="new component" id="55078e15f0f63310" memberName="component6"
                     virtualName="" explicitFocusOrder="0" pos="720 216 143 32" class="ButtonComponent"
-                    params="2"/>
+                    params="4"/>
   <GENERICCOMPONENT name="new component" id="4e2c39eb9901bafa" memberName="component7"
                     virtualName="" explicitFocusOrder="0" pos="864 216 135 32" class="ButtonComponent"
-                    params="2"/>
+                    params="5"/>
   <GENERICCOMPONENT name="new component" id="b59a825875107423" memberName="component8"
                     virtualName="" explicitFocusOrder="0" pos="424 120 150 24" class="LedComponent"
                     params="1"/>
@@ -269,7 +269,7 @@ BEGIN_JUCER_METADATA
                     params="1"/>
   <GENERICCOMPONENT name="new component" id="b5b5c0f7c3d665ea" memberName="component20"
                     virtualName="" explicitFocusOrder="0" pos="32 432 143 32" class="ButtonComponent"
-                    params="2"/>
+                    params="6"/>
   <GENERICCOMPONENT name="new component" id="475cf3242e81e9fa" memberName="component21"
                     virtualName="" explicitFocusOrder="0" pos="192 432 160 32" class="ButtonComponent"
                     params="2"/>

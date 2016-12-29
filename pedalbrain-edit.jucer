@@ -17,8 +17,13 @@
               file="Source/gui/ButtonComponent.cpp"/>
         <FILE id="DFvv7d" name="ButtonComponent.h" compile="0" resource="0"
               file="Source/gui/ButtonComponent.h"/>
+        <FILE id="BWjAl3" name="ButtonEdit.cpp" compile="1" resource="0" file="Source/gui/ButtonEdit.cpp"/>
+        <FILE id="G1hYZA" name="ButtonEdit.h" compile="0" resource="0" file="Source/gui/ButtonEdit.h"/>
         <FILE id="Fx0PDM" name="CellEdit.cpp" compile="1" resource="0" file="Source/gui/CellEdit.cpp"/>
         <FILE id="pcmeTK" name="CellEdit.h" compile="0" resource="0" file="Source/gui/CellEdit.h"/>
+        <FILE id="BFd3gZ" name="ComponentEdit.cpp" compile="1" resource="0"
+              file="Source/gui/ComponentEdit.cpp"/>
+        <FILE id="ciruhj" name="ComponentEdit.h" compile="0" resource="0" file="Source/gui/ComponentEdit.h"/>
         <FILE id="eRnh2j" name="DevicesTab.cpp" compile="1" resource="0" file="Source/gui/DevicesTab.cpp"/>
         <FILE id="ntISjz" name="DevicesTab.h" compile="0" resource="0" file="Source/gui/DevicesTab.h"/>
         <FILE id="Z952US" name="GlobalTab.cpp" compile="1" resource="0" file="Source/gui/GlobalTab.cpp"/>

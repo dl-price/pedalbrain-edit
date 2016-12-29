@@ -22,6 +22,8 @@ public:
     PedalViewComponent(int newId);
     PedalViewComponent();
     ~PedalViewComponent();
+    void mouseDoubleClick(const MouseEvent &event) override;
+    
 
 private:
     int idRef;
