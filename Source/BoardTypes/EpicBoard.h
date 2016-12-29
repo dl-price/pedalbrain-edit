@@ -29,7 +29,7 @@ public:
     int getLBNumber(){return 11;};
     int getLCDNumber(){return 1;};
     ComponentModel *getBlankComponent(int newId);
-    int getMaxComponents(){return 11;};
+    int getMaxComponents(){return 13;};
     
 };
 

@@ -12,6 +12,7 @@
 #include "BoardModel.h"
 #include "BoardTypes/EpicBoardView.h"
 #include "BoardTypes/EpicBoard.h"
+#include "ComponentModel.h"
 
 //==============================================================================
 BoardModel *BoardModel::s_instance = 0;
@@ -47,6 +48,11 @@ BoardModel* BoardModel::getInstance()
         Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
         Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
         Logger::outputDebugString("Board had: " + String(s_instance->boardType->getLCDNumber()) + " LCD screens");
+        
+        for (int i = 0; i < s_instance->pages[0]->components.size(); i++)
+        {
+            Logger::outputDebugString(s_instance->pages[0]->components[i]->type());
+        }
     }
     return s_instance;
 }

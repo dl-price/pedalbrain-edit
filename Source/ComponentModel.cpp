@@ -13,7 +13,12 @@
 
 //==============================================================================
 
-ComponentModel::ComponentModel()
+/*ComponentModel::ComponentModel()
 {
     
-}
+}*/
+
+/*LedModel::LedModel()
+{
+    type = "Led";
+}*/

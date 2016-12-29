@@ -16,10 +16,32 @@
 //==============================================================================
 /*
 */
-class ComponentModel 
+class ComponentModel
 {
 public:
-    ComponentModel();
+    //ComponentModel();
+    String virtual type() const = 0;
+};
+
+class LedModel : public ComponentModel
+{
+public:
+    String type() const { return "Led"; }
+};
+
+class ButtonModel : public ComponentModel
+{
+    String type() const { return "Button"; }
+};
+
+class LBModel : public ComponentModel
+{
+    String type() const { return "Led"; }
+};
+
+class LcdModel : public ComponentModel
+{
+    String type() const { return "Lcd"; }
 };
 
 

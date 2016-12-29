@@ -22,7 +22,8 @@ PageModel::PageModel()
     
     for (int i = 0; i < BoardModel::getInstance()->boardType->getMaxComponents();i++)
     {
-        components.add(BoardModel::getInstance()->boardType->getBlankComponent(i));
+        ComponentModel* component = BoardModel::getInstance()->boardType->getBlankComponent(i);
+        components.add(component);
     }
     
 
