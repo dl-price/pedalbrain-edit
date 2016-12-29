@@ -23,12 +23,3 @@ ComponentModel::ComponentModel()
     type = "Led";
 }*/
 
-ComponentEdit *ComponentModel::createEditWindow()
-{
-    return new ComponentEdit();
-}
-
-ComponentEdit *ButtonModel::createEditWindow()
-{
-    return new ButtonEdit();
-}

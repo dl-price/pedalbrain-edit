@@ -54,6 +54,10 @@
             file="Source/ComponentModel.cpp"/>
       <FILE id="tmUQtL" name="ComponentModel.h" compile="0" resource="0"
             file="Source/ComponentModel.h"/>
+      <FILE id="qYmPCt" name="ComponentModels.cpp" compile="1" resource="0"
+            file="Source/ComponentModels.cpp"/>
+      <FILE id="roltEw" name="ComponentModels.h" compile="0" resource="0"
+            file="Source/ComponentModels.h"/>
       <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
       <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>
       <FILE id="I7R1F0" name="DeviceManager.cpp" compile="1" resource="0"

@@ -13,6 +13,7 @@
 
 #include "../BoardModel.h"
 #include "EpicBoardView.h"
+#include "../ComponentModels.h"
 
 class EpicBoard : public BoardType
 {

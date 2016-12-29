@@ -26,27 +26,7 @@ public:
     ComponentEdit virtual *createEditWindow();
 };
 
-class LedModel : public ComponentModel
-{
-public:
-    String type() const { return "Led"; }
-};
 
-class ButtonModel : public ComponentModel
-{
-    String type() const { return "Button"; }
-    ComponentEdit *createEditWindow() override;
-};
-
-class LBModel : public ComponentModel
-{
-    String type() const { return "Led"; }
-};
-
-class LcdModel : public ComponentModel
-{
-    String type() const { return "Lcd"; }
-};
 
 
 #endif  // COMPONENTMODEL_H_INCLUDED
