@@ -23,7 +23,7 @@ class ComponentModel
 public:
     //ComponentModel();
     String virtual type() const = 0;
-    ComponentEdit virtual *createEditWindow() {return new ComponentEdit();}
+    ComponentEdit virtual *createEditWindow();
 };
 
 class LedModel : public ComponentModel
@@ -35,7 +35,7 @@ public:
 class ButtonModel : public ComponentModel
 {
     String type() const { return "Button"; }
-    ComponentEdit *createEditWindow() {return new ButtonEdit();}
+    ComponentEdit *createEditWindow() override;
 };
 
 class LBModel : public ComponentModel

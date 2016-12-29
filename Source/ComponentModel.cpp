@@ -22,3 +22,8 @@
 {
     type = "Led";
 }*/
+
+ComponentEdit *ComponentModel::createEditWindow()
+{
+    return new ComponentEdit(this);
+}

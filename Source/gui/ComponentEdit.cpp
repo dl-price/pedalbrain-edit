@@ -10,6 +10,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
+#include "../ComponentModel.h"
 
 //==============================================================================
 ComponentEdit::ComponentEdit()
@@ -17,6 +18,11 @@ ComponentEdit::ComponentEdit()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
 
+}
+
+ComponentEdit::ComponentEdit(ComponentModel *model)
+{
+    s_model = model;
 }
 
 ComponentEdit::~ComponentEdit()
