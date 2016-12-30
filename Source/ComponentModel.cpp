@@ -30,7 +30,7 @@ String ComponentController::ComponentModel::getTypeName() const
 
 ResizableWindow *ComponentController::createEditWindow()
 {
-    ResizableWindow *window = new ResizableWindow("win", true);
+    ResizableWindow *window = new ResizableWindow("win", false);
     window->setContentOwned(createEditComponent(), true);
     return window;
 }
@@ -43,6 +43,14 @@ void ComponentController::createEditWindowAndFillMainWindow()
     _window->setBoundsConstrained(Rectangle<int>(0,0,_window->getParentComponent()->getWidth(),_window->getParentComponent()->getHeight()));
 }
 
+void ComponentController::createEditWindowAndAddToDesktop()
+{
+    //Non-functional
+    _window = createEditWindow();
+    
+    _window->addToDesktop();
+    _window->setBounds(0, 0, 500, 500);
+}
 
 /*LedModel::LedModel()
 {

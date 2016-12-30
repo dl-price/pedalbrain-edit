@@ -31,6 +31,7 @@ public:
     String getComponentType();
     ResizableWindow *createEditWindow();
     void createEditWindowAndFillMainWindow();
+    void createEditWindowAndAddToDesktop();
     void requestCloseEditWindow();
     
     
