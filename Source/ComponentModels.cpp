@@ -25,8 +25,6 @@ PopupMenu *ButtonController::contextMenu()
     newItem.text = "Menu";
     newItem.itemID = 1;
     
-    
-    
     PopupMenu::Item new2 = PopupMenu::Item(newItem);
     newItem.isTicked = true;
     
@@ -50,7 +48,19 @@ ButtonController::ButtonController() : ComponentController()
 
 ButtonController::ButtonModel::ButtonModel() : ComponentModel("Button")
 {
-    
+    _type = Type::None;
+    _actions = OwnedArray<Action>();
+}
+
+void ButtonController::updateEditComponentFromModel()
+{
+    ButtonEdit *cComponent = dynamic_cast<ButtonEdit*>(_editComponent);
+    switch(dynamic_cast<ButtonModel*>( _model) ->_type)
+    {
+        case ButtonController::ButtonModel::Type::None:
+            cComponent->selectType(2);
+    }
+
 }
 
 StringArray ButtonController::getAvailableTypes()

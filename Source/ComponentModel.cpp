@@ -33,6 +33,7 @@ ResizableWindow *ComponentController::createEditWindow()
     ResizableWindow *window = new ResizableWindow("win", false);
     _editComponent = createEditComponent();
     window->setContentOwned(_editComponent, true);
+    updateEditComponentFromModel();
     return window;
 }
 
@@ -52,6 +53,11 @@ void ComponentController::createEditWindowAndAddToDesktop()
     _window->addToDesktop();
     _window->setBounds(0, 0, 500, 500);
 }
+
+/*ComponentController::ComponentModel ComponentController::getModel()
+{
+    return _model;
+}*/
 
 /*LedModel::LedModel()
 {

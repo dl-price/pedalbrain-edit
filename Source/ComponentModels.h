@@ -35,13 +35,25 @@ public:
 protected:
     class ButtonModel;
     ComponentEdit *createEditComponent() override;
-
+    void updateEditComponentFromModel() override;
 };
 
 class ButtonController::ButtonModel : public ComponentModel
 {
 public:
     ButtonModel();// : ComponentModel("Button"){}
+    enum Type
+    {
+        None,
+        DevicePC
+    };
+    class Action {};
+    class DevicePC : public Action {};
+
+    Type _type;
+    OwnedArray<Action> _actions;
+protected:
+    void provePolymorph(){}
 };
 
 /*class LBModel : public ComponentController

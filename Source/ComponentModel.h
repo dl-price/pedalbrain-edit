@@ -36,6 +36,7 @@ public:
     
     PopupMenu virtual *contextMenu() { return 0;}
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
+    //ComponentModel getModel();
 protected:
     class ComponentModel;
     ComponentEdit virtual *createEditComponent() = 0;
@@ -44,6 +45,7 @@ protected:
     ResizableWindow *_window;
     bool editWindowCanClose();
     void closeEditWindow();
+    void virtual updateEditComponentFromModel() = 0;
 };
 
 class ComponentController::ComponentModel
@@ -54,6 +56,7 @@ public:
 protected:
     ComponentModel(String name);
     String s_typeName;
+    void virtual provePolymorph() = 0;
 };
 
 

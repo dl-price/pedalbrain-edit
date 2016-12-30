@@ -24,6 +24,11 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+
+void ButtonEdit::selectType(int typeId)
+{
+    comboBox->setSelectedId(typeId);
+}
 //[/MiscUserDefs]
 
 //==============================================================================

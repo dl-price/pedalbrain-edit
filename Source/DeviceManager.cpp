@@ -12,12 +12,12 @@
 #include "DeviceManager.h"
 
 DeviceManager* DeviceManager::getInstance() {
-    if(!s_instance)
-        s_instance = new DeviceManager();
-    return s_instance;
+    if(!_instance)
+        _instance = new DeviceManager();
+    return _instance;
 }
 
-DeviceManager *DeviceManager::s_instance = 0;
+DeviceManager *DeviceManager::_instance = 0;
 
 void DeviceManager::loadDeviceConfig()
 {

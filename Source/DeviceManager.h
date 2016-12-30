@@ -24,7 +24,7 @@ public:
     static DeviceManager *getInstance();
     
 private:
-    static DeviceManager *s_instance;
+    static DeviceManager *_instance;
 
 };
 
