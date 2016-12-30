@@ -26,6 +26,7 @@ public:
     ComponentModel();
     String virtual type() const = 0;
     ComponentEdit virtual *createEditWindow();
+    PopupMenu virtual *contextMenu() { return NULL;}
     void virtual saveFromEditWindow(ComponentEdit *window) = 0;
 };
 

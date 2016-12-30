@@ -23,6 +23,7 @@ public:
     PedalViewComponent();
     ~PedalViewComponent();
     void mouseDoubleClick(const MouseEvent &event) override;
+    void mouseDown(const MouseEvent &event) override;
     
 
 private:

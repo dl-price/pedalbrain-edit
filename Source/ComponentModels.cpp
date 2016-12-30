@@ -25,3 +25,14 @@ void ButtonModel::saveFromEditWindow(ComponentEdit *window)
 {
     delete window->getParentComponent();
 }
+
+PopupMenu *ButtonModel::contextMenu()
+{
+    PopupMenu *newMenu = new PopupMenu();
+    PopupMenu::Item newItem = PopupMenu::Item();
+    newItem.text = "Menu";
+    newItem.itemID = 1;
+    
+    newMenu->addItem(newItem);
+    return newMenu;
+}

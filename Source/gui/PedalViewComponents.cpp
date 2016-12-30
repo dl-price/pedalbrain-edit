@@ -43,4 +43,12 @@ void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
     window->setFullScreen(true);
 }
 
+void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
+{
+    if(event.mods.isPopupMenu())
+    {
+    BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu()->showMenu(PopupMenu::Options().withTargetComponent(this));
+    }
+}
+
 

@@ -26,6 +26,7 @@ class ButtonModel : public ComponentModel
 public:
     String type() const { return "Button"; }
     ComponentEdit *createEditWindow() override;
+    PopupMenu *contextMenu() override;
     void saveFromEditWindow(ComponentEdit *window) override;
 };
 
