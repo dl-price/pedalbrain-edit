@@ -24,11 +24,11 @@ public:
 class ButtonModel : public ComponentModel
 {
 public:
-    String type() const { return "Button"; }
+    String type() const override { return "Button"; }
     ComponentEdit *createEditWindow() override;
     PopupMenu *contextMenu() override;
     void saveFromEditWindow(ComponentEdit *window) override;
-    void modalStateFinished(int returnValue);
+    void popupCompleted(int modalResult, PopupMenu *popupMenu) override;
 
 };
 

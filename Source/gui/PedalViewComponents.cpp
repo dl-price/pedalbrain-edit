@@ -12,6 +12,7 @@
 #include "PedalViewComponents.h"
 #include "../BoardModel.h"
 #include "ComponentModels.h"
+#include "ComponentModel.h"
 
 //==============================================================================
 PedalViewComponent::PedalViewComponent()
@@ -52,10 +53,16 @@ void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
         
         PopupMenu *newContext = BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu();
         
-        //newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(ComponentModel::ComponentModel, BoardModel::getInstance()->pages[0]->components[idRef], newContext);)
-        
-        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(ComponentModel::ComponentModel, BoardModel::getInstance()->pages[0]->components[idRef], newContext));
+        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(contextCallback, BoardModel::getInstance()->pages[0]->components[idRef], newContext));
     }
 }
+
+void PedalViewComponent::contextCallback(int modalResult, ComponentModel *component, PopupMenu *popup)
+{
+    component->popupCompleted(modalResult, popup);
+    delete popup;
+}
+
+
 
 

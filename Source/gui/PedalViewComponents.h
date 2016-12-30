@@ -12,6 +12,7 @@
 #define PEDALVIEWCOMPONENTS_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "../ComponentModel.h"
 
 //==============================================================================
 /*
@@ -24,7 +25,7 @@ public:
     ~PedalViewComponent();
     void mouseDoubleClick(const MouseEvent &event) override;
     void mouseDown(const MouseEvent &event) override;
-    
+    static void contextCallback(int modalResult, ComponentModel *component, PopupMenu *popup);
 
 private:
     int idRef;

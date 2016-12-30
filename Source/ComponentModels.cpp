@@ -33,13 +33,21 @@ PopupMenu *ButtonModel::contextMenu()
     newItem.text = "Menu";
     newItem.itemID = 1;
     
+    
+    
+    PopupMenu::Item new2 = PopupMenu::Item(newItem);
     newItem.isTicked = true;
+    
+    new2.itemID = 2;
     newMenu->addItem(newItem);
+    newMenu->addItem(new2);
+    
     return newMenu;
 }
 
-void ButtonModel::modalStateFinished(int returnValue)
+void ButtonModel::popupCompleted(int modalResult, juce::PopupMenu *popupMenu)
 {
-    Logger::outputDebugString(String(returnValue));
+    Logger::outputDebugString(String(modalResult));
+
 }
 

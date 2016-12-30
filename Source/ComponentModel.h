@@ -20,15 +20,15 @@ class ComponentModel;
 /*
 */
 
-class ComponentModel : public ModalComponentManager::Callback
+class ComponentModel
 {
 public:
     ComponentModel();
     String virtual type() const = 0;
-    ComponentEdit virtual *createEditWindow();
+    ComponentEdit virtual *createEditWindow() = 0;
     PopupMenu virtual *contextMenu() { return 0;}
     void virtual saveFromEditWindow(ComponentEdit *window) = 0;
-    static void contextCallback(int modalResult, ComponentModel *component, PopupMenu *popup){}
+    void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
 };
 
 
