@@ -20,15 +20,34 @@ class ComponentController;
 /*
 */
 
+class ComponentModel
+{
+public:
+    String getTypeName() const;
+    
+protected:
+    ComponentModel(String name);
+    String s_typeName;
+};
+
+class ButtonModel : public ComponentModel
+{
+public:
+    ButtonModel();// : ComponentModel("Button"){}
+};
+
 class ComponentController
 {
 public:
     ComponentController();
+    String getComponentType();
     String virtual type() const = 0;
     ComponentEdit virtual *createEditWindow() = 0;
     PopupMenu virtual *contextMenu() { return 0;}
     void virtual saveFromEditWindow(ComponentEdit *window) = 0;
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
+protected:
+    ComponentModel *_model;
 };
 
 

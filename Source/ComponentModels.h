@@ -24,6 +24,7 @@ public:
 class ButtonController : public ComponentController
 {
 public:
+    ButtonController();
     String type() const override { return "Button"; }
     ComponentEdit *createEditWindow() override;
     PopupMenu *contextMenu() override;

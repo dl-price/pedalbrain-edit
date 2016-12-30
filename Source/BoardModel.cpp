@@ -51,7 +51,7 @@ BoardModel* BoardModel::getInstance()
         
         for (int i = 0; i < s_instance->pages[0]->components.size(); i++)
         {
-            Logger::outputDebugString(s_instance->pages[0]->components[i]->type());
+            Logger::outputDebugString(s_instance->pages[0]->components[i]->getComponentType());
         }
     }
     return s_instance;

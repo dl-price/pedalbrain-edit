@@ -51,3 +51,7 @@ void ButtonController::popupCompleted(int modalResult, juce::PopupMenu *popupMen
 
 }
 
+ButtonController::ButtonController() : ComponentController()
+{
+    _model = new ButtonModel();
+}
