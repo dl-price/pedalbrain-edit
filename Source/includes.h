@@ -12,6 +12,9 @@
 #define INCLUDES_H_INCLUDED
 
 
+class ComponentController;
+class ComponentModel;
+
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DeviceManager.h"
 #include "Device.h"

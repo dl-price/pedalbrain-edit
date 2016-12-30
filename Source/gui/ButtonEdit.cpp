@@ -21,14 +21,13 @@
 //[/Headers]
 
 #include "ButtonEdit.h"
-#include "../ComponentModels.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
 //[/MiscUserDefs]
 
 //==============================================================================
-ButtonEdit::ButtonEdit ()
+ButtonEdit::ButtonEdit (ComponentController *model) : ComponentEdit(model)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -57,8 +56,15 @@ ButtonEdit::ButtonEdit ()
 
 
     //[Constructor] You can add your own custom stuff here..
+
+    comboBox->clear();
     
+    ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
     
+    for (int i = 0; i < cast_control->getAvailableTypes().size(); i++)
+    {
+        comboBox->addItem(cast_control->getAvailableTypes()[i], i+1);
+    }
     
     //[/Constructor]
 }
@@ -136,20 +142,6 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-ButtonEdit::ButtonEdit(ComponentController *model) : ButtonEdit()
-{
-    s_model = model;
-    
-    comboBox->clear();
-    
-    ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
-    
-    for (int i = 0; i < cast_control->getAvailableTypes().size(); i++)
-    {
-        comboBox->addItem(cast_control->getAvailableTypes()[i], i+1);
-    }
-}
-
 //[/MiscUserCode]
 
 
@@ -163,9 +155,9 @@ ButtonEdit::ButtonEdit(ComponentController *model) : ButtonEdit()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="ButtonEdit" componentName=""
-                 parentClasses="public ComponentEdit" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public ComponentEdit" constructorParams="ComponentController *model"
+                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
+                 overlayOpacity="0.330" fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
   <TEXTBUTTON name="close button" id="9225ef9c71f0e7c" memberName="closeButton"
               virtualName="" explicitFocusOrder="0" pos="230R 50R 200 24" buttonText="Close"

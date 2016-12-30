@@ -11,6 +11,7 @@
 #ifndef ComponentControllerS_H_INCLUDED
 #define ComponentControllerS_H_INCLUDED
 
+#include "includes.h"
 #include "ComponentModel.h"
 #include "gui/ComponentEdit.h"
 #include "gui/ButtonEdit.h"

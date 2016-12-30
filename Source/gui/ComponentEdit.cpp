@@ -13,14 +13,8 @@
 #include "../ComponentModel.h"
 
 //==============================================================================
-ComponentEdit::ComponentEdit()
-{
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
 
-}
-
-ComponentEdit::ComponentEdit(ComponentController *model) : ComponentEdit()
+ComponentEdit::ComponentEdit(ComponentController *model)
 {
     s_model = model;
 }

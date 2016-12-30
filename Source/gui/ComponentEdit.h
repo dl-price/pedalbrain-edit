@@ -20,7 +20,6 @@ class ComponentController;
 class ComponentEdit    : public Component
 {
 public:
-    ComponentEdit();
     ComponentEdit(ComponentController *model);
     ~ComponentEdit();
 

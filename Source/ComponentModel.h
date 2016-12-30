@@ -11,10 +11,10 @@
 #ifndef ComponentController_H_INCLUDED
 #define ComponentController_H_INCLUDED
 
+#include "includes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 class ComponentController;
 #include "gui/ComponentEdit.h"
-#include "gui/ButtonEdit.h"
 
 //==============================================================================
 /*

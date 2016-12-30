@@ -23,7 +23,8 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
-#include "ComponentModel.h"
+#include "../ComponentModel.h"
+#include "../ComponentModels.h"
 
 //[/Headers]
 
@@ -43,12 +44,12 @@ class ButtonEdit  : public ComponentEdit,
 {
 public:
     //==============================================================================
-    ButtonEdit ();
+    ButtonEdit (ComponentController *model);
     ~ButtonEdit();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-        ButtonEdit(ComponentController *model);
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
