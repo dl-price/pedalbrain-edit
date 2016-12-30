@@ -18,11 +18,6 @@ ComponentEdit *ButtonController::createEditComponent()
     return new ButtonEdit(this);
 }
 
-void ButtonController::saveFromEditWindow(ComponentEdit *window)
-{
-    delete window->getParentComponent();
-}
-
 PopupMenu *ButtonController::contextMenu()
 {
     PopupMenu *newMenu = new PopupMenu();

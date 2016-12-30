@@ -33,15 +33,7 @@ PedalViewComponent::~PedalViewComponent()
 
 void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
 {
-    ResizableWindow *window = BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindow() ;
-    
-
-    //window->
-    
-    
-    //window->
-    TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(window);
-    window->setFullScreen(true);
+    BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;    
 }
 
 void PedalViewComponent::mouseDown(const juce::MouseEvent &event)

@@ -29,15 +29,21 @@ class ComponentController
 public:
     ComponentController();
     String getComponentType();
-    String virtual type() const = 0;
     ResizableWindow *createEditWindow();
-    ComponentEdit virtual *createEditComponent() = 0;
+    void createEditWindowAndFillMainWindow();
+    void requestCloseEditWindow();
+    
+    
+    
     PopupMenu virtual *contextMenu() { return 0;}
-    void virtual saveFromEditWindow(ComponentEdit *window) = 0;
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
 protected:
     class ComponentModel;
+    ComponentEdit virtual *createEditComponent() = 0;
     ComponentModel *_model;
+    ResizableWindow *_window;
+    bool editWindowCanClose();
+    void closeEditWindow();
 };
 
 class ComponentController::ComponentModel

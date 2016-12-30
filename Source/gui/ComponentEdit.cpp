@@ -57,7 +57,4 @@ void ComponentEdit::resized()
 
 }
 
-void ComponentEdit::save()
-{
-    s_model->saveFromEditWindow(this);
-}
+

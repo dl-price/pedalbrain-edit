@@ -93,7 +93,7 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == textButton)
     {
         //[UserButtonCode_textButton] -- add your button handler code here..
-        save();
+        s_model->requestCloseEditWindow();
         //[/UserButtonCode_textButton]
     }
 

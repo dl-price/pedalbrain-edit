@@ -35,6 +35,13 @@ ResizableWindow *ComponentController::createEditWindow()
     return window;
 }
 
+void ComponentController::createEditWindowAndFillMainWindow()
+{
+    _window = createEditWindow();
+    _window->setFullScreen(true);
+    TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(_window);
+}
+
 
 /*LedModel::LedModel()
 {
@@ -44,4 +51,22 @@ ResizableWindow *ComponentController::createEditWindow()
 String ComponentController::getComponentType()
 {
     return _model->getTypeName();
+}
+
+void ComponentController::requestCloseEditWindow()
+{
+    if(editWindowCanClose())
+    {
+        closeEditWindow();
+    }
+}
+
+bool ComponentController::editWindowCanClose()
+{
+    return true;
+}
+
+void ComponentController::closeEditWindow()
+{
+    delete _window;
 }
