@@ -34,14 +34,13 @@ public:
     void createEditWindowAndAddToDesktop();
     void requestCloseEditWindow();
     
-    
-    
     PopupMenu virtual *contextMenu() { return 0;}
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
 protected:
     class ComponentModel;
     ComponentEdit virtual *createEditComponent() = 0;
     ComponentModel *_model;
+    ComponentEdit *_editComponent;
     ResizableWindow *_window;
     bool editWindowCanClose();
     void closeEditWindow();

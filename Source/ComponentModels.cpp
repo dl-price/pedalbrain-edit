@@ -15,7 +15,7 @@
 
 ComponentEdit *ButtonController::createEditComponent()
 {
-    return _editComponent = new ButtonEdit(this);
+    return new ButtonEdit(this);
 }
 
 PopupMenu *ButtonController::contextMenu()

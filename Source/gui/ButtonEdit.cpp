@@ -136,9 +136,9 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-ButtonEdit::ButtonEdit(ComponentController *model) : ButtonEdit()
+ButtonEdit::ButtonEdit(ComponentController *model) : ComponentEdit(model)
 {
-    s_model = model;
+    ButtonEdit();
     
     comboBox->clear();
     

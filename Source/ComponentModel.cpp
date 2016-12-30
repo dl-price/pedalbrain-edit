@@ -31,7 +31,8 @@ String ComponentController::ComponentModel::getTypeName() const
 ResizableWindow *ComponentController::createEditWindow()
 {
     ResizableWindow *window = new ResizableWindow("win", false);
-    window->setContentOwned(createEditComponent(), true);
+    _editComponent = createEditComponent();
+    window->setContentOwned(_editComponent, true);
     return window;
 }
 

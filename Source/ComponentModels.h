@@ -34,7 +34,6 @@ public:
 protected:
     class ButtonModel;
     ComponentEdit *createEditComponent() override;
-    ButtonEdit *_editComponent;
 
 };
 
