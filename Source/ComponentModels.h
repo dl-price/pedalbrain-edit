@@ -13,6 +13,7 @@
 
 #include "ComponentModel.h"
 #include "gui/ComponentEdit.h"
+#include "gui/ButtonEdit.h"
 
 
 /*class LedModel : public ComponentController
@@ -28,10 +29,12 @@ public:
     
     PopupMenu *contextMenu() override;
     void popupCompleted(int modalResult, PopupMenu *popupMenu) override;
+    StringArray getAvailableTypes();
     
 protected:
     class ButtonModel;
     ComponentEdit *createEditComponent() override;
+    ButtonEdit *_editComponent;
 
 };
 

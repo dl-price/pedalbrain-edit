@@ -15,7 +15,7 @@
 
 ComponentEdit *ButtonController::createEditComponent()
 {
-    return new ButtonEdit(this);
+    return _editComponent = new ButtonEdit(this);
 }
 
 PopupMenu *ButtonController::contextMenu()
@@ -51,4 +51,14 @@ ButtonController::ButtonController() : ComponentController()
 ButtonController::ButtonModel::ButtonModel() : ComponentModel("Button")
 {
     
+}
+
+StringArray ButtonController::getAvailableTypes()
+{
+    StringArray availableTypes = StringArray();
+    
+    availableTypes.add( "Send PC");
+    availableTypes.add( "Send CC");
+    
+    return availableTypes;
 }

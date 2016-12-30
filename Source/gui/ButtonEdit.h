@@ -24,6 +24,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
 #include "ComponentModel.h"
+
 //[/Headers]
 
 
@@ -37,7 +38,8 @@
                                                                     //[/Comments]
 */
 class ButtonEdit  : public ComponentEdit,
-                    public ButtonListener
+                    public ButtonListener,
+                    public ComboBoxListener
 {
 public:
     //==============================================================================
@@ -52,6 +54,7 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
 
 
@@ -61,6 +64,8 @@ private:
 
     //==============================================================================
     ScopedPointer<TextButton> closeButton;
+    ScopedPointer<GroupComponent> groupComponent;
+    ScopedPointer<ComboBox> comboBox;
 
 
     //==============================================================================
