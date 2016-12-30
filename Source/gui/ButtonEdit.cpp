@@ -32,8 +32,9 @@ ButtonEdit::ButtonEdit ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (textButton = new TextButton ("new button"));
-    textButton->addListener (this);
+    addAndMakeVisible (closeButton = new TextButton ("close button"));
+    closeButton->setButtonText (TRANS("Close"));
+    closeButton->addListener (this);
 
 
     //[UserPreSize]
@@ -46,17 +47,12 @@ ButtonEdit::ButtonEdit ()
     //[/Constructor]
 }
 
-ButtonEdit::ButtonEdit(ComponentController *model) : ButtonEdit::ButtonEdit()
-{
-    s_model = model;
-}
-
 ButtonEdit::~ButtonEdit()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
-    textButton = nullptr;
+    closeButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -80,7 +76,7 @@ void ButtonEdit::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    textButton->setBounds (56, 72, 150, 24);
+    closeButton->setBounds (getWidth() - 230, getHeight() - 50, 200, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -90,11 +86,11 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == textButton)
+    if (buttonThatWasClicked == closeButton)
     {
-        //[UserButtonCode_textButton] -- add your button handler code here..
+        //[UserButtonCode_closeButton] -- add your button handler code here..
         s_model->requestCloseEditWindow();
-        //[/UserButtonCode_textButton]
+        //[/UserButtonCode_closeButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -104,6 +100,12 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+ButtonEdit::ButtonEdit(ComponentController *model) : ButtonEdit()
+{
+    s_model = model;
+}
+
 //[/MiscUserCode]
 
 
@@ -121,8 +123,8 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
-  <TEXTBUTTON name="new button" id="9225ef9c71f0e7c" memberName="textButton"
-              virtualName="" explicitFocusOrder="0" pos="56 72 150 24" buttonText="new button"
+  <TEXTBUTTON name="close button" id="9225ef9c71f0e7c" memberName="closeButton"
+              virtualName="" explicitFocusOrder="0" pos="230R 50R 200 24" buttonText="Close"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
