@@ -49,7 +49,7 @@ void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
 {
     if(event.mods.isPopupMenu())
     {
-        //ComponentModel *newButton = BoardModel::getInstance()->pages[0]->components[idRef] ;
+        //ComponentController *newButton = BoardModel::getInstance()->pages[0]->components[idRef] ;
         
         PopupMenu *newContext = BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu();
         
@@ -57,7 +57,7 @@ void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
     }
 }
 
-void PedalViewComponent::contextCallback(int modalResult, ComponentModel *component, PopupMenu *popup)
+void PedalViewComponent::contextCallback(int modalResult, ComponentController *component, PopupMenu *popup)
 {
     component->popupCompleted(modalResult, popup);
     delete popup;

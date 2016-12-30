@@ -46,7 +46,7 @@ ButtonEdit::ButtonEdit ()
     //[/Constructor]
 }
 
-ButtonEdit::ButtonEdit(ComponentModel *model) : ButtonEdit::ButtonEdit()
+ButtonEdit::ButtonEdit(ComponentController *model) : ButtonEdit::ButtonEdit()
 {
     s_model = model;
 }

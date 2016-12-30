@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    ComponentModel.cpp
+    ComponentController.cpp
     Created: 28 Dec 2016 7:16:12pm
     Author:  Daniel Price
 
@@ -13,7 +13,7 @@
 
 //==============================================================================
 
-ComponentModel::ComponentModel()
+ComponentController::ComponentController()
 {
     
 }

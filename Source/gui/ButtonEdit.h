@@ -47,7 +47,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-        ButtonEdit(ComponentModel *model);
+        ButtonEdit(ComponentController *model);
     //[/UserMethods]
 
     void paint (Graphics& g) override;

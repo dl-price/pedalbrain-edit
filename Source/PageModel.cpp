@@ -18,11 +18,11 @@ PageModel::PageModel()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    components = OwnedArray<ComponentModel>();
+    components = OwnedArray<ComponentController>();
     
     for (int i = 0; i < BoardModel::getInstance()->boardType->getMaxComponents();i++)
     {
-        ComponentModel* component = BoardModel::getInstance()->boardType->getBlankComponent(i);
+        ComponentController* component = BoardModel::getInstance()->boardType->getBlankComponent(i);
         components.add(component);
     }
     

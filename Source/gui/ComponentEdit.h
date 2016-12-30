@@ -12,7 +12,7 @@
 #define COMPONENTEDIT_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-class ComponentModel;
+class ComponentController;
 
 //==============================================================================
 /*
@@ -21,7 +21,7 @@ class ComponentEdit    : public Component
 {
 public:
     ComponentEdit();
-    ComponentEdit(ComponentModel *model);
+    ComponentEdit(ComponentController *model);
     ~ComponentEdit();
 
     void paint (Graphics&) override;
@@ -31,7 +31,7 @@ public:
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ComponentEdit)
 protected:
-    ComponentModel *s_model;
+    ComponentController *s_model;
 };
 
 

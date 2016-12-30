@@ -1,27 +1,27 @@
 /*
   ==============================================================================
 
-    ComponentModels.h
+    ComponentControllers.h
     Created: 29 Dec 2016 9:18:19pm
     Author:  Daniel Price
 
   ==============================================================================
 */
 
-#ifndef COMPONENTMODELS_H_INCLUDED
-#define COMPONENTMODELS_H_INCLUDED
+#ifndef ComponentControllerS_H_INCLUDED
+#define ComponentControllerS_H_INCLUDED
 
 #include "ComponentModel.h"
 #include "gui/ComponentEdit.h"
 
 
-/*class LedModel : public ComponentModel
+/*class LedModel : public ComponentController
 {
 public:
     String type() const { return "Led"; }
 };*/
 
-class ButtonModel : public ComponentModel
+class ButtonController : public ComponentController
 {
 public:
     String type() const override { return "Button"; }
@@ -32,15 +32,15 @@ public:
 
 };
 
-/*class LBModel : public ComponentModel
+/*class LBModel : public ComponentController
 {
     String type() const { return "Led"; }
 };
 
-class LcdModel : public ComponentModel
+class LcdModel : public ComponentController
 {
     String type() const { return "Lcd"; }
 };*/
 
 
-#endif  // COMPONENTMODELS_H_INCLUDED
+#endif  // ComponentControllerS_H_INCLUDED

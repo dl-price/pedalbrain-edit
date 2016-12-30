@@ -1,18 +1,18 @@
 /*
   ==============================================================================
 
-    ComponentModel.h
+    ComponentController.h
     Created: 28 Dec 2016 7:16:12pm
     Author:  Daniel Price
 
   ==============================================================================
 */
 
-#ifndef COMPONENTMODEL_H_INCLUDED
-#define COMPONENTMODEL_H_INCLUDED
+#ifndef ComponentController_H_INCLUDED
+#define ComponentController_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-class ComponentModel;
+class ComponentController;
 #include "gui/ComponentEdit.h"
 #include "gui/ButtonEdit.h"
 
@@ -20,10 +20,10 @@ class ComponentModel;
 /*
 */
 
-class ComponentModel
+class ComponentController
 {
 public:
-    ComponentModel();
+    ComponentController();
     String virtual type() const = 0;
     ComponentEdit virtual *createEditWindow() = 0;
     PopupMenu virtual *contextMenu() { return 0;}
@@ -34,4 +34,4 @@ public:
 
 
 
-#endif  // COMPONENTMODEL_H_INCLUDED
+#endif  // ComponentController_H_INCLUDED

@@ -30,7 +30,7 @@ public:
     int getButtonNumber(){return 11;};
     int getLBNumber(){return 11;};
     int getLCDNumber(){return 1;};
-    ComponentModel *getBlankComponent(int newId);
+    ComponentController *getBlankComponent(int newId);
     int getMaxComponents(){return 13;};
     
 };

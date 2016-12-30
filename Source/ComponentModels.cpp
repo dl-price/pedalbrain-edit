@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    ComponentModels.cpp
+    ComponentControllers.cpp
     Created: 29 Dec 2016 9:18:19pm
     Author:  Daniel Price
 
@@ -11,22 +11,22 @@
 
 #include "ComponentModels.h"
 
-ComponentEdit *ComponentModel::createEditWindow()
+ComponentEdit *ComponentController::createEditWindow()
 {
     return new ComponentEdit(this);
 }
 
-ComponentEdit *ButtonModel::createEditWindow()
+ComponentEdit *ButtonController::createEditWindow()
 {
     return new ButtonEdit(this);
 }
 
-void ButtonModel::saveFromEditWindow(ComponentEdit *window)
+void ButtonController::saveFromEditWindow(ComponentEdit *window)
 {
     delete window->getParentComponent();
 }
 
-PopupMenu *ButtonModel::contextMenu()
+PopupMenu *ButtonController::contextMenu()
 {
     PopupMenu *newMenu = new PopupMenu();
     PopupMenu::Item newItem = PopupMenu::Item();
@@ -45,7 +45,7 @@ PopupMenu *ButtonModel::contextMenu()
     return newMenu;
 }
 
-void ButtonModel::popupCompleted(int modalResult, juce::PopupMenu *popupMenu)
+void ButtonController::popupCompleted(int modalResult, juce::PopupMenu *popupMenu)
 {
     Logger::outputDebugString(String(modalResult));
 

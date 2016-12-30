@@ -28,7 +28,7 @@ class PageModel
 public:
     PageModel();
     ~PageModel();
-    OwnedArray<ComponentModel> components;
+    OwnedArray<ComponentController> components;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

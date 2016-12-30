@@ -44,7 +44,7 @@ public:
     virtual int getLBNumber(){return 0;};
     virtual int getLCDNumber(){return 0;};
     virtual int getMaxComponents(){return 0;};
-    virtual ComponentModel *getBlankComponent(int newId) = 0;
+    virtual ComponentController *getBlankComponent(int newId) = 0;
     
 };
 
