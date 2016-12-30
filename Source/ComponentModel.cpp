@@ -38,8 +38,9 @@ ResizableWindow *ComponentController::createEditWindow()
 void ComponentController::createEditWindowAndFillMainWindow()
 {
     _window = createEditWindow();
-    _window->setFullScreen(true);
+    
     TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(_window);
+    _window->setBoundsConstrained(Rectangle<int>(0,0,_window->getParentComponent()->getWidth(),_window->getParentComponent()->getHeight()));
 }
 
 
