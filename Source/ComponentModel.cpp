@@ -18,20 +18,23 @@ ComponentController::ComponentController()
     
 }
 
-ComponentModel::ComponentModel(String name)
+ComponentController::ComponentModel::ComponentModel(String name)
 {
     s_typeName = name;
 }
 
-String ComponentModel::getTypeName() const
+String ComponentController::ComponentModel::getTypeName() const
 {
     return s_typeName;
 }
 
-ButtonModel::ButtonModel() : ComponentModel("Button")
+ResizableWindow *ComponentController::createEditWindow()
 {
-    
+    ResizableWindow *window = new ResizableWindow("win", true);
+    window->setContentOwned(createEditComponent(), true);
+    return window;
 }
+
 
 /*LedModel::LedModel()
 {

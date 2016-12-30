@@ -11,12 +11,9 @@
 
 #include "ComponentModels.h"
 
-ComponentEdit *ComponentController::createEditWindow()
-{
-    return new ComponentEdit(this);
-}
 
-ComponentEdit *ButtonController::createEditWindow()
+
+ComponentEdit *ButtonController::createEditComponent()
 {
     return new ButtonEdit(this);
 }
@@ -53,5 +50,10 @@ void ButtonController::popupCompleted(int modalResult, juce::PopupMenu *popupMen
 
 ButtonController::ButtonController() : ComponentController()
 {
-    _model = new ButtonModel();
+    _model = new ButtonController::ButtonModel();
+}
+
+ButtonController::ButtonModel::ButtonModel() : ComponentModel("Button")
+{
+    
 }

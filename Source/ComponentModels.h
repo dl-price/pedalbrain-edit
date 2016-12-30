@@ -26,11 +26,20 @@ class ButtonController : public ComponentController
 public:
     ButtonController();
     String type() const override { return "Button"; }
-    ComponentEdit *createEditWindow() override;
+    ComponentEdit *createEditComponent() override;
     PopupMenu *contextMenu() override;
     void saveFromEditWindow(ComponentEdit *window) override;
     void popupCompleted(int modalResult, PopupMenu *popupMenu) override;
+    
+protected:
+    class ButtonModel;
 
+};
+
+class ButtonController::ButtonModel : public ComponentModel
+{
+public:
+    ButtonModel();// : ComponentModel("Button"){}
 };
 
 /*class LBModel : public ComponentController
