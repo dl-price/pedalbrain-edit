@@ -33,6 +33,13 @@ PopupMenu *ButtonModel::contextMenu()
     newItem.text = "Menu";
     newItem.itemID = 1;
     
+    newItem.isTicked = true;
     newMenu->addItem(newItem);
     return newMenu;
 }
+
+void ButtonModel::modalStateFinished(int returnValue)
+{
+    Logger::outputDebugString(String(returnValue));
+}
+

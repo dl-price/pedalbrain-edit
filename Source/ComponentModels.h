@@ -28,6 +28,8 @@ public:
     ComponentEdit *createEditWindow() override;
     PopupMenu *contextMenu() override;
     void saveFromEditWindow(ComponentEdit *window) override;
+    void modalStateFinished(int returnValue);
+
 };
 
 /*class LBModel : public ComponentModel

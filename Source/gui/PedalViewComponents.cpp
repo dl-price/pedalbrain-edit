@@ -11,6 +11,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalViewComponents.h"
 #include "../BoardModel.h"
+#include "ComponentModels.h"
 
 //==============================================================================
 PedalViewComponent::PedalViewComponent()
@@ -47,7 +48,13 @@ void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
 {
     if(event.mods.isPopupMenu())
     {
-    BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu()->showMenu(PopupMenu::Options().withTargetComponent(this));
+        //ComponentModel *newButton = BoardModel::getInstance()->pages[0]->components[idRef] ;
+        
+        PopupMenu *newContext = BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu();
+        
+        //newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(ComponentModel::ComponentModel, BoardModel::getInstance()->pages[0]->components[idRef], newContext);)
+        
+        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(ComponentModel::ComponentModel, BoardModel::getInstance()->pages[0]->components[idRef], newContext));
     }
 }
 
