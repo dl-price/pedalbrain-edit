@@ -38,6 +38,8 @@ Manufacturer::Manufacturer(String newName)
 DeviceType::DeviceType(String newName)
 {
     name = newName;
+    
+    
 }
 
 

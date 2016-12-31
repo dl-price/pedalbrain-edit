@@ -19,7 +19,12 @@
     "name": "Strymon",
     "devices": [
       {
-        "name": "Mobius"
+        "name": "Mobius",
+                "potentialCC" : [
+                
+                
+                
+                ]
       },
       {
         "name": "TimeLine"

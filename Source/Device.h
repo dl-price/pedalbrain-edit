@@ -38,6 +38,14 @@ class DeviceType
 {
 public:
     String name;
+    struct PotentialCC
+    {
+        String name;
+        int cc;
+        int on;
+        int off;
+    };
+    OwnedArray<PotentialCC> potentialCC;
     DeviceType(String newName);
 };
 
