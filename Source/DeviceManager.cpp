@@ -50,11 +50,21 @@ void DeviceManager::loadDeviceConfig()
         for(int j=0; j < some.size();j++)
         {
             DeviceType * dev = new DeviceType(some[j].getProperty("name", var()));
+            var ccs = some[j].getProperty("potentialCC", var());
+            if(ccs.isObject())
+            {
+            for(int i2 = 0;i2 < ccs.size(); i2++)
+            {
+                dev->potentialCC.add(new DeviceType::PotentialCC(ccs[i2].getProperty("name", var()), ccs[i2].getProperty("cc", var()), ccs[i2].getProperty("off", var()), ccs[i2].getProperty("on", var()) ));
+            }
+            }
+            
             DeviceManager::deviceTypes.add(dev);
             newMan->deviceTypes.add(dev);
         }
         
     }
+    
     
     
 }

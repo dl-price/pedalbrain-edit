@@ -20,10 +20,11 @@
     "devices": [
       {
         "name": "Mobius",
-                "potentialCC" : [
-                
-                
-                
+                "potentialCC" : [{
+                                 "name" : "A Footswitch",
+                                 "cc" : 80,
+                                 "on" : 0,
+                                 "off" : 127}
                 ]
       },
       {

@@ -42,4 +42,9 @@ DeviceType::DeviceType(String newName)
     
 }
 
+DeviceType::PotentialCC::PotentialCC(String newName, int newCc, int newOn, int newOff)
+{
+    name = newName;cc=newCc;on=newOn;off=newOff;
+}
+
 

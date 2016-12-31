@@ -40,6 +40,7 @@ public:
     String name;
     struct PotentialCC
     {
+        PotentialCC(String newName, int newCc, int newOn, int newOff);
         String name;
         int cc;
         int on;
