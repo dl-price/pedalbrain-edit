@@ -24,7 +24,30 @@
                                  "name" : "A Footswitch",
                                  "cc" : 80,
                                  "on" : 0,
-                                 "off" : 127}
+                                 "off" : 127},
+                                 {
+                                 "name":"B Footswitch",
+                                 "cc":82,
+                                 "on":0,
+                                 "off":127
+                                 },
+                                 {
+                                 "name":"Tap Footswitch",
+                                 "cc":81,
+                                 "on":0,
+                                 "off":0
+                                 },
+                                 {
+                                 "name":"Remote Tap",
+                                 "cc":93,
+                                 "on":127
+                                 },
+                                 {
+                                 "name":"Engage",
+                                 "cc":102,
+                                 "on":127,
+                                 "off":0
+                                 }
                 ]
       },
       {
