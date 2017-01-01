@@ -19,6 +19,29 @@ LedComponent::LedComponent(int newId) : PedalViewComponent(newId)
 
 void LedComponent::paint(juce::Graphics &g)
 {
-    g.setColour(Colours::red);
+    if(!state)
+    {
+        g.setColour(Colours::black);
+    }
+    else
+    {
+        g.setColour(colour);
+    }
     g.fillEllipse((getWidth()-jmin( getWidth(), getHeight()))/2, (getHeight()-jmin( getWidth(), getHeight()))/2, jmin( getWidth(), getHeight()), jmin( getWidth(), getHeight()));   // draw an outline around the component
+}
+
+void LedComponent::setOn(bool on)
+{
+    state = on;
+    repaint();
+}
+
+bool LedComponent::isOn()
+{
+    return state;
+}
+
+void LedComponent::setColour(Colour colour)
+{
+    this->colour = colour;
 }

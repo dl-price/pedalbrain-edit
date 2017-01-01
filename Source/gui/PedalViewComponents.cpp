@@ -34,6 +34,7 @@ PedalViewComponent::~PedalViewComponent()
 void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
 {
     BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
+    
 }
 
 void PedalViewComponent::mouseDown(const juce::MouseEvent &event)

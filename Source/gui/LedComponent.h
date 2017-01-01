@@ -22,6 +22,13 @@ class LedComponent : public PedalViewComponent
 public:
     LedComponent(int newId);
     void paint (Graphics&) override;
+    void setOn(bool on);
+    bool isOn();
+    void setColour(Colour colour);
+    
+private:
+    Colour colour;
+    bool state;
     
 };
 
