@@ -33,11 +33,7 @@ PedalViewComponent::~PedalViewComponent()
 
 void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
 {
-    if(!((SystemStats::getOperatingSystemType() == SystemStats::OperatingSystemType::iOS)
-         || (SystemStats::getOperatingSystemType() == SystemStats::OperatingSystemType::Android)))
-    {
-        BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
-    }
+    BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
     
 }
 
@@ -50,18 +46,6 @@ void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
         PopupMenu *newContext = BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu();
         
         newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(contextCallback, BoardModel::getInstance()->pages[0]->components[idRef], newContext));
-    }
-}
-
-void PedalViewComponent::mouseUp(const juce::MouseEvent &event)
-{
-    if((SystemStats::getOperatingSystemType() == SystemStats::OperatingSystemType::iOS)
-         || (SystemStats::getOperatingSystemType() == SystemStats::OperatingSystemType::Android))
-    {
-        if(event.getLengthOfMousePress() > 1000)
-        {
-            BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
-        }
     }
 }
 

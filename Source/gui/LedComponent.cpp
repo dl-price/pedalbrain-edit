@@ -14,7 +14,7 @@
 //==============================================================================
 LedComponent::LedComponent(int newId) : PedalViewComponent(newId)
 {
-    colour = Colours::red;
+    
 }
 
 void LedComponent::paint(juce::Graphics &g)
@@ -44,14 +44,4 @@ bool LedComponent::isOn()
 void LedComponent::setColour(Colour colour)
 {
     this->colour = colour;
-}
-
-void LedComponent::mouseDown(const juce::MouseEvent &event)
-{
-    PedalViewComponent::mouseDown(event);
-    
-    if(!event.mods.isPopupMenu())
-    {
-        setOn(!isOn());
-    }
 }

@@ -25,7 +25,6 @@ public:
     void setOn(bool on);
     bool isOn();
     void setColour(Colour colour);
-    void mouseDown(const juce::MouseEvent &event) override;
     
 private:
     Colour colour;
