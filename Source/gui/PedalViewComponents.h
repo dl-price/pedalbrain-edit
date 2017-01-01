@@ -25,6 +25,7 @@ public:
     ~PedalViewComponent();
     void mouseDoubleClick(const MouseEvent &event) override;
     void mouseDown(const MouseEvent &event) override;
+    void mouseUp(const MouseEvent &event) override;
     static void contextCallback(int modalResult, ComponentController *component, PopupMenu *popup);
 
 private:
