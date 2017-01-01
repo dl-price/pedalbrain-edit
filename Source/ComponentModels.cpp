@@ -55,7 +55,7 @@ ButtonController::ButtonModel::ButtonModel() : ComponentModel("Button")
 void ButtonController::updateEditComponentFromModel()
 {
     ButtonEdit *cComponent = dynamic_cast<ButtonEdit*>(_editComponent);
-    switch(dynamic_cast<ButtonModel*>( _model) ->_type)
+    switch(getModel()->_type)
     {
         case ButtonController::ButtonModel::Type::None:
             cComponent->selectType(2);
@@ -71,4 +71,9 @@ StringArray ButtonController::getAvailableTypes()
     availableTypes.add( "Send CC");
     
     return availableTypes;
+}
+
+ButtonController::ButtonModel *ButtonController::getModel()
+{
+    return dynamic_cast<ButtonModel*>( _model);
 }

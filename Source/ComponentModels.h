@@ -22,6 +22,7 @@
 public:
     String type() const { return "Led"; }
 };*/
+class ButtonController;
 
 class ButtonController : public ComponentController
 {
@@ -36,6 +37,7 @@ protected:
     class ButtonModel;
     ComponentEdit *createEditComponent() override;
     void updateEditComponentFromModel() override;
+    ButtonModel *getModel();
 };
 
 class ButtonController::ButtonModel : public ComponentModel

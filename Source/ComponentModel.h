@@ -34,7 +34,7 @@ public:
     void createEditWindowAndAddToDesktop();
     void requestCloseEditWindow();
     
-    PopupMenu virtual *contextMenu() { return 0;}
+    PopupMenu virtual *contextMenu() = 0;
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
     //ComponentModel getModel();
 protected:
@@ -46,6 +46,17 @@ protected:
     bool editWindowCanClose();
     void closeEditWindow();
     void virtual updateEditComponentFromModel() = 0;
+};
+
+template<class modelClass> class ComponentControllerSub : ComponentController
+{
+public:
+    PopupMenu *contextMenu();
+    
+protected:
+    ComponentEdit *createEditComponent();
+    void updateEditComponentFromModel();
+    modelClass *getModel();
 };
 
 class ComponentController::ComponentModel
