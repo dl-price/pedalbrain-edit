@@ -53,9 +53,9 @@ class BoardModel
     static BoardModel *s_instance;
 public:
     BoardModel(BoardType *newType);
-    //~BoardModel();
+    ~BoardModel();
     
-    ReferenceCountedObjectPtr<BoardType> boardType;
+    BoardType *boardType;
     OwnedArray<PageModel> pages;
     static BoardModel *getInstance();
     void initFromNothing();

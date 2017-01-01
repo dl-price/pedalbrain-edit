@@ -84,5 +84,6 @@ bool ComponentController::editWindowCanClose()
 
 void ComponentController::closeEditWindow()
 {
+    delete _editComponent;
     delete _window;
 }

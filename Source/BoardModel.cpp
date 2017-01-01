@@ -59,12 +59,3 @@ BoardModel* BoardModel::getInstance()
 
 
 
-
-
-/*BoardModel::~BoardModel()
-{
-}
-*/
-
-
-
