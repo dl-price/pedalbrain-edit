@@ -5,6 +5,18 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <GROUP id="{DC7DD321-93F5-DB4F-DD03-7EE9823EAA45}" name="components">
+        <FILE id="OL727s" name="CellModel.cpp" compile="1" resource="0" file="Source/CellModel.cpp"/>
+        <FILE id="kLqffB" name="CellModel.h" compile="0" resource="0" file="Source/CellModel.h"/>
+        <FILE id="rtypEV" name="ComponentModel.cpp" compile="1" resource="0"
+              file="Source/ComponentModel.cpp"/>
+        <FILE id="tmUQtL" name="ComponentModel.h" compile="0" resource="0"
+              file="Source/ComponentModel.h"/>
+        <FILE id="qYmPCt" name="ComponentModels.cpp" compile="1" resource="0"
+              file="Source/ComponentModels.cpp"/>
+        <FILE id="roltEw" name="ComponentModels.h" compile="0" resource="0"
+              file="Source/ComponentModels.h"/>
+      </GROUP>
       <GROUP id="{21E4EF04-D041-8725-3664-5A7D322C1E0C}" name="BoardTypes">
         <FILE id="lLZ8gM" name="EpicBoard.cpp" compile="1" resource="0" file="Source/BoardTypes/EpicBoard.cpp"/>
         <FILE id="v5BZcA" name="EpicBoard.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoard.h"/>
@@ -13,51 +25,45 @@
         <FILE id="IG7gmH" name="EpicBoardView.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoardView.h"/>
       </GROUP>
       <GROUP id="{C0CCEBD0-EE76-8C55-A8B7-7E554272C135}" name="gui">
-        <FILE id="Qy2dNy" name="ButtonComponent.cpp" compile="1" resource="0"
-              file="Source/gui/ButtonComponent.cpp"/>
-        <FILE id="DFvv7d" name="ButtonComponent.h" compile="0" resource="0"
-              file="Source/gui/ButtonComponent.h"/>
-        <FILE id="BWjAl3" name="ButtonEdit.cpp" compile="1" resource="0" file="Source/gui/ButtonEdit.cpp"/>
-        <FILE id="G1hYZA" name="ButtonEdit.h" compile="0" resource="0" file="Source/gui/ButtonEdit.h"/>
-        <FILE id="Fx0PDM" name="CellEdit.cpp" compile="1" resource="0" file="Source/gui/CellEdit.cpp"/>
-        <FILE id="pcmeTK" name="CellEdit.h" compile="0" resource="0" file="Source/gui/CellEdit.h"/>
-        <FILE id="BFd3gZ" name="ComponentEdit.cpp" compile="1" resource="0"
-              file="Source/gui/ComponentEdit.cpp"/>
-        <FILE id="ciruhj" name="ComponentEdit.h" compile="0" resource="0" file="Source/gui/ComponentEdit.h"/>
+        <GROUP id="{5A07E9D1-4A7E-0DA3-B1E4-DCEE6B22842C}" name="edit-views">
+          <FILE id="BWjAl3" name="ButtonEdit.cpp" compile="1" resource="0" file="Source/gui/ButtonEdit.cpp"/>
+          <FILE id="G1hYZA" name="ButtonEdit.h" compile="0" resource="0" file="Source/gui/ButtonEdit.h"/>
+          <FILE id="Fx0PDM" name="CellEdit.cpp" compile="1" resource="0" file="Source/gui/CellEdit.cpp"/>
+          <FILE id="pcmeTK" name="CellEdit.h" compile="0" resource="0" file="Source/gui/CellEdit.h"/>
+          <FILE id="BFd3gZ" name="ComponentEdit.cpp" compile="1" resource="0"
+                file="Source/gui/ComponentEdit.cpp"/>
+          <FILE id="ciruhj" name="ComponentEdit.h" compile="0" resource="0" file="Source/gui/ComponentEdit.h"/>
+          <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
+          <FILE id="Cl22ff" name="PedalEdit.h" compile="0" resource="0" file="Source/gui/PedalEdit.h"/>
+        </GROUP>
+        <GROUP id="{65781B5D-976F-0B14-4B6F-86FDF5AC36B9}" name="board-views">
+          <FILE id="Qy2dNy" name="ButtonComponent.cpp" compile="1" resource="0"
+                file="Source/gui/ButtonComponent.cpp"/>
+          <FILE id="DFvv7d" name="ButtonComponent.h" compile="0" resource="0"
+                file="Source/gui/ButtonComponent.h"/>
+          <FILE id="ETqKq6" name="LcdComponent.cpp" compile="1" resource="0"
+                file="Source/gui/LcdComponent.cpp"/>
+          <FILE id="vhtnUQ" name="LcdComponent.h" compile="0" resource="0" file="Source/gui/LcdComponent.h"/>
+          <FILE id="zATqNE" name="LedComponent.cpp" compile="1" resource="0"
+                file="Source/gui/LedComponent.cpp"/>
+          <FILE id="B9oNz4" name="LedComponent.h" compile="0" resource="0" file="Source/gui/LedComponent.h"/>
+          <FILE id="GG4buF" name="PedalView.cpp" compile="1" resource="0" file="Source/gui/PedalView.cpp"/>
+          <FILE id="VmvqGx" name="PedalView.h" compile="0" resource="0" file="Source/gui/PedalView.h"/>
+          <FILE id="ZORqO7" name="PedalViewComponents.cpp" compile="1" resource="0"
+                file="Source/gui/PedalViewComponents.cpp"/>
+          <FILE id="ohhQSX" name="PedalViewComponents.h" compile="0" resource="0"
+                file="Source/gui/PedalViewComponents.h"/>
+        </GROUP>
         <FILE id="eRnh2j" name="DevicesTab.cpp" compile="1" resource="0" file="Source/gui/DevicesTab.cpp"/>
         <FILE id="ntISjz" name="DevicesTab.h" compile="0" resource="0" file="Source/gui/DevicesTab.h"/>
         <FILE id="Z952US" name="GlobalTab.cpp" compile="1" resource="0" file="Source/gui/GlobalTab.cpp"/>
         <FILE id="oSil95" name="GlobalTab.h" compile="0" resource="0" file="Source/gui/GlobalTab.h"/>
         <FILE id="SUXkQ9" name="LayoutTab.cpp" compile="1" resource="0" file="Source/gui/LayoutTab.cpp"/>
         <FILE id="JsQnDL" name="LayoutTab.h" compile="0" resource="0" file="Source/gui/LayoutTab.h"/>
-        <FILE id="ETqKq6" name="LcdComponent.cpp" compile="1" resource="0"
-              file="Source/gui/LcdComponent.cpp"/>
-        <FILE id="vhtnUQ" name="LcdComponent.h" compile="0" resource="0" file="Source/gui/LcdComponent.h"/>
-        <FILE id="zATqNE" name="LedComponent.cpp" compile="1" resource="0"
-              file="Source/gui/LedComponent.cpp"/>
-        <FILE id="B9oNz4" name="LedComponent.h" compile="0" resource="0" file="Source/gui/LedComponent.h"/>
-        <FILE id="rPEKk6" name="PedalEdit.cpp" compile="1" resource="0" file="Source/gui/PedalEdit.cpp"/>
-        <FILE id="Cl22ff" name="PedalEdit.h" compile="0" resource="0" file="Source/gui/PedalEdit.h"/>
-        <FILE id="GG4buF" name="PedalView.cpp" compile="1" resource="0" file="Source/gui/PedalView.cpp"/>
-        <FILE id="VmvqGx" name="PedalView.h" compile="0" resource="0" file="Source/gui/PedalView.h"/>
-        <FILE id="ZORqO7" name="PedalViewComponents.cpp" compile="1" resource="0"
-              file="Source/gui/PedalViewComponents.cpp"/>
-        <FILE id="ohhQSX" name="PedalViewComponents.h" compile="0" resource="0"
-              file="Source/gui/PedalViewComponents.h"/>
       </GROUP>
       <FILE id="UpmWiq" name="Application.h" compile="0" resource="0" file="Source/Application.h"/>
       <FILE id="eggftH" name="BoardModel.cpp" compile="1" resource="0" file="Source/BoardModel.cpp"/>
       <FILE id="ZTBYxL" name="BoardModel.h" compile="0" resource="0" file="Source/BoardModel.h"/>
-      <FILE id="OL727s" name="CellModel.cpp" compile="1" resource="0" file="Source/CellModel.cpp"/>
-      <FILE id="kLqffB" name="CellModel.h" compile="0" resource="0" file="Source/CellModel.h"/>
-      <FILE id="rtypEV" name="ComponentModel.cpp" compile="1" resource="0"
-            file="Source/ComponentModel.cpp"/>
-      <FILE id="tmUQtL" name="ComponentModel.h" compile="0" resource="0"
-            file="Source/ComponentModel.h"/>
-      <FILE id="qYmPCt" name="ComponentModels.cpp" compile="1" resource="0"
-            file="Source/ComponentModels.cpp"/>
-      <FILE id="roltEw" name="ComponentModels.h" compile="0" resource="0"
-            file="Source/ComponentModels.h"/>
       <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
       <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>
       <FILE id="I7R1F0" name="DeviceManager.cpp" compile="1" resource="0"
