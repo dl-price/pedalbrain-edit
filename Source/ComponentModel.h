@@ -20,43 +20,33 @@ class ComponentController;
 /*
 */
 
-
-
-
-
 class ComponentController
 {
 public:
     ComponentController();
+    
     String getComponentType();
     ResizableWindow *createEditWindow();
+    
     void createEditWindowAndFillMainWindow();
     void createEditWindowAndAddToDesktop();
     void requestCloseEditWindow();
     
     PopupMenu virtual *contextMenu() = 0;
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
-    //ComponentModel getModel();
+    
 protected:
     class ComponentModel;
-    ComponentEdit virtual *createEditComponent() = 0;
+    
     ComponentModel *_model;
     ComponentEdit *_editComponent;
     ResizableWindow *_window;
+    
     bool editWindowCanClose();
     void closeEditWindow();
-    void virtual updateEditComponentFromModel() = 0;
-};
-
-template<class modelClass> class ComponentControllerSub : ComponentController
-{
-public:
-    PopupMenu *contextMenu();
     
-protected:
-    ComponentEdit *createEditComponent();
-    void updateEditComponentFromModel();
-    modelClass *getModel();
+    ComponentEdit virtual *createEditComponent() = 0;
+    void virtual updateEditComponentFromModel() = 0;
 };
 
 class ComponentController::ComponentModel
@@ -65,12 +55,10 @@ public:
     String getTypeName() const;
     
 protected:
-    ComponentModel(String name);
     String s_typeName;
+    
+    ComponentModel(String name);
     void virtual provePolymorph() = 0;
 };
-
-
-
 
 #endif  // ComponentController_H_INCLUDED

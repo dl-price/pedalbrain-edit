@@ -47,22 +47,11 @@ void ComponentController::createEditWindowAndFillMainWindow()
 
 void ComponentController::createEditWindowAndAddToDesktop()
 {
-    //Non-functional
     _window = createEditWindow();
     
     _window->addToDesktop();
     _window->setBounds(0, 0, 500, 500);
 }
-
-/*ComponentController::ComponentModel ComponentController::getModel()
-{
-    return _model;
-}*/
-
-/*LedModel::LedModel()
-{
-    type = "Led";
-}*/
 
 String ComponentController::getComponentType()
 {
