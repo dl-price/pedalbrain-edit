@@ -19,6 +19,11 @@ ComponentEdit::ComponentEdit(ComponentController *model)
     s_model = model;
 }
 
+ComponentEdit::ComponentEdit()
+{
+    
+}
+
 ComponentEdit::~ComponentEdit()
 {
 }

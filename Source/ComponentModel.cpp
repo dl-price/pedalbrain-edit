@@ -18,12 +18,12 @@ ComponentController::ComponentController()
     
 }
 
-ComponentController::ComponentModel::ComponentModel(String name)
+ComponentModel::ComponentModel(String name)
 {
     s_typeName = name;
 }
 
-String ComponentController::ComponentModel::getTypeName() const
+String ComponentModel::getTypeName() const
 {
     return s_typeName;
 }

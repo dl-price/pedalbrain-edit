@@ -17,6 +17,7 @@ class BoardController;
 #include "ComponentModel.h"
 #include "PageModel.h"
 #include "gui/PedalView.h"
+#include "ComponentEdit.h"
 
 
 
@@ -46,6 +47,7 @@ public:
     virtual int getLCDNumber(){return 0;};
     virtual int getMaxComponents(){return 0;};
     virtual ComponentController *getBlankComponent(int newId) = 0;
+    virtual ComponentEdit *createEditComponentForModel(ComponentModel *model) = 0;
     
 };
 

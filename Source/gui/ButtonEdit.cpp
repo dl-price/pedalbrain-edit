@@ -64,12 +64,12 @@ ButtonEdit::ButtonEdit (ComponentController *model) : ComponentEdit(model)
 
     comboBox->clear();
     
-    ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
+    /*ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
     
     for (int i = 0; i < cast_control->getAvailableTypes().size(); i++)
     {
         comboBox->addItem(cast_control->getAvailableTypes()[i], i+1);
-    }
+    }*/
     
     //[/Constructor]
 }

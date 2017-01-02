@@ -32,6 +32,7 @@ public:
     int getLCDNumber(){return 1;};
     ComponentController *getBlankComponent(int newId);
     int getMaxComponents(){return 13;};
+    ComponentEdit *createEditComponentForModel(ComponentModel *model);
     
 };
 

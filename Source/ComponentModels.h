@@ -33,7 +33,7 @@ public:
     void popupCompleted(int modalResult, PopupMenu *popupMenu) override;
     StringArray getAvailableTypes();
     
-protected:
+
     class ButtonModel;
     ComponentEdit *createEditComponent() override;
     void updateEditComponentFromModel() override;

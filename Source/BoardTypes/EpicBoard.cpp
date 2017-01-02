@@ -40,3 +40,8 @@ ComponentController *EpicBoard::getBlankComponent(int newId) {
             return new ButtonController();
     }
 }
+
+ComponentEdit *EpicBoard::createEditComponentForModel(ComponentModel *model)
+{
+    return new ButtonEdit(new ButtonController());
+}

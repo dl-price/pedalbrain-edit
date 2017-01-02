@@ -35,8 +35,6 @@ public:
     PopupMenu virtual *contextMenu() = 0;
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
     
-
-    class ComponentModel;
     
     ComponentModel *_model;
     ComponentEdit *_editComponent;
@@ -49,7 +47,7 @@ public:
     void virtual updateEditComponentFromModel() = 0;
 };
 
-class ComponentController::ComponentModel
+class ComponentModel
 {
 public:
     String getTypeName() const;

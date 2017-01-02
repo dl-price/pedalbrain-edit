@@ -21,6 +21,7 @@ class ComponentEdit    : public Component
 {
 public:
     ComponentEdit(ComponentController *model);
+    ComponentEdit();
     ~ComponentEdit();
 
     void paint (Graphics&) override;

@@ -13,6 +13,7 @@
 #include "BoardTypes/EpicBoardView.h"
 #include "BoardTypes/EpicBoard.h"
 #include "ComponentModel.h"
+#include "ComponentEdit.h"
 
 //==============================================================================
 BoardController *BoardController::s_instance = 0;
@@ -76,7 +77,8 @@ PedalView *BoardController::createView()
 
 void BoardController::mouseDoubleClick(const MouseEvent &event)
 {
-    //createEditWindowForComponent(pages[0]->components[0]->_model);
+    createEditWindowAndFillMainWindow(dynamic_cast<ComponentModel*>(new ButtonController::ButtonModel()));
+    Logger::outputDebugString("yesy");
 }
 
 void BoardController::mouseDown(const MouseEvent &event)
@@ -115,7 +117,7 @@ void BoardController::createEditWindowAndFillMainWindow(ComponentModel *model)
 ResizableWindow *BoardController::createEditWindowForComponent(ComponentModel *model)
 {
     ResizableWindow *window = new ResizableWindow("win", false);
-    PedalViewComponent *editComponent = new PedalViewComponent();
+    ComponentEdit *editComponent = boardType->createEditComponentForModel(model);
     window->setContentOwned(editComponent, true);
     return window;
 }
