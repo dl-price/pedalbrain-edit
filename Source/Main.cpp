@@ -30,7 +30,7 @@
         }
         
         mainWindow = new MainWindow (getApplicationName());
-        new BoardController(new EpicBoard());
+        new BoardModel(new EpicBoard());
     }
 
     void pedalbraineditApplication::shutdown()

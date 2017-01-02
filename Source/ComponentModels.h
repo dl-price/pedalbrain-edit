@@ -30,9 +30,6 @@ public:
     ButtonController();
     
     PopupMenu *contextMenu() override;
-    void popupCompleted(int modalResult, PopupMenu *popupMenu) override;
-    StringArray getAvailableTypes();
-    
 
     class ButtonModel;
     ComponentEdit *createEditComponent() override;

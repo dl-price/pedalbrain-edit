@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#ifndef BoardController_H_INCLUDED
-#define BoardController_H_INCLUDED
+#ifndef BoardModel_H_INCLUDED
+#define BoardModel_H_INCLUDED
 
 class BoardType;
-class BoardController;
+class BoardModel;
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ComponentModel.h"
 #include "PageModel.h"
@@ -51,18 +51,18 @@ public:
     
 };
 
-class BoardController : public MouseListener
+class BoardModel : public MouseListener
 {
     
 public:
-    BoardController(BoardType *newType);
-    ~BoardController();
+    BoardModel(BoardType *newType);
+    ~BoardModel();
     
     BoardType *boardType;
     OwnedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
     PedalView *createView();
-    static BoardController *getInstance();
+    static BoardModel *getInstance();
     void initFromNothing();
     void mouseDoubleClick(const MouseEvent &event) override;
     void mouseDown(const MouseEvent &event) override;
@@ -73,14 +73,14 @@ public:
     //void createEditWindowAndFillMain
     
 protected:
-    static BoardController *s_instance;
+    static BoardModel *s_instance;
     
 private:
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardModel)
 };
 
 
 
 
-#endif  // BoardController_H_INCLUDED
+#endif  // BoardModel_H_INCLUDED

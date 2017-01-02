@@ -41,7 +41,7 @@ LayoutTab::LayoutTab()
     
     addAndMakeVisible(pageNameEditor = new TextEditor());
     
-    addAndMakeVisible(pedalView = BoardController::getInstance()->createView());
+    addAndMakeVisible(pedalView = BoardModel::getInstance()->createView());
     
     
 

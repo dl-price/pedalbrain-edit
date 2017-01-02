@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    BoardController.cpp
+    BoardModel.cpp
     Created: 27 Dec 2016 7:21:53pm
     Author:  Daniel Price
 
@@ -16,9 +16,9 @@
 #include "ComponentEdit.h"
 
 //==============================================================================
-BoardController *BoardController::s_instance = 0;
+BoardModel *BoardModel::s_instance = 0;
 
-BoardController::BoardController(BoardType *newType)
+BoardModel::BoardModel(BoardType *newType)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
@@ -30,7 +30,7 @@ BoardController::BoardController(BoardType *newType)
 
 }
 
-void BoardController::initFromNothing()
+void BoardModel::initFromNothing()
 {
     boardType = new EpicBoard();
     
@@ -42,15 +42,15 @@ void BoardController::initFromNothing()
 
 
 /**
- Returns a pointer to the current BoardController - up to one may exist at a time
+ Returns a pointer to the current BoardModel - up to one may exist at a time
 
- @return Current BoardController
+ @return Current BoardModel
  */
-BoardController *BoardController::getInstance()
+BoardModel *BoardModel::getInstance()
 {
     if(!s_instance)
     {
-        s_instance = new BoardController(new EpicBoard());
+        s_instance = new BoardModel(new EpicBoard());
         s_instance->initFromNothing();
         Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
         Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
@@ -70,22 +70,22 @@ BoardController *BoardController::getInstance()
 
  @return The created view
  */
-PedalView *BoardController::createView()
+PedalView *BoardModel::createView()
 {
     return pedalViews.add(boardType->createView());
 }
 
-void BoardController::mouseDoubleClick(const MouseEvent &event)
+void BoardModel::mouseDoubleClick(const MouseEvent &event)
 {
     createEditWindowAndFillMainWindow(dynamic_cast<ComponentModel*>(new ButtonController::ButtonModel()));
     Logger::outputDebugString("yesy");
 }
 
-void BoardController::mouseDown(const MouseEvent &event)
+void BoardModel::mouseDown(const MouseEvent &event)
 {
     if(event.mods.isPopupMenu())
     {
-        //ComponentController *newButton = BoardController::getInstance()->pages[0]->components[idRef] ;
+        //ComponentController *newButton = BoardModel::getInstance()->pages[0]->components[idRef] ;
         
         /*PopupMenu *newContext = dynamic_cast<PedalViewComponent*>(event.eventComponent)->contextMenu();
         
@@ -95,26 +95,26 @@ void BoardController::mouseDown(const MouseEvent &event)
     
 }
 
-void BoardController::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu)
+void BoardModel::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu)
 {
     
 }
 
-void BoardController::createEditWindowAndAddToDesktop(ComponentModel *model)
+void BoardModel::createEditWindowAndAddToDesktop(ComponentModel *model)
 {
     ResizableWindow *window = createEditWindowForComponent(model);
     
     window->addToDesktop();
     window->setBounds(0, 0, 500, 500);
 }
-void BoardController::createEditWindowAndFillMainWindow(ComponentModel *model)
+void BoardModel::createEditWindowAndFillMainWindow(ComponentModel *model)
 {
     ResizableWindow *window = createEditWindowForComponent(model);
     
     TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(window);
     window->setBoundsConstrained(Rectangle<int>(0,0,window->getParentComponent()->getWidth(),window->getParentComponent()->getHeight()));
 }
-ResizableWindow *BoardController::createEditWindowForComponent(ComponentModel *model)
+ResizableWindow *BoardModel::createEditWindowForComponent(ComponentModel *model)
 {
     ResizableWindow *window = new ResizableWindow("win", false);
     ComponentEdit *editComponent = boardType->createEditComponentForModel(model);
@@ -122,7 +122,7 @@ ResizableWindow *BoardController::createEditWindowForComponent(ComponentModel *m
     return window;
 }
 
-BoardController::~BoardController()
+BoardModel::~BoardModel()
 {
     
 }

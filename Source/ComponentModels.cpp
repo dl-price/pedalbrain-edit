@@ -35,11 +35,7 @@ PopupMenu *ButtonController::contextMenu()
     return newMenu;
 }
 
-void ButtonController::popupCompleted(int modalResult, juce::PopupMenu *popupMenu)
-{
-    Logger::outputDebugString(String(modalResult));
 
-}
 
 ButtonController::ButtonController() : ComponentController()
 {
@@ -61,16 +57,6 @@ void ButtonController::updateEditComponentFromModel()
             cComponent->selectType(2);
     }
 
-}
-
-StringArray ButtonController::getAvailableTypes()
-{
-    StringArray availableTypes = StringArray();
-    
-    availableTypes.add( "Send PC");
-    availableTypes.add( "Send CC");
-    
-    return availableTypes;
 }
 
 ButtonController::ButtonModel *ButtonController::getModel()
