@@ -9,6 +9,7 @@
 */
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "PedalView.h"
 #include "PedalViewComponents.h"
 #include "../BoardModel.h"
 #include "ComponentModels.h"
@@ -33,8 +34,7 @@ PedalViewComponent::~PedalViewComponent()
 
 void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
 {
-    BoardController::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
-    
+    getPedalView()->componentDoubleClicked(this, event);
 }
 
 void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
@@ -55,6 +55,10 @@ void PedalViewComponent::contextCallback(int modalResult, ComponentController *c
     delete popup;
 }
 
+PedalView *PedalViewComponent::getPedalView()
+{
+    return dynamic_cast<PedalView*>(getParentComponent());
+}
 
 
 

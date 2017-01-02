@@ -12,6 +12,7 @@
 #define PEDALVIEWCOMPONENTS_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+class PedalViewComponent;
 #include "../ComponentModel.h"
 
 //==============================================================================
@@ -26,9 +27,11 @@ public:
     void mouseDoubleClick(const MouseEvent &event) override;
     void mouseDown(const MouseEvent &event) override;
     static void contextCallback(int modalResult, ComponentController *component, PopupMenu *popup);
+    PedalView *getPedalView();
 
-private:
+
     int idRef;
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalViewComponent)
 };
 

@@ -12,6 +12,10 @@
 #define PEDALVIEW_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+class PedalView;
+#include "PedalViewComponents.h"
+#include "../BoardModel.h"
+
 //#include "../includes.h"
 
 //==============================================================================
@@ -27,6 +31,7 @@ public:
     void resized() override;
     int getPage();
     void setPage(int i);
+    void componentDoubleClicked(PedalViewComponent *component, const MouseEvent &event);
 
 private:
     int viewingPage = 1;

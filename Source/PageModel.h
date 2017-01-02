@@ -14,6 +14,7 @@
 //#include "BoardModel.h"
 
 #include "../JuceLibraryCode/JuceHeader.h"
+class PageModel;
 #include "CellModel.h"
 #include "ComponentModel.h"
 

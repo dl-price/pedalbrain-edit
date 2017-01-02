@@ -12,6 +12,7 @@
 #include "PedalView.h"
 #include "../includes.h"
 
+
 //==============================================================================
 PedalView::PedalView()
 {
@@ -53,4 +54,9 @@ void PedalView::paint (Graphics& g)
 void PedalView::resized()
 {
 
+}
+
+void PedalView::componentDoubleClicked(PedalViewComponent *component, const MouseEvent &event)
+{
+    BoardController::getInstance()->pages[0]->components[component->idRef]->createEditWindowAndFillMainWindow() ;
 }
