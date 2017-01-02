@@ -35,8 +35,8 @@ public:
 
      @param model Model to make edit window for
      @return New edit window
-     @TODO Move into an edit view controller class (static)
      */
+    // \todo Move into an edit view controller class (static)
     ResizableWindow *createEditWindowAndAddToDesktop(ComponentModel *model);
     ResizableWindow *createEditWindowAndFillMainWindow(ComponentModel *model);
     ResizableWindow *createEditWindowForModel(ComponentModel *model);
