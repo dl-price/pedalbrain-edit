@@ -33,7 +33,7 @@ PedalViewComponent::~PedalViewComponent()
 
 void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
 {
-    BoardModel::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
+    BoardController::getInstance()->pages[0]->components[idRef]->createEditWindowAndFillMainWindow() ;
     
 }
 
@@ -41,11 +41,11 @@ void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
 {
     if(event.mods.isPopupMenu())
     {
-        //ComponentController *newButton = BoardModel::getInstance()->pages[0]->components[idRef] ;
+        //ComponentController *newButton = BoardController::getInstance()->pages[0]->components[idRef] ;
         
-        PopupMenu *newContext = BoardModel::getInstance()->pages[0]->components[idRef]->contextMenu();
+        PopupMenu *newContext = BoardController::getInstance()->pages[0]->components[idRef]->contextMenu();
         
-        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(contextCallback, BoardModel::getInstance()->pages[0]->components[idRef], newContext));
+        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(contextCallback, BoardController::getInstance()->pages[0]->components[idRef], newContext));
     }
 }
 

@@ -25,7 +25,7 @@ public:
     const String getApplicationName() override       { return ProjectInfo::projectName; }
     const String getApplicationVersion() override    { return ProjectInfo::versionString; }
     bool moreThanOneInstanceAllowed() override       { return true; }
-    //ReferenceCountedObjectPtr<BoardModel> boardModel;
+    //ReferenceCountedObjectPtr<BoardController> BoardController;
     
     
     //==============================================================================

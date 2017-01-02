@@ -8,8 +8,8 @@
   ==============================================================================
 */
 
-#ifndef BOARDMODEL_H_INCLUDED
-#define BOARDMODEL_H_INCLUDED
+#ifndef BoardController_H_INCLUDED
+#define BoardController_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ComponentModel.h"
@@ -48,24 +48,24 @@ public:
     
 };
 
-class BoardModel
+class BoardController
 {
-    static BoardModel *s_instance;
+    static BoardController *s_instance;
 public:
-    BoardModel(BoardType *newType);
-    ~BoardModel();
+    BoardController(BoardType *newType);
+    ~BoardController();
     
     BoardType *boardType;
     OwnedArray<PageModel> pages;
-    static BoardModel *getInstance();
+    static BoardController *getInstance();
     void initFromNothing();
     
 private:
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardModel)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)
 };
 
 
 
 
-#endif  // BOARDMODEL_H_INCLUDED
+#endif  // BoardController_H_INCLUDED
