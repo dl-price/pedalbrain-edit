@@ -5,6 +5,10 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <FILE id="RGnLXO" name="BoardController.cpp" compile="1" resource="0"
+            file="Source/BoardController.cpp"/>
+      <FILE id="XaQYAX" name="BoardController.h" compile="0" resource="0"
+            file="Source/BoardController.h"/>
       <GROUP id="{DC7DD321-93F5-DB4F-DD03-7EE9823EAA45}" name="components">
         <FILE id="OL727s" name="CellModel.cpp" compile="1" resource="0" file="Source/CellModel.cpp"/>
         <FILE id="kLqffB" name="CellModel.h" compile="0" resource="0" file="Source/CellModel.h"/>
