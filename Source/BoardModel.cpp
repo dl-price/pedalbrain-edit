@@ -41,7 +41,7 @@ void BoardController::initFromNothing()
 
 
 /**
- Returns a pointer to the in use BoardController
+ Returns a pointer to the current BoardController - up to one may exist at a time
 
  @return Current BoardController
  */
@@ -63,6 +63,12 @@ BoardController* BoardController::getInstance()
     return s_instance;
 }
 
+
+/**
+ Creates a PedalView subclass designated by the current Board Type and adds it to the Controller's list of views to manage
+
+ @return The created view
+ */
 PedalView *BoardController::createView()
 {
     return pedalViews.add(boardType->createView());
