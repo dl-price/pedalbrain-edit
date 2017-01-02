@@ -63,5 +63,10 @@ BoardController* BoardController::getInstance()
     return s_instance;
 }
 
+PedalView *BoardController::createView()
+{
+    return pedalViews.add(boardType->createView());
+}
+
 
 

@@ -57,6 +57,8 @@ public:
     
     BoardType *boardType;
     OwnedArray<PageModel> pages;
+    OwnedArray<PedalView> pedalViews;
+    PedalView *createView();
     static BoardController *getInstance();
     void initFromNothing();
     
