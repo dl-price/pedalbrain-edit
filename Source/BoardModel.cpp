@@ -87,7 +87,8 @@ void BoardController::componentMouseDown(PedalView *view, PedalViewComponent *co
         
         PopupMenu *newContext = pages[0]->components[component->idRef]->contextMenu();
         
-        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(component), ModalCallbackFunction::withParam( contextMenuFinished(PedalViewComponent, PopupMenu), component, newContext));
+        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(component), ModalCallbackFunction::withParam( contextMenuFinished, component, newContext));
+        
     }
     
 }
