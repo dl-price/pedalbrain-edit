@@ -93,7 +93,7 @@ void BoardController::componentMouseDown(PedalView *view, PedalViewComponent *co
     
 }
 
-void BoardController::contextMenuFinished(PedalViewComponent *component, PopupMenu *mmenu)
+void BoardController::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *mmenu)
 {
     
 }
