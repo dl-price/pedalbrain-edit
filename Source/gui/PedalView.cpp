@@ -58,5 +58,10 @@ void PedalView::resized()
 
 void PedalView::componentDoubleClicked(PedalViewComponent *component, const MouseEvent &event)
 {
-    BoardController::getInstance()->pages[0]->components[component->idRef]->createEditWindowAndFillMainWindow() ;
+    BoardController::getInstance()->componentDoubleClicked(this, component, event);
+}
+
+void PedalView::componentMouseDown(PedalViewComponent *component, const juce::MouseEvent &event)
+{
+    BoardController::getInstance()->componentMouseDown(this, component, event);
 }

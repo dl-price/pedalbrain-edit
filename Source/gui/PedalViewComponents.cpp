@@ -39,14 +39,7 @@ void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
 
 void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
 {
-    if(event.mods.isPopupMenu())
-    {
-        //ComponentController *newButton = BoardController::getInstance()->pages[0]->components[idRef] ;
-        
-        PopupMenu *newContext = BoardController::getInstance()->pages[0]->components[idRef]->contextMenu();
-        
-        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(this), ModalCallbackFunction::withParam(contextCallback, BoardController::getInstance()->pages[0]->components[idRef], newContext));
-    }
+    getPedalView()->componentMouseDown(this, event);
 }
 
 void PedalViewComponent::contextCallback(int modalResult, ComponentController *component, PopupMenu *popup)

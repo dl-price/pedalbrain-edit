@@ -74,5 +74,28 @@ PedalView *BoardController::createView()
     return pedalViews.add(boardType->createView());
 }
 
+void BoardController::componentDoubleClicked(PedalView *view, PedalViewComponent *component, const MouseEvent &event)
+{
+    pages[0]->components[component->idRef]->createEditWindowAndFillMainWindow() ;
+}
+
+void BoardController::componentMouseDown(PedalView *view, PedalViewComponent *component, const MouseEvent &event)
+{
+    if(event.mods.isPopupMenu())
+    {
+        //ComponentController *newButton = BoardController::getInstance()->pages[0]->components[idRef] ;
+        
+        PopupMenu *newContext = pages[0]->components[component->idRef]->contextMenu();
+        
+        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(component), ModalCallbackFunction::withParam( contextMenuFinished(PedalViewComponent, PopupMenu), component, newContext));
+    }
+    
+}
+
+void BoardController::contextMenuFinished(PedalViewComponent *component, PopupMenu *mmenu)
+{
+    
+}
+
 
 

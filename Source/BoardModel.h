@@ -61,6 +61,9 @@ public:
     PedalView *createView();
     static BoardController *getInstance();
     void initFromNothing();
+    void componentDoubleClicked(PedalView *view, PedalViewComponent *component, const MouseEvent &event);
+    void componentMouseDown(PedalView *view, PedalViewComponent *component, const MouseEvent &event);
+    static void contextMenuFinished(PedalViewComponent *component, PopupMenu *menu );
     
 private:
     

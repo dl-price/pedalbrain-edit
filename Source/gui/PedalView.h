@@ -32,6 +32,7 @@ public:
     int getPage();
     void setPage(int i);
     void componentDoubleClicked(PedalViewComponent *component, const MouseEvent &event);
+    void componentMouseDown(PedalViewComponent *component, const MouseEvent &event);
 
 private:
     int viewingPage = 1;
