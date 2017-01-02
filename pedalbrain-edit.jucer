@@ -22,6 +22,10 @@
               file="Source/ComponentModels.h"/>
       </GROUP>
       <GROUP id="{21E4EF04-D041-8725-3664-5A7D322C1E0C}" name="BoardTypes">
+        <FILE id="Vulaqs" name="BoardTestController.cpp" compile="1" resource="0"
+              file="Source/BoardTypes/BoardTestController.cpp"/>
+        <FILE id="rSoCl1" name="BoardTestController.h" compile="0" resource="0"
+              file="Source/BoardTypes/BoardTestController.h"/>
         <FILE id="lLZ8gM" name="EpicBoard.cpp" compile="1" resource="0" file="Source/BoardTypes/EpicBoard.cpp"/>
         <FILE id="v5BZcA" name="EpicBoard.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoard.h"/>
         <FILE id="iU94OW" name="EpicBoardView.cpp" compile="1" resource="0"
