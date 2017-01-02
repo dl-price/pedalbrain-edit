@@ -28,30 +28,7 @@ String ComponentController::ComponentModel::getTypeName() const
     return s_typeName;
 }
 
-ResizableWindow *ComponentController::createEditWindow()
-{
-    ResizableWindow *window = new ResizableWindow("win", false);
-    _editComponent = createEditComponent();
-    window->setContentOwned(_editComponent, true);
-    updateEditComponentFromModel();
-    return window;
-}
 
-void ComponentController::createEditWindowAndFillMainWindow()
-{
-    _window = createEditWindow();
-    
-    TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(_window);
-    _window->setBoundsConstrained(Rectangle<int>(0,0,_window->getParentComponent()->getWidth(),_window->getParentComponent()->getHeight()));
-}
-
-void ComponentController::createEditWindowAndAddToDesktop()
-{
-    _window = createEditWindow();
-    
-    _window->addToDesktop();
-    _window->setBounds(0, 0, 500, 500);
-}
 
 String ComponentController::getComponentType()
 {

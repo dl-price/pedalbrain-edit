@@ -11,6 +11,8 @@
 #ifndef BoardController_H_INCLUDED
 #define BoardController_H_INCLUDED
 
+class BoardType;
+class BoardController;
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ComponentModel.h"
 #include "PageModel.h"
@@ -37,7 +39,6 @@ public:
     virtual int getMaxPages(){return 1;};
     virtual int getMaxDevices(){return 8;};
     virtual int getCellNumber(){return 0;};
-    virtual CellFeatures getCellFeatures(int cell) {return CellFeatures::None ;};
     virtual PedalView *createView() = 0;
     virtual int getLedNumber(){return 0;};
     virtual int getButtonNumber(){return 0;};
@@ -48,9 +49,9 @@ public:
     
 };
 
-class BoardController
+class BoardController : public MouseListener
 {
-    static BoardController *s_instance;
+    
 public:
     BoardController(BoardType *newType);
     ~BoardController();
@@ -61,9 +62,16 @@ public:
     PedalView *createView();
     static BoardController *getInstance();
     void initFromNothing();
-    void componentDoubleClicked(PedalView *view, PedalViewComponent *component, const MouseEvent &event);
-    void componentMouseDown(PedalView *view, PedalViewComponent *component, const MouseEvent &event);
+    void mouseDoubleClick(const MouseEvent &event) override;
+    void mouseDown(const MouseEvent &event) override;
     static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
+    void createEditWindowAndAddToDesktop(ComponentModel *model);
+    void createEditWindowAndFillMainWindow(ComponentModel *model);
+    ResizableWindow *createEditWindowForComponent(ComponentModel *model);
+    //void createEditWindowAndFillMain
+    
+protected:
+    static BoardController *s_instance;
     
 private:
     

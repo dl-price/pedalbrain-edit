@@ -45,7 +45,7 @@ void BoardController::initFromNothing()
 
  @return Current BoardController
  */
-BoardController* BoardController::getInstance()
+BoardController *BoardController::getInstance()
 {
     if(!s_instance)
     {
@@ -74,29 +74,57 @@ PedalView *BoardController::createView()
     return pedalViews.add(boardType->createView());
 }
 
-void BoardController::componentDoubleClicked(PedalView *view, PedalViewComponent *component, const MouseEvent &event)
+void BoardController::mouseDoubleClick(const MouseEvent &event)
 {
-    pages[0]->components[component->idRef]->createEditWindowAndFillMainWindow() ;
+    //createEditWindowForComponent(pages[0]->components[0]->_model);
 }
 
-void BoardController::componentMouseDown(PedalView *view, PedalViewComponent *component, const MouseEvent &event)
+void BoardController::mouseDown(const MouseEvent &event)
 {
     if(event.mods.isPopupMenu())
     {
         //ComponentController *newButton = BoardController::getInstance()->pages[0]->components[idRef] ;
         
-        PopupMenu *newContext = pages[0]->components[component->idRef]->contextMenu();
+        /*PopupMenu *newContext = dynamic_cast<PedalViewComponent*>(event.eventComponent)->contextMenu();
         
-        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(component), ModalCallbackFunction::withParam( contextMenuFinished, component, newContext));
+        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(event.eventComponent), ModalCallbackFunction::withParam( contextMenuFinished, event.eventComponent, newContext));*/
         
     }
     
 }
 
-void BoardController::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *mmenu)
+void BoardController::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu)
 {
     
 }
+
+void BoardController::createEditWindowAndAddToDesktop(ComponentModel *model)
+{
+    ResizableWindow *window = createEditWindowForComponent(model);
+    
+    window->addToDesktop();
+    window->setBounds(0, 0, 500, 500);
+}
+void BoardController::createEditWindowAndFillMainWindow(ComponentModel *model)
+{
+    ResizableWindow *window = createEditWindowForComponent(model);
+    
+    TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(window);
+    window->setBoundsConstrained(Rectangle<int>(0,0,window->getParentComponent()->getWidth(),window->getParentComponent()->getHeight()));
+}
+ResizableWindow *BoardController::createEditWindowForComponent(ComponentModel *model)
+{
+    ResizableWindow *window = new ResizableWindow("win", false);
+    PedalViewComponent *editComponent = new PedalViewComponent();
+    window->setContentOwned(editComponent, true);
+    return window;
+}
+
+BoardController::~BoardController()
+{
+    
+}
+
 
 
 

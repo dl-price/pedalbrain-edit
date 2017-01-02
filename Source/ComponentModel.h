@@ -35,7 +35,7 @@ public:
     PopupMenu virtual *contextMenu() = 0;
     void virtual popupCompleted(int modalResult, PopupMenu *popupMenu){}
     
-protected:
+
     class ComponentModel;
     
     ComponentModel *_model;

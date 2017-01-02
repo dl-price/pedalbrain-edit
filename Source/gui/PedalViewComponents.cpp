@@ -20,32 +20,18 @@ PedalViewComponent::PedalViewComponent()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    
+    //addMouseListener(BoardController::getInstance(), false);
 
 }
 
-PedalViewComponent::PedalViewComponent(int newId)
+PedalViewComponent::PedalViewComponent(int newId) : PedalViewComponent::PedalViewComponent()
 {
     idRef = newId;
 }
 
 PedalViewComponent::~PedalViewComponent()
 {
-}
-
-void PedalViewComponent::mouseDoubleClick(const juce::MouseEvent &event)
-{
-    getPedalView()->componentDoubleClicked(this, event);
-}
-
-void PedalViewComponent::mouseDown(const juce::MouseEvent &event)
-{
-    getPedalView()->componentMouseDown(this, event);
-}
-
-void PedalViewComponent::contextCallback(int modalResult, ComponentController *component, PopupMenu *popup)
-{
-    component->popupCompleted(modalResult, popup);
-    delete popup;
 }
 
 PedalView *PedalViewComponent::getPedalView()
