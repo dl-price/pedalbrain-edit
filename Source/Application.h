@@ -13,7 +13,6 @@
 
 #include "includes.h"
 #include "PedalEdit.h"
-#include "CellEdit.h"
 #include "BoardModel.h"
 
 class pedalbraineditApplication  : public JUCEApplication

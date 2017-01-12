@@ -12,7 +12,6 @@
 #include "Application.h"
 #include "includes.h"
 #include "PedalEdit.h"
-#include "CellEdit.h"
 #include "BoardModel.h"
 #include "BoardTypes/EpicBoard.h"
 
