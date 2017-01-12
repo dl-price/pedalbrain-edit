@@ -12,7 +12,9 @@
 
 PedalView *EpicBoard::createView()
 {
-    return new EpicBoardView();
+    PedalView *pedalView = new EpicBoardView();
+    pedalView->init();
+    return pedalView;
 }
 
 BoardType::CellFeatures EpicBoard::getCellFeatures(int cell) {

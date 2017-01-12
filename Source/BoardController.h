@@ -30,6 +30,8 @@ public:
     static BoardController *setInstance(BoardController *newInstance);
     virtual PedalView *createPedalView() = 0;
     
+    
+    
    
     
     /**

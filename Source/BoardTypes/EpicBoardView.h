@@ -48,6 +48,8 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void mouseDoubleClick (const MouseEvent& event) override;
+    void init();
     //[/UserMethods]
 
     void paint (Graphics& g) override;

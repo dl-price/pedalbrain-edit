@@ -109,6 +109,9 @@ EpicBoardView::EpicBoardView ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    
+    
+    
     //[/Constructor]
 }
 
@@ -193,6 +196,34 @@ void EpicBoardView::resized()
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+void EpicBoardView::init()
+{
+    int numChild = getNumChildComponents();
+    
+    for(int i=0; i < numChild; i++)
+    {
+        ButtonComponent *component = dynamic_cast<ButtonComponent*>(getChildComponent(i));
+        {
+            if(component)
+            {
+                component->addMouseListener(this, true);
+                Logger::outputDebugString("Added");
+                
+            }
+        }
+    }
+}
+
+void EpicBoardView::mouseDoubleClick(const MouseEvent &event)
+{
+    ButtonComponent *component = dynamic_cast<ButtonComponent*>(event.eventComponent);
+    if(component)
+    {
+        Logger::outputDebugString("That's a button");
+        return;
+    }
+}
 //[/MiscUserCode]
 
 

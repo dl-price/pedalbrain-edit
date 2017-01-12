@@ -31,6 +31,7 @@ public:
     void resized() override;
     int getPage();
     void setPage(int i);
+    virtual void init() = 0;
 
 private:
     int viewingPage = 1;
