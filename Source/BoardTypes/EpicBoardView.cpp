@@ -201,8 +201,12 @@ void EpicBoardView::init()
 {
     int numChild = getNumChildComponents();
     
+    MidiOutput *output = MidiOutput::createNewDevice("Juce Device");
+    
     for(int i=0; i < numChild; i++)
     {
+        
+        
         ButtonComponent *component = dynamic_cast<ButtonComponent*>(getChildComponent(i));
         {
             if(component)
@@ -210,6 +214,9 @@ void EpicBoardView::init()
                 component->addMouseListener(this, true);
                 Logger::outputDebugString("Added");
                 
+                MidiMessage msg =  MidiMessage::createSysExMessage("}This should be much longer", strlen("}This should be much longer"));
+                //msg.sys
+                output->sendMessageNow(msg);
             }
         }
     }
