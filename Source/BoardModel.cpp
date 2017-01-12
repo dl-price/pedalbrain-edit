@@ -56,10 +56,7 @@ BoardModel *BoardModel::getInstance()
         Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
         Logger::outputDebugString("Board had: " + String(s_instance->boardType->getLCDNumber()) + " LCD screens");
         
-        for (int i = 0; i < s_instance->pages[0]->components.size(); i++)
-        {
-            Logger::outputDebugString(s_instance->pages[0]->components[i]->getComponentType());
-        }
+        
     }
     return s_instance;
 }
@@ -75,52 +72,15 @@ PedalView *BoardModel::createView()
     return pedalViews.add(boardType->createView());
 }
 
-void BoardModel::mouseDoubleClick(const MouseEvent &event)
-{
-    createEditWindowAndFillMainWindow(dynamic_cast<ComponentModel*>(new ButtonController::ButtonModel()));
-    Logger::outputDebugString("yesy");
-}
 
-void BoardModel::mouseDown(const MouseEvent &event)
-{
-    if(event.mods.isPopupMenu())
-    {
-        //ComponentController *newButton = BoardModel::getInstance()->pages[0]->components[idRef] ;
-        
-        /*PopupMenu *newContext = dynamic_cast<PedalViewComponent*>(event.eventComponent)->contextMenu();
-        
-        newContext->showMenuAsync(PopupMenu::Options().withTargetComponent(event.eventComponent), ModalCallbackFunction::withParam( contextMenuFinished, event.eventComponent, newContext));*/
-        
-    }
-    
-}
+
 
 void BoardModel::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu)
 {
     
 }
 
-void BoardModel::createEditWindowAndAddToDesktop(ComponentModel *model)
-{
-    ResizableWindow *window = createEditWindowForComponent(model);
-    
-    window->addToDesktop();
-    window->setBounds(0, 0, 500, 500);
-}
-void BoardModel::createEditWindowAndFillMainWindow(ComponentModel *model)
-{
-    ResizableWindow *window = createEditWindowForComponent(model);
-    
-    TopLevelWindow::getActiveTopLevelWindow()->addAndMakeVisible(window);
-    window->setBoundsConstrained(Rectangle<int>(0,0,window->getParentComponent()->getWidth(),window->getParentComponent()->getHeight()));
-}
-ResizableWindow *BoardModel::createEditWindowForComponent(ComponentModel *model)
-{
-    ResizableWindow *window = new ResizableWindow("win", false);
-    ComponentEdit *editComponent = boardType->createEditComponentForModel(model);
-    window->setContentOwned(editComponent, true);
-    return window;
-}
+
 
 BoardModel::~BoardModel()
 {

@@ -39,7 +39,6 @@ ButtonEdit::ButtonEdit (ComponentController *model) : ComponentEdit(model)
 
     addAndMakeVisible (closeButton = new TextButton ("close button"));
     closeButton->setButtonText (TRANS("Close"));
-    closeButton->addListener (this);
 
     addAndMakeVisible (groupComponent = new GroupComponent ("new group",
                                                             TRANS("Main Settings")));
@@ -112,21 +111,7 @@ void ButtonEdit::resized()
     //[/UserResized]
 }
 
-void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
-{
-    //[UserbuttonClicked_Pre]
-    //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == closeButton)
-    {
-        //[UserButtonCode_closeButton] -- add your button handler code here..
-        s_model->requestCloseEditWindow();
-        //[/UserButtonCode_closeButton]
-    }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
-}
 
 void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {

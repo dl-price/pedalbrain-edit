@@ -46,12 +46,11 @@ public:
     virtual int getLBNumber(){return 0;};
     virtual int getLCDNumber(){return 0;};
     virtual int getMaxComponents(){return 0;};
-    virtual ComponentController *getBlankComponent(int newId) = 0;
-    virtual ComponentEdit *createEditComponentForModel(ComponentModel *model) = 0;
+
     
 };
 
-class BoardModel : public MouseListener
+class BoardModel
 {
     
 public:
@@ -64,12 +63,8 @@ public:
     PedalView *createView();
     static BoardModel *getInstance();
     void initFromNothing();
-    void mouseDoubleClick(const MouseEvent &event) override;
-    void mouseDown(const MouseEvent &event) override;
+
     static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
-    void createEditWindowAndAddToDesktop(ComponentModel *model);
-    void createEditWindowAndFillMainWindow(ComponentModel *model);
-    ResizableWindow *createEditWindowForComponent(ComponentModel *model);
     //void createEditWindowAndFillMain
     
 protected:

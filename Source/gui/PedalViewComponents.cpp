@@ -12,8 +12,7 @@
 #include "PedalView.h"
 #include "PedalViewComponents.h"
 #include "../BoardModel.h"
-#include "ComponentModels.h"
-#include "ComponentModel.h"
+
 
 //==============================================================================
 PedalViewComponent::PedalViewComponent()
@@ -21,7 +20,7 @@ PedalViewComponent::PedalViewComponent()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    addMouseListener(BoardModel::getInstance(), false);
+
 
 }
 

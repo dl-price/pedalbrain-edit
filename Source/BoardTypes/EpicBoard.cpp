@@ -32,16 +32,4 @@ BoardType::CellFeatures EpicBoard::getCellFeatures(int cell) {
     return BoardType::CellFeatures::None;
 }
 
-ComponentController *EpicBoard::getBlankComponent(int newId) {
-    
-    switch (newId) {
-            
-        default:
-            return new ButtonController();
-    }
-}
 
-ComponentEdit *EpicBoard::createEditComponentForModel(ComponentModel *model)
-{
-    return new ButtonEdit(new ButtonController());
-}

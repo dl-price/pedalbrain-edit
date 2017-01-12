@@ -20,7 +20,3 @@ PedalView *BoardTestController::createPedalView()
     return new PedalView();
 }
 
-ComponentEdit *BoardTestController::createEditComponentForModel(ComponentModel *model)
-{
-    return new ComponentEdit();
-}

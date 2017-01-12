@@ -21,7 +21,7 @@ public:
     BoardTestController();
     
     PedalView *createPedalView() override;
-    ComponentEdit *createEditComponentForModel(ComponentModel *model) override;
+
     
 };
 
