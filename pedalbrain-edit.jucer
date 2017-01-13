@@ -7,15 +7,7 @@
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
       <FILE id="KKZFcl" name="ButtonModel.cpp" compile="1" resource="0" file="Source/ButtonModel.cpp"/>
       <FILE id="KWrZQk" name="ButtonModel.h" compile="0" resource="0" file="Source/ButtonModel.h"/>
-      <FILE id="RGnLXO" name="BoardController.cpp" compile="1" resource="0"
-            file="Source/BoardController.cpp"/>
-      <FILE id="XaQYAX" name="BoardController.h" compile="0" resource="0"
-            file="Source/BoardController.h"/>
       <GROUP id="{21E4EF04-D041-8725-3664-5A7D322C1E0C}" name="BoardTypes">
-        <FILE id="Vulaqs" name="BoardTestController.cpp" compile="1" resource="0"
-              file="Source/BoardTypes/BoardTestController.cpp"/>
-        <FILE id="rSoCl1" name="BoardTestController.h" compile="0" resource="0"
-              file="Source/BoardTypes/BoardTestController.h"/>
         <FILE id="lLZ8gM" name="EpicBoard.cpp" compile="1" resource="0" file="Source/BoardTypes/EpicBoard.cpp"/>
         <FILE id="v5BZcA" name="EpicBoard.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoard.h"/>
         <FILE id="iU94OW" name="EpicBoardView.cpp" compile="1" resource="0"
@@ -26,8 +18,6 @@
         <GROUP id="{5A07E9D1-4A7E-0DA3-B1E4-DCEE6B22842C}" name="edit-views">
           <FILE id="BWjAl3" name="ButtonEdit.cpp" compile="1" resource="0" file="Source/gui/ButtonEdit.cpp"/>
           <FILE id="G1hYZA" name="ButtonEdit.h" compile="0" resource="0" file="Source/gui/ButtonEdit.h"/>
-          <FILE id="Fx0PDM" name="CellEdit.cpp" compile="1" resource="0" file="Source/gui/CellEdit.cpp"/>
-          <FILE id="pcmeTK" name="CellEdit.h" compile="0" resource="0" file="Source/gui/CellEdit.h"/>
           <FILE id="BFd3gZ" name="ComponentEdit.cpp" compile="1" resource="0"
                 file="Source/gui/ComponentEdit.cpp"/>
           <FILE id="ciruhj" name="ComponentEdit.h" compile="0" resource="0" file="Source/gui/ComponentEdit.h"/>

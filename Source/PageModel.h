@@ -16,7 +16,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 class PageModel;
 #include "CellModel.h"
-#include "ComponentModel.h"
+#include "ButtonModel.h"
 
 
 //==============================================================================
@@ -29,7 +29,8 @@ class PageModel
 public:
     PageModel();
     ~PageModel();
-    OwnedArray<ComponentController> components;
+    OwnedArray<ButtonModel> buttons;
+    static PageModel *createBlankPage();
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

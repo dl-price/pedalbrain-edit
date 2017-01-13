@@ -16,6 +16,7 @@
 #include "../ComponentModel.h"
 #include "../ComponentModels.h"
 
+
 class EpicBoard : public BoardType
 {
 public:
@@ -33,6 +34,8 @@ public:
 
     
 };
+
+
 
 
 

@@ -11,7 +11,10 @@
 #ifndef BUTTONMODEL_H_INCLUDED
 #define BUTTONMODEL_H_INCLUDED
 
-
+class ButtonModel
+{
+    
+};
 
 
 
