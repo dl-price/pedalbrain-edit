@@ -10,7 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PageModel.h"
-#include "BoardModel.h"
+#include "BoardController.h"
 
 //==============================================================================
 PageModel::PageModel()
@@ -31,8 +31,13 @@ PageModel *PageModel::createBlankPage()
 {
     PageModel *newModel = new PageModel();
     
-    
-    
     return newModel;
 }
 
+void PageModel::initFromNothing()
+{
+    for (int i = 0; i< BoardController::getInstance()->getNumberOfButtons();i++)
+    {
+        buttons.add(new ButtonModel);
+    }
+}

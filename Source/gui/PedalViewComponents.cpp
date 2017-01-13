@@ -11,7 +11,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalView.h"
 #include "PedalViewComponents.h"
-#include "../BoardModel.h"
+#include "../BoardController.h"
 
 
 //==============================================================================

@@ -50,8 +50,10 @@
         <FILE id="JsQnDL" name="LayoutTab.h" compile="0" resource="0" file="Source/gui/LayoutTab.h"/>
       </GROUP>
       <FILE id="UpmWiq" name="Application.h" compile="0" resource="0" file="Source/Application.h"/>
-      <FILE id="eggftH" name="BoardModel.cpp" compile="1" resource="0" file="Source/BoardModel.cpp"/>
-      <FILE id="ZTBYxL" name="BoardModel.h" compile="0" resource="0" file="Source/BoardModel.h"/>
+      <FILE id="eggftH" name="BoardController.cpp" compile="1" resource="0"
+            file="Source/BoardController.cpp"/>
+      <FILE id="ZTBYxL" name="BoardController.h" compile="0" resource="0"
+            file="Source/BoardController.h"/>
       <FILE id="SWdXMv" name="Device.cpp" compile="1" resource="0" file="Source/Device.cpp"/>
       <FILE id="cdB7F6" name="Device.h" compile="0" resource="0" file="Source/Device.h"/>
       <FILE id="I7R1F0" name="DeviceManager.cpp" compile="1" resource="0"

@@ -11,7 +11,7 @@
 #ifndef EPICBOARD_H_INCLUDED
 #define EPICBOARD_H_INCLUDED
 
-#include "../BoardModel.h"
+#include "../BoardController.h"
 #include "EpicBoardView.h"
 #include "../ComponentModel.h"
 #include "../ComponentModels.h"
@@ -33,6 +33,11 @@ public:
     int getLCDNumber(){return 1;};
 
     
+};
+
+class EpicBoardController : public BoardController
+{
+    int getNumberOfButtons() override {return 10;}
 };
 
 

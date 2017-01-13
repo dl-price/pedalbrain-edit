@@ -12,7 +12,7 @@
 #include "Application.h"
 #include "includes.h"
 #include "PedalEdit.h"
-#include "BoardModel.h"
+#include "BoardController.h"
 #include "BoardTypes/EpicBoard.h"
 
 
@@ -29,7 +29,7 @@
         }
         
         mainWindow = new MainWindow (getApplicationName());
-        new BoardModel(new EpicBoard());
+        BoardController::setInstance(new EpicBoardController);
     }
 
     void pedalbraineditApplication::shutdown()

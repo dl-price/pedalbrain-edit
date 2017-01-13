@@ -11,7 +11,7 @@
 #ifndef PAGEMODEL_H_INCLUDED
 #define PAGEMODEL_H_INCLUDED
 
-//#include "BoardModel.h"
+//#include "BoardController.h"
 
 #include "../JuceLibraryCode/JuceHeader.h"
 class PageModel;
@@ -31,6 +31,7 @@ public:
     ~PageModel();
     OwnedArray<ButtonModel> buttons;
     static PageModel *createBlankPage();
+    void initFromNothing();
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

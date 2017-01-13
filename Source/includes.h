@@ -21,6 +21,9 @@ class ComponentModel;
 #include "gui/PedalView.h"
 #include "gui/GlobalTab.h"
 #include "gui/LayoutTab.h"
+#include "BoardController.h"
+
+
 
 
 

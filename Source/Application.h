@@ -13,7 +13,7 @@
 
 #include "includes.h"
 #include "PedalEdit.h"
-#include "BoardModel.h"
+#include "BoardController.h"
 
 class pedalbraineditApplication  : public JUCEApplication
 {
@@ -24,7 +24,7 @@ public:
     const String getApplicationName() override       { return ProjectInfo::projectName; }
     const String getApplicationVersion() override    { return ProjectInfo::versionString; }
     bool moreThanOneInstanceAllowed() override       { return true; }
-    //ReferenceCountedObjectPtr<BoardModel> BoardModel;
+    //ReferenceCountedObjectPtr<BoardController> BoardController;
     
     
     //==============================================================================
