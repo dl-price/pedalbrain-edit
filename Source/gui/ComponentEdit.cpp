@@ -10,11 +10,11 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
-#include "../ComponentModel.h"
+#include "../ButtonModel.h"
 
 //==============================================================================
 
-ComponentEdit::ComponentEdit(ComponentController *model)
+ComponentEdit::ComponentEdit(ComponentModel *model)
 {
     s_model = model;
 }

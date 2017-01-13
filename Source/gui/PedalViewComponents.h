@@ -12,8 +12,9 @@
 #define PEDALVIEWCOMPONENTS_H_INCLUDED
 
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "PedalView.h"
 class PedalViewComponent;
-#include "../ComponentModel.h"
+
 
 //==============================================================================
 /*

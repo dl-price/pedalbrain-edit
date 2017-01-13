@@ -22,7 +22,7 @@ public:
     virtual void boardControllerChanged(){};
 };
 
-#include "ComponentModel.h"
+
 #include "PageModel.h"
 #include "gui/PedalView.h"
 #include "ComponentEdit.h"
@@ -80,7 +80,7 @@ public:
     virtual void initFromNothing();
     static void addListener(BoardControllerListener *newListener);
 
-    static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
+    //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     
 protected:

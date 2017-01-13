@@ -12,8 +12,9 @@
 #include "BoardController.h"
 #include "BoardTypes/EpicBoardView.h"
 #include "BoardTypes/EpicBoard.h"
-#include "ComponentModel.h"
+#include "ButtonModel.h"
 #include "ComponentEdit.h"
+#include "ButtonEdit.h"
 
 //==============================================================================
 ReferenceCountedArray<BoardControllerListener> BoardController::listeners = ReferenceCountedArray<BoardControllerListener>();
@@ -76,10 +77,7 @@ void BoardController::addListener(BoardControllerListener *newListener)
 
 
 
-void BoardController::contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu)
-{
-    
-}
+
 
 BoardController::BoardController()
 {
@@ -93,7 +91,8 @@ BoardController::~BoardController()
 
 void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
 {
-    Logger::outputDebugString("Button edit open");
+    ButtonEdit *editComponent = new ButtonEdit(dynamic_cast<ButtonModel*>(selectedButton));
+    //ResizableWindow *window = new ResizableWindow();
 }
 
 

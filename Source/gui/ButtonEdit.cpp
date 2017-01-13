@@ -32,7 +32,7 @@ void ButtonEdit::selectType(int typeId)
 //[/MiscUserDefs]
 
 //==============================================================================
-ButtonEdit::ButtonEdit (ComponentController *model) : ComponentEdit(model)
+ButtonEdit::ButtonEdit (ComponentModel *model) : ComponentEdit(model)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
