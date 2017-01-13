@@ -214,9 +214,24 @@ void EpicBoardView::init()
                 component->addMouseListener(this, true);
                 Logger::outputDebugString("Added");
                 
-                MidiMessage msg =  MidiMessage::createSysExMessage("}This should be much longer", strlen("}This should be much longer"));
+                MidiMessage msg =  MidiMessage::createSysExMessage("}Hello", strlen("}Hello"));
                 //msg.sys
                 output->sendMessageNow(msg);
+                
+                /* Arduino code for SysEx
+                 Serial.println("Hello world");
+                 digitalWrite(13, HIGH);
+                 uint8_t toSend[] = "a}Hello" ;
+                 toSend[0] = 0xF0;
+                 toSend[sizeof(toSend)-1] = 0xF7;
+                 usbMIDI.sendSysEx(8, toSend);
+                 //usbMIDI.send_now();
+                 delay(100);
+                 digitalWrite(13, LOW);
+                 delay(900);
+                 */
+                
+                
             }
         }
     }
