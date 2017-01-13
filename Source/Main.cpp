@@ -30,6 +30,7 @@
         
         mainWindow = new MainWindow (getApplicationName());
         BoardController::setInstance(new EpicBoardController);
+        BoardController::getInstance()->initFromNothing();
     }
 
     void pedalbraineditApplication::shutdown()

@@ -66,4 +66,13 @@ void PedalView::resized()
 
 }
 
+void PedalView::pageChanged()
+{
+    
+}
+
+void PedalView::presetChanged()
+{
+    
+}
 

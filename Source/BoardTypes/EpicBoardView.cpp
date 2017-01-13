@@ -242,7 +242,8 @@ void EpicBoardView::mouseDoubleClick(const MouseEvent &event)
     ButtonComponent *component = dynamic_cast<ButtonComponent*>(event.eventComponent);
     if(component)
     {
-        
+        BoardController *contrl = BoardController::getInstance();
+        contrl->createEditWindowForButton(contrl->pages[getPage()]->buttons[0]);
         return;
     }
 }
