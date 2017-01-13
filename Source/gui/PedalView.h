@@ -31,10 +31,15 @@ public:
     void resized() override;
     int getPage();
     void setPage(int i);
+    int getPreset();
+    void setPreset(int i);
     virtual void init() = 0;
 
 private:
-    int viewingPage = 1;
+    int _viewingPage = 1;
+    int _viewingPreset = 1;
+    void pageChanged();
+    void presetChanged();
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };

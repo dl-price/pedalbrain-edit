@@ -36,12 +36,22 @@ PedalView::~PedalView()
 
 int PedalView::getPage()
 {
-    return viewingPage;
+    return _viewingPage;
 }
 
 void PedalView::setPage(int i) {
-    viewingPage = i;
-    Logger::outputDebugString(String(viewingPage));
+    _viewingPage = i;
+    pageChanged();
+}
+
+int PedalView::getPreset()
+{
+    return _viewingPreset;
+}
+
+void PedalView::setPreset(int i) {
+    _viewingPreset = i;
+    presetChanged();
 }
 
 void PedalView::paint (Graphics& g)
