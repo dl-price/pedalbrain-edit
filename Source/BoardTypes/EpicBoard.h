@@ -31,13 +31,18 @@ public:
     int getButtonNumber(){return 11;};
     int getLBNumber(){return 11;};
     int getLCDNumber(){return 1;};
+    
 
     
 };
 
 class EpicBoardController : public BoardController
 {
-    int getNumberOfButtons() override {return 10;}
+public:
+    int getNumberOfButtons() override {return 11;}
+    int getNumberOfPages() override {return 16;};
+    PedalView *createView() override;
+    //void initFromNothing() override { BoardController::initFromNothing();};
 };
 
 

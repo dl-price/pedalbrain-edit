@@ -50,6 +50,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     void mouseDoubleClick (const MouseEvent& event) override;
     void init();
+    OwnedArray<ButtonComponent> buttonComponents;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -63,26 +64,26 @@ private:
 
     //==============================================================================
     ScopedPointer<LedComponent> component2;
-    ScopedPointer<ButtonComponent> component;
+    ScopedPointer<ButtonComponent> button1;
     ScopedPointer<LcdComponent> component3;
-    ScopedPointer<ButtonComponent> component4;
-    ScopedPointer<ButtonComponent> component5;
-    ScopedPointer<ButtonComponent> component6;
-    ScopedPointer<ButtonComponent> component7;
+    ScopedPointer<ButtonComponent> button2;
+    ScopedPointer<ButtonComponent> button3;
+    ScopedPointer<ButtonComponent> button4;
+    ScopedPointer<ButtonComponent> button5;
     ScopedPointer<LedComponent> component8;
     ScopedPointer<LedComponent> component9;
     ScopedPointer<LedComponent> component10;
     ScopedPointer<LedComponent> component11;
-    ScopedPointer<ButtonComponent> component12;
-    ScopedPointer<ButtonComponent> component13;
-    ScopedPointer<ButtonComponent> component14;
-    ScopedPointer<ButtonComponent> component15;
+    ScopedPointer<ButtonComponent> button8;
+    ScopedPointer<ButtonComponent> button9;
+    ScopedPointer<ButtonComponent> button10;
+    ScopedPointer<ButtonComponent> button11;
     ScopedPointer<LedComponent> component16;
     ScopedPointer<LedComponent> component17;
     ScopedPointer<LedComponent> component18;
     ScopedPointer<LedComponent> component19;
-    ScopedPointer<ButtonComponent> component20;
-    ScopedPointer<ButtonComponent> component21;
+    ScopedPointer<ButtonComponent> button6;
+    ScopedPointer<ButtonComponent> button7;
     ScopedPointer<LedComponent> component22;
     ScopedPointer<LedComponent> component23;
 

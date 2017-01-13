@@ -178,8 +178,11 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 int DevicesTab::getNumRows()
 {
-    
-    return BoardController::getInstance()->boardType->getMaxDevices();
+    if(BoardController::getInstance())
+    {
+        return BoardController::getInstance()->boardType->getMaxDevices();
+    }
+    return 0;
 }
 
 void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, int height, bool rowIsSelected)

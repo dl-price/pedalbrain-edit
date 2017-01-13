@@ -29,9 +29,7 @@ LayoutTab::LayoutTab()
     
     addAndMakeVisible(pageCombo = new ComboBox());
     
-    for(int i = 1; i <= BoardController::getInstance()->getNumberOfPages();i++) {
-        pageCombo->addItem(String(i), i);
-    }
+    
     
     pageCombo->addListener(this);
     
@@ -41,7 +39,8 @@ LayoutTab::LayoutTab()
     
     addAndMakeVisible(pageNameEditor = new TextEditor());
     
-    addAndMakeVisible(pedalView = BoardController::getInstance()->createView());
+    BoardController::addListener(this);
+
     
     
 
@@ -78,11 +77,17 @@ void LayoutTab::resized()
     
     int drawY = (getHeight() - drawHeight)/2;
     
+    if(pedalView)
+    {
     pedalView->setBounds(Rectangle<int>(20,drawY,drawWidth,drawHeight));
+    }
     
     pageDownButton->setBounds(20, 20, 40, 24);
+    pageDownButton->addListener(this);
+    
     pageCombo->setBounds(100, 20, 100, 24);
     pageUpButton->setBounds(pageCombo->getX()+pageCombo->getWidth()+20, 20, 40, 24);
+    pageUpButton->addListener(this);
     pageNameLabel->setBounds(pageUpButton->getX()+pageUpButton->getWidth()+20, 20, 100, 24);
     pageNameEditor->setBounds(pageNameLabel->getX()+pageNameLabel->getWidth()+20, 20, 200, 24);
 
@@ -90,7 +95,35 @@ void LayoutTab::resized()
 
 }
 
+void LayoutTab::buttonClicked(juce::Button *button)
+{
+    if(button == pageDownButton)
+    {
+        if(pageCombo->getSelectedId()>1)
+        {
+            pageCombo->setSelectedId(pageCombo->getSelectedId()-1);
+        }
+    }
+    if(button==pageUpButton)
+    {
+        if(pageCombo->getSelectedId()<pageCombo->getNumItems())
+        {
+            pageCombo->setSelectedId(pageCombo->getSelectedId()+1);
+        }
+    }
+}
+
+void LayoutTab::boardControllerChanged()
+{
+    for(int i = 1; i <= BoardController::getInstance()->getNumberOfPages();i++) {
+     pageCombo->addItem(String(i), i);
+     }
+    pageCombo->setSelectedId(1);
+    addAndMakeVisible(pedalView = BoardController::getInstance()->createView());
+    resized();
+}
+
 void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
 {
-    pedalView->setPage(comboBoxThatHasChanged->getSelectedItemIndex()+1);
+    pedalView->setPage(comboBoxThatHasChanged->getSelectedId());
 }

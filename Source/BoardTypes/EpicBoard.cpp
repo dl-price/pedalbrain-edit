@@ -34,4 +34,11 @@ BoardType::CellFeatures EpicBoard::getCellFeatures(int cell) {
     return BoardType::CellFeatures::None;
 }
 
+PedalView *EpicBoardController::createView()
+{
+    PedalView *pedalView = new EpicBoardView();
+    pedalView->init();
+    return pedalView;
+}
+
 

@@ -14,6 +14,14 @@
 class BoardType;
 class BoardController;
 #include "../JuceLibraryCode/JuceHeader.h"
+class BoardControllerListener : public ReferenceCountedObject
+{
+public:
+    BoardControllerListener(){};
+    ~BoardControllerListener(){};
+    virtual void boardControllerChanged(){};
+};
+
 #include "ComponentModel.h"
 #include "PageModel.h"
 #include "gui/PedalView.h"
@@ -24,6 +32,8 @@ class BoardController;
 //==============================================================================
 /*
 */
+
+
 
 
 class BoardType : public ReferenceCountedObject
@@ -61,12 +71,14 @@ public:
     BoardType *boardType;
     OwnedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
-    PedalView *createView();
+    static ReferenceCountedArray<BoardControllerListener> listeners;
+    virtual PedalView *createView() = 0;
     static BoardController *getInstance();
     static BoardController *setInstance(BoardController *newBoard);
     virtual int getNumberOfButtons() {return 5;}
-    virtual int getNumberOfPages() {return 5;}
-    void initFromNothing();
+    virtual int getNumberOfPages() = 0;
+    virtual void initFromNothing();
+    static void addListener(BoardControllerListener *newListener);
 
     static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
@@ -78,6 +90,10 @@ private:
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)
 };
+
+
+
+
 
 
 

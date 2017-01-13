@@ -16,6 +16,8 @@
 #include "ComponentEdit.h"
 
 //==============================================================================
+ReferenceCountedArray<BoardControllerListener> BoardController::listeners = ReferenceCountedArray<BoardControllerListener>();
+
 BoardController *BoardController::s_instance = 0;
 
 BoardController::BoardController(BoardType *newType)
@@ -42,7 +44,14 @@ void BoardController::initFromNothing()
 
 BoardController *BoardController::setInstance(BoardController *newBoard)
 {
-    return s_instance = newBoard;
+    delete s_instance;
+    s_instance = newBoard;
+    Logger::outputDebugString(String(BoardController::listeners.size()));
+    for(int i=0; i<BoardController::listeners.size();i++ )
+    {
+        BoardController::listeners[i]->boardControllerChanged();
+    }
+    return s_instance;
 }
 
 
@@ -53,29 +62,16 @@ BoardController *BoardController::setInstance(BoardController *newBoard)
  */
 BoardController *BoardController::getInstance()
 {
-    if(!s_instance)
-    {
-        s_instance = new BoardController(new EpicBoard());
-        s_instance->initFromNothing();
-        Logger::outputDebugString("Loaded board model of type: " + s_instance->boardType->getName());
-        Logger::outputDebugString("Board has: " + String(s_instance->boardType->getLBNumber()) + " LED/button pairs");
-        Logger::outputDebugString("Board had: " + String(s_instance->boardType->getLCDNumber()) + " LCD screens");
-        
-        
-    }
+
     return s_instance;
 }
 
-
-/**
- Creates a PedalView subclass designated by the current Board Type and adds it to the Controller's list of views to manage
-
- @return The created view
- */
-PedalView *BoardController::createView()
+void BoardController::addListener(BoardControllerListener *newListener)
 {
-    return pedalViews.add(boardType->createView());
+    listeners.add(newListener);
 }
+
+
 
 
 

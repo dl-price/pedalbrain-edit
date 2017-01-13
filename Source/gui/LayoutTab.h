@@ -14,12 +14,13 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalView.h"
 //#include "../includes.h"
+#include "../BoardController.h"
 
 
 //==============================================================================
 /*
 */
-class LayoutTab    : public Component, ComboBox::Listener
+class LayoutTab    : public Component, ComboBox::Listener, ButtonListener, BoardControllerListener
 {
 public:
     LayoutTab();
@@ -28,6 +29,8 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     void comboBoxChanged(ComboBox *comboBoxThatHasChanged) override;
+    void boardControllerChanged();
+    void buttonClicked(Button *button) override;
 
 private:
     ScopedPointer<Button> pageDownButton;

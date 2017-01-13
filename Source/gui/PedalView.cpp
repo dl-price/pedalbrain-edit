@@ -68,7 +68,7 @@ void PedalView::resized()
 
 void PedalView::pageChanged()
 {
-    
+    Logger::outputDebugString(String(_viewingPage));
 }
 
 void PedalView::presetChanged()
