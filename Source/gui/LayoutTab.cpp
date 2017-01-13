@@ -29,7 +29,7 @@ LayoutTab::LayoutTab()
     
     addAndMakeVisible(pageCombo = new ComboBox());
     
-    for(int i = 1; i <= 16;i++) {
+    for(int i = 1; i <= BoardController::getInstance()->getNumberOfPages();i++) {
         pageCombo->addItem(String(i), i);
     }
     
