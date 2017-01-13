@@ -242,7 +242,7 @@ void EpicBoardView::mouseDoubleClick(const MouseEvent &event)
     ButtonComponent *component = dynamic_cast<ButtonComponent*>(event.eventComponent);
     if(component)
     {
-        Logger::outputDebugString("That's a button");
+        
         return;
     }
 }

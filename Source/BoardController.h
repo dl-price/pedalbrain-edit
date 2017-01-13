@@ -69,7 +69,7 @@ public:
     void initFromNothing();
 
     static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
-    //void createEditWindowAndFillMain
+    virtual void createEditWindowForButton(ButtonModel *selectedButton);
     
 protected:
     static BoardController *s_instance;

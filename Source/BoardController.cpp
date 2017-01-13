@@ -95,6 +95,11 @@ BoardController::~BoardController()
     
 }
 
+void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
+{
+    Logger::outputDebugString("Button edit open");
+}
+
 
 
 
