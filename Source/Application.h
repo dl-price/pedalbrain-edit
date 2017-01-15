@@ -37,6 +37,15 @@ public:
     
     void anotherInstanceStarted (const String& commandLine) override;
     
+    ApplicationCommandManager *getCommandManager();
+    
+    ApplicationCommandTarget *getNextCommandTarget() override;
+    void getAllCommands(Array<CommandID> &commands) override;
+    bool perform (const InvocationInfo &info) override;
+    void getCommandInfo (CommandID commandID, ApplicationCommandInfo &result) override;
+    
+    
+    
     
     //==============================================================================
     /*
@@ -50,6 +59,8 @@ public:
         
         void closeButtonPressed() override;
         
+        
+        
         /* Note: Be careful if you override any DocumentWindow methods - the base
          class uses a lot of them, so by overriding you might break its functionality.
          It's best to do all your work in your content component instead, but if
@@ -62,8 +73,9 @@ public:
     };
     
 private:
-    
+    static ApplicationCommandManager *_commandManager;
     ScopedPointer<MainWindow> mainWindow;
+    void createNewProject();
 };
 
 

@@ -16,7 +16,7 @@
 #include "BoardTypes/EpicBoard.h"
 
 
-
+ApplicationCommandManager *pedalbraineditApplication::_commandManager;
     
 
     //==============================================================================
@@ -29,8 +29,7 @@
         }
         
         mainWindow = new MainWindow (getApplicationName());
-        BoardController::setInstance(new EpicBoardController);
-        BoardController::getInstance()->initFromNothing();
+        
     }
 
     void pedalbraineditApplication::shutdown()
@@ -54,7 +53,20 @@
         // this method is invoked, and the commandLine parameter tells you what
         // the other instance's command-line arguments were.
     }
+
+ApplicationCommandManager *pedalbraineditApplication::getCommandManager()
+{
+    if(!pedalbraineditApplication::_commandManager)
+    {
+        pedalbraineditApplication::_commandManager = new ApplicationCommandManager();
+        pedalbraineditApplication *app = dynamic_cast<pedalbraineditApplication*>(JUCEApplication::getInstance());
+        pedalbraineditApplication::_commandManager->registerAllCommandsForTarget(app);
+    }
     
+    return pedalbraineditApplication::_commandManager;
+}
+
+
 
 
 
@@ -101,6 +113,52 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
            you really have to override any DocumentWindow methods, make sure your
            subclass also calls the superclass's method.
         */
+
+void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
+{
+    
+    
+    commands.add(0x2001);
+}
+bool pedalbraineditApplication::perform (const InvocationInfo &info)
+{
+    
+    if(info.commandID == 0x2001)
+    {
+        createNewProject();
+        return true;
+    }
+    
+    
+    
+    return false;
+}
+
+void pedalbraineditApplication::getCommandInfo (CommandID commandID, ApplicationCommandInfo &result)
+{
+    
+    if(commandID == 0x2001)
+    {
+        result.shortName = "New Project";
+        result.commandID = commandID;
+        result.setActive(true);
+        return;
+    }
+    
+}
+
+ApplicationCommandTarget *pedalbraineditApplication::getNextCommandTarget()
+{
+    Logger::outputDebugString("Oh dear");
+    
+    return nullptr;
+}
+
+void pedalbraineditApplication::createNewProject()
+{
+    BoardController::setInstance(new EpicBoardController);
+    BoardController::getInstance()->initFromNothing();
+}
 
 
 

@@ -10,6 +10,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../includes.h"
+#include "Application.h"
 #include "PedalEdit.h"
 #include "GlobalTab.h"
 #include "DevicesTab.h"
@@ -71,6 +72,13 @@ PopupMenu PedalEdit::getMenuForIndex(int topLevelMenuIndex, const String& menuNa
 {
     PopupMenu menu;
     
+    if(topLevelMenuIndex==0 && menuName == "File")
+    {
+        menu.addCommandItem((dynamic_cast<pedalbraineditApplication*>(JUCEApplication::getInstance())->getCommandManager()), 0x2001);
+    }
+    
+    
+    
     return menu;
 }
 
@@ -78,3 +86,5 @@ void PedalEdit::menuItemSelected(int menuItemID, int topLevelMenuIndex)
 {
     
 }
+
+
