@@ -15,6 +15,8 @@
 #include "PedalEdit.h"
 #include "BoardController.h"
 
+
+
 class pedalbraineditApplication  : public JUCEApplication
 {
 public:
@@ -70,6 +72,10 @@ public:
         
     private:
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
+    };
+    enum PedalBrainCommandTypes
+    {
+        newProject = 0x2001
     };
     
 private:

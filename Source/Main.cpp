@@ -137,7 +137,7 @@ bool pedalbraineditApplication::perform (const InvocationInfo &info)
 void pedalbraineditApplication::getCommandInfo (CommandID commandID, ApplicationCommandInfo &result)
 {
     
-    if(commandID == 0x2001)
+    if(commandID == PedalBrainCommandTypes::newProject)
     {
         result.shortName = "New Project";
         result.commandID = commandID;
@@ -149,8 +149,6 @@ void pedalbraineditApplication::getCommandInfo (CommandID commandID, Application
 
 ApplicationCommandTarget *pedalbraineditApplication::getNextCommandTarget()
 {
-    Logger::outputDebugString("Oh dear");
-    
     return nullptr;
 }
 
