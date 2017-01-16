@@ -83,6 +83,7 @@ public:
 
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
+    virtual int getMaxDevices() {return 16;};
     
 protected:
     static BoardController *s_instance;

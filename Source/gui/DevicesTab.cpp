@@ -90,6 +90,8 @@ DevicesTab::DevicesTab ()
     {
         manufacturerCombo->addItem(DeviceManager::getInstance()->manufacturers[i]->name, i+1);
     }
+    
+    BoardController::addListener(this);
 
 
 
@@ -180,7 +182,7 @@ int DevicesTab::getNumRows()
 {
     if(BoardController::getInstance())
     {
-        return BoardController::getInstance()->boardType->getMaxDevices();
+        return BoardController::getInstance()->getMaxDevices();
     }
     return 0;
 }
@@ -202,6 +204,11 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     const String text(buffer);
     g.drawText("Device " + text + " - ", 2, 0, width - 4, height, Justification::left, true);
 
+}
+
+void DevicesTab::boardControllerChanged()
+{
+    deviceTable->updateContent();
 }
 
 //[/MiscUserCode]
