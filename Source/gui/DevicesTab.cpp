@@ -20,6 +20,7 @@
 //[Headers] You can add your own extra header files here...
 #include "includes.h"
 #include "../Application.h"
+#include <future>
 //[/Headers]
 
 #include "DevicesTab.h"
@@ -66,7 +67,7 @@ DevicesTab::DevicesTab ()
     manufacturerCombo->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     manufacturerCombo->addListener (this);
 
-    addAndMakeVisible (modelCombo = new ComboBox ("model combo"));
+    addAndMakeVisible (modelCombo = new ExtendedComboBox ("model combo"));
     modelCombo->setEditableText (false);
     modelCombo->setJustificationType (Justification::centredLeft);
     modelCombo->setTextWhenNothingSelected (String());
@@ -225,9 +226,12 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     else if (comboBoxThatHasChanged == modelCombo)
     {
         //[UserComboBoxCode_modelCombo] -- add your combo box handling code here..
+        if(modelCombo->getSelectedItemIndex()>=0)
+        {
         Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
         DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
         BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->deviceType = type;
+        }
         //[/UserComboBoxCode_modelCombo]
     }
     else if (comboBoxThatHasChanged == channelCombo)
@@ -291,11 +295,29 @@ void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
 void DevicesTab::selectedRowsChanged(int lastRowSelected)
 {
     int currentRowSelected = deviceTable->getSelectedRow();
-    
+
     Device *currDevice = BoardController::getInstance()->devices[currentRowSelected];
     nameEditor->setText(currDevice->name);
     channelCombo->setSelectedItemIndex(currDevice->channel-1);
-    
+    if(currDevice->deviceType)
+    {
+        
+        manufacturerCombo->setSelectedItemIndex(DeviceManager::getInstance()->manufacturers.indexOf(currDevice->deviceType->manufacturer));
+        modelCombo->clear();
+        modelCombo->setTextWhenNothingSelected(currDevice->deviceType->name);
+        //modelCombo->setSelectedItemIndex(currDevice->deviceType->manufacturer->deviceTypes.indexOf(currDevice->deviceType));
+        //Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
+
+    }
+    else
+    {
+        manufacturerCombo->setSelectedItemIndex(0);
+        
+        modelCombo->clear();
+        modelCombo->setTextWhenNothingSelected("None");
+    }
+
+
 }
 
 
@@ -346,7 +368,7 @@ BEGIN_JUCER_METADATA
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <COMBOBOX name="model combo" id="f22149194db014db" memberName="modelCombo"
-            virtualName="" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
+            virtualName="ExtendedComboBox" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>

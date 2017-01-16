@@ -49,7 +49,7 @@ void DeviceManager::loadDeviceConfig()
         
         for(int j=0; j < some.size();j++)
         {
-            DeviceType * dev = new DeviceType(some[j].getProperty("name", var()));
+            DeviceType * dev = new DeviceType(newMan, some[j].getProperty("name", var()));
             var ccs = some[j].getProperty("potentialCC", var());
             if(ccs.isObject())
             {

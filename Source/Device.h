@@ -51,7 +51,8 @@ public:
         int off;
     };
     OwnedArray<PotentialCC> potentialCC;
-    DeviceType(String newName);
+    DeviceType(Manufacturer *newManufacturer, String newName);
+    Manufacturer *manufacturer;
 };
 
 class Manufacturer

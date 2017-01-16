@@ -35,10 +35,10 @@ Manufacturer::Manufacturer(String newName)
     deviceTypes = OwnedArray<DeviceType>();
 }
 
-DeviceType::DeviceType(String newName)
+DeviceType::DeviceType(Manufacturer *newManufacturer, String newName)
 {
     name = newName;
-    
+    manufacturer = newManufacturer;
     
 }
 
