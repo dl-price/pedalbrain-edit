@@ -111,7 +111,7 @@ EpicBoardView::EpicBoardView ()
     //[Constructor] You can add your own custom stuff here..
 
     buttonComponents = OwnedArray<ButtonComponent>();
-    
+
     buttonComponents.add(button1);
     buttonComponents.add(button2);
     buttonComponents.add(button3);
@@ -123,7 +123,7 @@ EpicBoardView::EpicBoardView ()
     buttonComponents.add(button9);
     buttonComponents.add(button10);
     buttonComponents.add(button11);
-    
+
     //[/Constructor]
 }
 

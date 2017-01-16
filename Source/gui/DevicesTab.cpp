@@ -73,6 +73,55 @@ DevicesTab::DevicesTab ()
     modelCombo->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     modelCombo->addListener (this);
 
+    addAndMakeVisible (nameEditor = new TextEditor ("name editor"));
+    nameEditor->setMultiLine (false);
+    nameEditor->setReturnKeyStartsNewLine (false);
+    nameEditor->setReadOnly (false);
+    nameEditor->setScrollbarsShown (true);
+    nameEditor->setCaretVisible (true);
+    nameEditor->setPopupMenuEnabled (true);
+    nameEditor->setColour (TextEditor::outlineColourId, Colours::black);
+    nameEditor->setText (String());
+
+    addAndMakeVisible (label3 = new Label ("new label",
+                                           TRANS("Name:")));
+    label3->setFont (Font (15.00f, Font::plain));
+    label3->setJustificationType (Justification::centredLeft);
+    label3->setEditable (false, false, false);
+    label3->setColour (TextEditor::textColourId, Colours::black);
+    label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (label4 = new Label ("new label",
+                                           TRANS("MIDI Channel:")));
+    label4->setFont (Font (15.00f, Font::plain));
+    label4->setJustificationType (Justification::centredLeft);
+    label4->setEditable (false, false, false);
+    label4->setColour (TextEditor::textColourId, Colours::black);
+    label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (channelCombo = new ComboBox ("channel combo"));
+    channelCombo->setEditableText (false);
+    channelCombo->setJustificationType (Justification::centredLeft);
+    channelCombo->setTextWhenNothingSelected (String());
+    channelCombo->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    channelCombo->addItem (TRANS("1"), 1);
+    channelCombo->addItem (TRANS("2"), 2);
+    channelCombo->addItem (TRANS("3"), 3);
+    channelCombo->addItem (TRANS("4"), 4);
+    channelCombo->addItem (TRANS("5"), 5);
+    channelCombo->addItem (TRANS("6"), 6);
+    channelCombo->addItem (TRANS("7"), 7);
+    channelCombo->addItem (TRANS("8"), 8);
+    channelCombo->addItem (TRANS("9"), 9);
+    channelCombo->addItem (TRANS("10"), 10);
+    channelCombo->addItem (TRANS("11"), 11);
+    channelCombo->addItem (TRANS("12"), 12);
+    channelCombo->addItem (TRANS("13"), 13);
+    channelCombo->addItem (TRANS("14"), 14);
+    channelCombo->addItem (TRANS("15"), 15);
+    channelCombo->addItem (TRANS("16"), 16);
+    channelCombo->addListener (this);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -90,7 +139,7 @@ DevicesTab::DevicesTab ()
     {
         manufacturerCombo->addItem(DeviceManager::getInstance()->manufacturers[i]->name, i+1);
     }
-    
+
     BoardController::addListener(this);
 
 
@@ -110,6 +159,10 @@ DevicesTab::~DevicesTab()
     label2 = nullptr;
     manufacturerCombo = nullptr;
     modelCombo = nullptr;
+    nameEditor = nullptr;
+    label3 = nullptr;
+    label4 = nullptr;
+    channelCombo = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -140,6 +193,10 @@ void DevicesTab::resized()
     label2->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) / 2 + 20, 20 + 40, 150, 24);
     manufacturerCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) / 2 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f)), 20 + 40, roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f), 24);
     modelCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f)), 20 + 40, roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f), 24);
+    nameEditor->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f)), 20 + 80, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f), 24);
+    label3->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, 20 + 80, 150, 24);
+    label4->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, 20 + 120, 150, 24);
+    channelCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f)), 20 + 120, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f), 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -168,6 +225,11 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         //[UserComboBoxCode_modelCombo] -- add your combo box handling code here..
         //[/UserComboBoxCode_modelCombo]
+    }
+    else if (comboBoxThatHasChanged == channelCombo)
+    {
+        //[UserComboBoxCode_channelCombo] -- add your combo box handling code here..
+        //[/UserComboBoxCode_channelCombo]
     }
 
     //[UsercomboBoxChanged_Post]
@@ -224,7 +286,7 @@ void DevicesTab::boardControllerChanged()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="DevicesTab" componentName=""
-                 parentClasses="public Component, ListBoxModel, ComboBoxListener"
+                 parentClasses="public Component, ListBoxModel, BoardControllerListener"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
                  snapShown="1" overlayOpacity="0.330" fixedSize="0" initialWidth="600"
                  initialHeight="400">
@@ -260,6 +322,29 @@ BEGIN_JUCER_METADATA
             virtualName="" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
+            textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <TEXTEDITOR name="name editor" id="11b1fe24822e9e8" memberName="nameEditor"
+              virtualName="" explicitFocusOrder="0" pos="20Rr 80 77.949% 24"
+              posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
+              posRelativeW="e8f732dbffd928cb" outlinecol="ff000000" initialText=""
+              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
+              caret="1" popupmenu="1"/>
+  <LABEL name="new label" id="c38b846e67c7b662" memberName="label3" virtualName=""
+         explicitFocusOrder="0" pos="20 80 150 24" posRelativeX="e8f732dbffd928cb"
+         posRelativeY="e8f732dbffd928cb" edTextCol="ff000000" edBkgCol="0"
+         labelText="Name:" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
+         bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="2be0348d58ff23bf" memberName="label4" virtualName=""
+         explicitFocusOrder="0" pos="20 120 150 24" posRelativeX="e8f732dbffd928cb"
+         posRelativeY="e8f732dbffd928cb" edTextCol="ff000000" edBkgCol="0"
+         labelText="MIDI Channel:" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
+         bold="0" italic="0" justification="33"/>
+  <COMBOBOX name="channel combo" id="ff774dc4ca6d2f79" memberName="channelCombo"
+            virtualName="" explicitFocusOrder="0" pos="20Rr 120 77.949% 24"
+            posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
+            posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;13&#10;14&#10;15&#10;16"
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>
 

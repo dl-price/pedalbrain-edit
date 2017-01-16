@@ -36,8 +36,8 @@
 */
 class DevicesTab  : public Component,
                     ListBoxModel,
-                    ComboBoxListener,
-BoardControllerListener
+                    BoardControllerListener,
+                    public ComboBoxListener
 {
 public:
     //==============================================================================
@@ -74,6 +74,10 @@ private:
     ScopedPointer<Label> label2;
     ScopedPointer<ComboBox> manufacturerCombo;
     ScopedPointer<ComboBox> modelCombo;
+    ScopedPointer<TextEditor> nameEditor;
+    ScopedPointer<Label> label3;
+    ScopedPointer<Label> label4;
+    ScopedPointer<ComboBox> channelCombo;
 
 
     //==============================================================================
