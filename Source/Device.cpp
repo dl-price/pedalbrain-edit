@@ -16,6 +16,8 @@ Device::Device()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    _name = "";
+    _deviceType = DeviceManager::getInstance()->deviceTypes[0];
     
 }
 
@@ -54,6 +56,7 @@ String Device::getName()
 
 void Device::setName(juce::String newName)
 {
+    setProperty("name", newName);
     _name = newName;
 }
 
@@ -74,5 +77,12 @@ int Device::getChannel()
 
 void Device::setChannel(int newChannel)
 {
+    setProperty("channel", newChannel);
     _channel = newChannel;
+}
+
+String Device::toJson()
+{
+    var jVar = var(this);
+    return JSON::toString(jVar);
 }

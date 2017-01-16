@@ -43,7 +43,7 @@ void BoardController::initFromNothing()
     }
     for (int i=0; i < getMaxDevices(); i++)
     {
-        devices.add(new Device);
+        devices.add(new Device());
     }
 }
 

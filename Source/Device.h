@@ -22,7 +22,7 @@ class Manufacturer;
 */
 
 
-class Device
+class Device : DynamicObject
 {
 public:
     Device();
@@ -33,6 +33,7 @@ public:
     void setType(DeviceType *newType);
     int getChannel();
     void setChannel(int newChannel);
+    String toJson();
     
     
 
