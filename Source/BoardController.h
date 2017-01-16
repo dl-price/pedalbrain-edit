@@ -26,6 +26,7 @@ public:
 #include "PageModel.h"
 #include "gui/PedalView.h"
 #include "ComponentEdit.h"
+#include "Device.h"
 
 
 
@@ -71,6 +72,7 @@ public:
     BoardType *boardType;
     OwnedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
+    OwnedArray<Device> devices;
     String projectFile;
     static ReferenceCountedArray<BoardControllerListener> listeners;
     virtual PedalView *createView() = 0;

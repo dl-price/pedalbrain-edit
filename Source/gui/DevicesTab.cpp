@@ -77,9 +77,9 @@ DevicesTab::DevicesTab ()
     nameEditor->setMultiLine (false);
     nameEditor->setReturnKeyStartsNewLine (false);
     nameEditor->setReadOnly (false);
-    nameEditor->setScrollbarsShown (true);
+    nameEditor->setScrollbarsShown (false);
     nameEditor->setCaretVisible (true);
-    nameEditor->setPopupMenuEnabled (true);
+    nameEditor->setPopupMenuEnabled (false);
     nameEditor->setColour (TextEditor::outlineColourId, Colours::black);
     nameEditor->setText (String());
 
@@ -141,6 +141,7 @@ DevicesTab::DevicesTab ()
     }
 
     BoardController::addListener(this);
+    nameEditor->addListener(this);
 
 
 
@@ -193,10 +194,10 @@ void DevicesTab::resized()
     label2->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) / 2 + 20, 20 + 40, 150, 24);
     manufacturerCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) / 2 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f)), 20 + 40, roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f), 24);
     modelCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f)), 20 + 40, roundFloatToInt (proportionOfWidth (0.6497f) * 0.2999f), 24);
-    nameEditor->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f)), 20 + 80, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f), 24);
+    nameEditor->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7795f)), 20 + 80, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7795f), 24);
     label3->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, 20 + 80, 150, 24);
     label4->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, 20 + 120, 150, 24);
-    channelCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f)), 20 + 120, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7800f), 24);
+    channelCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7795f)), 20 + 120, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7795f), 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -224,11 +225,15 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     else if (comboBoxThatHasChanged == modelCombo)
     {
         //[UserComboBoxCode_modelCombo] -- add your combo box handling code here..
+        Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
+        DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
+        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->deviceType = type;
         //[/UserComboBoxCode_modelCombo]
     }
     else if (comboBoxThatHasChanged == channelCombo)
     {
         //[UserComboBoxCode_channelCombo] -- add your combo box handling code here..
+        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->channel = deviceTable->getSelectedRow()+1;
         //[/UserComboBoxCode_channelCombo]
     }
 
@@ -264,7 +269,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     char buffer[20];
     sprintf(buffer, "%03d", rowNumber+1);
     const String text(buffer);
-    g.drawText("Device " + text + " - ", 2, 0, width - 4, height, Justification::left, true);
+    g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->name, 2, 0, width - 4, height, Justification::left, true);
 
 }
 
@@ -272,6 +277,28 @@ void DevicesTab::boardControllerChanged()
 {
     deviceTable->updateContent();
 }
+
+void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
+{
+
+    BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->name = editor.getTextValue().toString();
+    //ideviceTable->updateContent();
+    deviceTable->repaintRow(deviceTable->getSelectedRow());
+
+
+}
+
+void DevicesTab::selectedRowsChanged(int lastRowSelected)
+{
+    int currentRowSelected = deviceTable->getSelectedRow();
+    
+    Device *currDevice = BoardController::getInstance()->devices[currentRowSelected];
+    nameEditor->setText(currDevice->name);
+    channelCombo->setSelectedItemIndex(currDevice->channel-1);
+    
+}
+
+
 
 //[/MiscUserCode]
 
@@ -286,7 +313,7 @@ void DevicesTab::boardControllerChanged()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="DevicesTab" componentName=""
-                 parentClasses="public Component, ListBoxModel, BoardControllerListener"
+                 parentClasses="public Component, ListBoxModel, BoardControllerListener, TextEditorListener"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
                  snapShown="1" overlayOpacity="0.330" fixedSize="0" initialWidth="600"
                  initialHeight="400">
@@ -327,8 +354,8 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="20Rr 80 77.949% 24"
               posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
               posRelativeW="e8f732dbffd928cb" outlinecol="ff000000" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
+              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="0"
+              caret="1" popupmenu="0"/>
   <LABEL name="new label" id="c38b846e67c7b662" memberName="label3" virtualName=""
          explicitFocusOrder="0" pos="20 80 150 24" posRelativeX="e8f732dbffd928cb"
          posRelativeY="e8f732dbffd928cb" edTextCol="ff000000" edBkgCol="0"

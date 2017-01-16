@@ -41,6 +41,10 @@ void BoardController::initFromNothing()
         newPage->initFromNothing();
         pages.add(newPage);
     }
+    for (int i=0; i < getMaxDevices(); i++)
+    {
+        devices.add(new Device);
+    }
 }
 
 BoardController *BoardController::setInstance(BoardController *newBoard)

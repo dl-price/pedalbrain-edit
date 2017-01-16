@@ -37,6 +37,7 @@
 class DevicesTab  : public Component,
                     ListBoxModel,
                     BoardControllerListener,
+                    TextEditorListener,
                     public ComboBoxListener
 {
 public:
@@ -50,6 +51,8 @@ public:
     int getNumRows() override;
     void paintListBoxItem(int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
     void boardControllerChanged();
+    void textEditorTextChanged(TextEditor &editor);
+    void selectedRowsChanged(int lastRowSelected) override;
 
 
     //[/UserMethods]

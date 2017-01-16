@@ -11,6 +11,9 @@
 #ifndef DEVICE_H_INCLUDED
 #define DEVICE_H_INCLUDED
 
+class DeviceType;
+class Device;
+class Manufacturer;
 #include "includes.h"
 
 //==============================================================================
@@ -22,6 +25,7 @@ class Device
 {
 public:
     String name;
+    DeviceType *deviceType;
     short int channel;
     short int presets;
     short int maxPC;
