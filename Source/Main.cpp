@@ -117,8 +117,9 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
 void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
 {
     
-    
     commands.add(0x2001);
+    commands.add(PedalBrainCommandTypes::saveProjectCmd);
+    commands.add(PedalBrainCommandTypes::saveProjectAsCmd);
 }
 bool pedalbraineditApplication::perform (const InvocationInfo &info)
 {
@@ -126,6 +127,18 @@ bool pedalbraineditApplication::perform (const InvocationInfo &info)
     if(info.commandID == 0x2001)
     {
         createNewProject();
+        return true;
+    }
+    if(info.commandID == 0x2002)
+    {
+
+        saveProject();
+        return true;
+    }
+    if(info.commandID == 0x2003)
+    {
+
+        saveProjectAs();
         return true;
     }
     
@@ -144,6 +157,21 @@ void pedalbraineditApplication::getCommandInfo (CommandID commandID, Application
         result.setActive(true);
         return;
     }
+    if(commandID == PedalBrainCommandTypes::saveProjectCmd)
+    {
+        result.shortName = "Save Project";
+        result.commandID = commandID;
+            result.setActive(true);
+        
+    }
+    if(commandID == PedalBrainCommandTypes::saveProjectAsCmd)
+    {
+        result.shortName = "Save Project As";
+        result.commandID = commandID;
+
+            result.setActive(true);
+
+    }
     
 }
 
@@ -156,6 +184,21 @@ void pedalbraineditApplication::createNewProject()
 {
     BoardController::setInstance(new EpicBoardController);
     BoardController::getInstance()->initFromNothing();
+}
+
+void pedalbraineditApplication::saveProject()
+{
+    if(BoardController::getInstance()->projectFile.isEmpty())
+    {
+        saveProjectAs();
+        return;
+    }
+    Logger::outputDebugString("Save project");
+}
+
+void pedalbraineditApplication::saveProjectAs()
+{
+    Logger::outputDebugString("Save project as");
 }
 
 

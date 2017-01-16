@@ -71,6 +71,7 @@ public:
     BoardType *boardType;
     OwnedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
+    String projectFile;
     static ReferenceCountedArray<BoardControllerListener> listeners;
     virtual PedalView *createView() = 0;
     static BoardController *getInstance();

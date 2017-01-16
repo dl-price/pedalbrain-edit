@@ -75,13 +75,17 @@ public:
     };
     enum PedalBrainCommandTypes
     {
-        newProject = 0x2001
+        newProject = 0x2001,
+        saveProjectCmd = 0x2002,
+        saveProjectAsCmd = 0x2003
     };
     
 private:
     static ApplicationCommandManager *_commandManager;
     ScopedPointer<MainWindow> mainWindow;
     void createNewProject();
+    void saveProject();
+    void saveProjectAs();
 };
 
 
