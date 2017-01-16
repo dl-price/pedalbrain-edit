@@ -47,4 +47,32 @@ DeviceType::PotentialCC::PotentialCC(String newName, int newCc, int newOn, int n
     name = newName;cc=newCc;on=newOn;off=newOff;
 }
 
+String Device::getName()
+{
+    return _name;
+}
 
+void Device::setName(juce::String newName)
+{
+    _name = newName;
+}
+
+DeviceType *Device::getType()
+{
+    return _deviceType;
+}
+
+void Device::setType(DeviceType *newType)
+{
+    _deviceType = newType;
+}
+
+int Device::getChannel()
+{
+    return _channel;
+}
+
+void Device::setChannel(int newChannel)
+{
+    _channel = newChannel;
+}

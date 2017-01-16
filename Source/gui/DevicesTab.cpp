@@ -230,14 +230,14 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         {
         Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
         DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
-        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->deviceType = type;
+        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->setType(type);
         }
         //[/UserComboBoxCode_modelCombo]
     }
     else if (comboBoxThatHasChanged == channelCombo)
     {
         //[UserComboBoxCode_channelCombo] -- add your combo box handling code here..
-        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->channel = deviceTable->getSelectedRow()+1;
+        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->setChannel(deviceTable->getSelectedRow()+1);
         //[/UserComboBoxCode_channelCombo]
     }
 
@@ -273,7 +273,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     char buffer[20];
     sprintf(buffer, "%03d", rowNumber+1);
     const String text(buffer);
-    g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->name, 2, 0, width - 4, height, Justification::left, true);
+    g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->getName(), 2, 0, width - 4, height, Justification::left, true);
 
 }
 
@@ -285,7 +285,7 @@ void DevicesTab::boardControllerChanged()
 void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
 {
 
-    BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->name = editor.getTextValue().toString();
+    BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->setName(editor.getTextValue().toString());
     //ideviceTable->updateContent();
     deviceTable->repaintRow(deviceTable->getSelectedRow());
 
@@ -297,14 +297,14 @@ void DevicesTab::selectedRowsChanged(int lastRowSelected)
     int currentRowSelected = deviceTable->getSelectedRow();
 
     Device *currDevice = BoardController::getInstance()->devices[currentRowSelected];
-    nameEditor->setText(currDevice->name);
-    channelCombo->setSelectedItemIndex(currDevice->channel-1);
-    if(currDevice->deviceType)
+    nameEditor->setText(currDevice->getName());
+    channelCombo->setSelectedItemIndex(currDevice->getChannel()-1);
+    if(currDevice->getType())
     {
 
-        manufacturerCombo->setSelectedItemIndex(DeviceManager::getInstance()->manufacturers.indexOf(currDevice->deviceType->manufacturer));
+        manufacturerCombo->setSelectedItemIndex(DeviceManager::getInstance()->manufacturers.indexOf(currDevice->getType()->manufacturer));
         modelCombo->clear();
-        modelCombo->setTextWhenNothingSelected(currDevice->deviceType->name);
+        modelCombo->setTextWhenNothingSelected(currDevice->getType()->name);
         //modelCombo->setSelectedItemIndex(currDevice->deviceType->manufacturer->deviceTypes.indexOf(currDevice->deviceType));
         //Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
 

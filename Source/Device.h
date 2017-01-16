@@ -15,6 +15,7 @@ class DeviceType;
 class Device;
 class Manufacturer;
 #include "includes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
 /*
@@ -24,17 +25,25 @@ class Manufacturer;
 class Device
 {
 public:
-    String name;
-    DeviceType *deviceType;
-    short int channel;
-    short int presets;
-    short int maxPC;
-    bool sendPC;
-    
     Device();
     ~Device();
+    String getName();
+    void setName(String newName);
+    DeviceType *getType();
+    void setType(DeviceType *newType);
+    int getChannel();
+    void setChannel(int newChannel);
+    
+    
 
 private:
+    String _name;
+    DeviceType *_deviceType;
+    int _channel;
+    int _presets;
+    int _maxPC;
+    bool _sendPC;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };
 
