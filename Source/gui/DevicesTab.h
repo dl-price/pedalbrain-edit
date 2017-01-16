@@ -22,7 +22,7 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "../ExtendedComboBox.h"
+
 //[/Headers]
 
 
@@ -77,7 +77,7 @@ private:
     ScopedPointer<Label> label;
     ScopedPointer<Label> label2;
     ScopedPointer<ComboBox> manufacturerCombo;
-    ScopedPointer<ExtendedComboBox> modelCombo;
+    ScopedPointer<ComboBox> modelCombo;
     ScopedPointer<TextEditor> nameEditor;
     ScopedPointer<Label> label3;
     ScopedPointer<Label> label4;

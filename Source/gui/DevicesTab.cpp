@@ -67,7 +67,7 @@ DevicesTab::DevicesTab ()
     manufacturerCombo->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     manufacturerCombo->addListener (this);
 
-    addAndMakeVisible (modelCombo = new ExtendedComboBox ("model combo"));
+    addAndMakeVisible (modelCombo = new ComboBox ("model combo"));
     modelCombo->setEditableText (false);
     modelCombo->setJustificationType (Justification::centredLeft);
     modelCombo->setTextWhenNothingSelected (String());
@@ -301,7 +301,7 @@ void DevicesTab::selectedRowsChanged(int lastRowSelected)
     channelCombo->setSelectedItemIndex(currDevice->channel-1);
     if(currDevice->deviceType)
     {
-        
+
         manufacturerCombo->setSelectedItemIndex(DeviceManager::getInstance()->manufacturers.indexOf(currDevice->deviceType->manufacturer));
         modelCombo->clear();
         modelCombo->setTextWhenNothingSelected(currDevice->deviceType->name);
@@ -312,7 +312,7 @@ void DevicesTab::selectedRowsChanged(int lastRowSelected)
     else
     {
         manufacturerCombo->setSelectedItemIndex(0);
-        
+
         modelCombo->clear();
         modelCombo->setTextWhenNothingSelected("None");
     }
@@ -368,7 +368,7 @@ BEGIN_JUCER_METADATA
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <COMBOBOX name="model combo" id="f22149194db014db" memberName="modelCombo"
-            virtualName="ExtendedComboBox" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
+            virtualName="unknown" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
