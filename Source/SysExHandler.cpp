@@ -49,6 +49,8 @@ bool SysExHandler::boardAttached()
 
 void SysExHandler::requestBoardInfo()
 {
-    sendPBSysex("Head");
-    sendPBSysex("Knees");
+    sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Name));
+    sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Type));
+    sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Version));
+
 }

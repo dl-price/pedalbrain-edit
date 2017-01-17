@@ -24,6 +24,15 @@ public:
     static bool boardAttached();
     void requestBoardInfo();
     void receivedPBSysEx(String message);
+    enum MessageType : uint8_t{
+        RequestBoardInfo,
+        SentBoardInfo
+    };
+    enum RequestBoardInfoMessages : uint8_t {
+        Name,
+        Type,
+        Version
+    };
     
 private:
     MidiInput *usbInput;
