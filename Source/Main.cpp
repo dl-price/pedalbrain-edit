@@ -120,6 +120,7 @@ void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
     commands.add(0x2001);
     commands.add(PedalBrainCommandTypes::saveProjectCmd);
     commands.add(PedalBrainCommandTypes::saveProjectAsCmd);
+    commands.add(PedalBrainCommandTypes::connectToBoardCmd);
 }
 bool pedalbraineditApplication::perform (const InvocationInfo &info)
 {
@@ -139,6 +140,11 @@ bool pedalbraineditApplication::perform (const InvocationInfo &info)
     {
 
         saveProjectAs();
+        return true;
+    }
+    if(info.commandID == PedalBrainCommandTypes::connectToBoardCmd)
+    {
+        connectToBoard();
         return true;
     }
     
@@ -172,6 +178,12 @@ void pedalbraineditApplication::getCommandInfo (CommandID commandID, Application
             result.setActive(true);
 
     }
+    if(commandID == PedalBrainCommandTypes::connectToBoardCmd)
+    {
+        result.shortName = "Connect to board";
+        result.commandID = commandID;
+        result.setActive(true);
+    }
     
 }
 
@@ -203,6 +215,19 @@ void pedalbraineditApplication::saveProjectAs()
         Logger::outputDebugString(BoardController::getInstance()->devices[i]->toJson());
     }
     Logger::outputDebugString("Save project as");
+}
+
+void pedalbraineditApplication::connectToBoard()
+{
+    if(!BoardController::tryConnectToUsb())
+    {
+        AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Error", "No board detected");
+    }
+    else
+    {
+        Logger::outputDebugString("Board added");
+    }
+    
 }
 
 

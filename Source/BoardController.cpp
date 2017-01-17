@@ -76,6 +76,17 @@ void BoardController::addListener(BoardControllerListener *newListener)
     listeners.add(newListener);
 }
 
+bool BoardController::tryConnectToUsb()
+{
+
+    
+    if(MidiOutput::getDevices().contains("PBrain") && MidiInput::getDevices().contains("PBrain"))
+    {
+        return true;
+    }
+    return false;
+}
+
 
 
 

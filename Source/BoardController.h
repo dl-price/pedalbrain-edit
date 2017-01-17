@@ -86,9 +86,12 @@ public:
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     virtual int getMaxDevices() {return 16;};
+    static bool tryConnectToUsb();
     
 protected:
     static BoardController *s_instance;
+    MidiInput *usbInput;
+    MidiOutput *usbOutput;
     
 private:
     

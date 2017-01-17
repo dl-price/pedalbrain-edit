@@ -86,6 +86,11 @@ PopupMenu PedalEdit::getMenuForIndex(int topLevelMenuIndex, const String& menuNa
         }
         
     }
+    if(topLevelMenuIndex==1)
+    {
+        ApplicationCommandManager *manager = dynamic_cast<pedalbraineditApplication*>(JUCEApplication::getInstance())->getCommandManager();
+        menu.addCommandItem(manager, pedalbraineditApplication::PedalBrainCommandTypes::connectToBoardCmd);
+    }
     
     
     
