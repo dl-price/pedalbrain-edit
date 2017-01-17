@@ -118,6 +118,7 @@ void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
 
 void BoardController::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)
 {
+    Logger::outputDebugString("Receive");
     if(message.isSysEx())
     {
         Logger::outputDebugString(String::fromUTF8( (char*)message.getSysExData()).dropLastCharacters(1));
