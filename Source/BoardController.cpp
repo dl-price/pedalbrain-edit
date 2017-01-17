@@ -82,6 +82,12 @@ bool BoardController::tryConnectToUsb()
     
     if(MidiOutput::getDevices().contains("PBrain") && MidiInput::getDevices().contains("PBrain"))
     {
+        int i = MidiOutput::getDevices().indexOf("PBrain");
+        usbOutput = MidiOutput::openDevice(i);
+        
+        i = MidiInput::getDevices().indexOf("PBrain");
+        usbInput = MidiInput::openDevice(i, this);
+        usbInput->start();
         return true;
     }
     return false;
@@ -108,6 +114,14 @@ void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
 {
     ButtonEdit *editComponent = new ButtonEdit(dynamic_cast<ButtonModel*>(selectedButton));
     //ResizableWindow *window = new ResizableWindow();
+}
+
+void BoardController::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)
+{
+    if(message.isSysEx())
+    {
+        Logger::outputDebugString(String::fromUTF8( (char*)message.getSysExData()).dropLastCharacters(1));
+    }
 }
 
 

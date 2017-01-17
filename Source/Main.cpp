@@ -219,7 +219,7 @@ void pedalbraineditApplication::saveProjectAs()
 
 void pedalbraineditApplication::connectToBoard()
 {
-    if(!BoardController::tryConnectToUsb())
+    if(!BoardController::getInstance()->tryConnectToUsb())
     {
         AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Error", "No board detected");
     }

@@ -61,7 +61,7 @@ public:
     
 };
 
-class BoardController
+class BoardController : public MidiInputCallback
 {
     
 public:
@@ -86,12 +86,14 @@ public:
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     virtual int getMaxDevices() {return 16;};
-    static bool tryConnectToUsb();
+    bool tryConnectToUsb();
+    MidiInput *usbInput;
+    MidiOutput *usbOutput;
+    void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message) override;
     
 protected:
     static BoardController *s_instance;
-    MidiInput *usbInput;
-    MidiOutput *usbOutput;
+    
     
 private:
     
