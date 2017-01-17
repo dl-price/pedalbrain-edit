@@ -90,6 +90,7 @@ public:
     MidiInput *usbInput;
     MidiOutput *usbOutput;
     void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message) override;
+    void sendPBSysex(String message);
     
 protected:
     static BoardController *s_instance;

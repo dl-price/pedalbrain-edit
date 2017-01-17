@@ -93,13 +93,6 @@ bool BoardController::tryConnectToUsb()
     return false;
 }
 
-
-
-
-
-
-
-
 BoardController::BoardController()
 {
     pages = OwnedArray<PageModel>();
@@ -123,6 +116,13 @@ void BoardController::handleIncomingMidiMessage(juce::MidiInput *source, const j
     {
         Logger::outputDebugString(String::fromUTF8( (char*)message.getSysExData()).dropLastCharacters(1));
     }
+}
+
+void BoardController::sendPBSysex(String message)
+{
+    String msgString = "}" + message;
+    CharPointer_UTF8 chars = msgString.getCharPointer();
+    usbOutput->sendMessageNow(MidiMessage::createSysExMessage(chars, msgString.length() +1) );
 }
 
 

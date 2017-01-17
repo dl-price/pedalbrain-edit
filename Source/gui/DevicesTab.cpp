@@ -294,7 +294,7 @@ void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
 
 void DevicesTab::selectedRowsChanged(int lastRowSelected)
 {
-    BoardController::getInstance()->usbOutput->sendMessageNow(MidiMessage::createSysExMessage("data2", 5) );
+    BoardController::getInstance()->sendPBSysex("yes");
     
     int currentRowSelected = deviceTable->getSelectedRow();
 
