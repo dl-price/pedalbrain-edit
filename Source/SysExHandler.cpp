@@ -29,7 +29,8 @@ void SysExHandler::handleIncomingMidiMessage(juce::MidiInput *source, const juce
         String newStr = String::fromUTF8( (char*)message.getSysExData());
         if(newStr.getCharPointer()[0]==(char)0x7D)
         {
-            
+            String str = newStr.substring(1);
+            Logger::outputDebugString(str);
         }
     }
 }
