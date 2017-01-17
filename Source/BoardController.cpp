@@ -80,7 +80,8 @@ bool BoardController::tryConnectToUsb()
 {
 
     
-    if(MidiOutput::getDevices().contains("PBrain") && MidiInput::getDevices().contains("PBrain"))
+    
+    /*if(SysExHandler::boardAttached())
     {
         int i = MidiOutput::getDevices().indexOf("PBrain");
         usbOutput = MidiOutput::openDevice(i);
@@ -89,6 +90,11 @@ bool BoardController::tryConnectToUsb()
         usbInput = MidiInput::openDevice(i, this);
         usbInput->start();
         return true;
+    }*/
+    if(SysExHandler::boardAttached())
+    {
+        SysExHandler *handler = new SysExHandler();
+        handler->requestBoardInfo();
     }
     return false;
 }

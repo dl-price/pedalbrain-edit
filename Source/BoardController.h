@@ -14,6 +14,7 @@
 class BoardType;
 class BoardController;
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "SysExHandler.h"
 class BoardControllerListener : public ReferenceCountedObject
 {
 public:
@@ -86,7 +87,8 @@ public:
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     virtual int getMaxDevices() {return 16;};
-    bool tryConnectToUsb();
+    static bool tryConnectToUsb();
+    SysExHandler *sysexHandler;
     MidiInput *usbInput;
     MidiOutput *usbOutput;
     void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message) override;
