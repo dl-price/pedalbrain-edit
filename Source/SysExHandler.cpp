@@ -42,6 +42,16 @@ void SysExHandler::sendPBSysex(String message)
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
 }
 
+void SysExHandler::sendSysEx(ReferenceCountedObjectPtr<DynamicObject> object)
+{
+    String newMessage = '}' + JSON::toString(var(object));
+    
+    CharPointer_UTF8 charPnt = newMessage.getCharPointer();
+    
+    usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
+    
+}
+
 bool SysExHandler::boardAttached()
 {
     return (MidiOutput::getDevices().contains("PBrain") && MidiInput::getDevices().contains("PBrain"));
@@ -49,8 +59,11 @@ bool SysExHandler::boardAttached()
 
 void SysExHandler::requestBoardInfo()
 {
-    sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Name));
+    ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    obj->setProperty("request", "boardInfo");
+    sendSysEx(obj);
+    /*sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Name));
     sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Type));
-    sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Version));
+    sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Version));*/
 
 }
