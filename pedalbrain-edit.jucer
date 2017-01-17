@@ -5,6 +5,9 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <FILE id="A23MLD" name="SysExHandler.cpp" compile="1" resource="0"
+            file="Source/SysExHandler.cpp"/>
+      <FILE id="nDFdcF" name="SysExHandler.h" compile="0" resource="0" file="Source/SysExHandler.h"/>
       <FILE id="KKZFcl" name="ButtonModel.cpp" compile="1" resource="0" file="Source/ButtonModel.cpp"/>
       <FILE id="KWrZQk" name="ButtonModel.h" compile="0" resource="0" file="Source/ButtonModel.h"/>
       <GROUP id="{21E4EF04-D041-8725-3664-5A7D322C1E0C}" name="BoardTypes">
