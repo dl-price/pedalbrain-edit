@@ -120,9 +120,10 @@ void BoardController::handleIncomingMidiMessage(juce::MidiInput *source, const j
 
 void BoardController::sendPBSysex(String message)
 {
-    String msgString = "}" + message;
-    CharPointer_UTF8 chars = msgString.getCharPointer();
-    usbOutput->sendMessageNow(MidiMessage::createSysExMessage(chars, msgString.length() +1) );
+    String newMessage = "}" + message;
+    CharPointer_UTF8 charPnt = newMessage.getCharPointer();
+    
+    usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
 }
 
 
