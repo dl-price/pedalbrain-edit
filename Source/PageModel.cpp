@@ -36,7 +36,7 @@ PageModel *PageModel::createBlankPage()
 
 void PageModel::initFromNothing()
 {
-    for (int i = 0; i< BoardController::getInstance()->getNumberOfButtons();i++)
+    for (int i = 0; i< 10;i++)
     {
         buttons.add(new ButtonModel);
     }

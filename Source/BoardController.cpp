@@ -20,6 +20,7 @@
 ReferenceCountedArray<BoardControllerListener> BoardController::listeners = ReferenceCountedArray<BoardControllerListener>();
 
 BoardController *BoardController::s_instance = 0;
+SysExHandler *BoardController::tempSysExHandler = 0;
 
 BoardController::BoardController(BoardType *newType)
 {
@@ -76,7 +77,7 @@ void BoardController::addListener(BoardControllerListener *newListener)
     listeners.add(newListener);
 }
 
-bool BoardController::tryConnectToUsb()
+void BoardController::tryConnectToUsb()
 {
 
     
@@ -91,12 +92,29 @@ bool BoardController::tryConnectToUsb()
         usbInput->start();
         return true;
     }*/
+    
+    if(BoardController::getInstance())
+    {
+        if(BoardController::getInstance()->sysexHandler)
+        {
+        // Already connected to board
+        Logger::outputDebugString("Already connected to board - aborting connect attempt");
+            return;
+        }
+        
+    }
     if(SysExHandler::boardAttached())
     {
-        SysExHandler *handler = new SysExHandler();
-        handler->requestBoardInfo();
+        // Board attached but not connected
+        Logger::outputDebugString("Board found - attempting to connect");
+        BoardController::tempSysExHandler = new SysExHandler();
+        BoardController::tempSysExHandler->requestBoardInfo();
     }
-    return false;
+    else
+    {
+        Logger::outputDebugString("No board found - aborting connect attempt");
+    }
+    
 }
 
 BoardController::BoardController()
@@ -130,6 +148,28 @@ void BoardController::sendPBSysex(String message)
     CharPointer_UTF8 charPnt = newMessage.getCharPointer();
     
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
+}
+
+void BoardController::tryConnectToUsb(DynamicObject *boardInfo)
+{
+    if(BoardController::getInstance())
+    {
+        Logger::outputDebugString("Project already open - not set up to deal with this yet. Abort");
+    }
+    else{
+        BoardController *newCntrl = new EpicBoardController();
+        newCntrl->initFromNothing();
+        SysExHandler *handler = newCntrl->sysexHandler = BoardController::tempSysExHandler;
+        BoardController::setInstance(newCntrl);
+        
+        Logger::outputDebugString("Connected to board:");
+        
+        Logger::outputDebugString("Name: " + boardInfo->getProperty("name").toString());
+        Logger::outputDebugString("Model: " + boardInfo->getProperty("model").toString());
+        Logger::outputDebugString("Version: " + String((double)boardInfo->getProperty("version")));
+        
+        BoardController::tempSysExHandler = 0;
+    }
 }
 
 

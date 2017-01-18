@@ -223,6 +223,7 @@ void EpicBoardView::init()
         {
             if(component)
             {
+                const MessageManagerLock mmLock;
                 component->addMouseListener(this, true);
                 Logger::outputDebugString("Added");
 

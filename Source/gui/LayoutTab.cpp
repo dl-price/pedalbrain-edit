@@ -125,5 +125,8 @@ void LayoutTab::boardControllerChanged()
 
 void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
 {
+    if(pedalView)
+    {
     pedalView->setPage(comboBoxThatHasChanged->getSelectedId());
+    }
 }

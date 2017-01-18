@@ -87,7 +87,8 @@ public:
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     virtual int getMaxDevices() {return 16;};
-    static bool tryConnectToUsb();
+    static void tryConnectToUsb();
+    static void tryConnectToUsb(DynamicObject *boardInfo);
     SysExHandler *sysexHandler;
     MidiInput *usbInput;
     MidiOutput *usbOutput;
@@ -96,6 +97,7 @@ public:
     
 protected:
     static BoardController *s_instance;
+    static SysExHandler *tempSysExHandler;
 private:
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)

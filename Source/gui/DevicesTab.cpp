@@ -279,6 +279,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
 
 void DevicesTab::boardControllerChanged()
 {
+    const MessageManagerLock mmLock;
     deviceTable->updateContent();
 }
 

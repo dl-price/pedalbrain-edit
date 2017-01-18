@@ -10,6 +10,7 @@
 
 #include "SysExHandler.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "BoardController.h"
 
 SysExHandler::SysExHandler()
 {
@@ -21,17 +22,42 @@ SysExHandler::SysExHandler()
     usbInput->start();
 }
 
+SysExHandler::SysExHandler(MidiInputCallback *newCallback)
+{
+    int i = MidiOutput::getDevices().indexOf("PBrain");
+    usbOutput = MidiOutput::openDevice(i);
+    
+    i = MidiInput::getDevices().indexOf("PBrain");
+    usbInput = MidiInput::openDevice(i, newCallback);
+    usbInput->start();
+}
+
 void SysExHandler::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)
 {
-    Logger::outputDebugString("Receive");
     if(message.isSysEx())
     {
         String newStr = String::fromUTF8( (char*)message.getSysExData());
         if(newStr.getCharPointer()[0]==(char)0x7D)
         {
             String str = newStr.substring(1);
-            Logger::outputDebugString(str);
+            var jsonReceived = JSON::parse(str);
+            DynamicObject *objReceived = jsonReceived.getDynamicObject();
+            sysexReceived(objReceived);
         }
+    }
+}
+
+void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
+{
+    Logger::outputDebugString("Received object");
+    Logger::outputDebugString(JSON::toString(objReceived));
+    if(objReceived->getProperty("send") == "boardInfo")
+    {
+        boardInfo.model = objReceived->getProperty("model");
+        boardInfo.version = objReceived->getProperty("version");
+        boardInfo.name = objReceived->getProperty("name");
+        BoardController::tryConnectToUsb(objReceived);
+
     }
 }
 
