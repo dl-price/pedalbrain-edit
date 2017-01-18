@@ -49,16 +49,29 @@ void SysExHandler::handleIncomingMidiMessage(juce::MidiInput *source, const juce
 
 void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
 {
-    Logger::outputDebugString("Received object");
-    Logger::outputDebugString(JSON::toString(objReceived));
-    if(objReceived->getProperty("send") == "boardInfo")
+    String send;
+    if (objReceived->hasProperty("send"))
     {
-        boardInfo.model = objReceived->getProperty("model");
-        boardInfo.version = objReceived->getProperty("version");
-        boardInfo.name = objReceived->getProperty("name");
-        BoardController::tryConnectToUsb(objReceived);
-
+        send = objReceived->getProperty("send");
+        if(send == "boardInfo")
+        {
+            boardInfo.model = objReceived->getProperty("model");
+            boardInfo.version = objReceived->getProperty("version");
+            boardInfo.name = objReceived->getProperty("name");
+            
+            Logger::outputDebugString("Found " + boardInfo.name + " of model: " + boardInfo.model);
+            Logger::outputDebugString("Firmware version: " + String(boardInfo.version));
+            Logger::outputDebugString("Attempting to connect");
+            BoardController::tryConnectToUsb(this);
+            
+        }
+        else if(send == "solidified")
+        {
+            _isSolidified = true;
+            Logger::outputDebugString("Connection solidified");
+        }
     }
+    
 }
 
 void SysExHandler::sendPBSysex(String message)
@@ -93,4 +106,16 @@ void SysExHandler::requestBoardInfo()
     sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Type));
     sendPBSysex('0' + String::toHexString(MessageType::RequestBoardInfo) + '0' + String::toHexString(RequestBoardInfoMessages::Version));*/
 
+}
+
+void SysExHandler::solidfyConnection()
+{
+    ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    obj->setProperty("request", "solidify");
+    sendSysEx(obj);
+}
+
+bool SysExHandler::isSolidified()
+{
+    return _isSolidified;
 }

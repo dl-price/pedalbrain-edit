@@ -225,7 +225,6 @@ void EpicBoardView::init()
             {
                 const MessageManagerLock mmLock;
                 component->addMouseListener(this, true);
-                Logger::outputDebugString("Added");
 
                 MidiMessage msg =  MidiMessage::createSysExMessage("}Hello", strlen("}Hello"));
                 //msg.sys

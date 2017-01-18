@@ -35,11 +35,14 @@ public:
     void receivedPBSysEx(String message);
     void sysexReceived(DynamicObject *objReceived);
     BoardInfo boardInfo;
+    void solidfyConnection();
+    bool isSolidified();
     
 private:
     MidiInput *usbInput;
     MidiOutput *usbOutput;
     void finishedReceivingBoardInfo();
+    bool _isSolidified;
 };
 
 

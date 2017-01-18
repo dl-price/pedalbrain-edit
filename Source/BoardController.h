@@ -83,13 +83,15 @@ public:
     virtual int getNumberOfPages() = 0;
     virtual void initFromNothing();
     static void addListener(BoardControllerListener *newListener);
+    static bool createAndReadFromBoard(SysExHandler *handler);
+    const String boardModel;
 
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     virtual int getMaxDevices() {return 16;};
     static void tryConnectToUsb();
-    static void tryConnectToUsb(DynamicObject *boardInfo);
-    SysExHandler *sysexHandler;
+    static void tryConnectToUsb(SysExHandler *handler);
+    SysExHandler *sysexHandler = 0;
     MidiInput *usbInput;
     MidiOutput *usbOutput;
     void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message) override;

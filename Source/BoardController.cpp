@@ -30,8 +30,6 @@ BoardController::BoardController(BoardType *newType)
     pages = OwnedArray<PageModel>();
     
     boardType = newType;
-    
-
 }
 
 void BoardController::initFromNothing()
@@ -52,7 +50,6 @@ BoardController *BoardController::setInstance(BoardController *newBoard)
 {
     delete s_instance;
     s_instance = newBoard;
-    Logger::outputDebugString(String(BoardController::listeners.size()));
     for(int i=0; i<BoardController::listeners.size();i++ )
     {
         BoardController::listeners[i]->boardControllerChanged();
@@ -150,25 +147,60 @@ void BoardController::sendPBSysex(String message)
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
 }
 
-void BoardController::tryConnectToUsb(DynamicObject *boardInfo)
+void BoardController::tryConnectToUsb(SysExHandler *handler)
 {
     if(BoardController::getInstance())
     {
-        Logger::outputDebugString("Project already open - not set up to deal with this yet. Abort");
+        BoardController *boardInstance = BoardController::getInstance();
+        if(boardInstance->boardModel.compare( handler->boardInfo.model));
+        {
+            switch(AlertWindow::showYesNoCancelBox(AlertWindow::AlertIconType::QuestionIcon, "Connect to " + handler->boardInfo.name, "There is already a project open. Would you like to write this project to the board or close this project and read the data from the board?", "Read from board", "Write to board", "Cancel connection"))
+            {
+                case 1:
+                    // Read from board
+                    Logger::outputDebugString("Not yet implemented");
+                    break;
+                case 2:
+                    // Write to board
+                    Logger::outputDebugString("Not yet implemented");
+                    break;
+                default:
+                    // Cancel
+                    Logger::outputDebugString("Cancelled connection");
+                    BoardController::tempSysExHandler = 0;
+                    
+            }
+        }
+        
     }
     else{
-        BoardController *newCntrl = new EpicBoardController();
+        createAndReadFromBoard(handler);
+        
+    }
+}
+
+bool BoardController::createAndReadFromBoard(SysExHandler *handler)
+{
+    BoardController *newCntrl;
+    if(handler->boardInfo.model == "TestBoardA")
+    {
+        newCntrl = new EpicBoardController();
+        newCntrl->sysexHandler = handler;
         newCntrl->initFromNothing();
-        SysExHandler *handler = newCntrl->sysexHandler = BoardController::tempSysExHandler;
-        BoardController::setInstance(newCntrl);
-        
-        Logger::outputDebugString("Connected to board:");
-        
-        Logger::outputDebugString("Name: " + boardInfo->getProperty("name").toString());
-        Logger::outputDebugString("Model: " + boardInfo->getProperty("model").toString());
-        Logger::outputDebugString("Version: " + String((double)boardInfo->getProperty("version")));
-        
-        BoardController::tempSysExHandler = 0;
+        handler->solidfyConnection();
+    }
+    
+    BoardController::setInstance(newCntrl);
+    
+    Logger::outputDebugString("Created and set new project for connected board");
+    
+    Logger::outputDebugString("Reading data from board: " + handler->boardInfo.name);
+    
+    // Code for getting stored data from board
+
+    if (handler == BoardController::tempSysExHandler)
+    {
+        tempSysExHandler = 0;
     }
 }
 
