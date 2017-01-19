@@ -34,6 +34,7 @@ public:
     ReferenceCountedObjectPtr<DynamicObject> toJson();
     String name = "";
     void updateFromJson(DynamicObject *obj);
+    OwnedArray<String> presetNames;
     
     
 
@@ -63,6 +64,8 @@ public:
     OwnedArray<PotentialCC> potentialCC;
     DeviceType(Manufacturer *newManufacturer, String newName);
     Manufacturer *manufacturer;
+    int presets;
+    int presetGroups;
 };
 
 class Manufacturer

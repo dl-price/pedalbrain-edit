@@ -51,6 +51,8 @@ void DeviceManager::loadDeviceConfig()
         {
             DeviceType * dev = new DeviceType(newMan, some[j].getProperty("name", var()));
             dev->unique = some[j].getProperty("unique", var());
+            dev->presets = some[j].getProperty("presets", var());
+            dev->presetGroups = some[j].getProperty("presetGroups", var());
             var ccs = some[j].getProperty("potentialCC", var());
             if(ccs.isObject())
             {

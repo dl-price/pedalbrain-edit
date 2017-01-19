@@ -324,7 +324,11 @@ void DevicesTab::saveToModel()
     
     currDevice->setChannel(channelCombo->getSelectedItemIndex()+1);
     
+    if(BoardController::getInstance()->sysexHandler)
+    {
+    
     BoardController::getInstance()->sysexHandler->sendDevice(BoardController::getInstance()->devices[showingDevice]);
+    }
 }
 
 void DevicesTab::refreshFromSelectedModel()

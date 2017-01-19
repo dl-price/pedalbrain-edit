@@ -95,7 +95,9 @@ void SysExHandler::sendSysEx(ReferenceCountedObjectPtr<DynamicObject> object)
     
     CharPointer_UTF8 charPnt = newMessage.getCharPointer();
     
+    
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
+    
     
 }
 

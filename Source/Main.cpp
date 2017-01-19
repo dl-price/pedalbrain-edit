@@ -194,7 +194,9 @@ ApplicationCommandTarget *pedalbraineditApplication::getNextCommandTarget()
 
 void pedalbraineditApplication::createNewProject()
 {
-    BoardController::setInstance(new EpicBoardController);
+    BoardController *brd = new EpicBoardController();
+    brd->init();
+    BoardController::setInstance(brd);
 
 }
 

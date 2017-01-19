@@ -51,15 +51,19 @@
                                  "on":127,
                                  "off":0
                                  }
-                ]
+                ],
+                "presets" : 200,
+                "presetGroups" : 2
       },
       {
         "name": "TimeLine",
                 "unique" : "stryTimeline",
+                "presets" : 200
       },
       {
         "name": "BigSky",
                 "unique" : "stryBigsky",
+                "presets" : 200
       }
     ]
   }
