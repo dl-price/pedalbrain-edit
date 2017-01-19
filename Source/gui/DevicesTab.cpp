@@ -123,6 +123,9 @@ DevicesTab::DevicesTab ()
     channelCombo->addItem (TRANS("16"), 16);
     channelCombo->addListener (this);
 
+    addAndMakeVisible (presetTable = new TableListBox());
+    presetTable->setName ("preset table");
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -143,6 +146,10 @@ DevicesTab::DevicesTab ()
 
     BoardController::addListener(this);
     nameEditor->addListener(this);
+    
+    presetTable->getHeader().addColumn("Preset", 1, 100);
+    presetTable->getHeader().addColumn("Name", 2, 100);
+    presetTable->autoSizeAllColumns();
 
     //[/Constructor]
 }
@@ -163,6 +170,7 @@ DevicesTab::~DevicesTab()
     label3 = nullptr;
     label4 = nullptr;
     channelCombo = nullptr;
+    presetTable = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -197,6 +205,7 @@ void DevicesTab::resized()
     label3->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, 20 + 80, 150, 24);
     label4->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, 20 + 120, 150, 24);
     channelCombo->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + proportionOfWidth (0.6497f) - 20 - (roundFloatToInt (proportionOfWidth (0.6497f) * 0.7795f)), 20 + 120, roundFloatToInt (proportionOfWidth (0.6497f) * 0.7795f), 24);
+    presetTable->setBounds ((proportionOfWidth (0.9850f) - proportionOfWidth (0.6497f)) + 20, (20 + 120) + 24 - -20, proportionOfWidth (0.6497f) - 40, getHeight() - 230);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -223,6 +232,8 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
             BoardController::getInstance()->devices[showingDevice]->setType(DeviceManager::getInstance()->deviceTypes[0]);
             modelCombo->setTextWhenNothingSelected("None");
             saveToModel();
+            presetTable->setModel(BoardController::getInstance()->devices[showingDevice]);
+            presetTable->updateContent();
         }
 
         //[/UserComboBoxCode_manufacturerCombo]
@@ -230,20 +241,25 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     else if (comboBoxThatHasChanged == modelCombo)
     {
         //[UserComboBoxCode_modelCombo] -- add your combo box handling code here..
-        if(modelCombo->getSelectedItemIndex()>=0)
-        {
+        
         Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
         DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
-        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->setType(type);
+        BoardController::getInstance()->devices[showingDevice]->setType(type);
+        if(showingDevice>=0)
+        {
+            saveToModel();
         }
+
         //[/UserComboBoxCode_modelCombo]
+    }
+    else if (comboBoxThatHasChanged == channelCombo)
+    {
+        //[UserComboBoxCode_channelCombo] -- add your combo box handling code here..
+        //[/UserComboBoxCode_channelCombo]
     }
 
     //[UsercomboBoxChanged_Post]
-    if(comboBoxThatHasChanged != manufacturerCombo)
-    {
-        saveToModel();
-    }
+
     //[/UsercomboBoxChanged_Post]
 }
 
@@ -275,13 +291,13 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     char buffer[20];
     sprintf(buffer, "%03d", rowNumber+1);
     const String text(buffer);
-    
+
     BoardController *cntrl = BoardController::getInstance();
-    
+
     const MessageManagerLock mmlock;
     g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->name, 2, 0, width - 4, height, Justification::left, true);
 
-    
+
 
 }
 
@@ -293,10 +309,10 @@ void DevicesTab::boardControllerChanged()
 
 void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
 {
-    
+
     saveToModel();
-    
-    
+
+
     deviceTable->repaintRow(showingDevice);
 
 
@@ -308,7 +324,7 @@ void DevicesTab::selectedRowsChanged(int lastRowSelected)
     {
         saveToModel();
     }
-    
+
     showingDevice = deviceTable->getSelectedRow();
     refreshFromSelectedModel();
 
@@ -317,16 +333,16 @@ void DevicesTab::selectedRowsChanged(int lastRowSelected)
 void DevicesTab::saveToModel()
 {
     BoardController *cntrl = BoardController::getInstance();
-    
+
     ReferenceCountedObjectPtr<Device> currDevice = cntrl->devices[showingDevice];
-    
+
     currDevice->name = nameEditor->getTextValue().toString();
-    
+
     currDevice->setChannel(channelCombo->getSelectedItemIndex()+1);
-    
+
     if(BoardController::getInstance()->sysexHandler)
     {
-    
+
     BoardController::getInstance()->sysexHandler->sendDevice(BoardController::getInstance()->devices[showingDevice]);
     }
 }
@@ -334,32 +350,36 @@ void DevicesTab::saveToModel()
 void DevicesTab::refreshFromSelectedModel()
 {
     BoardController *cntrl = BoardController::getInstance();
-    
-    ReferenceCountedObjectPtr<Device> currDevice = cntrl->devices[showingDevice];
-    
+
+    Device *currDevice = cntrl->devices[showingDevice];
+
     if(currDevice->getType())
     {
-        
+
         manufacturerCombo->setSelectedItemIndex(DeviceManager::getInstance()->manufacturers.indexOf(currDevice->getType()->manufacturer));
         modelCombo->clear();
         modelCombo->setTextWhenNothingSelected(currDevice->getType()->name);
         //modelCombo->setSelectedItemIndex(currDevice->deviceType->manufacturer->deviceTypes.indexOf(currDevice->deviceType));
         //Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
-        
+
     }
     else
     {
         manufacturerCombo->setSelectedItemIndex(0);
-        
+
         modelCombo->clear();
         modelCombo->setTextWhenNothingSelected("None");
-        
-        
+
+
     }
     
-    nameEditor->setText(currDevice->name);
     
+
+    nameEditor->setText(currDevice->name);
+
     channelCombo->setSelectedItemIndex(currDevice->getChannel()-1);
+    presetTable->setModel(currDevice);
+    presetTable->updateContent();
 }
 
 
@@ -377,7 +397,7 @@ void DevicesTab::refreshFromSelectedModel()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="DevicesTab" componentName=""
-                 parentClasses="public Component, ListBoxModel, BoardControllerListener, TextEditorListener"
+                 parentClasses="public Component, ListBoxModel, BoardControllerListener, TextEditorListener, TableListBoxModel"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
                  snapShown="1" overlayOpacity="0.330" fixedSize="0" initialWidth="600"
                  initialHeight="400">
@@ -410,7 +430,7 @@ BEGIN_JUCER_METADATA
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <COMBOBOX name="model combo" id="f22149194db014db" memberName="modelCombo"
-            virtualName="unknown" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
+            virtualName="ComboBox" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
@@ -437,6 +457,10 @@ BEGIN_JUCER_METADATA
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;13&#10;14&#10;15&#10;16"
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <GENERICCOMPONENT name="preset table" id="ba0a834c934bd158" memberName="presetTable"
+                    virtualName="TableListBox" explicitFocusOrder="0" pos="20 -20R 40M 230M"
+                    posRelativeX="e8f732dbffd928cb" posRelativeY="ff774dc4ca6d2f79"
+                    posRelativeW="e8f732dbffd928cb" class="Component" params=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

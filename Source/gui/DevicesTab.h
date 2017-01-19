@@ -54,15 +54,15 @@ public:
     void boardControllerChanged();
     void textEditorTextChanged(TextEditor &editor);
     void selectedRowsChanged(int lastRowSelected) override;
-
+    void saveToModel();
+    void refreshFromSelectedModel();
+    
 
     //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
-    void saveToModel();
-    void refreshFromSelectedModel();
 
 
 
@@ -84,6 +84,7 @@ private:
     ScopedPointer<Label> label3;
     ScopedPointer<Label> label4;
     ScopedPointer<ComboBox> channelCombo;
+    ScopedPointer<TableListBox> presetTable;
 
 
     //==============================================================================

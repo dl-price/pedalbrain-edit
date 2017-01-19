@@ -58,12 +58,14 @@
       {
         "name": "TimeLine",
                 "unique" : "stryTimeline",
-                "presets" : 200
+                "presets" : 200,
+                "presetGroups" : 2
       },
       {
         "name": "BigSky",
                 "unique" : "stryBigsky",
-                "presets" : 200
+                "presets" : 200,
+                "presetGroups" : 3
       }
     ]
   }

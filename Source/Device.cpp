@@ -110,3 +110,54 @@ void Device::updateFromJson(juce::DynamicObject *obj)
     DeviceType *typ = _deviceType;
     
 }
+
+int Device::getNumRows()
+{
+    if(_deviceType)
+    {
+    return _deviceType->presets;
+    }
+    return 0;
+}
+
+void Device::paintRowBackground (Graphics &g, int rowNumber, int width, int height, bool rowIsSelected) {
+    if(rowIsSelected)
+    {
+        g.setColour(Colours::cornflowerblue);
+    }
+    else {
+        g.setColour(Colours::white);
+    }
+    g.fillAll();
+}
+void Device::paintCell (Graphics &g, int rowNumber, int columnId, int width, int height, bool rowIsSelected) {
+    
+    
+    g.setColour(Colours::black);
+    char buffer[4];
+    sprintf(buffer, "%03d", (int)(rowNumber) / _deviceType->presetGroups);
+    String text(buffer);
+    int letter = (int)(rowNumber) % _deviceType->presetGroups;
+    char cletter;
+    switch(letter)
+    {
+        case 0:
+            cletter = 'A';
+            break;
+        case 1:
+            cletter = 'B';
+            break;
+        case 2:
+            cletter = 'C';
+            break;
+    }
+    
+    
+    if(columnId == 1){
+    g.drawText("Preset " + text + cletter, 2, 0, width - 4, height, Justification::left, true);
+    }
+    else if(columnId == 2)
+    {
+        g.drawText("Name here", 2, 0, width - 4, height, Justification::left, true);
+    }
+}

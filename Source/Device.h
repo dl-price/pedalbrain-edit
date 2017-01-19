@@ -22,7 +22,7 @@ class Manufacturer;
 */
 
 
-class Device : public ReferenceCountedObject
+class Device : public ReferenceCountedObject, public TableListBoxModel
 {
 public:
     Device();
@@ -35,6 +35,9 @@ public:
     String name = "";
     void updateFromJson(DynamicObject *obj);
     OwnedArray<String> presetNames;
+    int getNumRows() override;
+    void paintRowBackground (Graphics &, int rowNumber, int width, int height, bool rowIsSelected) override;
+    void paintCell (Graphics &, int rowNumber, int columnId, int width, int height, bool rowIsSelected) override;
     
     
 
@@ -64,8 +67,8 @@ public:
     OwnedArray<PotentialCC> potentialCC;
     DeviceType(Manufacturer *newManufacturer, String newName);
     Manufacturer *manufacturer;
-    int presets;
-    int presetGroups;
+    int presets = 0;
+    int presetGroups = 1;
 };
 
 class Manufacturer
