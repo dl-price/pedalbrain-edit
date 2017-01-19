@@ -22,17 +22,17 @@ ReferenceCountedArray<BoardControllerListener> BoardController::listeners = Refe
 BoardController *BoardController::s_instance = 0;
 SysExHandler *BoardController::tempSysExHandler = 0;
 
-BoardController::BoardController(BoardType *newType)
+BoardController::BoardController()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    pages = OwnedArray<PageModel>();
+    devices = ReferenceCountedArray<Device>();
     
-    boardType = newType;
+    
 }
 
-void BoardController::initFromNothing()
+void BoardController::init()
 {
     for (int i=0; i < getNumberOfPages(); i++)
     {
@@ -40,11 +40,14 @@ void BoardController::initFromNothing()
         newPage->initFromNothing();
         pages.add(newPage);
     }
+    devices.ensureStorageAllocated(16);
     for (int i=0; i < getMaxDevices(); i++)
     {
         devices.add(new Device());
     }
 }
+
+
 
 BoardController *BoardController::setInstance(BoardController *newBoard)
 {
@@ -114,11 +117,6 @@ void BoardController::tryConnectToUsb()
     
 }
 
-BoardController::BoardController()
-{
-    pages = OwnedArray<PageModel>();
-}
-
 BoardController::~BoardController()
 {
     
@@ -185,9 +183,10 @@ bool BoardController::createAndReadFromBoard(SysExHandler *handler)
     if(handler->boardInfo.model == "TestBoardA")
     {
         newCntrl = new EpicBoardController();
+        newCntrl->init();
         newCntrl->sysexHandler = handler;
-        newCntrl->initFromNothing();
         handler->solidfyConnection();
+        handler->requestAllParameters();
     }
     
     BoardController::setInstance(newCntrl);
@@ -203,6 +202,8 @@ bool BoardController::createAndReadFromBoard(SysExHandler *handler)
         tempSysExHandler = 0;
     }
 }
+
+
 
 
 

@@ -11,23 +11,13 @@
 #ifndef BoardController_H_INCLUDED
 #define BoardController_H_INCLUDED
 
+
+
+#include "../JuceLibraryCode/JuceHeader.h"
 class BoardType;
 class BoardController;
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "SysExHandler.h"
-class BoardControllerListener : public ReferenceCountedObject
-{
-public:
-    BoardControllerListener(){};
-    ~BoardControllerListener(){};
-    virtual void boardControllerChanged(){};
-};
+class BoardControllerListener;
 
-
-#include "PageModel.h"
-#include "gui/PedalView.h"
-#include "ComponentEdit.h"
-#include "Device.h"
 
 
 
@@ -36,7 +26,22 @@ public:
 */
 
 
+class BoardControllerListener : public ReferenceCountedObject
+{
+public:
+    BoardControllerListener(){};
+    ~BoardControllerListener(){};
+    virtual void boardControllerChanged(){};
+};
 
+#include "SysExHandler.h"
+
+
+
+#include "PageModel.h"
+#include "gui/PedalView.h"
+#include "ComponentEdit.h"
+#include "Device.h"
 
 class BoardType : public ReferenceCountedObject
 {
@@ -73,7 +78,7 @@ public:
     BoardType *boardType;
     OwnedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
-    OwnedArray<Device> devices;
+    ReferenceCountedArray<Device> devices;
     String projectFile;
     static ReferenceCountedArray<BoardControllerListener> listeners;
     virtual PedalView *createView() = 0;
@@ -81,10 +86,10 @@ public:
     static BoardController *setInstance(BoardController *newBoard);
     virtual int getNumberOfButtons() {return 5;}
     virtual int getNumberOfPages() = 0;
-    virtual void initFromNothing();
     static void addListener(BoardControllerListener *newListener);
     static bool createAndReadFromBoard(SysExHandler *handler);
     const String boardModel;
+    void init();
 
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);

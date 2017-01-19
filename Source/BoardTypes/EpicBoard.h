@@ -39,6 +39,7 @@ public:
 class EpicBoardController : public BoardController
 {
 public:
+    EpicBoardController();
     const String boardModel = "TestBoardA";
     int getNumberOfButtons() override {return 11;}
     int getNumberOfPages() override {return 16;};

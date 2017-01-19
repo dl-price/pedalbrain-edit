@@ -16,7 +16,7 @@ Device::Device()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-    _name = "";
+    name = String::empty;
     _deviceType = DeviceManager::getInstance()->deviceTypes[0];
     
 }
@@ -49,17 +49,6 @@ DeviceType::PotentialCC::PotentialCC(String newName, int newCc, int newOn, int n
     name = newName;cc=newCc;on=newOn;off=newOff;
 }
 
-String Device::getName()
-{
-    return _name;
-}
-
-void Device::setName(juce::String newName)
-{
-    setProperty("name", newName);
-    _name = newName;
-}
-
 DeviceType *Device::getType()
 {
     return _deviceType;
@@ -77,12 +66,27 @@ int Device::getChannel()
 
 void Device::setChannel(int newChannel)
 {
-    setProperty("channel", newChannel);
     _channel = newChannel;
 }
 
-String Device::toJson()
+ReferenceCountedObjectPtr<DynamicObject> Device::toJson()
 {
-    var jVar = var(this);
-    return JSON::toString(jVar);
+    ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    
+    BoardController *inst = BoardController::getInstance();
+    
+    int index = inst->devices.indexOf(this);
+    
+    obj->setProperty("name", name);
+    obj->setProperty("index", index);
+    
+    obj->setProperty("channel", _channel);
+    
+    return obj;
+}
+
+void Device::updateFromJson(juce::DynamicObject *obj)
+{
+    name = obj->getProperty("name");
+    _channel = obj->getProperty("channel");
 }

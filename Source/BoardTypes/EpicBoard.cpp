@@ -41,4 +41,9 @@ PedalView *EpicBoardController::createView()
     return pedalView;
 }
 
+EpicBoardController::EpicBoardController() : BoardController()
+{
+    
+}
+
 

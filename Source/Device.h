@@ -22,28 +22,27 @@ class Manufacturer;
 */
 
 
-class Device : DynamicObject
+class Device : public ReferenceCountedObject
 {
 public:
     Device();
     ~Device();
-    String getName();
-    void setName(String newName);
     DeviceType *getType();
     void setType(DeviceType *newType);
     int getChannel();
     void setChannel(int newChannel);
-    String toJson();
+    ReferenceCountedObjectPtr<DynamicObject> toJson();
+    String name = "";
+    void updateFromJson(DynamicObject *obj);
     
     
 
 private:
-    String _name;
-    DeviceType *_deviceType;
-    int _channel;
-    int _presets;
-    int _maxPC;
-    bool _sendPC;
+    DeviceType *_deviceType = 0;
+    int _channel = 1;
+    int _presets = 0;
+    int _maxPC = 0;
+    bool _sendPC = 0;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };

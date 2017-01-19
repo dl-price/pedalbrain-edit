@@ -42,7 +42,10 @@ void SysExHandler::handleIncomingMidiMessage(juce::MidiInput *source, const juce
             String str = newStr.substring(1);
             var jsonReceived = JSON::parse(str);
             DynamicObject *objReceived = jsonReceived.getDynamicObject();
-            sysexReceived(objReceived);
+            if(objReceived)
+            {
+                sysexReceived(objReceived);
+            }
         }
     }
 }
@@ -69,6 +72,10 @@ void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
         {
             _isSolidified = true;
             Logger::outputDebugString("Connection solidified");
+        }
+        else if(send == "device")
+        {
+            BoardController::getInstance()->devices[objReceived->getProperty("index")]->updateFromJson(objReceived);
         }
     }
     
@@ -118,4 +125,25 @@ void SysExHandler::solidfyConnection()
 bool SysExHandler::isSolidified()
 {
     return _isSolidified;
+}
+
+void SysExHandler::sendDevice(ReferenceCountedObjectPtr<Device> device)
+{
+    int index = BoardController::getInstance()->devices.indexOf(device);
+    
+    ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    
+    obj->setProperty("send", "device");
+    
+    obj->setProperty("model", var(device->toJson()));
+    sendSysEx(obj);
+}
+
+void SysExHandler::requestAllParameters()
+{
+    ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    
+    obj->setProperty("request", "allParameters");
+    
+    sendSysEx(obj);
 }

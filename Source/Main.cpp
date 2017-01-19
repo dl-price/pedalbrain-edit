@@ -195,7 +195,7 @@ ApplicationCommandTarget *pedalbraineditApplication::getNextCommandTarget()
 void pedalbraineditApplication::createNewProject()
 {
     BoardController::setInstance(new EpicBoardController);
-    BoardController::getInstance()->initFromNothing();
+
 }
 
 void pedalbraineditApplication::saveProject()
@@ -210,10 +210,7 @@ void pedalbraineditApplication::saveProject()
 
 void pedalbraineditApplication::saveProjectAs()
 {
-    for(int i=0;i<BoardController::getInstance()->devices.size();i++)
-    {
-        Logger::outputDebugString(BoardController::getInstance()->devices[i]->toJson());
-    }
+
     Logger::outputDebugString("Save project as");
 }
 

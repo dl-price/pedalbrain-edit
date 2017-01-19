@@ -144,8 +144,6 @@ DevicesTab::DevicesTab ()
     BoardController::addListener(this);
     nameEditor->addListener(this);
 
-
-
     //[/Constructor]
 }
 
@@ -234,14 +232,12 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         }
         //[/UserComboBoxCode_modelCombo]
     }
-    else if (comboBoxThatHasChanged == channelCombo)
-    {
-        //[UserComboBoxCode_channelCombo] -- add your combo box handling code here..
-        BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->setChannel(deviceTable->getSelectedRow()+1);
-        //[/UserComboBoxCode_channelCombo]
-    }
 
     //[UsercomboBoxChanged_Post]
+    if(comboBoxThatHasChanged != manufacturerCombo)
+    {
+        saveToModel();
+    }
     //[/UsercomboBoxChanged_Post]
 }
 
@@ -273,7 +269,13 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     char buffer[20];
     sprintf(buffer, "%03d", rowNumber+1);
     const String text(buffer);
-    g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->getName(), 2, 0, width - 4, height, Justification::left, true);
+    
+    BoardController *cntrl = BoardController::getInstance();
+    
+    const MessageManagerLock mmlock;
+    g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->name, 2, 0, width - 4, height, Justification::left, true);
+
+    
 
 }
 
@@ -285,42 +287,69 @@ void DevicesTab::boardControllerChanged()
 
 void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
 {
-
-    BoardController::getInstance()->devices[deviceTable->getSelectedRow()]->setName(editor.getTextValue().toString());
-    //ideviceTable->updateContent();
-    deviceTable->repaintRow(deviceTable->getSelectedRow());
+    
+    saveToModel();
+    
+    
+    deviceTable->repaintRow(showingDevice);
 
 
 }
 
 void DevicesTab::selectedRowsChanged(int lastRowSelected)
 {
-    BoardController::getInstance()->sendPBSysex("yes");
+    if(showingDevice>=0)
+    {
+        saveToModel();
+    }
     
-    int currentRowSelected = deviceTable->getSelectedRow();
+    showingDevice = deviceTable->getSelectedRow();
+    refreshFromSelectedModel();
 
-    Device *currDevice = BoardController::getInstance()->devices[currentRowSelected];
-    nameEditor->setText(currDevice->getName());
-    channelCombo->setSelectedItemIndex(currDevice->getChannel()-1);
+}
+
+void DevicesTab::saveToModel()
+{
+    BoardController *cntrl = BoardController::getInstance();
+    
+    ReferenceCountedObjectPtr<Device> currDevice = cntrl->devices[showingDevice];
+    
+    currDevice->name = nameEditor->getTextValue().toString();
+    
+    currDevice->setChannel(channelCombo->getSelectedItemIndex()+1);
+    
+    BoardController::getInstance()->sysexHandler->sendDevice(BoardController::getInstance()->devices[showingDevice]);
+}
+
+void DevicesTab::refreshFromSelectedModel()
+{
+    BoardController *cntrl = BoardController::getInstance();
+    
+    ReferenceCountedObjectPtr<Device> currDevice = cntrl->devices[showingDevice];
+    
     if(currDevice->getType())
     {
-
+        
         manufacturerCombo->setSelectedItemIndex(DeviceManager::getInstance()->manufacturers.indexOf(currDevice->getType()->manufacturer));
         modelCombo->clear();
         modelCombo->setTextWhenNothingSelected(currDevice->getType()->name);
         //modelCombo->setSelectedItemIndex(currDevice->deviceType->manufacturer->deviceTypes.indexOf(currDevice->deviceType));
         //Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
-
+        
     }
     else
     {
         manufacturerCombo->setSelectedItemIndex(0);
-
+        
         modelCombo->clear();
         modelCombo->setTextWhenNothingSelected("None");
+        
+        
     }
-
-
+    
+    nameEditor->setText(currDevice->name);
+    
+    channelCombo->setSelectedItemIndex(currDevice->getChannel()-1);
 }
 
 

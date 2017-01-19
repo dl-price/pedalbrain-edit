@@ -14,6 +14,7 @@
 class SysExHandler;
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Device.h"
 
 struct BoardInfo
 {
@@ -37,6 +38,8 @@ public:
     BoardInfo boardInfo;
     void solidfyConnection();
     bool isSolidified();
+    void sendDevice(ReferenceCountedObjectPtr<Device> device);
+    void requestAllParameters();
     
 private:
     MidiInput *usbInput;

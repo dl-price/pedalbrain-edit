@@ -61,12 +61,14 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
+    void saveToModel();
+    void refreshFromSelectedModel();
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-
+    int showingDevice = -1;
 
     //[/UserVariables]
 
