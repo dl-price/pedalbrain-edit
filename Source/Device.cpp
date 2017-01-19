@@ -79,6 +79,10 @@ ReferenceCountedObjectPtr<DynamicObject> Device::toJson()
     
     obj->setProperty("name", name);
     obj->setProperty("index", index);
+    if(getType())
+    {
+    obj->setProperty("type", getType()->unique);
+    }
     
     obj->setProperty("channel", _channel);
     
@@ -89,4 +93,20 @@ void Device::updateFromJson(juce::DynamicObject *obj)
 {
     name = obj->getProperty("name");
     _channel = obj->getProperty("channel");
+    if(obj->hasProperty("type"))
+    {
+
+    for(int i=0; i< DeviceManager::getInstance()->deviceTypes.size() ;i++)
+    {
+        if(DeviceManager::getInstance()->deviceTypes[i]->unique == obj->getProperty("type").toString())
+        {
+            _deviceType = DeviceManager::getInstance()->deviceTypes[i];
+            exit;
+        }
+    }
+        
+    }
+    
+    DeviceType *typ = _deviceType;
+    
 }

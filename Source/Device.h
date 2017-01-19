@@ -51,6 +51,7 @@ class DeviceType
 {
 public:
     String name;
+    String unique;
     struct PotentialCC
     {
         PotentialCC(String newName, int newCc, int newOn, int newOff);

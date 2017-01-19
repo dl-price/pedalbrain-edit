@@ -218,6 +218,12 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         {
             modelCombo->addItem(man->deviceTypes[i]->name, i+1);
         }
+        if(comboBoxThatHasChanged->getSelectedItemIndex() == 0)
+        {
+            BoardController::getInstance()->devices[showingDevice]->setType(DeviceManager::getInstance()->deviceTypes[0]);
+            modelCombo->setTextWhenNothingSelected("None");
+            saveToModel();
+        }
 
         //[/UserComboBoxCode_manufacturerCombo]
     }
