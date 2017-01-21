@@ -114,6 +114,32 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
            subclass also calls the superclass's method.
         */
 
+void pedalbraineditApplication::MainWindow::resized()
+{
+    DocumentWindow::resized();
+    
+    if(btnEditComponent)
+    {
+        btnEditComponent->setBoundsInset(BorderSize<int>(0,0,0,0));
+    }
+}
+
+void pedalbraineditApplication::MainWindow::addButtonEdit(ButtonEdit *newWin)
+{
+    jassert(!btnEditComponent);
+    btnEditComponent = newWin;
+    juce::Component::addAndMakeVisible(btnEditComponent);
+    btnEditComponent->setBoundsInset(BorderSize<int>(0,0,0,0));
+}
+
+void pedalbraineditApplication::MainWindow::removeButtonEdit()
+{
+    jassert(btnEditComponent);
+    removeChildComponent(btnEditComponent);
+    delete btnEditComponent;
+    btnEditComponent = 0;
+}
+
 void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
 {
     

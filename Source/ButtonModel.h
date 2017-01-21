@@ -11,10 +11,13 @@
 #ifndef BUTTONMODEL_H_INCLUDED
 #define BUTTONMODEL_H_INCLUDED
 
+class ButtonModel;
+#include "../JuceLibraryCode/JuceHeader.h"
+
 class ComponentModel
 {
 };
-class ButtonModel : public ComponentModel
+class ButtonModel : public DynamicObject
 {
     
 };

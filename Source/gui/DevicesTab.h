@@ -39,7 +39,6 @@ class DevicesTab  : public Component,
                     ListBoxModel,
                     BoardControllerListener,
                     TextEditorListener,
-                    TableListBoxModel,
                     public ComboBoxListener
 {
 public:

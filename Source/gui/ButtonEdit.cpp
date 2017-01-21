@@ -21,6 +21,7 @@
 //[/Headers]
 
 #include "ButtonEdit.h"
+#include "Application.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
@@ -29,10 +30,11 @@ void ButtonEdit::selectType(int typeId)
 {
     comboBox->setSelectedId(typeId);
 }
+
 //[/MiscUserDefs]
 
 //==============================================================================
-ButtonEdit::ButtonEdit (ComponentController *model)
+ButtonEdit::ButtonEdit (ButtonModel *model)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -107,6 +109,8 @@ ButtonEdit::ButtonEdit (ComponentController *model)
 
 
     //[Constructor] You can add your own custom stuff here..
+    
+    _buttonModel = model;
 
     comboBox->clear();
 
@@ -157,13 +161,13 @@ void ButtonEdit::resized()
     //[/UserPreResize]
 
     closeButton->setBounds (getWidth() - 230, getHeight() - 50, 200, 24);
-    mainGroup->setBounds (20, 20, proportionOfWidth (0.4800f), 216);
-    comboBox->setBounds (40, 40, proportionOfWidth (0.4800f) - 40, 24);
-    displayGroup->setBounds (getWidth() - 20 - proportionOfWidth (0.4800f), 20, proportionOfWidth (0.4800f), 216);
-    buttonName->setBounds ((getWidth() - 20 - proportionOfWidth (0.4800f)) + 20, 20 + 20, proportionOfWidth (0.4800f) - 40, 24);
-    buttonLabel->setBounds ((getWidth() - 20 - proportionOfWidth (0.4800f)) + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4800f) - 40, 24);
-    ledOn->setBounds ((getWidth() - 20 - proportionOfWidth (0.4800f)) + 20, ((20 + 20) + 24 - -20) + 36, proportionOfWidth (0.4800f) - 40, 24);
-    ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4800f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4800f) - 40, 24);
+    mainGroup->setBounds (20, 20, proportionOfWidth (0.4799f), 216);
+    comboBox->setBounds (40, 40, proportionOfWidth (0.4799f) - 40, 24);
+    displayGroup->setBounds (getWidth() - 20 - proportionOfWidth (0.4799f), 20, proportionOfWidth (0.4799f), 216);
+    buttonName->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, 20 + 20, proportionOfWidth (0.4799f) - 40, 24);
+    buttonLabel->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
+    ledOn->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, ((20 + 20) + 24 - -20) + 36, proportionOfWidth (0.4799f) - 40, 24);
+    ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -176,6 +180,9 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == closeButton)
     {
         //[UserButtonCode_closeButton] -- add your button handler code here..
+        
+        dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->removeButtonEdit();
+        
         //[/UserButtonCode_closeButton]
     }
 
@@ -225,7 +232,7 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="ButtonEdit" componentName=""
-                 parentClasses="public ComponentEdit" constructorParams="ComponentController *model"
+                 parentClasses="public ComponentEdit" constructorParams="ButtonModel *model"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.330" fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>

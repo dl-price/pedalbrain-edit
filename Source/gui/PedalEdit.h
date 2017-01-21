@@ -34,10 +34,13 @@ public:
     
     ComponentEdit *componentEditor;
     
+    PedalEdit *getDefaultComponent();
+    
     
 
 protected:
     TabbedComponent* superTabComponent;
+    PedalEdit* _defaultComponent = 0;
     
     private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalEdit)

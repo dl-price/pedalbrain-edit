@@ -14,6 +14,7 @@
 #include "includes.h"
 #include "PedalEdit.h"
 #include "BoardController.h"
+#include "ButtonEdit.h"
 
 
 
@@ -70,7 +71,13 @@ public:
          subclass also calls the superclass's method.
          */
         
+        void resized() override;
+        void addButtonEdit(ButtonEdit* newWin);
+        void removeButtonEdit();
+        
     private:
+        ButtonEdit *btnEditComponent = 0;
+        
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
     };
     enum PedalBrainCommandTypes
@@ -84,6 +91,7 @@ public:
 private:
     static ApplicationCommandManager *_commandManager;
     ScopedPointer<MainWindow> mainWindow;
+    
     void createNewProject();
     void saveProject();
     void saveProjectAs();

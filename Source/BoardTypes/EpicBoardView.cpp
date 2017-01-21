@@ -21,6 +21,7 @@
 //[/Headers]
 
 #include "EpicBoardView.h"
+#include "ButtonModel.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
@@ -252,14 +253,18 @@ void EpicBoardView::init()
 void EpicBoardView::mouseDoubleClick(const MouseEvent &event)
 {
     ButtonComponent *component = dynamic_cast<ButtonComponent*>(event.eventComponent);
-    if(component)
+    /*if(component)
     {
         BoardController *contrl = BoardController::getInstance();
         int i = buttonComponents.indexOf(component);
         contrl->createEditWindowForButton(contrl->pages[getPage()-1]->buttons[i]);
         Logger::outputDebugString("Clicked page " + String(getPage()) + " button index " + String(i));
         return;
-    }
+    }*/
+    BoardController *ctrl = BoardController::getInstance();
+    PageModel *page = ctrl->pages[getPage()-1];
+    ButtonModel *btn = page->buttons[buttonComponents.indexOf(component)];
+    BoardController::getInstance()->createEditWindowForButton(btn);
 }
 //[/MiscUserCode]
 

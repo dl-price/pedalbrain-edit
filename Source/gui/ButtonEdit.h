@@ -23,6 +23,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
+#include "ButtonModel.h"
 
 
 //[/Headers]
@@ -43,7 +44,7 @@ class ButtonEdit  : public ComponentEdit,
 {
 public:
     //==============================================================================
-    ButtonEdit (ComponentController *model);
+    ButtonEdit (ButtonModel *model);
     ~ButtonEdit();
 
     //==============================================================================
@@ -60,6 +61,9 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    ButtonModel * _buttonModel;
+
+
     //[/UserVariables]
 
     //==============================================================================

@@ -15,6 +15,8 @@
 #include "ButtonModel.h"
 #include "ComponentEdit.h"
 #include "ButtonEdit.h"
+#include "Application.h"
+#include "PedalEdit.h"
 
 //==============================================================================
 ReferenceCountedArray<BoardControllerListener> BoardController::listeners = ReferenceCountedArray<BoardControllerListener>();
@@ -125,7 +127,9 @@ BoardController::~BoardController()
 void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
 {
     ButtonEdit *editComponent = new ButtonEdit(dynamic_cast<ButtonModel*>(selectedButton));
-    //ResizableWindow *window = new ResizableWindow();
+    
+    dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->addButtonEdit(editComponent);
+    
 }
 
 void BoardController::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)

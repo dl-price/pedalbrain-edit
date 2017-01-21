@@ -27,6 +27,8 @@ PedalEdit::PedalEdit()
     superTabComponent->addTab("Layout", juce::Colours::blue, new LayoutTab(), false);
     
     setSize(600,400);
+    
+    _defaultComponent = this;
 
 }
 
