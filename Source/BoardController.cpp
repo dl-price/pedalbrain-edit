@@ -57,8 +57,6 @@ void BoardController::init()
     }
 }
 
-
-
 BoardController *BoardController::setInstance(BoardController *newBoard)
 {
     delete s_instance;
@@ -129,7 +127,6 @@ void BoardController::tryConnectToUsb()
 
 BoardController::~BoardController()
 {
-    
 }
 
 void BoardController::createEditWindowForButton(ButtonModel *selectedButton)

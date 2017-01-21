@@ -21,19 +21,22 @@ PedalEdit::PedalEdit()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
+    devicesTab = new DevicesTab();
+    layoutTab = new LayoutTab();
+    globalTab = new GlobalTab();
+    
     addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
-    superTabComponent->addTab("Global", juce::Colours::blue, new GlobalTab(), false);
-    superTabComponent->addTab("Devices", juce::Colours::green, new DevicesTab(), false);
-    superTabComponent->addTab("Layout", juce::Colours::blue, new LayoutTab(), false);
+    superTabComponent->addTab("Global", juce::Colours::blue, globalTab, false);
+    superTabComponent->addTab("Devices", juce::Colours::green, devicesTab, false);
+    superTabComponent->addTab("Layout", juce::Colours::blue, layoutTab, false);
     
     setSize(600,400);
-    
-    _defaultComponent = this;
 
 }
 
 PedalEdit::~PedalEdit()
 {
+    dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->setMenuBar(NULL);
 }
 
 void PedalEdit::paint (Graphics& g)

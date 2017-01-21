@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
+#include "DevicesTab.h"
 
 //==============================================================================
 /*
@@ -39,8 +40,11 @@ public:
     
 
 protected:
-    TabbedComponent* superTabComponent;
-    PedalEdit* _defaultComponent = 0;
+    ScopedPointer<TabbedComponent> superTabComponent;
+    ScopedPointer<GlobalTab> globalTab;
+    ScopedPointer<LayoutTab> layoutTab;
+    ScopedPointer<DevicesTab> devicesTab;
+
     
     private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalEdit)

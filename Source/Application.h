@@ -77,6 +77,7 @@ public:
         
     private:
         ButtonEdit *btnEditComponent = 0;
+        ScopedPointer<PedalEdit> contentComponent;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
     };
@@ -89,7 +90,7 @@ public:
     };
     
 private:
-    static ApplicationCommandManager *_commandManager;
+    static ScopedPointer<ApplicationCommandManager> _commandManager;
     ScopedPointer<MainWindow> mainWindow;
     
     void createNewProject();

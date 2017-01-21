@@ -16,7 +16,7 @@
 #include "BoardTypes/EpicBoard.h"
 
 
-ApplicationCommandManager *pedalbraineditApplication::_commandManager;
+ScopedPointer< ApplicationCommandManager> pedalbraineditApplication::_commandManager;
     
 
     //==============================================================================
@@ -37,6 +37,7 @@ ApplicationCommandManager *pedalbraineditApplication::_commandManager;
         // Add your application's shutdown code here..
 
         mainWindow = nullptr; // (deletes our window)
+        
     }
 
     //==============================================================================
@@ -78,7 +79,7 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
             
             
             setUsingNativeTitleBar (true);
-            PedalEdit* const contentComponent = new PedalEdit();
+            contentComponent = new PedalEdit();
             setContentOwned (contentComponent, true);
 
             centreWithSize (getWidth(), getHeight());
