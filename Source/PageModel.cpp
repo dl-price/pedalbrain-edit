@@ -13,13 +13,22 @@
 #include "BoardController.h"
 
 //==============================================================================
-PageModel::PageModel()
+PageModel::PageModel(int page)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    buttons = OwnedArray<ButtonModel>();
+    setProperty("page", page);
     
+    buttons = ReferenceCountedArray<ButtonModel>();
+    
+    buttons.ensureStorageAllocated(BoardController::getInstance()->getNumberOfButtons());
+    
+    for(int i=0;i < BoardController::getInstance()->getNumberOfButtons(); i++)
+    {
+        ButtonModel *btn = new ButtonModel(page, i);
+        buttons.add(btn);
+    }
 
 }
 
@@ -29,15 +38,15 @@ PageModel::~PageModel()
 
 PageModel *PageModel::createBlankPage()
 {
-    PageModel *newModel = new PageModel();
+    //PageModel *newModel = new PageModel();
     
-    return newModel;
+    return NULL;
 }
 
 void PageModel::initFromNothing()
 {
-    for (int i = 0; i< 10;i++)
+    /*for (int i = 0; i< 10;i++)
     {
         buttons.add(new ButtonModel);
-    }
+    }*/
 }

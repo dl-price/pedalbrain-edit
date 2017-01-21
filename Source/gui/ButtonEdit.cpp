@@ -167,6 +167,7 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_closeButton] -- add your button handler code here..
 
+        _buttonModel->sendToBoard();
         dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->removeButtonEdit();
 
         //[/UserButtonCode_closeButton]
@@ -184,6 +185,7 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     if (comboBoxThatHasChanged == typeComboBox)
     {
         //[UserComboBoxCode_comboBox] -- add your combo box handling code here..
+        _buttonModel->setProperty("type", typeComboBox->getSelectedIdAsValue());
         //[/UserComboBoxCode_comboBox]
     }
     else if (comboBoxThatHasChanged == ledOn)

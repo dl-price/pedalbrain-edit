@@ -31,21 +31,29 @@ BoardController::BoardController()
     
     devices = ReferenceCountedArray<Device>();
     
+    s_instance = this;
+    
     
 }
 
 void BoardController::init()
 {
-    for (int i=0; i < getNumberOfPages(); i++)
+    pages.ensureStorageAllocated(getNumberOfPages());
+    for (int i=1; i <= getNumberOfPages(); i++)
     {
-        PageModel *newPage = new PageModel();
-        newPage->initFromNothing();
+        PageModel *newPage = new PageModel(i);
+        
         pages.add(newPage);
     }
     devices.ensureStorageAllocated(16);
     for (int i=0; i < getMaxDevices(); i++)
     {
         devices.add(new Device());
+    }
+    
+    for(int i=0; i<BoardController::listeners.size();i++ )
+    {
+        BoardController::listeners[i]->boardControllerChanged();
     }
 }
 
@@ -192,8 +200,6 @@ bool BoardController::createAndReadFromBoard(SysExHandler *handler)
         handler->solidfyConnection();
         handler->requestAllParameters();
     }
-    
-    BoardController::setInstance(newCntrl);
     
     Logger::outputDebugString("Created and set new project for connected board");
     

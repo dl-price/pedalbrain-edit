@@ -62,7 +62,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    ButtonModel * _buttonModel;
+    ReferenceCountedObjectPtr<ButtonModel> _buttonModel;
 
 
     //[/UserVariables]

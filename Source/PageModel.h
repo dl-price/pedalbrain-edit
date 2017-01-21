@@ -24,12 +24,12 @@ class PageModel;
 */
 
 
-class PageModel 
+class PageModel : public DynamicObject
 {
 public:
-    PageModel();
+    PageModel(int page);
     ~PageModel();
-    OwnedArray<ButtonModel> buttons;
+    ReferenceCountedArray<ButtonModel> buttons;
     static PageModel *createBlankPage();
     void initFromNothing();
 
