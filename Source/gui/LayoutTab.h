@@ -29,7 +29,7 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     void comboBoxChanged(ComboBox *comboBoxThatHasChanged) override;
-    void boardControllerChanged();
+    void boardControllerChanged() override;
     void buttonClicked(Button *button) override;
 
 private:
