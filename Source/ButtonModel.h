@@ -19,6 +19,23 @@ class ComponentModel
 };
 class ButtonModel : public DynamicObject
 {
+public:
+    enum ButtonType {
+        Off = 1,
+        Normal = 2,
+        BankUp = 3,
+        BankDown = 4,
+        DevicePC = 5,
+        DevicePCUp = 6,
+        DevicePCDown = 7,
+        Store = 8,
+        Page = 9,
+        PageUp = 10,
+        PageDown = 11,
+        Preset = 12,
+        PresetUp = 13,
+        PresetDown = 14
+    };
     
 };
 

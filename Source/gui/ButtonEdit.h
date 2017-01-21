@@ -38,7 +38,7 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class ButtonEdit  : public ComponentEdit,
+class ButtonEdit  : public Component,
                     public ButtonListener,
                     public ComboBoxListener
 {
@@ -50,6 +50,7 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
     void selectType(int typeId);
+    void addComboBoxOptions();
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -69,7 +70,7 @@ private:
     //==============================================================================
     ScopedPointer<TextButton> closeButton;
     ScopedPointer<GroupComponent> mainGroup;
-    ScopedPointer<ComboBox> comboBox;
+    ScopedPointer<ComboBox> typeComboBox;
     ScopedPointer<GroupComponent> displayGroup;
     ScopedPointer<TextEditor> buttonName;
     ScopedPointer<TextEditor> buttonLabel;
