@@ -146,7 +146,7 @@ DevicesTab::DevicesTab ()
 
     BoardController::addListener(this);
     nameEditor->addListener(this);
-    
+
     presetTable->getHeader().addColumn("Preset", 1, 100);
     presetTable->getHeader().addColumn("Name", 2, 100);
     presetTable->autoSizeAllColumns();
@@ -241,7 +241,7 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     else if (comboBoxThatHasChanged == modelCombo)
     {
         //[UserComboBoxCode_modelCombo] -- add your combo box handling code here..
-        
+
         Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
         DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
         BoardController::getInstance()->devices[showingDevice]->setType(type);
@@ -372,8 +372,8 @@ void DevicesTab::refreshFromSelectedModel()
 
 
     }
-    
-    
+
+
 
     nameEditor->setText(currDevice->name);
 
@@ -403,10 +403,10 @@ BEGIN_JUCER_METADATA
                  initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
   <GROUPCOMPONENT name="device list group" id="1800231c5f32097d" memberName="deviceListGroup"
-                  virtualName="" explicitFocusOrder="0" pos="1.504% 20 30.014% 40M"
+                  virtualName="" explicitFocusOrder="0" pos="1.596% 20 30.053% 40M"
                   title="Device List"/>
   <GROUPCOMPONENT name="new group" id="e8f732dbffd928cb" memberName="groupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="98.496%r 20 64.971% 40M"
+                  virtualName="" explicitFocusOrder="0" pos="98.404%r 20 64.894% 40M"
                   title="Device Settings"/>
   <GENERICCOMPONENT name="device table" id="63bf6443f48fe433" memberName="deviceTable"
                     virtualName="" explicitFocusOrder="0" pos="20 20 40M 40M" posRelativeX="1800231c5f32097d"
@@ -425,17 +425,17 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
   <COMBOBOX name="manufactrer combo" id="aadf83bdc8474a8a" memberName="manufacturerCombo"
-            virtualName="" explicitFocusOrder="0" pos="0Cr 40 29.989% 24"
+            virtualName="" explicitFocusOrder="0" pos="0Cr 40 29.918% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="1800231c5f32097d"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <COMBOBOX name="model combo" id="f22149194db014db" memberName="modelCombo"
-            virtualName="ComboBox" explicitFocusOrder="0" pos="20Rr 40 29.989% 24"
+            virtualName="ComboBox" explicitFocusOrder="0" pos="20Rr 40 29.918% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <TEXTEDITOR name="name editor" id="11b1fe24822e9e8" memberName="nameEditor"
-              virtualName="" explicitFocusOrder="0" pos="20Rr 80 77.949% 24"
+              virtualName="" explicitFocusOrder="0" pos="20Rr 80 77.869% 24"
               posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
               posRelativeW="e8f732dbffd928cb" outlinecol="ff000000" initialText=""
               multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="0"
@@ -453,7 +453,7 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
   <COMBOBOX name="channel combo" id="ff774dc4ca6d2f79" memberName="channelCombo"
-            virtualName="" explicitFocusOrder="0" pos="20Rr 120 77.949% 24"
+            virtualName="" explicitFocusOrder="0" pos="20Rr 120 77.869% 24"
             posRelativeX="e8f732dbffd928cb" posRelativeY="e8f732dbffd928cb"
             posRelativeW="e8f732dbffd928cb" editable="0" layout="33" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;13&#10;14&#10;15&#10;16"
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>

@@ -38,11 +38,12 @@
                                                                     //[/Comments]
 */
 class ButtonEdit  : public ComponentEdit,
+                    public ButtonListener,
                     public ComboBoxListener
 {
 public:
     //==============================================================================
-    ButtonEdit (ComponentModel *model);
+    ButtonEdit (ComponentController *model);
     ~ButtonEdit();
 
     //==============================================================================
@@ -52,8 +53,8 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
-    
 
 
 
@@ -63,8 +64,13 @@ private:
 
     //==============================================================================
     ScopedPointer<TextButton> closeButton;
-    ScopedPointer<GroupComponent> groupComponent;
+    ScopedPointer<GroupComponent> mainGroup;
     ScopedPointer<ComboBox> comboBox;
+    ScopedPointer<GroupComponent> displayGroup;
+    ScopedPointer<TextEditor> buttonName;
+    ScopedPointer<TextEditor> buttonLabel;
+    ScopedPointer<ComboBox> ledOn;
+    ScopedPointer<ComboBox> ledOff;
 
 
     //==============================================================================

@@ -39,6 +39,7 @@ class DevicesTab  : public Component,
                     ListBoxModel,
                     BoardControllerListener,
                     TextEditorListener,
+                    TableListBoxModel,
                     public ComboBoxListener
 {
 public:
@@ -56,7 +57,7 @@ public:
     void selectedRowsChanged(int lastRowSelected) override;
     void saveToModel();
     void refreshFromSelectedModel();
-    
+
 
     //[/UserMethods]
 
