@@ -93,6 +93,8 @@ void Device::updateFromJson(juce::DynamicObject *obj)
 {
     name = obj->getProperty("name");
     _channel = obj->getProperty("channel");
+    int index = obj->getProperty("index");
+    jassert(BoardController::getInstance()->devices.indexOf(this) == index);
     if(obj->hasProperty("type"))
     {
 

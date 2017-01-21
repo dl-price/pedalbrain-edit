@@ -53,7 +53,7 @@ public:
     int getNumRows() override;
     void paintListBoxItem(int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
     void boardControllerChanged();
-    void textEditorTextChanged(TextEditor &editor);
+    void textEditorTextChanged(TextEditor &editor) override;
     void selectedRowsChanged(int lastRowSelected) override;
     void saveToModel();
     void refreshFromSelectedModel();
