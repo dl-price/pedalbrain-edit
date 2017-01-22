@@ -256,6 +256,10 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         //[UserComboBoxCode_channelCombo] -- add your combo box handling code here..
         //[/UserComboBoxCode_channelCombo]
+        if(showingDevice>=0)
+        {
+            saveToModel();
+        }
     }
 
     //[UsercomboBoxChanged_Post]
