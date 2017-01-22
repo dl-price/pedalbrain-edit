@@ -40,6 +40,7 @@ LayoutTab::LayoutTab()
     addAndMakeVisible(pageNameEditor = new TextEditor());
     
     BoardController::addListener(this);
+    pageNameEditor->addListener(this);
 
     
     
@@ -120,6 +121,7 @@ void LayoutTab::boardControllerChanged()
      }
     pageCombo->setSelectedId(1);
     addAndMakeVisible(pedalView = BoardController::getInstance()->createView());
+    pageNameEditor->setText(BoardController::getInstance()->getPage(1)->getName());
     resized();
 }
 
@@ -128,5 +130,13 @@ void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
     if(pedalView)
     {
     pedalView->setPage(comboBoxThatHasChanged->getSelectedId());
+        pageNameEditor->setText(BoardController::getInstance()->getPage(pedalView->getPage())->getName());
     }
+}
+
+void LayoutTab::textEditorTextChanged(TextEditor &editor)
+{
+    PageModel *page = BoardController::getInstance()->getPage( pedalView->getPage() );
+    page->setName(editor.getTextValue().toString());
+    Logger::outputDebugString("Changed");
 }

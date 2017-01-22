@@ -20,7 +20,7 @@
 //==============================================================================
 /*
 */
-class LayoutTab    : public Component, ComboBox::Listener, ButtonListener, BoardControllerListener
+class LayoutTab    : public Component, ComboBox::Listener, ButtonListener, BoardControllerListener, TextEditorListener
 {
 public:
     LayoutTab();
@@ -31,6 +31,7 @@ public:
     void comboBoxChanged(ComboBox *comboBoxThatHasChanged) override;
     void boardControllerChanged() override;
     void buttonClicked(Button *button) override;
+    void textEditorTextChanged(TextEditor &editor) override;
 
 private:
     ScopedPointer<Button> pageDownButton;

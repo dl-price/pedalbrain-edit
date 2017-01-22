@@ -20,6 +20,7 @@ class ComponentModel
 class ButtonModel : public DynamicObject
 {
 public:
+    
     ButtonModel(int page, int index);
     void sendToBoard();
     enum ButtonType {

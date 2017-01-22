@@ -69,6 +69,10 @@ void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
             BoardController::tryConnectToUsb(this);
             
         }
+        else if(send == "page")
+        {
+            BoardController::getInstance()->pages[(int)objReceived->getProperty("model").getDynamicObject()->getProperty("page")-1]->updateFromJson(objReceived);
+        }
         else if(send == "solidified")
         {
             _isSolidified = true;
@@ -90,7 +94,7 @@ void SysExHandler::sendPBSysex(String message)
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
 }
 
-void SysExHandler::sendSysEx(ReferenceCountedObjectPtr<DynamicObject> object)
+void SysExHandler::sendSysEx(DynamicObject *object)
 {
     String newMessage = '}' + JSON::toString(var(object));
     
@@ -139,6 +143,15 @@ void SysExHandler::sendDevice(ReferenceCountedObjectPtr<Device> device)
     obj->setProperty("send", "device");
     
     obj->setProperty("model", var(device->toJson()));
+    sendSysEx(obj);
+}
+
+void SysExHandler::sendPage(PageModel *page)
+{
+    ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    
+    obj->setProperty("send", "page");
+    obj->setProperty("model", var(page));
     sendSysEx(obj);
 }
 

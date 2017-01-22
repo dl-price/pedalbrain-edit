@@ -15,6 +15,7 @@ class SysExHandler;
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Device.h"
+#include "PageModel.h"
 
 struct BoardInfo
 {
@@ -30,7 +31,7 @@ public:
     SysExHandler(MidiInputCallback *newCallback);
     void handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message);
     void sendPBSysex(String message);
-    void sendSysEx(ReferenceCountedObjectPtr<DynamicObject> object);
+    void sendSysEx(DynamicObject *object);
     static bool boardAttached();
     void requestBoardInfo();
     void receivedPBSysEx(String message);
@@ -39,6 +40,7 @@ public:
     void solidfyConnection();
     bool isSolidified();
     void sendDevice(ReferenceCountedObjectPtr<Device> device);
+    void sendPage(PageModel *page);
     void requestAllParameters();
     
 private:

@@ -76,7 +76,7 @@ public:
     ~BoardController();
     
     BoardType *boardType;
-    OwnedArray<PageModel> pages;
+    ReferenceCountedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
     ReferenceCountedArray<Device> devices;
     String projectFile;
@@ -90,6 +90,7 @@ public:
     static bool createAndReadFromBoard(SysExHandler *handler);
     const String boardModel;
     void init();
+    PageModel *getPage(int id) { return pages[id-1];};
 
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);

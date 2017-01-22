@@ -19,6 +19,7 @@ PageModel::PageModel(int page)
     // initialise any special settings that your component needs.
     
     setProperty("page", page);
+    setProperty("name", String::empty);
     
     buttons = ReferenceCountedArray<ButtonModel>();
     
@@ -49,4 +50,17 @@ void PageModel::initFromNothing()
     {
         buttons.add(new ButtonModel);
     }*/
+}
+
+void PageModel::setName(juce::String newName)
+{
+    setProperty("name", newName);
+    BoardController::getInstance()->sysexHandler->sendPage(this);
+}
+
+void PageModel::updateFromJson(juce::DynamicObject *obj)
+{
+    DynamicObject *model = obj->getProperty("model").getDynamicObject();
+    setProperty("name", model->getProperty("name"));
+    
 }
