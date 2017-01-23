@@ -20,6 +20,7 @@ PageModel::PageModel(int page)
     
     setProperty("page", page);
     setProperty("name", String::empty);
+    setProperty("index", page-1);
     
     buttons = ReferenceCountedArray<ButtonModel>();
     
@@ -55,7 +56,7 @@ void PageModel::initFromNothing()
 void PageModel::setName(juce::String newName)
 {
     setProperty("name", newName);
-    BoardController::getInstance()->sysexHandler->sendPage(this);
+    updated();
 }
 
 void PageModel::updateFromJson(DynamicObject::Ptr obj)
@@ -67,4 +68,14 @@ void PageModel::updateFromJson(DynamicObject::Ptr obj)
 void PageModel::sysexReceived(DynamicObject::Ptr obj)
 {
     BoardController::getInstance()->pages[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
+}
+
+void PageModel::updated()
+{
+    sendSysex();
+}
+
+void PageModel::sendSysex()
+{
+    BoardController::getInstance()->sysexHandler->sendPage(this);
 }

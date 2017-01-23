@@ -36,6 +36,8 @@ public:
     void setName(String newName);
     String getName(){return getProperty("name");};
     static void sysexReceived(DynamicObject::Ptr obj);
+    void sendSysex();
+    void updated();
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

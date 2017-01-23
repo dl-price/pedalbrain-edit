@@ -14,6 +14,7 @@
 class DeviceType;
 class Device;
 class Manufacturer;
+class DeviceTimer;
 #include "includes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SysExObject.h"
@@ -23,6 +24,17 @@ class Manufacturer;
 /*
 */
 
+class DeviceTimer : public Timer
+{
+public:
+    DeviceTimer(Device *newDevice) { device = newDevice;};
+    void timerCallback() override;
+    const int saveInterval = 2000;
+    
+private:
+    Device *device;
+    
+};
 
 class Device : public ReferenceCountedObject, public TableListBoxModel, SysExObject
 {
@@ -33,21 +45,27 @@ public:
     void setType(DeviceType *newType);
     int getChannel();
     void setChannel(int newChannel);
+    void setName(String newName);
+    String getName();
     DynamicObject::Ptr toJson() override;
-    String name = "";
     void updateFromJson(DynamicObject::Ptr obj) override;
     OwnedArray<String> presetNames;
     int getNumRows() override;
     void paintRowBackground (Graphics &, int rowNumber, int width, int height, bool rowIsSelected) override;
     void paintCell (Graphics &, int rowNumber, int columnId, int width, int height, bool rowIsSelected) override;
     static void sysexReceived(DynamicObject::Ptr obj);
+    void sendSysex();
+    void updated();
+    
     
 private:
     DeviceType *_deviceType = 0;
+    DeviceTimer saveTimer;
     int _channel = 1;
     int _presets = 0;
     int _maxPC = 0;
     bool _sendPC = 0;
+    String _name = "";
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };
