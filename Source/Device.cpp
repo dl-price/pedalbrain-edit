@@ -17,8 +17,13 @@ Device::Device() : saveTimer(this)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-    _name = String::empty;
+    _name.setValue(String::empty);
+    _channel.setValue(1);
+    _name.addListener(this);
+    _channel.addListener(this);
     _deviceType = DeviceManager::getInstance()->deviceTypes[0];
+    
+    
 
     
 }
@@ -62,16 +67,12 @@ void Device::setType(DeviceType *newType)
     updated();
 }
 
-int Device::getChannel()
+Value &Device::getChannel()
 {
     return _channel;
 }
 
-void Device::setChannel(int newChannel)
-{
-    _channel = newChannel;
-    updated();
-}
+
 
 ReferenceCountedObjectPtr<DynamicObject> Device::toJson()
 {
@@ -81,22 +82,22 @@ ReferenceCountedObjectPtr<DynamicObject> Device::toJson()
     
     int index = inst->devices.indexOf(this);
     
-    obj->setProperty("name", _name);
+    obj->setProperty("name", _name.getValue());
     obj->setProperty("index", index);
     if(getType())
     {
     obj->setProperty("type", getType()->unique);
     }
     
-    obj->setProperty("channel", _channel);
+    obj->setProperty("channel", _channel.getValue());
     
     return obj;
 }
 
 void Device::updateFromJson(DynamicObject::Ptr obj)
 {
-    _name = obj->getProperty("name");
-    _channel = obj->getProperty("channel");
+    _name.setValue(obj->getProperty("name"));
+    _channel.setValue(obj->getProperty("channel"));
     int index = obj->getProperty("index");
     jassert(BoardController::getInstance()->devices.indexOf(this) == index);
     if(obj->hasProperty("type"))
@@ -181,13 +182,7 @@ void Device::sendSysex()
     BoardController::getInstance()->sysexHandler->sendDevice(this);
 }
 
-void Device::setName(juce::String newName)
-{
-    _name = newName;
-    updated();
-}
-
-String Device::getName()
+Value &Device::getName()
 {
     return _name;
 }
@@ -196,4 +191,9 @@ void DeviceTimer::timerCallback()
 {
     stopTimer();
     device->sendSysex();
+}
+
+void Device::valueChanged(Value &value)
+{
+    updated();
 }

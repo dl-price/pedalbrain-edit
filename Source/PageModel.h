@@ -34,7 +34,7 @@ public:
     void updateFromJson(DynamicObject::Ptr obj);
     static PageModel *createBlankPage();
     void initFromNothing();
-    Value getName(){return _name;};
+    Value &getName(){return _name;};
     static void sysexReceived(DynamicObject::Ptr obj);
     void sendSysex();
     void updated();

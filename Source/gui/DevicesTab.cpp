@@ -302,7 +302,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     BoardController *cntrl = BoardController::getInstance();
 
     const MessageManagerLock mmlock;
-    g.drawText("Device " + text + " - " + cntrl->devices[rowNumber]->getName(), 2, 0, width - 4, height, Justification::left, true);
+    g.drawText("Device " + text + " - " + cntrl->devices[rowNumber]->getName().getValue().toString(), 2, 0, width - 4, height, Justification::left, true);
 
 
 
@@ -340,9 +340,7 @@ void DevicesTab::saveToModel()
 
     ReferenceCountedObjectPtr<Device> currDevice = cntrl->devices[showingDevice];
 
-    currDevice->setName(nameEditor->getTextValue().toString());
 
-    currDevice->setChannel(channelCombo->getSelectedItemIndex()+1);
 }
 
 void DevicesTab::refreshFromSelectedModel()
@@ -373,9 +371,9 @@ void DevicesTab::refreshFromSelectedModel()
 
 
 
-    nameEditor->setText(currDevice->getName());
+    nameEditor->getTextValue().referTo(currDevice->getName());
 
-    channelCombo->setSelectedItemIndex(currDevice->getChannel()-1);
+    channelCombo->getSelectedIdAsValue().referTo(currDevice->getChannel());
     presetTable->setModel(currDevice);
     presetTable->updateContent();
 }
