@@ -50,7 +50,7 @@ void SysExHandler::handleIncomingMidiMessage(juce::MidiInput *source, const juce
     }
 }
 
-void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
+void SysExHandler::sysexReceived(DynamicObject::Ptr objReceived)
 {
     const MessageManagerLock mmlock;
     String send;
@@ -69,18 +69,18 @@ void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
             BoardController::tryConnectToUsb(this);
             
         }
-        else if(send == "page")
-        {
-            BoardController::getInstance()->pages[(int)objReceived->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(objReceived->getProperty("model").getDynamicObject());
-        }
         else if(send == "solidified")
         {
             _isSolidified = true;
             Logger::outputDebugString("Connection solidified");
         }
+        else if(send == "page")
+        {
+            PageModel::sysexReceived(objReceived);
+        }
         else if(send == "device")
         {
-            BoardController::getInstance()->devices[objReceived->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(objReceived->getProperty("model").getDynamicObject());
+            Device::sysexReceived(objReceived);
         }
     }
     

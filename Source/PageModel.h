@@ -30,11 +30,12 @@ public:
     PageModel(int page);
     ~PageModel();
     ReferenceCountedArray<ButtonModel> buttons;
-    void updateFromJson(DynamicObject *obj);
+    void updateFromJson(DynamicObject::Ptr obj);
     static PageModel *createBlankPage();
     void initFromNothing();
     void setName(String newName);
     String getName(){return getProperty("name");};
+    static void sysexReceived(DynamicObject::Ptr obj);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

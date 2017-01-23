@@ -58,8 +58,13 @@ void PageModel::setName(juce::String newName)
     BoardController::getInstance()->sysexHandler->sendPage(this);
 }
 
-void PageModel::updateFromJson(juce::DynamicObject *obj)
+void PageModel::updateFromJson(DynamicObject::Ptr obj)
 {
     setProperty("name", obj->getProperty("name"));
     
+}
+
+void PageModel::sysexReceived(DynamicObject::Ptr obj)
+{
+    BoardController::getInstance()->pages[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
 }

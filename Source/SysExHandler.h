@@ -35,7 +35,7 @@ public:
     static bool boardAttached();
     void requestBoardInfo();
     void receivedPBSysEx(String message);
-    void sysexReceived(DynamicObject *objReceived);
+    void sysexReceived(DynamicObject::Ptr objReceived);
     BoardInfo boardInfo;
     void solidfyConnection();
     bool isSolidified();
@@ -49,6 +49,7 @@ private:
     void finishedReceivingBoardInfo();
     bool _isSolidified;
 };
+
 
 
 

@@ -16,13 +16,15 @@ class Device;
 class Manufacturer;
 #include "includes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "SysExObject.h"
+
 
 //==============================================================================
 /*
 */
 
 
-class Device : public ReferenceCountedObject, public TableListBoxModel
+class Device : public ReferenceCountedObject, public TableListBoxModel, SysExObject
 {
 public:
     Device();
@@ -31,14 +33,14 @@ public:
     void setType(DeviceType *newType);
     int getChannel();
     void setChannel(int newChannel);
-    ReferenceCountedObjectPtr<DynamicObject> toJson();
+    DynamicObject::Ptr toJson() override;
     String name = "";
-    void updateFromJson(DynamicObject *obj);
+    void updateFromJson(DynamicObject::Ptr obj) override;
     OwnedArray<String> presetNames;
     int getNumRows() override;
     void paintRowBackground (Graphics &, int rowNumber, int width, int height, bool rowIsSelected) override;
     void paintCell (Graphics &, int rowNumber, int columnId, int width, int height, bool rowIsSelected) override;
-    
+    static void sysexReceived(DynamicObject::Ptr obj);
     
 
 private:

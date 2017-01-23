@@ -10,6 +10,7 @@
 
 #include "includes.h"
 #include "Device.h"
+#include "BoardController.h"
 
 //==============================================================================
 Device::Device()
@@ -89,7 +90,7 @@ ReferenceCountedObjectPtr<DynamicObject> Device::toJson()
     return obj;
 }
 
-void Device::updateFromJson(juce::DynamicObject *obj)
+void Device::updateFromJson(DynamicObject::Ptr obj)
 {
     name = obj->getProperty("name");
     _channel = obj->getProperty("channel");
@@ -162,4 +163,9 @@ void Device::paintCell (Graphics &g, int rowNumber, int columnId, int width, int
     {
         g.drawText("Name here", 2, 0, width - 4, height, Justification::left, true);
     }
+}
+
+void Device::sysexReceived(DynamicObject::Ptr obj)
+{
+    BoardController::getInstance()->devices[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
 }
