@@ -157,7 +157,7 @@ void SysExHandler::sendPage(PageModel *page)
     ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     
     obj->setProperty("send", "page");
-    obj->setProperty("model", var(page));
+    obj->setProperty("model", var(page->toJson()));
     sendSysEx(obj);
 }
 

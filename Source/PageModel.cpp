@@ -13,14 +13,12 @@
 #include "BoardController.h"
 
 //==============================================================================
-PageModel::PageModel(int page)
+PageModel::PageModel(int page) : _index(page-1)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-    
-    setProperty("page", page);
-    setProperty("name", String::empty);
-    setProperty("index", page-1);
+
+    _name.setValue(var(String::empty));
     
     buttons = ReferenceCountedArray<ButtonModel>();
     
@@ -32,6 +30,7 @@ PageModel::PageModel(int page)
         buttons.add(btn);
     }
 
+    _name.addListener(this);
 }
 
 PageModel::~PageModel()
@@ -53,15 +52,12 @@ void PageModel::initFromNothing()
     }*/
 }
 
-void PageModel::setName(juce::String newName)
-{
-    setProperty("name", newName);
-    updated();
-}
+
 
 void PageModel::updateFromJson(DynamicObject::Ptr obj)
 {
-    setProperty("name", obj->getProperty("name"));
+    _name.setValue(obj->getProperty("name"));
+
     
 }
 
@@ -78,4 +74,19 @@ void PageModel::updated()
 void PageModel::sendSysex()
 {
     BoardController::getInstance()->sysexHandler->sendPage(this);
+}
+
+DynamicObject::Ptr PageModel::toJson()
+{
+    DynamicObject::Ptr obj = new DynamicObject();
+    obj->setProperty("index", _index);
+    obj->setProperty("page", _index+1);
+    obj->setProperty("name", _name.getValue());
+    
+    return obj;
+}
+
+void PageModel::valueChanged(juce::Value &value)
+{
+    sendSysex();
 }
