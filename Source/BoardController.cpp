@@ -161,6 +161,7 @@ void BoardController::tryConnectToUsb(SysExHandler *handler)
         BoardController *boardInstance = BoardController::getInstance();
         if(boardInstance->boardModel.compare( handler->boardInfo.model));
         {
+            const MessageManagerLock mmLock;
             switch(AlertWindow::showYesNoCancelBox(AlertWindow::AlertIconType::QuestionIcon, "Connect to " + handler->boardInfo.name, "There is already a project open. Would you like to write this project to the board or close this project and read the data from the board?", "Read from board", "Write to board", "Cancel connection"))
             {
                 case 1:

@@ -60,7 +60,6 @@ void PageModel::setName(juce::String newName)
 
 void PageModel::updateFromJson(juce::DynamicObject *obj)
 {
-    DynamicObject *model = obj->getProperty("model").getDynamicObject();
-    setProperty("name", model->getProperty("name"));
+    setProperty("name", obj->getProperty("name"));
     
 }

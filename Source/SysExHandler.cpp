@@ -71,7 +71,7 @@ void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
         }
         else if(send == "page")
         {
-            BoardController::getInstance()->pages[(int)objReceived->getProperty("model").getDynamicObject()->getProperty("page")-1]->updateFromJson(objReceived);
+            BoardController::getInstance()->pages[(int)objReceived->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(objReceived->getProperty("model").getDynamicObject());
         }
         else if(send == "solidified")
         {
@@ -80,7 +80,7 @@ void SysExHandler::sysexReceived(juce::DynamicObject *objReceived)
         }
         else if(send == "device")
         {
-            BoardController::getInstance()->devices[objReceived->getProperty("index")]->updateFromJson(objReceived);
+            BoardController::getInstance()->devices[objReceived->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(objReceived->getProperty("model").getDynamicObject());
         }
     }
     
