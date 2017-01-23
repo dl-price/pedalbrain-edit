@@ -17,8 +17,8 @@
 class DeviceManager {
 public:
     DeviceManager();
-    OwnedArray<Manufacturer> manufacturers;
-    OwnedArray<DeviceType> deviceTypes;
+    ReferenceCountedArray<Manufacturer> manufacturers;
+    ReferenceCountedArray<DeviceType> deviceTypes;
     
     void loadDeviceConfig();
     static DeviceManager *getInstance();

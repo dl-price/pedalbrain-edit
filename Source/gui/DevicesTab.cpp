@@ -157,6 +157,7 @@ DevicesTab::DevicesTab ()
 DevicesTab::~DevicesTab()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+
     //[/Destructor_pre]
 
     deviceListGroup = nullptr;
@@ -174,6 +175,8 @@ DevicesTab::~DevicesTab()
 
 
     //[Destructor]. You can add your own custom destruction code here..
+    
+    
     //[/Destructor]
 }
 

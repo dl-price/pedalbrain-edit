@@ -111,7 +111,7 @@ EpicBoardView::EpicBoardView ()
 
     //[Constructor] You can add your own custom stuff here..
 
-    buttonComponents = OwnedArray<ButtonComponent>();
+    buttonComponents = Array<ButtonComponent*>();
 
     buttonComponents.add(button1);
     buttonComponents.add(button2);
@@ -214,8 +214,6 @@ void EpicBoardView::init()
 {
     int numChild = getNumChildComponents();
 
-    MidiOutput *output = MidiOutput::createNewDevice("Juce Device");
-
     for(int i=0; i < numChild; i++)
     {
 
@@ -227,9 +225,7 @@ void EpicBoardView::init()
                 const MessageManagerLock mmLock;
                 component->addMouseListener(this, true);
 
-                MidiMessage msg =  MidiMessage::createSysExMessage("}Hello", strlen("}Hello"));
-                //msg.sys
-                output->sendMessageNow(msg);
+
 
                 /* Arduino code for SysEx
                  Serial.println("Hello world");

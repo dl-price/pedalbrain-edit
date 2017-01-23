@@ -74,8 +74,8 @@ void DeviceManager::loadDeviceConfig()
 
 DeviceManager::DeviceManager()
 {
-    manufacturers = OwnedArray<Manufacturer>();
-    deviceTypes = OwnedArray<DeviceType>();
+    //manufacturers = OwnedArray<Manufacturer>();
+    //deviceTypes = OwnedArray<DeviceType>();
 }
 
 

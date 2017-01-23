@@ -90,7 +90,7 @@ public:
     };
     
 private:
-    static ScopedPointer<ApplicationCommandManager> _commandManager;
+    static ApplicationCommandManager *_commandManager;
     ScopedPointer<MainWindow> mainWindow;
     
     void createNewProject();

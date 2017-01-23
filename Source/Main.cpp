@@ -16,7 +16,7 @@
 #include "BoardTypes/EpicBoard.h"
 
 
-ScopedPointer< ApplicationCommandManager> pedalbraineditApplication::_commandManager;
+ApplicationCommandManager *pedalbraineditApplication::_commandManager = new ApplicationCommandManager();
     
 
     //==============================================================================
@@ -37,6 +37,10 @@ ScopedPointer< ApplicationCommandManager> pedalbraineditApplication::_commandMan
         // Add your application's shutdown code here..
 
         mainWindow = nullptr; // (deletes our window)
+        
+        delete BoardController::getInstance();
+        delete DeviceManager::getInstance();
+        delete pedalbraineditApplication::_commandManager;
         
     }
 

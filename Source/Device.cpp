@@ -29,13 +29,13 @@ Device::~Device()
 Manufacturer::Manufacturer()
 {
     name = "";
-    deviceTypes = OwnedArray<DeviceType>();
+    //deviceTypes = OwnedArray<DeviceType>();
 }
 
 Manufacturer::Manufacturer(String newName)
 {
     name = newName;
-    deviceTypes = OwnedArray<DeviceType>();
+    //deviceTypes = OwnedArray<DeviceType>();
 }
 
 DeviceType::DeviceType(Manufacturer *newManufacturer, String newName)
@@ -50,7 +50,7 @@ DeviceType::PotentialCC::PotentialCC(String newName, int newCc, int newOn, int n
     name = newName;cc=newCc;on=newOn;off=newOff;
 }
 
-DeviceType *Device::getType()
+ReferenceCountedObjectPtr<DeviceType> Device::getType()
 {
     return _deviceType;
 }

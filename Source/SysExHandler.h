@@ -44,8 +44,8 @@ public:
     void requestAllParameters();
     
 private:
-    MidiInput *usbInput = 0;
-    MidiOutput *usbOutput = 0;
+    ScopedPointer< MidiInput> usbInput;
+    ScopedPointer< MidiOutput> usbOutput;
     void finishedReceivingBoardInfo();
     bool _isSolidified;
 };

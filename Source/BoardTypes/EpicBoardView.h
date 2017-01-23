@@ -50,7 +50,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     void mouseDoubleClick (const MouseEvent& event) override;
     void init() override;
-    OwnedArray<ButtonComponent> buttonComponents;
+    Array<ButtonComponent*> buttonComponents;
     //[/UserMethods]
 
     void paint (Graphics& g) override;

@@ -29,7 +29,7 @@ class Device : public ReferenceCountedObject, public TableListBoxModel, SysExObj
 public:
     Device();
     ~Device();
-    DeviceType *getType();
+    ReferenceCountedObjectPtr<DeviceType> getType();
     void setType(DeviceType *newType);
     int getChannel();
     void setChannel(int newChannel);
@@ -52,7 +52,7 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };
 
-class DeviceType
+class DeviceType : public ReferenceCountedObject
 {
 public:
     String name;
@@ -67,16 +67,16 @@ public:
     };
     OwnedArray<PotentialCC> potentialCC;
     DeviceType(Manufacturer *newManufacturer, String newName);
-    Manufacturer *manufacturer;
+    ReferenceCountedObjectPtr<Manufacturer> manufacturer;
     int presets = 0;
     int presetGroups = 1;
 };
 
-class Manufacturer
+class Manufacturer : public ReferenceCountedObject
 {
 public:
     String name;
-    OwnedArray<DeviceType> deviceTypes;
+    ReferenceCountedArray<DeviceType> deviceTypes;
     Manufacturer();
     Manufacturer(String newName);
 };

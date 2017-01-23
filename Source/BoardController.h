@@ -30,7 +30,7 @@ class BoardControllerListener : public ReferenceCountedObject
 {
 public:
     BoardControllerListener(){};
-    ~BoardControllerListener(){};
+    ~BoardControllerListener();
     virtual void boardControllerChanged(){};
 };
 
@@ -67,7 +67,7 @@ public:
     
 };
 
-class BoardController : public MidiInputCallback
+class BoardController
 {
     
 public:
@@ -80,7 +80,7 @@ public:
     OwnedArray<PedalView> pedalViews;
     ReferenceCountedArray<Device> devices;
     String projectFile;
-    static ReferenceCountedArray<BoardControllerListener> listeners;
+    static Array<BoardControllerListener*> listeners;
     virtual PedalView *createView() = 0;
     static BoardController *getInstance();
     static BoardController *setInstance(BoardController *newBoard);
@@ -97,11 +97,7 @@ public:
     virtual int getMaxDevices() {return 16;};
     static void tryConnectToUsb();
     static void tryConnectToUsb(SysExHandler *handler);
-    SysExHandler *sysexHandler = 0;
-    MidiInput *usbInput;
-    MidiOutput *usbOutput;
-    void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message) override;
-    void sendPBSysex(String message);
+    ScopedPointer<SysExHandler> sysexHandler;
     
 protected:
     static BoardController *s_instance;

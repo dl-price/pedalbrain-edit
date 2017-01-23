@@ -19,7 +19,7 @@
 #include "PedalEdit.h"
 
 //==============================================================================
-ReferenceCountedArray<BoardControllerListener> BoardController::listeners = ReferenceCountedArray<BoardControllerListener>();
+Array<BoardControllerListener*> BoardController::listeners = Array<BoardControllerListener*>();
 
 BoardController *BoardController::s_instance = 0;
 SysExHandler *BoardController::tempSysExHandler = 0;
@@ -137,22 +137,9 @@ void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
     
 }
 
-void BoardController::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)
-{
-    Logger::outputDebugString("Receive");
-    if(message.isSysEx())
-    {
-        Logger::outputDebugString(String::fromUTF8( (char*)message.getSysExData()).dropLastCharacters(1));
-    }
-}
 
-void BoardController::sendPBSysex(String message)
-{
-    String newMessage = "}" + message;
-    CharPointer_UTF8 charPnt = newMessage.getCharPointer();
-    
-    usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
-}
+
+
 
 void BoardController::tryConnectToUsb(SysExHandler *handler)
 {
@@ -209,6 +196,11 @@ void BoardController::createAndReadFromBoard(SysExHandler *handler)
     {
         tempSysExHandler = 0;
     }
+}
+
+BoardControllerListener::~BoardControllerListener()
+{
+
 }
 
 
