@@ -16,7 +16,7 @@
 #include "BoardTypes/EpicBoard.h"
 
 
-ApplicationCommandManager *pedalbraineditApplication::_commandManager = new ApplicationCommandManager();
+ApplicationCommandManager *pedalbraineditApplication::_commandManager;
     
 
     //==============================================================================
