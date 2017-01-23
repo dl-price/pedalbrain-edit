@@ -49,7 +49,7 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
     void mouseDoubleClick (const MouseEvent& event) override;
-    void init();
+    void init() override;
     OwnedArray<ButtonComponent> buttonComponents;
     //[/UserMethods]
 

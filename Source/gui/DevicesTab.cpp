@@ -299,7 +299,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     BoardController *cntrl = BoardController::getInstance();
 
     const MessageManagerLock mmlock;
-    g.drawText("Device " + text + " - " + BoardController::getInstance()->devices[rowNumber]->name, 2, 0, width - 4, height, Justification::left, true);
+    g.drawText("Device " + text + " - " + cntrl->devices[rowNumber]->name, 2, 0, width - 4, height, Justification::left, true);
 
 
 

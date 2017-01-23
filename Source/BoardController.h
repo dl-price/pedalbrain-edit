@@ -87,7 +87,7 @@ public:
     virtual int getNumberOfButtons() {return 5;}
     virtual int getNumberOfPages() = 0;
     static void addListener(BoardControllerListener *newListener);
-    static bool createAndReadFromBoard(SysExHandler *handler);
+    static void createAndReadFromBoard(SysExHandler *handler);
     const String boardModel;
     void init();
     PageModel *getPage(int id) { return pages[id-1];};

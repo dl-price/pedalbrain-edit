@@ -104,13 +104,11 @@ void Device::updateFromJson(DynamicObject::Ptr obj)
         if(DeviceManager::getInstance()->deviceTypes[i]->unique == obj->getProperty("type").toString())
         {
             _deviceType = DeviceManager::getInstance()->deviceTypes[i];
-            exit;
+            return;
         }
     }
         
     }
-    
-    DeviceType *typ = _deviceType;
     
 }
 

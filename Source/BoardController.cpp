@@ -187,7 +187,7 @@ void BoardController::tryConnectToUsb(SysExHandler *handler)
     }
 }
 
-bool BoardController::createAndReadFromBoard(SysExHandler *handler)
+void BoardController::createAndReadFromBoard(SysExHandler *handler)
 {
     BoardController *newCntrl;
     if(handler->boardInfo.model == "TestBoardA")

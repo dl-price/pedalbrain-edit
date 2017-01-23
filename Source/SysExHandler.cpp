@@ -142,7 +142,13 @@ void SysExHandler::sendDevice(ReferenceCountedObjectPtr<Device> device)
     
     obj->setProperty("send", "device");
     
-    obj->setProperty("model", var(device->toJson()));
+    DynamicObject::Ptr json = device->toJson();
+    
+    jassert((int)json->getProperty("index") == index);
+    
+    obj->setProperty("model", var(json));
+    
+    
     sendSysEx(obj);
 }
 

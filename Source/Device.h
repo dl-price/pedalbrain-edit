@@ -42,7 +42,6 @@ public:
     void paintCell (Graphics &, int rowNumber, int columnId, int width, int height, bool rowIsSelected) override;
     static void sysexReceived(DynamicObject::Ptr obj);
     
-
 private:
     DeviceType *_deviceType = 0;
     int _channel = 1;

@@ -262,9 +262,7 @@ void EpicBoardView::mouseDoubleClick(const MouseEvent &event)
         return;
     }*/
     BoardController *ctrl = BoardController::getInstance();
-    int pg = getPage()-1;
-    int bt = buttonComponents.indexOf(component);
-    PageModel *page = ctrl->pages[getPage()-1];
+    PageModel *page = ctrl->getPage(getPage());
     ButtonModel *btn = page->buttons[buttonComponents.indexOf(component)];
     BoardController::getInstance()->createEditWindowForButton(btn);
 }
