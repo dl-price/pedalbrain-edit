@@ -32,6 +32,7 @@ public:
     BoardControllerListener(){};
     ~BoardControllerListener();
     virtual void boardControllerChanged(){};
+    virtual void boardControllerUpdated(){};
 };
 
 #include "SysExHandler.h"
