@@ -47,6 +47,7 @@ public:
     BoardController *getDefaultBoardController();
     DeviceManager *getDeviceManager();
     void deleteDefaultBoardController();
+    ApplicationProperties *getAppProperties();
     
     
     
@@ -76,6 +77,7 @@ public:
         void addButtonEdit(ButtonEdit* newWin);
         void removeButtonEdit();
         
+        
     private:
         ButtonEdit *btnEditComponent = 0;
         ScopedPointer<PedalEdit> contentComponent;
@@ -96,6 +98,7 @@ private:
     BoardController::Ptr _defaultBoardController;
     ScopedPointer<MainWindow> mainWindow;
     ScopedPointer<DeviceManager> _deviceManager;
+    ScopedPointer<ApplicationProperties> _appProperties;
     
     void createNewProject();
     void saveProject();

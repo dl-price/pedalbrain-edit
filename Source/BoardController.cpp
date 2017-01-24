@@ -218,6 +218,8 @@ void BoardController::loadFromFile()
     {
         devices[i]->loadFromFile();
     }
+    
+    appObject->getAppProperties()->getUserSettings()->setValue("recentProject", _projectDirectory.getFullPathName());
 }
 
 void BoardController::saveToFile()
@@ -235,6 +237,8 @@ void BoardController::saveToFile()
     {
         devices[i]->saveToFile();
     }
+    
+    appObject->getAppProperties()->getUserSettings()->setValue("recentProject", _projectDirectory.getFullPathName());
 }
 
 

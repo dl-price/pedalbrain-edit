@@ -27,8 +27,28 @@
             Desktop::getInstance().setOrientationsEnabled(12);
         }
         
+        PropertiesFile::Options proptions;
+        
+        proptions.applicationName = "PedalBrain";
+        proptions.filenameSuffix = ".settings";
+        proptions.osxLibrarySubFolder = "Application Support";
+        proptions.millisecondsBeforeSaving = 1000;
+        proptions.ignoreCaseOfKeyNames = true;
+        
+        _appProperties = new ApplicationProperties();
+        _appProperties->setStorageParameters(proptions);
+        
         _deviceManager = new DeviceManager();
         mainWindow = new MainWindow (getApplicationName());
+        
+        if(_appProperties->getUserSettings()->containsKey("recentProject"))
+        {
+            BoardController *ctrl = new EpicBoardController();
+            ctrl->init();
+            ctrl->setProjectDirectory(File(_appProperties->getUserSettings()->getValue("recentProject")));
+            ctrl->loadFromFile();
+            setDefaultBoardController(ctrl);
+        }
         
     }
 
@@ -317,6 +337,11 @@ void pedalbraineditApplication::loadProject()
         setDefaultBoardController(ctrl);
     }
     
+}
+
+ApplicationProperties *pedalbraineditApplication::getAppProperties()
+{
+    return _appProperties;
 }
 
 
