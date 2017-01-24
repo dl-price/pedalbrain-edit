@@ -112,13 +112,13 @@ void GlobalTab::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    groupComponent->setBounds (20, 20, getWidth() - 580, proportionOfHeight (0.4500f));
-    modelCombo->setBounds (20 + 20, 20 + 20, (getWidth() - 580) - 40, 24);
-    currentSetListCombo->setBounds (20 + 20, (20 + 20) + 24 - -20, (getWidth() - 580) - 40, 24);
+    groupComponent->setBounds (20, 20, getWidth() - 520, proportionOfHeight (0.4500f));
+    modelCombo->setBounds (20 + 20, 20 + 20, (getWidth() - 520) - 40, 24);
+    currentSetListCombo->setBounds (20 + 20, (20 + 20) + 24 - -20, (getWidth() - 520) - 40, 24);
     comboBox->setBounds (32, 112, 600, 24);
-    groupComponent2->setBounds (20, 20 + proportionOfHeight (0.4500f) - -20, getWidth() - 580, 150);
-    groupComponent3->setBounds ((getWidth() - 20 - 250) + -20 - 250, 20, 250, proportionOfHeight (0.4500f));
-    groupComponent4->setBounds (getWidth() - 20 - 250, 20, 250, proportionOfHeight (0.4500f));
+    groupComponent2->setBounds (20, 20 + proportionOfHeight (0.4500f) - -20, getWidth() - 520, 150);
+    groupComponent3->setBounds ((getWidth() - 20 - 220) + -20 - 220, 20, 220, proportionOfHeight (0.4500f));
+    groupComponent4->setBounds (getWidth() - 20 - 220, 20, 220, proportionOfHeight (0.4500f));
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -169,7 +169,7 @@ BEGIN_JUCER_METADATA
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
   <GROUPCOMPONENT name="system settings" id="9bf3bfeaeeb81be3" memberName="groupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="20 20 580M 45.043%"
+                  virtualName="" explicitFocusOrder="0" pos="20 20 520M 45.043%"
                   title="System Settings" textpos="33"/>
   <COMBOBOX name="new combo box" id="471bda264f2742de" memberName="modelCombo"
             virtualName="" explicitFocusOrder="0" pos="20 20 40M 24" posRelativeX="9bf3bfeaeeb81be3"
@@ -186,13 +186,13 @@ BEGIN_JUCER_METADATA
             layout="33" items="" textWhenNonSelected="Startup script (not enabled)"
             textWhenNoItems="(no choices)"/>
   <GROUPCOMPONENT name="new group" id="81d4edbdf6aa800e" memberName="groupComponent2"
-                  virtualName="" explicitFocusOrder="0" pos="20 -20R 580M 150"
+                  virtualName="" explicitFocusOrder="0" pos="20 -20R 520M 150"
                   posRelativeY="9bf3bfeaeeb81be3" title="Function Switches"/>
   <GROUPCOMPONENT name="new group" id="90095d0f4753bed4" memberName="groupComponent3"
-                  virtualName="" explicitFocusOrder="0" pos="-20r 20 250 45.043%"
+                  virtualName="" explicitFocusOrder="0" pos="-20r 20 220 45.043%"
                   posRelativeX="14e164bde519671e" title="Expression Pedals"/>
   <GROUPCOMPONENT name="new group" id="14e164bde519671e" memberName="groupComponent4"
-                  virtualName="" explicitFocusOrder="0" pos="20Rr 20 250 45.043%"
+                  virtualName="" explicitFocusOrder="0" pos="20Rr 20 220 45.043%"
                   title="External Switches"/>
 </JUCER_COMPONENT>
 

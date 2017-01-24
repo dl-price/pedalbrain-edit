@@ -89,6 +89,9 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     ledOff->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     ledOff->addListener (this);
 
+    addAndMakeVisible (mainSettingsHolder = new Component());
+    mainSettingsHolder->setName ("new component");
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -99,11 +102,11 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     //[Constructor] You can add your own custom stuff here..
 
     _buttonModel = model;
-    
+
     addComboBoxOptions();
     addLedOptions(ledOn);
     addLedOptions(ledOff);
-    
+
     typeComboBox->getSelectedIdAsValue().referTo(_buttonModel->buttonType);
     buttonName->getTextValue().referTo(_buttonModel->name);
     buttonLabel->getTextValue().referTo(_buttonModel->label);
@@ -133,6 +136,7 @@ ButtonEdit::~ButtonEdit()
     buttonLabel = nullptr;
     ledOn = nullptr;
     ledOff = nullptr;
+    mainSettingsHolder = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -158,12 +162,13 @@ void ButtonEdit::resized()
 
     closeButton->setBounds (getWidth() - 230, getHeight() - 50, 200, 24);
     mainGroup->setBounds (20, 20, proportionOfWidth (0.4799f), 216);
-    typeComboBox->setBounds (40, 40, proportionOfWidth (0.4799f) - 40, 24);
+    typeComboBox->setBounds (40, 20 + 20, proportionOfWidth (0.4799f) - 40, 24);
     displayGroup->setBounds (getWidth() - 20 - proportionOfWidth (0.4799f), 20, proportionOfWidth (0.4799f), 216);
     buttonName->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, 20 + 20, proportionOfWidth (0.4799f) - 40, 24);
     buttonLabel->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
     ledOn->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, ((20 + 20) + 24 - -20) + 36, proportionOfWidth (0.4799f) - 40, 24);
     ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
+    mainSettingsHolder->setBounds (20 + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 216 - 88);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -197,8 +202,8 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
     if (comboBoxThatHasChanged == typeComboBox)
     {
-        //[UserComboBoxCode_comboBox] -- add your combo box handling code here..
-        //[/UserComboBoxCode_comboBox]
+        //[UserComboBoxCode_typeComboBox] -- add your combo box handling code here..
+        //[/UserComboBoxCode_typeComboBox]
     }
     else if (comboBoxThatHasChanged == ledOn)
     {
@@ -280,9 +285,10 @@ BEGIN_JUCER_METADATA
   <GROUPCOMPONENT name="new group" id="ed7339e39e40b2a2" memberName="mainGroup"
                   virtualName="" explicitFocusOrder="0" pos="20 20 47.994% 216"
                   title="Main Settings"/>
-  <COMBOBOX name="new combo box" id="dc30121a21934289" memberName="comboBox"
-            virtualName="" explicitFocusOrder="0" pos="40 40 40M 24" posRelativeW="ed7339e39e40b2a2"
-            editable="0" layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <COMBOBOX name="new combo box" id="dc30121a21934289" memberName="typeComboBox"
+            virtualName="" explicitFocusOrder="0" pos="40 20 40M 24" posRelativeY="ed7339e39e40b2a2"
+            posRelativeW="ed7339e39e40b2a2" editable="0" layout="33" items=""
+            textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <GROUPCOMPONENT name="new group" id="a08e5079e3d1891d" memberName="displayGroup"
                   virtualName="" explicitFocusOrder="0" pos="20Rr 20 47.994% 216"
                   title="Display"/>
@@ -304,6 +310,10 @@ BEGIN_JUCER_METADATA
             virtualName="" explicitFocusOrder="0" pos="20 -20R 40M 24" posRelativeX="a08e5079e3d1891d"
             posRelativeY="ff1b86b2844855ad" posRelativeW="a08e5079e3d1891d"
             editable="0" layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <GENERICCOMPONENT name="new component" id="a8f3fa89279730c0" memberName="mainSettingsHolder"
+                    virtualName="" explicitFocusOrder="0" pos="20 -20R 40M 88M" posRelativeX="ed7339e39e40b2a2"
+                    posRelativeY="dc30121a21934289" posRelativeW="ed7339e39e40b2a2"
+                    posRelativeH="ed7339e39e40b2a2" class="Component" params=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

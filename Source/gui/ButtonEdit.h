@@ -77,6 +77,7 @@ private:
     ScopedPointer<TextEditor> buttonLabel;
     ScopedPointer<ComboBox> ledOn;
     ScopedPointer<ComboBox> ledOff;
+    ScopedPointer<Component> mainSettingsHolder;
 
 
     //==============================================================================
