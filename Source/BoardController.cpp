@@ -22,7 +22,6 @@
 //==============================================================================
 Array<BoardControllerListener*> BoardController::listeners = Array<BoardControllerListener*>();
 
-BoardController::Ptr BoardController::s_instance;
 SysExHandler *BoardController::tempSysExHandler = 0;
 
 BoardController::BoardController()
@@ -57,11 +56,7 @@ void BoardController::init()
 
 }
 
-BoardController *BoardController::setInstance(BoardController *newBoard)
-{
-    
-    return s_instance;
-}
+
 
 
 /**
@@ -69,7 +64,7 @@ BoardController *BoardController::setInstance(BoardController *newBoard)
 
  @return Current BoardController
  */
-BoardController::Ptr BoardController::getDefaultInstance()
+BoardController *BoardController::getDefaultInstance()
 {
 
     return appObject->getDefaultBoardController();
@@ -143,12 +138,10 @@ void BoardController::tryConnectToUsb(SysExHandler *handler)
         BoardController *boardInstance = BoardController::getDefaultInstance();
         if(boardInstance->boardModel.compare( handler->boardInfo.model));
         {
-            const MessageManagerLock mmLock;
             switch(AlertWindow::showYesNoCancelBox(AlertWindow::AlertIconType::QuestionIcon, "Connect to " + handler->boardInfo.name, "There is already a project open. Would you like to write this project to the board or close this project and read the data from the board?", "Read from board", "Write to board", "Cancel connection"))
             {
                 case 1:
-                    // Read from board
-                    Logger::outputDebugString("Not yet implemented");
+                    createAndReadFromBoard(handler);
                     break;
                 case 2:
                     // Write to board
@@ -205,10 +198,6 @@ String BoardController::getProjectDirectory()
     return _projectDirectory;
 }
 
-void BoardController::deleteDefaultInstance()
-{
-    s_instance = nullptr;
-}
 
 
 

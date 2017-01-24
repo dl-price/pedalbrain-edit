@@ -52,7 +52,6 @@ void SysExHandler::handleIncomingMidiMessage(juce::MidiInput *source, const juce
 
 void SysExHandler::sysexReceived(DynamicObject::Ptr objReceived)
 {
-    const MessageManagerLock mmlock;
     String send;
     if (objReceived->hasProperty("send"))
     {

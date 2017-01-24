@@ -118,6 +118,7 @@ void LayoutTab::buttonClicked(juce::Button *button)
 
 void LayoutTab::boardControllerChanged()
 {
+    pageCombo->clear();
     for(int i = 1; i <= BoardController::getDefaultInstance()->getNumberOfPages();i++) {
      pageCombo->addItem(String(i), i);
      }

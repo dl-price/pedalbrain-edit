@@ -46,6 +46,7 @@ public:
     void setDefaultBoardController(BoardController *newCtrl);
     BoardController *getDefaultBoardController();
     DeviceManager *getDeviceManager();
+    void deleteDefaultBoardController();
     
     
     

@@ -313,6 +313,8 @@ void DevicesTab::boardControllerChanged()
 {
     const MessageManagerLock mmLock;
     deviceTable->updateContent();
+    deviceTable->repaint();
+    refreshFromSelectedModel();
 }
 
 void DevicesTab::textEditorTextChanged(juce::TextEditor &editor)
@@ -346,6 +348,7 @@ void DevicesTab::saveToModel()
 
 void DevicesTab::refreshFromSelectedModel()
 {
+    if(deviceTable->getSelectedRow()>=0) {
     BoardController *cntrl = BoardController::getDefaultInstance();
 
     Device *currDevice = cntrl->devices[showingDevice];
@@ -377,6 +380,7 @@ void DevicesTab::refreshFromSelectedModel()
     channelCombo->getSelectedIdAsValue().referTo(currDevice->getChannel());
     presetTable->setModel(currDevice);
     presetTable->updateContent();
+    }
 }
 
 

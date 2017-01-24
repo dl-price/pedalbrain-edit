@@ -223,9 +223,9 @@ ApplicationCommandTarget *pedalbraineditApplication::getNextCommandTarget()
 
 void pedalbraineditApplication::createNewProject()
 {
-    _defaultBoardController = new EpicBoardController();
-    _defaultBoardController->init();
-    
+    BoardController *cntrl = new EpicBoardController();
+    cntrl->init();
+    setDefaultBoardController(cntrl);
 
 }
 
@@ -273,6 +273,16 @@ BoardController *pedalbraineditApplication::getDefaultBoardController()
 DeviceManager *pedalbraineditApplication::getDeviceManager()
 {
     return _deviceManager;
+}
+
+void pedalbraineditApplication::deleteDefaultBoardController()
+{
+    _defaultBoardController = nullptr;
+    
+    for(int i=0; i<BoardController::listeners.size();i++ )
+    {
+        BoardController::listeners[i]->boardControllerChanged();
+    }
 }
 
 

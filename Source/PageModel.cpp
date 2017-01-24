@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PageModel.h"
 #include "BoardController.h"
+#include "Macros.h"
 
 //==============================================================================
 PageModel::PageModel(BoardController *controller, int page) : _index(page-1),  _boardController(controller)
@@ -73,7 +74,10 @@ void PageModel::updated()
 
 void PageModel::sendSysex()
 {
-    BoardController::getDefaultInstance()->sysexHandler->sendPage(this);
+    if(appObject->getDefaultBoardController()->sysexHandler)
+    {
+        BoardController::getDefaultInstance()->sysexHandler->sendPage(this);
+    }
 }
 
 DynamicObject::Ptr PageModel::toJson()

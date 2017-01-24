@@ -83,7 +83,7 @@ public:
     ReferenceCountedArray<Device> devices;
     static Array<BoardControllerListener*> listeners;
     virtual PedalView *createView() = 0;
-    static BoardController::Ptr getDefaultInstance();
+    static BoardController *getDefaultInstance();
     static BoardController *setInstance(BoardController *newBoard);
     virtual const int getNumberOfButtons() {return 5;}
     virtual const int getNumberOfPages() = 0;
@@ -105,7 +105,6 @@ public:
     
     
 protected:
-    static BoardController::Ptr s_instance;
     static SysExHandler *tempSysExHandler;
 private:
     String _projectDirectory;
