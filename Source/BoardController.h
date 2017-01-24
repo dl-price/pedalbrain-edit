@@ -99,7 +99,8 @@ public:
     static void tryConnectToUsb();
     static void tryConnectToUsb(SysExHandler *handler);
     ScopedPointer<SysExHandler> sysexHandler;
-    String getProjectDirectory();
+    File getProjectDirectory();
+    void setProjectDirectory(File newDirectory);
     static void deleteDefaultInstance();
     virtual bool ledIsRgbForIndex(int led) { return false;};
     
@@ -108,7 +109,7 @@ public:
 protected:
     static SysExHandler *tempSysExHandler;
 private:
-    String _projectDirectory;
+    File _projectDirectory;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)
 };

@@ -44,6 +44,7 @@ public:
     int getPageNo() { return _index+1;};
     void valueChanged(Value &value) override;
     BoardController *getBoardController();
+    void saveToFile();
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

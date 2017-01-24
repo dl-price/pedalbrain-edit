@@ -193,9 +193,14 @@ BoardControllerListener::~BoardControllerListener()
 
 }
 
-String BoardController::getProjectDirectory()
+File BoardController::getProjectDirectory()
 {
     return _projectDirectory;
+}
+
+void BoardController::setProjectDirectory(juce::File newDirectory)
+{
+    _projectDirectory = newDirectory;
 }
 
 

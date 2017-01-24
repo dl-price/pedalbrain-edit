@@ -231,19 +231,29 @@ void pedalbraineditApplication::createNewProject()
 
 void pedalbraineditApplication::saveProject()
 {
-    if(BoardController::getDefaultInstance()->getProjectDirectory().isEmpty())
+    /*if(BoardController::getDefaultInstance()->getProjectDirectory())
     {
         saveProjectAs();
         return;
+    }*/
+    
+    for(int i=0;i<_defaultBoardController->pages.size();i++)
+    {
+        _defaultBoardController->pages[i]->saveToFile();
     }
+    
     Logger::outputDebugString("Save project");
 }
 
 void pedalbraineditApplication::saveProjectAs()
 {
-    FileChooser fileChooser ("Select file to save", File::getSpecialLocation( File::userHomeDirectory ), "*.PBrain", true);
+    FileChooser fileChooser ("Select file to save", File::getSpecialLocation( File::userHomeDirectory ), "", true);
     
-    fileChooser.browseForFileToSave(true);
+    if(fileChooser.browseForDirectory())
+    {
+        _defaultBoardController->setProjectDirectory(fileChooser.getResult());
+        saveProject();
+    }
     
     
 }
