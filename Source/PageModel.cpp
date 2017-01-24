@@ -21,13 +21,11 @@ PageModel::PageModel(BoardController *controller, int page) : _index(page-1),  _
 
     _name.setValue(var(String::empty));
     
-    buttons = ReferenceCountedArray<ButtonModel>();
-    
     buttons.ensureStorageAllocated(_boardController->getNumberOfButtons());
     
     for(int i=0;i < _boardController->getNumberOfButtons(); i++)
     {
-        ButtonModel *btn = new ButtonModel(page, i);
+        ButtonModel *btn = new ButtonModel(this, i);
         buttons.add(btn);
     }
 
@@ -93,4 +91,9 @@ DynamicObject::Ptr PageModel::toJson()
 void PageModel::valueChanged(juce::Value &value)
 {
     sendSysex();
+}
+
+BoardController *PageModel::getBoardController()
+{
+    return _boardController;
 }

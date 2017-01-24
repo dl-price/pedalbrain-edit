@@ -13,15 +13,17 @@
 
 class ButtonModel;
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "PageModel.h"
+#include "BoardController.h"
 
 class ComponentModel
 {
 };
-class ButtonModel : public DynamicObject
+class ButtonModel
 {
 public:
     
-    ButtonModel(int page, int index);
+    ButtonModel(PageModel *parentPage, int index);
     void sendToBoard();
     enum ButtonType {
         Off = 1,
@@ -39,6 +41,13 @@ public:
         PresetUp = 13,
         PresetDown = 14
     };
+    Value buttonType;
+    Value name;
+    Value label;
+private:
+    BoardController *_boardController;
+    PageModel *_pageModel;
+    int _index;
     
 };
 

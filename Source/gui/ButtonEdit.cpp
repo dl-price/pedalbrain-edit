@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "Application.h"
+#include "Macros.h"
 //[/Headers]
 
 #include "ButtonEdit.h"
@@ -98,7 +99,12 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     //[Constructor] You can add your own custom stuff here..
 
     _buttonModel = model;
+    
     addComboBoxOptions();
+    
+    typeComboBox->getSelectedIdAsValue().referTo(_buttonModel->buttonType);
+    buttonName->getTextValue().referTo(_buttonModel->name);
+    buttonLabel->getTextValue().referTo(_buttonModel->label);
 
     /*ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
 
@@ -167,7 +173,10 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_closeButton] -- add your button handler code here..
 
+        if(appObject->getDefaultBoardController()->sysexHandler)
+        {
         _buttonModel->sendToBoard();
+        }
         dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->removeButtonEdit();
 
         //[/UserButtonCode_closeButton]
@@ -185,7 +194,6 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     if (comboBoxThatHasChanged == typeComboBox)
     {
         //[UserComboBoxCode_comboBox] -- add your combo box handling code here..
-        _buttonModel->setProperty("type", typeComboBox->getSelectedIdAsValue());
         //[/UserComboBoxCode_comboBox]
     }
     else if (comboBoxThatHasChanged == ledOn)

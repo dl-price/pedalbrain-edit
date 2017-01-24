@@ -11,11 +11,11 @@
 #include "ButtonModel.h"
 #include "BoardController.h"
 #include "SysExHandler.h"
+#include "PageModel.h"
 
-ButtonModel::ButtonModel(int page, int index)
+ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPage), _index(index)
 {
-    setProperty("page", page);
-    setProperty("index'", index);
+    _boardController = parentPage->getBoardController();
 }
 
 void ButtonModel::sendToBoard()
