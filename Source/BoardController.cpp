@@ -49,7 +49,7 @@ void BoardController::init()
     devices.ensureStorageAllocated(16);
     for (int i=0; i < getMaxDevices(); i++)
     {
-        devices.add(new Device());
+        devices.add(new Device(this, i));
     }
     
    
@@ -201,6 +201,40 @@ File BoardController::getProjectDirectory()
 void BoardController::setProjectDirectory(juce::File newDirectory)
 {
     _projectDirectory = newDirectory;
+}
+
+void BoardController::loadFromFile()
+{
+    for(int i=0;i < pages.size();i++)
+    {
+        PageModel *pg = pages[i];
+        pg->loadFromFile();
+        for(int i2=0; i2 < pg->buttons.size(); i2++)
+        {
+            pg->buttons[i2]->loadFromFile();
+        }
+    }
+    for(int i=0;i < devices.size();i++)
+    {
+        devices[i]->loadFromFile();
+    }
+}
+
+void BoardController::saveToFile()
+{
+    for(int i=0;i < pages.size();i++)
+    {
+        PageModel *pg = pages[i];
+        pg->saveToFile();
+        for(int i2=0; i2 < pg->buttons.size();i2++ )
+        {
+            pg->buttons[i2]->saveToFile();
+        }
+    }
+    for(int i=0;i < devices.size();i++)
+    {
+        devices[i]->saveToFile();
+    }
 }
 
 

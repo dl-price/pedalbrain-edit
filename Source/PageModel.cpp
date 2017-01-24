@@ -98,15 +98,8 @@ BoardController *PageModel::getBoardController()
     return _boardController;
 }
 
-void PageModel::saveToFile()
+File PageModel::getFile()
 {
-    File file = _boardController->getProjectDirectory().getChildFile("pages/" + (String)getIndex() + ".txt");
-    
-    file.deleteFile();
-    
-    ScopedPointer<FileOutputStream> stream = file.createOutputStream();
-    
-    JSON::writeToStream(*(dynamic_cast<OutputStream*>(stream.get())), var(toJson()));
-    
-    stream->flush();
+    return _boardController->getProjectDirectory().getChildFile("pages/" + (String)getIndex() + ".txt");
 }
+

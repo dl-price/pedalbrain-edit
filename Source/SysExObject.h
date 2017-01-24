@@ -20,6 +20,14 @@ public:
     virtual void updateFromJson(DynamicObject::Ptr obj) = 0;
 };
 
+class SaveableSysExObject : public SysExObject
+{
+public:
+    void saveToFile();
+    virtual File getFile() = 0;
+    void loadFromFile();
+};
+
 
 
 #endif  // SYSEXOBJECT_H_INCLUDED

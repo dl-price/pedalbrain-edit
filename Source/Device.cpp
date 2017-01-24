@@ -14,7 +14,7 @@
 #include "Macros.h"
 
 //==============================================================================
-Device::Device() : saveTimer(this)
+Device::Device(BoardController *newCntrl, int newIndex) : saveTimer(this), _boardController(newCntrl), _index(newIndex)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
@@ -100,7 +100,7 @@ void Device::updateFromJson(DynamicObject::Ptr obj)
     _name.setValue(obj->getProperty("name"));
     _channel.setValue(obj->getProperty("channel"));
     int index = obj->getProperty("index");
-    jassert(BoardController::getDefaultInstance()->devices.indexOf(this) == index);
+    jassert(_boardController->devices.indexOf(this) == index);
     if(obj->hasProperty("type"))
     {
 
@@ -201,3 +201,9 @@ void Device::valueChanged(Value &value)
 {
     updated();
 }
+
+File Device::getFile()
+{
+    return _boardController->getProjectDirectory().getChildFile("devices/" + String(_index) + ".txt");
+}
+

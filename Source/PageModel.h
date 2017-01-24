@@ -26,7 +26,7 @@ class PageModel;
 */
 
 
-class PageModel : public ReferenceCountedObject, SysExObject, Value::Listener
+class PageModel : public ReferenceCountedObject, public SaveableSysExObject, Value::Listener
 {
 public:
     PageModel(BoardController *controller, int page);
@@ -44,7 +44,7 @@ public:
     int getPageNo() { return _index+1;};
     void valueChanged(Value &value) override;
     BoardController *getBoardController();
-    void saveToFile();
+    File getFile() override;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)

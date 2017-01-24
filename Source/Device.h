@@ -18,6 +18,7 @@ class DeviceTimer;
 #include "includes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SysExObject.h"
+#include "BoardController.h"
 
 
 //==============================================================================
@@ -36,10 +37,10 @@ private:
     
 };
 
-class Device : public ReferenceCountedObject, public TableListBoxModel, SysExObject, Value::Listener
+class Device : public ReferenceCountedObject, public TableListBoxModel, public SaveableSysExObject, Value::Listener
 {
 public:
-    Device();
+    Device(BoardController *newCntrl, int newIndex);
     ~Device();
     DeviceType *getType();
     void setType(DeviceType *newType);
@@ -55,6 +56,7 @@ public:
     void sendSysex();
     void updated();
     void valueChanged(Value &value) override;
+    File getFile() override;
     
     
 private:
@@ -65,6 +67,8 @@ private:
     int _maxPC = 0;
     bool _sendPC = 0;
     Value _name;
+    int _index;
+    BoardController *_boardController;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };

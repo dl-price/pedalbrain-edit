@@ -103,6 +103,8 @@ public:
     void setProjectDirectory(File newDirectory);
     static void deleteDefaultInstance();
     virtual bool ledIsRgbForIndex(int led) { return false;};
+    void loadFromFile();
+    void saveToFile();
     
     
     

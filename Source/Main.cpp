@@ -150,6 +150,7 @@ void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
     commands.add(PedalBrainCommandTypes::saveProjectCmd);
     commands.add(PedalBrainCommandTypes::saveProjectAsCmd);
     commands.add(PedalBrainCommandTypes::connectToBoardCmd);
+    commands.add(PedalBrainCommandTypes::loadProjectCmd);
 }
 bool pedalbraineditApplication::perform (const InvocationInfo &info)
 {
@@ -174,6 +175,11 @@ bool pedalbraineditApplication::perform (const InvocationInfo &info)
     if(info.commandID == PedalBrainCommandTypes::connectToBoardCmd)
     {
         connectToBoard();
+        return true;
+    }
+    if(info.commandID == PedalBrainCommandTypes::loadProjectCmd)
+    {
+        loadProject();
         return true;
     }
     
@@ -213,6 +219,11 @@ void pedalbraineditApplication::getCommandInfo (CommandID commandID, Application
         result.commandID = commandID;
         result.setActive(true);
     }
+    if(commandID == PedalBrainCommandTypes::loadProjectCmd)
+    {
+        result.shortName = "Load project";
+        result.setActive(true);
+    }
     
 }
 
@@ -237,10 +248,7 @@ void pedalbraineditApplication::saveProject()
         return;
     }*/
     
-    for(int i=0;i<_defaultBoardController->pages.size();i++)
-    {
-        _defaultBoardController->pages[i]->saveToFile();
-    }
+    _defaultBoardController->saveToFile();
     
     Logger::outputDebugString("Save project");
 }
@@ -293,6 +301,22 @@ void pedalbraineditApplication::deleteDefaultBoardController()
     {
         BoardController::listeners[i]->boardControllerChanged();
     }
+}
+
+void pedalbraineditApplication::loadProject()
+{
+    FileChooser fileChooser ("Select file to save", File::getSpecialLocation( File::userHomeDirectory ), "", true);
+    
+    if(fileChooser.browseForDirectory())
+    {
+        BoardController *ctrl = new EpicBoardController();
+        ctrl->init();
+        ctrl->setProjectDirectory(fileChooser.getResult());
+        ctrl->loadFromFile();
+        
+        setDefaultBoardController(ctrl);
+    }
+    
 }
 
 

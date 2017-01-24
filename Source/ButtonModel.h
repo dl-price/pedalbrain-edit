@@ -15,11 +15,12 @@ class ButtonModel;
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PageModel.h"
 #include "BoardController.h"
+#include "SysExObject.h"
 
 class ComponentModel
 {
 };
-class ButtonModel
+class ButtonModel : public SaveableSysExObject
 {
 public:
     
@@ -58,6 +59,11 @@ public:
     Value ledOn;
     
     int getIndex();
+    
+    DynamicObject::Ptr toJson() override;
+    void updateFromJson(DynamicObject::Ptr obj)override;
+
+    File getFile() override;
 private:
     BoardController *_boardController;
     PageModel *_pageModel;
