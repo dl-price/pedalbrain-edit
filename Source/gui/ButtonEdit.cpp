@@ -101,10 +101,14 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     _buttonModel = model;
     
     addComboBoxOptions();
+    addLedOptions(ledOn);
+    addLedOptions(ledOff);
     
     typeComboBox->getSelectedIdAsValue().referTo(_buttonModel->buttonType);
     buttonName->getTextValue().referTo(_buttonModel->name);
     buttonLabel->getTextValue().referTo(_buttonModel->label);
+    ledOn->getSelectedIdAsValue().referTo(_buttonModel->ledOn);
+    ledOff->getSelectedIdAsValue().referTo(_buttonModel->ledOff);
 
     /*ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
 
@@ -214,6 +218,26 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+void ButtonEdit::addLedOptions(juce::ComboBox *box)
+{
+    box->clear();
+    if(!appObject->getDefaultBoardController()->ledIsRgbForIndex(_buttonModel->getIndex()))
+    {
+        box->addItem("Off", ButtonModel::LedColor::Black);
+        box->addItem("On", ButtonModel::LedColor::White);
+    }
+    else {
+        box->addItem("Black", ButtonModel::LedColor::Black);
+        box->addItem("White", ButtonModel::LedColor::White);
+        box->addItem("Red", ButtonModel::LedColor::Red);
+        box->addItem("Green", ButtonModel::LedColor::Green);
+        box->addItem("Blue", ButtonModel::LedColor::Blue);
+        box->addItem("Cyan", ButtonModel::LedColor::Cyan);
+        box->addItem("Yellow", ButtonModel::LedColor::Yellow);
+        box->addItem("Purple", ButtonModel::LedColor::Purple);
+    }
+}
 
 void ButtonEdit::addComboBoxOptions()
 {

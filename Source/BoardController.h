@@ -101,6 +101,7 @@ public:
     ScopedPointer<SysExHandler> sysexHandler;
     String getProjectDirectory();
     static void deleteDefaultInstance();
+    virtual bool ledIsRgbForIndex(int led) { return false;};
     
     
     

@@ -41,9 +41,23 @@ public:
         PresetUp = 13,
         PresetDown = 14
     };
+    enum LedColor {
+        White = 1,
+        Red = 2,
+        Green = 3,
+        Blue = 4,
+        Yellow = 5,
+        Cyan = 6,
+        Purple = 7,
+        Black = 8
+    };
     Value buttonType;
     Value name;
     Value label;
+    Value ledOff;
+    Value ledOn;
+    
+    int getIndex();
 private:
     BoardController *_boardController;
     PageModel *_pageModel;

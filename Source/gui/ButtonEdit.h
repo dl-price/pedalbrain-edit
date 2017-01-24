@@ -51,6 +51,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     void selectType(int typeId);
     void addComboBoxOptions();
+    void addLedOptions(ComboBox *box);
     //[/UserMethods]
 
     void paint (Graphics& g) override;

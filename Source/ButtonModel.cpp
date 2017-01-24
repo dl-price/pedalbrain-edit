@@ -27,3 +27,8 @@ void ButtonModel::sendToBoard()
     
     BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
 }
+
+int ButtonModel::getIndex()
+{
+    return _index;
+}
