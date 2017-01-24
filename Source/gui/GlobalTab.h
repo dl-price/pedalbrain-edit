@@ -61,6 +61,10 @@ private:
     ScopedPointer<GroupComponent> groupComponent;
     ScopedPointer<ComboBox> modelCombo;
     ScopedPointer<ComboBox> currentSetListCombo;
+    ScopedPointer<ComboBox> comboBox;
+    ScopedPointer<GroupComponent> groupComponent2;
+    ScopedPointer<GroupComponent> groupComponent3;
+    ScopedPointer<GroupComponent> groupComponent4;
 
 
     //==============================================================================
