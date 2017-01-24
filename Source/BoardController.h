@@ -68,22 +68,22 @@ public:
     
 };
 
-class BoardController
+class BoardController : public ReferenceCountedObject
 {
     
 public:
+    typedef ReferenceCountedObjectPtr<BoardController> Ptr;
+    
     BoardController();
-    BoardController(BoardType *newType);
     ~BoardController();
     
     BoardType *boardType;
     ReferenceCountedArray<PageModel> pages;
     OwnedArray<PedalView> pedalViews;
     ReferenceCountedArray<Device> devices;
-    String projectFile;
     static Array<BoardControllerListener*> listeners;
     virtual PedalView *createView() = 0;
-    static BoardController *getInstance();
+    static BoardController::Ptr getDefaultInstance();
     static BoardController *setInstance(BoardController *newBoard);
     virtual int getNumberOfButtons() {return 5;}
     virtual int getNumberOfPages() = 0;
@@ -99,11 +99,16 @@ public:
     static void tryConnectToUsb();
     static void tryConnectToUsb(SysExHandler *handler);
     ScopedPointer<SysExHandler> sysexHandler;
+    String getProjectDirectory();
+    static void deleteDefaultInstance();
+    
+    
     
 protected:
-    static BoardController *s_instance;
+    static BoardController::Ptr s_instance;
     static SysExHandler *tempSysExHandler;
 private:
+    String _projectDirectory;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)
 };

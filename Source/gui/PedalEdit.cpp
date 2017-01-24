@@ -82,7 +82,7 @@ PopupMenu PedalEdit::getMenuForIndex(int topLevelMenuIndex, const String& menuNa
         ApplicationCommandManager *manager = dynamic_cast<pedalbraineditApplication*>(JUCEApplication::getInstance())->getCommandManager();
         menu.addCommandItem(manager, 0x2001);
 
-        if(BoardController::getInstance())
+        if(BoardController::getDefaultInstance())
         {
         menu.addCommandItem(manager, pedalbraineditApplication::PedalBrainCommandTypes::saveProjectCmd);
         

@@ -25,5 +25,5 @@ void ButtonModel::sendToBoard()
     message->setProperty("send", "button");
     message->setProperty("model", var(this));
     
-    BoardController::getInstance()->sysexHandler->sendSysEx(message);
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
 }

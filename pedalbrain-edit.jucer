@@ -5,6 +5,7 @@
               jucerVersion="4.3.0">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <FILE id="YfMjcO" name="Macros.h" compile="0" resource="0" file="Source/Macros.h"/>
       <FILE id="LMvEYU" name="SysExObject.cpp" compile="1" resource="0" file="Source/SysExObject.cpp"/>
       <FILE id="UTRTCy" name="SysExObject.h" compile="0" resource="0" file="Source/SysExObject.h"/>
       <FILE id="A23MLD" name="SysExHandler.cpp" compile="1" resource="0"

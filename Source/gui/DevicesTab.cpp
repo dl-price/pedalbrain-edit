@@ -232,10 +232,10 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         }
         if(comboBoxThatHasChanged->getSelectedItemIndex() == 0)
         {
-            BoardController::getInstance()->devices[showingDevice]->setType(DeviceManager::getInstance()->deviceTypes[0]);
+            BoardController::getDefaultInstance()->devices[showingDevice]->setType(DeviceManager::getInstance()->deviceTypes[0]);
             modelCombo->setTextWhenNothingSelected("None");
             saveToModel();
-            presetTable->setModel(BoardController::getInstance()->devices[showingDevice]);
+            presetTable->setModel(BoardController::getDefaultInstance()->devices[showingDevice]);
             presetTable->updateContent();
         }
 
@@ -247,7 +247,7 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
         Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
         DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
-        BoardController::getInstance()->devices[showingDevice]->setType(type);
+        BoardController::getDefaultInstance()->devices[showingDevice]->setType(type);
         if(showingDevice>=0)
         {
             saveToModel();
@@ -276,9 +276,10 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 int DevicesTab::getNumRows()
 {
-    if(BoardController::getInstance())
+    if(BoardController::getDefaultInstance())
     {
-        return BoardController::getInstance()->getMaxDevices();
+        BoardController *ctrl = BoardController::getDefaultInstance();
+        return ctrl->getMaxDevices();
     }
     return 0;
 }
@@ -299,7 +300,7 @@ void DevicesTab::paintListBoxItem(int rowNumber, juce::Graphics &g, int width, i
     sprintf(buffer, "%03d", rowNumber+1);
     const String text(buffer);
 
-    BoardController *cntrl = BoardController::getInstance();
+    BoardController *cntrl = BoardController::getDefaultInstance();
 
     const MessageManagerLock mmlock;
     g.drawText("Device " + text + " - " + cntrl->devices[rowNumber]->getName().getValue().toString(), 2, 0, width - 4, height, Justification::left, true);
@@ -336,7 +337,7 @@ void DevicesTab::selectedRowsChanged(int lastRowSelected)
 
 void DevicesTab::saveToModel()
 {
-    BoardController *cntrl = BoardController::getInstance();
+    BoardController *cntrl = BoardController::getDefaultInstance();
 
     ReferenceCountedObjectPtr<Device> currDevice = cntrl->devices[showingDevice];
 
@@ -345,7 +346,7 @@ void DevicesTab::saveToModel()
 
 void DevicesTab::refreshFromSelectedModel()
 {
-    BoardController *cntrl = BoardController::getInstance();
+    BoardController *cntrl = BoardController::getDefaultInstance();
 
     Device *currDevice = cntrl->devices[showingDevice];
 

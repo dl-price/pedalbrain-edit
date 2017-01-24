@@ -16,8 +16,6 @@
 #include "BoardTypes/EpicBoard.h"
 
 
-ApplicationCommandManager *pedalbraineditApplication::_commandManager;
-    
 
     //==============================================================================
     void pedalbraineditApplication::initialise (const String& commandLine)
@@ -38,9 +36,7 @@ ApplicationCommandManager *pedalbraineditApplication::_commandManager;
 
         mainWindow = nullptr; // (deletes our window)
         
-        delete BoardController::getInstance();
-        delete DeviceManager::getInstance();
-        delete pedalbraineditApplication::_commandManager;
+        _defaultBoardController = nullptr;
         
     }
 
@@ -225,15 +221,15 @@ ApplicationCommandTarget *pedalbraineditApplication::getNextCommandTarget()
 
 void pedalbraineditApplication::createNewProject()
 {
-    BoardController *brd = new EpicBoardController();
-    brd->init();
-    BoardController::setInstance(brd);
+    _defaultBoardController = new EpicBoardController();
+    _defaultBoardController->init();
+    
 
 }
 
 void pedalbraineditApplication::saveProject()
 {
-    if(BoardController::getInstance()->projectFile.isEmpty())
+    if(BoardController::getDefaultInstance()->getProjectDirectory().isEmpty())
     {
         saveProjectAs();
         return;
@@ -243,8 +239,11 @@ void pedalbraineditApplication::saveProject()
 
 void pedalbraineditApplication::saveProjectAs()
 {
-
-    Logger::outputDebugString("Save project as");
+    FileChooser fileChooser ("Select file to save", File::getSpecialLocation( File::userHomeDirectory ), "*.PBrain", true);
+    
+    fileChooser.browseForFileToSave(true);
+    
+    
 }
 
 void pedalbraineditApplication::connectToBoard()
@@ -254,6 +253,15 @@ void pedalbraineditApplication::connectToBoard()
     
 }
 
+void pedalbraineditApplication::setDefaultBoardController(BoardController::Ptr &newCtrl)
+{
+    _defaultBoardController = newCtrl;
+}
+
+BoardController::Ptr pedalbraineditApplication::getDefaultBoardController()
+{
+    return _defaultBoardController;
+}
 
 
 

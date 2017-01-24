@@ -136,7 +136,7 @@ bool SysExHandler::isSolidified()
 
 void SysExHandler::sendDevice(ReferenceCountedObjectPtr<Device> device)
 {
-    int index = BoardController::getInstance()->devices.indexOf(device);
+    int index = BoardController::getDefaultInstance()->devices.indexOf(device);
     
     ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     

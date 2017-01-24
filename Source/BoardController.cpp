@@ -17,11 +17,12 @@
 #include "ButtonEdit.h"
 #include "Application.h"
 #include "PedalEdit.h"
+#include "Macros.h"
 
 //==============================================================================
 Array<BoardControllerListener*> BoardController::listeners = Array<BoardControllerListener*>();
 
-BoardController *BoardController::s_instance = 0;
+BoardController::Ptr BoardController::s_instance;
 SysExHandler *BoardController::tempSysExHandler = 0;
 
 BoardController::BoardController()
@@ -31,7 +32,8 @@ BoardController::BoardController()
     
     devices = ReferenceCountedArray<Device>();
     
-    s_instance = this;
+    
+    _projectDirectory = String::empty;
     
     
 }
@@ -41,7 +43,7 @@ void BoardController::init()
     pages.ensureStorageAllocated(getNumberOfPages());
     for (int i=1; i <= getNumberOfPages(); i++)
     {
-        PageModel *newPage = new PageModel(i);
+        PageModel *newPage = new PageModel(this, i);
         
         pages.add(newPage);
     }
@@ -55,16 +57,12 @@ void BoardController::init()
     {
         BoardController::listeners[i]->boardControllerChanged();
     }
+
 }
 
 BoardController *BoardController::setInstance(BoardController *newBoard)
 {
-    delete s_instance;
-    s_instance = newBoard;
-    for(int i=0; i<BoardController::listeners.size();i++ )
-    {
-        BoardController::listeners[i]->boardControllerChanged();
-    }
+    
     return s_instance;
 }
 
@@ -74,10 +72,10 @@ BoardController *BoardController::setInstance(BoardController *newBoard)
 
  @return Current BoardController
  */
-BoardController *BoardController::getInstance()
+BoardController::Ptr BoardController::getDefaultInstance()
 {
 
-    return s_instance;
+    return appObject->getDefaultBoardController();
 }
 
 void BoardController::addListener(BoardControllerListener *newListener)
@@ -101,9 +99,9 @@ void BoardController::tryConnectToUsb()
         return true;
     }*/
     
-    if(BoardController::getInstance())
+    if(BoardController::getDefaultInstance())
     {
-        if(BoardController::getInstance()->sysexHandler)
+        if(BoardController::getDefaultInstance()->sysexHandler)
         {
         // Already connected to board
         Logger::outputDebugString("Already connected to board - aborting connect attempt");
@@ -143,9 +141,9 @@ void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
 
 void BoardController::tryConnectToUsb(SysExHandler *handler)
 {
-    if(BoardController::getInstance())
+    if(BoardController::getDefaultInstance())
     {
-        BoardController *boardInstance = BoardController::getInstance();
+        BoardController *boardInstance = BoardController::getDefaultInstance();
         if(boardInstance->boardModel.compare( handler->boardInfo.model));
         {
             const MessageManagerLock mmLock;
@@ -176,11 +174,13 @@ void BoardController::tryConnectToUsb(SysExHandler *handler)
 
 void BoardController::createAndReadFromBoard(SysExHandler *handler)
 {
-    BoardController *newCntrl;
+    BoardController::Ptr newCntrl;
     if(handler->boardInfo.model == "TestBoardA")
     {
         newCntrl = new EpicBoardController();
         newCntrl->init();
+        appObject->setDefaultBoardController(newCntrl);
+        
         newCntrl->sysexHandler = handler;
         handler->solidfyConnection();
         handler->requestAllParameters();
@@ -201,6 +201,16 @@ void BoardController::createAndReadFromBoard(SysExHandler *handler)
 BoardControllerListener::~BoardControllerListener()
 {
 
+}
+
+String BoardController::getProjectDirectory()
+{
+    return _projectDirectory;
+}
+
+void BoardController::deleteDefaultInstance()
+{
+    s_instance = nullptr;
 }
 
 

@@ -18,6 +18,7 @@ class PageModel;
 #include "CellModel.h"
 #include "ButtonModel.h"
 #include "SysExObject.h"
+#include "BoardController.h"
 
 
 //==============================================================================
@@ -28,7 +29,7 @@ class PageModel;
 class PageModel : public ReferenceCountedObject, SysExObject, Value::Listener
 {
 public:
-    PageModel(int page);
+    PageModel(BoardController *controller, int page);
     ~PageModel();
     ReferenceCountedArray<ButtonModel> buttons;
     void updateFromJson(DynamicObject::Ptr obj);
@@ -46,7 +47,8 @@ public:
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)
     Value _name;
-    const int _index;
+    int _index;
+    const BoardController *_boardController;
 };
 
 

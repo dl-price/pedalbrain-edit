@@ -13,7 +13,7 @@
 #include "BoardController.h"
 
 //==============================================================================
-PageModel::PageModel(int page) : _index(page-1)
+PageModel::PageModel(BoardController *controller, int page) : _index(page-1),  _boardController(controller)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
@@ -22,9 +22,9 @@ PageModel::PageModel(int page) : _index(page-1)
     
     buttons = ReferenceCountedArray<ButtonModel>();
     
-    buttons.ensureStorageAllocated(BoardController::getInstance()->getNumberOfButtons());
+    buttons.ensureStorageAllocated(BoardController::getDefaultInstance()->getNumberOfButtons());
     
-    for(int i=0;i < BoardController::getInstance()->getNumberOfButtons(); i++)
+    for(int i=0;i < BoardController::getDefaultInstance()->getNumberOfButtons(); i++)
     {
         ButtonModel *btn = new ButtonModel(page, i);
         buttons.add(btn);
@@ -63,7 +63,7 @@ void PageModel::updateFromJson(DynamicObject::Ptr obj)
 
 void PageModel::sysexReceived(DynamicObject::Ptr obj)
 {
-    BoardController::getInstance()->pages[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
+    BoardController::getDefaultInstance()->pages[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
 }
 
 void PageModel::updated()
@@ -73,7 +73,7 @@ void PageModel::updated()
 
 void PageModel::sendSysex()
 {
-    BoardController::getInstance()->sysexHandler->sendPage(this);
+    BoardController::getDefaultInstance()->sysexHandler->sendPage(this);
 }
 
 DynamicObject::Ptr PageModel::toJson()

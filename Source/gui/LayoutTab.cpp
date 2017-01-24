@@ -118,12 +118,12 @@ void LayoutTab::buttonClicked(juce::Button *button)
 
 void LayoutTab::boardControllerChanged()
 {
-    for(int i = 1; i <= BoardController::getInstance()->getNumberOfPages();i++) {
+    for(int i = 1; i <= BoardController::getDefaultInstance()->getNumberOfPages();i++) {
      pageCombo->addItem(String(i), i);
      }
     pageCombo->setSelectedId(1);
-    addAndMakeVisible(pedalView = BoardController::getInstance()->createView());
-    pageNameEditor->getTextValue().referTo(BoardController::getInstance()->getPage(1)->getName());
+    addAndMakeVisible(pedalView = BoardController::getDefaultInstance()->createView());
+    pageNameEditor->getTextValue().referTo(BoardController::getDefaultInstance()->getPage(1)->getName());
     resized();
 }
 
@@ -132,14 +132,14 @@ void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
     if(pedalView)
     {
     pedalView->setPage(comboBoxThatHasChanged->getSelectedId());
-        //pageNameEditor->setText(BoardController::getInstance()->getPage(pedalView->getPage())->getName());
-        pageNameEditor->getTextValue().referTo(BoardController::getInstance()->getPage(pedalView->getPage())->getName());
+        //pageNameEditor->setText(BoardController::getDefaultInstance()->getPage(pedalView->getPage())->getName());
+        pageNameEditor->getTextValue().referTo(BoardController::getDefaultInstance()->getPage(pedalView->getPage())->getName());
     }
 }
 
 void LayoutTab::textEditorTextChanged(TextEditor &editor)
 {
-    /*PageModel *page = BoardController::getInstance()->getPage( pedalView->getPage() );
+    /*PageModel *page = BoardController::getDefaultInstance()->getPage( pedalView->getPage() );
     page->setName(editor.getTextValue().toString());
     Logger::outputDebugString("Changed");*/
 }

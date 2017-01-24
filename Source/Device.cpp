@@ -11,6 +11,7 @@
 #include "includes.h"
 #include "Device.h"
 #include "BoardController.h"
+#include "Macros.h"
 
 //==============================================================================
 Device::Device() : saveTimer(this)
@@ -78,7 +79,7 @@ ReferenceCountedObjectPtr<DynamicObject> Device::toJson()
 {
     ReferenceCountedObjectPtr<DynamicObject> obj = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     
-    BoardController *inst = BoardController::getInstance();
+    BoardController *inst = BoardController::getDefaultInstance();
     
     int index = inst->devices.indexOf(this);
     
@@ -99,7 +100,7 @@ void Device::updateFromJson(DynamicObject::Ptr obj)
     _name.setValue(obj->getProperty("name"));
     _channel.setValue(obj->getProperty("channel"));
     int index = obj->getProperty("index");
-    jassert(BoardController::getInstance()->devices.indexOf(this) == index);
+    jassert(BoardController::getDefaultInstance()->devices.indexOf(this) == index);
     if(obj->hasProperty("type"))
     {
 
@@ -169,7 +170,7 @@ void Device::paintCell (Graphics &g, int rowNumber, int columnId, int width, int
 
 void Device::sysexReceived(DynamicObject::Ptr obj)
 {
-    BoardController::getInstance()->devices[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
+    BoardController::getDefaultInstance()->devices[obj->getProperty("model").getDynamicObject()->getProperty("index")]->updateFromJson(obj->getProperty("model").getDynamicObject());
 }
 
 void Device::updated()
@@ -179,7 +180,10 @@ void Device::updated()
 
 void Device::sendSysex()
 {
-    BoardController::getInstance()->sysexHandler->sendDevice(this);
+    if(appObject->getDefaultBoardController()->sysexHandler)
+    {
+        BoardController::getDefaultInstance()->sysexHandler->sendDevice(this);
+    }
 }
 
 Value &Device::getName()
