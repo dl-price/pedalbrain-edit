@@ -85,8 +85,8 @@ public:
     virtual PedalView *createView() = 0;
     static BoardController::Ptr getDefaultInstance();
     static BoardController *setInstance(BoardController *newBoard);
-    virtual int getNumberOfButtons() {return 5;}
-    virtual int getNumberOfPages() = 0;
+    virtual const int getNumberOfButtons() {return 5;}
+    virtual const int getNumberOfPages() = 0;
     static void addListener(BoardControllerListener *newListener);
     static void createAndReadFromBoard(SysExHandler *handler);
     const String boardModel;

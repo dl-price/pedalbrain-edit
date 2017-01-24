@@ -57,7 +57,7 @@ DeviceType::PotentialCC::PotentialCC(String newName, int newCc, int newOn, int n
     name = newName;cc=newCc;on=newOn;off=newOff;
 }
 
-ReferenceCountedObjectPtr<DeviceType> Device::getType()
+DeviceType *Device::getType()
 {
     return _deviceType;
 }

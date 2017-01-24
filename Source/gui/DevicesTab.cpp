@@ -228,7 +228,7 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
         for(int i = 0; i < man->deviceTypes.size();i++)
         {
-            modelCombo->addItem(man->deviceTypes[i]->name, i+1);
+            modelCombo->addItem(man->deviceTypes[i], i+1);
         }
         if(comboBoxThatHasChanged->getSelectedItemIndex() == 0)
         {
@@ -246,7 +246,7 @@ void DevicesTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         //[UserComboBoxCode_modelCombo] -- add your combo box handling code here..
 
         Manufacturer * man = DeviceManager::getInstance()->manufacturers[manufacturerCombo->getSelectedItemIndex()];
-        DeviceType *type = man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()];
+        DeviceType *type = DeviceManager::getInstance()->getDeviceTypeForId(man->deviceTypes[comboBoxThatHasChanged->getSelectedItemIndex()]);
         BoardController::getDefaultInstance()->devices[showingDevice]->setType(type);
         if(showingDevice>=0)
         {

@@ -10,14 +10,11 @@
 
 #include "includes.h"
 #include "DeviceManager.h"
+#include "Macros.h"
 
 DeviceManager* DeviceManager::getInstance() {
-    if(!_instance)
-        _instance = new DeviceManager();
-    return _instance;
+    return appObject->getDeviceManager();
 }
-
-DeviceManager *DeviceManager::_instance = 0;
 
 void DeviceManager::loadDeviceConfig()
 {
@@ -63,7 +60,7 @@ void DeviceManager::loadDeviceConfig()
             }
             
             DeviceManager::deviceTypes.add(dev);
-            newMan->deviceTypes.add(dev);
+            newMan->deviceTypes.add(dev->name);
         }
         
     }
@@ -74,8 +71,18 @@ void DeviceManager::loadDeviceConfig()
 
 DeviceManager::DeviceManager()
 {
-    //manufacturers = OwnedArray<Manufacturer>();
-    //deviceTypes = OwnedArray<DeviceType>();
+}
+
+DeviceType *DeviceManager::getDeviceTypeForId(juce::String id)
+{
+    for(int i=0;i< deviceTypes.size();i++)
+    {
+        if(deviceTypes[i]->name == id)
+        {
+            return deviceTypes[i];
+        }
+    }
+    return NULL;
 }
 
 

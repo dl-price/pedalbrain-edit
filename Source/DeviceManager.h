@@ -17,14 +17,12 @@
 class DeviceManager {
 public:
     DeviceManager();
-    ReferenceCountedArray<Manufacturer> manufacturers;
-    ReferenceCountedArray<DeviceType> deviceTypes;
+    OwnedArray<Manufacturer> manufacturers;
+    OwnedArray<DeviceType> deviceTypes;
     
     void loadDeviceConfig();
     static DeviceManager *getInstance();
-    
-private:
-    static DeviceManager *_instance;
+    DeviceType *getDeviceTypeForId(String id);
 
 };
 

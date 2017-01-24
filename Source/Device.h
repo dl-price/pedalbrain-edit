@@ -41,13 +41,13 @@ class Device : public ReferenceCountedObject, public TableListBoxModel, SysExObj
 public:
     Device();
     ~Device();
-    ReferenceCountedObjectPtr<DeviceType> getType();
+    DeviceType *getType();
     void setType(DeviceType *newType);
     Value &getChannel();
     Value &getName();
     DynamicObject::Ptr toJson() override;
     void updateFromJson(DynamicObject::Ptr obj) override;
-    OwnedArray<String> presetNames;
+    StringArray presetNames;
     int getNumRows() override;
     void paintRowBackground (Graphics &, int rowNumber, int width, int height, bool rowIsSelected) override;
     void paintCell (Graphics &, int rowNumber, int columnId, int width, int height, bool rowIsSelected) override;
@@ -69,7 +69,7 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Device)
 };
 
-class DeviceType : public ReferenceCountedObject
+class DeviceType
 {
 public:
     String name;
@@ -84,16 +84,16 @@ public:
     };
     OwnedArray<PotentialCC> potentialCC;
     DeviceType(Manufacturer *newManufacturer, String newName);
-    ReferenceCountedObjectPtr<Manufacturer> manufacturer;
+    Manufacturer *manufacturer;
     int presets = 0;
     int presetGroups = 1;
 };
 
-class Manufacturer : public ReferenceCountedObject
+class Manufacturer
 {
 public:
     String name;
-    ReferenceCountedArray<DeviceType> deviceTypes;
+    StringArray deviceTypes;
     Manufacturer();
     Manufacturer(String newName);
 };

@@ -25,7 +25,6 @@ public:
     const String getApplicationName() override       { return ProjectInfo::projectName; }
     const String getApplicationVersion() override    { return ProjectInfo::versionString; }
     bool moreThanOneInstanceAllowed() override       { return true; }
-    //ReferenceCountedObjectPtr<BoardController> BoardController;
     
     
     //==============================================================================
@@ -44,8 +43,9 @@ public:
     void getAllCommands(Array<CommandID> &commands) override;
     bool perform (const InvocationInfo &info) override;
     void getCommandInfo (CommandID commandID, ApplicationCommandInfo &result) override;
-    void setDefaultBoardController(BoardController::Ptr &newCtrl);
-    BoardController::Ptr getDefaultBoardController();
+    void setDefaultBoardController(BoardController *newCtrl);
+    BoardController *getDefaultBoardController();
+    DeviceManager *getDeviceManager();
     
     
     
@@ -93,6 +93,7 @@ private:
     ScopedPointer<ApplicationCommandManager> _commandManager;
     BoardController::Ptr _defaultBoardController;
     ScopedPointer<MainWindow> mainWindow;
+    ScopedPointer<DeviceManager> _deviceManager;
     
     void createNewProject();
     void saveProject();

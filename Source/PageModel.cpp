@@ -22,9 +22,9 @@ PageModel::PageModel(BoardController *controller, int page) : _index(page-1),  _
     
     buttons = ReferenceCountedArray<ButtonModel>();
     
-    buttons.ensureStorageAllocated(BoardController::getDefaultInstance()->getNumberOfButtons());
+    buttons.ensureStorageAllocated(_boardController->getNumberOfButtons());
     
-    for(int i=0;i < BoardController::getDefaultInstance()->getNumberOfButtons(); i++)
+    for(int i=0;i < _boardController->getNumberOfButtons(); i++)
     {
         ButtonModel *btn = new ButtonModel(page, i);
         buttons.add(btn);

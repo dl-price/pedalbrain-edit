@@ -41,8 +41,8 @@ class EpicBoardController : public BoardController
 public:
     EpicBoardController();
     const String boardModel = "TestBoardA";
-    int getNumberOfButtons() override {return 11;}
-    int getNumberOfPages() override {return 16;};
+    const int getNumberOfButtons() override {return 11;}
+    const int getNumberOfPages() override {return 16;};
     PedalView *createView() override;
     //void initFromNothing() override { BoardController::initFromNothing();};
 };

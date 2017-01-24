@@ -48,7 +48,7 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)
     Value _name;
     int _index;
-    const BoardController *_boardController;
+    BoardController *_boardController;
 };
 
 

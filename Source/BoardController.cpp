@@ -53,10 +53,7 @@ void BoardController::init()
         devices.add(new Device());
     }
     
-    for(int i=0; i<BoardController::listeners.size();i++ )
-    {
-        BoardController::listeners[i]->boardControllerChanged();
-    }
+   
 
 }
 

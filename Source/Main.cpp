@@ -14,6 +14,7 @@
 #include "PedalEdit.h"
 #include "BoardController.h"
 #include "BoardTypes/EpicBoard.h"
+#include "DeviceManager.h"
 
 
 
@@ -26,6 +27,7 @@
             Desktop::getInstance().setOrientationsEnabled(12);
         }
         
+        _deviceManager = new DeviceManager();
         mainWindow = new MainWindow (getApplicationName());
         
     }
@@ -253,14 +255,24 @@ void pedalbraineditApplication::connectToBoard()
     
 }
 
-void pedalbraineditApplication::setDefaultBoardController(BoardController::Ptr &newCtrl)
+void pedalbraineditApplication::setDefaultBoardController(BoardController *newCtrl)
 {
     _defaultBoardController = newCtrl;
+    
+    for(int i=0; i<BoardController::listeners.size();i++ )
+    {
+        BoardController::listeners[i]->boardControllerChanged();
+    }
 }
 
-BoardController::Ptr pedalbraineditApplication::getDefaultBoardController()
+BoardController *pedalbraineditApplication::getDefaultBoardController()
 {
     return _defaultBoardController;
+}
+
+DeviceManager *pedalbraineditApplication::getDeviceManager()
+{
+    return _deviceManager;
 }
 
 
