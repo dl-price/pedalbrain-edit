@@ -11,13 +11,15 @@
 #ifndef BUTTONCOMPONENT_H_INCLUDED
 #define BUTTONCOMPONENT_H_INCLUDED
 
+class ButtonComponent;
+
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalViewComponents.h"
 
 //==============================================================================
 /*
 */
-class ButtonComponent    : public PedalViewComponent
+class ButtonComponent : public Component
 {
 public:
     ButtonComponent();

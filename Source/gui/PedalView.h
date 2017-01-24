@@ -15,6 +15,7 @@
 class PedalView;
 #include "PedalViewComponents.h"
 #include "../BoardController.h"
+#include "ButtonComponent.h"
 
 //#include "../includes.h"
 
@@ -34,6 +35,9 @@ public:
     int getPreset();
     void setPreset(int i);
     virtual void init() = 0;
+    
+    Array<ButtonComponent*> buttonComponents;
+    Array<Label*> labelComponents;
 
 private:
     int _viewingPage = 1;

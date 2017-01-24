@@ -19,7 +19,7 @@ ButtonComponent::ButtonComponent()
 
 }
 
-ButtonComponent::ButtonComponent(int newId) : PedalViewComponent(newId)
+ButtonComponent::ButtonComponent(int newId)
 {
     
 }

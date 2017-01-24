@@ -50,7 +50,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     void mouseDoubleClick (const MouseEvent& event) override;
     void init() override;
-    Array<ButtonComponent*> buttonComponents;
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -86,6 +86,17 @@ private:
     ScopedPointer<ButtonComponent> button7;
     ScopedPointer<LedComponent> component22;
     ScopedPointer<LedComponent> component23;
+    ScopedPointer<Label> buttonLabel1;
+    ScopedPointer<Label> buttonLabel2;
+    ScopedPointer<Label> buttonLabel3;
+    ScopedPointer<Label> buttonLabel4;
+    ScopedPointer<Label> buttonLabel5;
+    ScopedPointer<Label> buttonLabel6;
+    ScopedPointer<Label> buttonLabel7;
+    ScopedPointer<Label> buttonLabel8;
+    ScopedPointer<Label> buttonLabel9;
+    ScopedPointer<Label> buttonLabel10;
+    ScopedPointer<Label> buttonLabel11;
 
 
     //==============================================================================

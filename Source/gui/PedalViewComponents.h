@@ -11,9 +11,11 @@
 #ifndef PEDALVIEWCOMPONENTS_H_INCLUDED
 #define PEDALVIEWCOMPONENTS_H_INCLUDED
 
+class PedalViewComponent;
+
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalView.h"
-class PedalViewComponent;
+
 
 
 //==============================================================================
