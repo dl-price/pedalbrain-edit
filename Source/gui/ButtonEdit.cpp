@@ -241,24 +241,20 @@ void ButtonEdit::addLedOptions(juce::ComboBox *box)
 
 void ButtonEdit::addComboBoxOptions()
 {
-    /*Off
-    Normal
-    Bank Up
-    Bank Down
-    Device PC -
-    Device PC +
-    Store
-    Page
-    Page Up
-    Page Down
-    Preset
-    Preset Up
-    Preset Down*/
     typeComboBox->clear();
     typeComboBox->addItem("Off", ButtonModel::ButtonType::Off);
     typeComboBox->addItem("Normal", ButtonModel::ButtonType::Normal);
     typeComboBox->addItem("Bank Up", ButtonModel::ButtonType::BankUp);
     typeComboBox->addItem("Bank Down", ButtonModel::ButtonType::BankDown);
+    typeComboBox->addItem("Device PC +", ButtonModel::ButtonType::DevicePCUp);
+    typeComboBox->addItem("Device PC -", ButtonModel::ButtonType::DevicePCDown);
+    typeComboBox->addItem("Store", ButtonModel::ButtonType::Store);
+    typeComboBox->addItem("Page", ButtonModel::ButtonType::Page);
+    typeComboBox->addItem("Page Up", ButtonModel::ButtonType::PageUp);
+    typeComboBox->addItem("Page Down", ButtonModel::ButtonType::PageDown);
+    typeComboBox->addItem("Preset", ButtonModel::ButtonType::Preset);
+    typeComboBox->addItem("Preset Up", ButtonModel::ButtonType::PresetUp);
+    typeComboBox->addItem("Preset Down", ButtonModel::ButtonType::PresetDown);
 }
 
 //[/MiscUserCode]
