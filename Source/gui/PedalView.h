@@ -37,13 +37,13 @@ public:
     virtual void init() = 0;
     
     Array<ButtonComponent*> buttonComponents;
-    Array<Label*> labelComponents;
 
 private:
     int _viewingPage = 1;
     int _viewingPreset = 1;
     void pageChanged();
     void presetChanged();
+    Value _showButtonsOn;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };

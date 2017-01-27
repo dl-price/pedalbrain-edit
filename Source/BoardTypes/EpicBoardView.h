@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.0
+  Created with Projucer version: 4.3.1
 
   ------------------------------------------------------------------------------
 
@@ -63,40 +63,18 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<LedComponent> component2;
     ScopedPointer<ButtonComponent> button1;
     ScopedPointer<LcdComponent> component3;
     ScopedPointer<ButtonComponent> button2;
     ScopedPointer<ButtonComponent> button3;
     ScopedPointer<ButtonComponent> button4;
     ScopedPointer<ButtonComponent> button5;
-    ScopedPointer<LedComponent> component8;
-    ScopedPointer<LedComponent> component9;
-    ScopedPointer<LedComponent> component10;
-    ScopedPointer<LedComponent> component11;
     ScopedPointer<ButtonComponent> button8;
     ScopedPointer<ButtonComponent> button9;
     ScopedPointer<ButtonComponent> button10;
     ScopedPointer<ButtonComponent> button11;
-    ScopedPointer<LedComponent> component16;
-    ScopedPointer<LedComponent> component17;
-    ScopedPointer<LedComponent> component18;
-    ScopedPointer<LedComponent> component19;
     ScopedPointer<ButtonComponent> button6;
     ScopedPointer<ButtonComponent> button7;
-    ScopedPointer<LedComponent> component22;
-    ScopedPointer<LedComponent> component23;
-    ScopedPointer<Label> buttonLabel1;
-    ScopedPointer<Label> buttonLabel2;
-    ScopedPointer<Label> buttonLabel3;
-    ScopedPointer<Label> buttonLabel4;
-    ScopedPointer<Label> buttonLabel5;
-    ScopedPointer<Label> buttonLabel6;
-    ScopedPointer<Label> buttonLabel7;
-    ScopedPointer<Label> buttonLabel8;
-    ScopedPointer<Label> buttonLabel9;
-    ScopedPointer<Label> buttonLabel10;
-    ScopedPointer<Label> buttonLabel11;
 
 
     //==============================================================================

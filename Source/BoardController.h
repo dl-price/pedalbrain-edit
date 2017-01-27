@@ -102,7 +102,7 @@ public:
     File getProjectDirectory();
     void setProjectDirectory(File newDirectory);
     static void deleteDefaultInstance();
-    virtual bool ledIsRgbForIndex(int led) { return false;};
+    virtual bool ledIsRgbForIndex(int led) { return true;};
     void loadFromFile();
     void saveToFile();
     

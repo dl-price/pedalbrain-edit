@@ -16,6 +16,12 @@
 ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPage), _index(index)
 {
     _boardController = parentPage->getBoardController();
+    
+    ledOn.addListener(this);
+    ledOff.addListener(this);
+    
+    _onColor = new Value();
+    _offColor = new Value();
 }
 
 void ButtonModel::sendToBoard()
@@ -59,6 +65,57 @@ File ButtonModel::getFile()
     File file = _boardController->getProjectDirectory().getChildFile("buttons/p" + String(_pageModel->getIndex()) + "/" + String(_index) + ".txt");
     file.getParentDirectory().createDirectory();
     return file;
+}
+
+void ButtonModel::valueChanged(juce::Value &value)
+{
+    if(value.refersToSameSourceAs(ledOn))
+    {
+        _onColor->setValue(convertColorToString((ButtonModel::LedColor)(int)ledOn.getValue()));
+    }
+    if(value.refersToSameSourceAs(ledOff))
+    {
+        _offColor->setValue(convertColorToString((ButtonModel::LedColor)(int)ledOff.getValue()));
+    }
+}
+
+String ButtonModel::convertColorToString(ButtonModel::LedColor color)
+{
+    Colour newColor;
+    if(color == LedColor::Black)
+    {
+        newColor = Colours::black;
+    }
+    else if (color==LedColor::Blue)
+    {
+        newColor = Colours::blue;
+    }
+    else if (color == LedColor::Red)
+    {
+        newColor = Colours::red;
+    }
+    else if(color ==  LedColor::Cyan)
+    {
+        newColor = Colours::cyan;
+    }
+    else if(color== LedColor::Green)
+    {
+        newColor = Colours::green;
+    }
+    else if(color == LedColor::Purple)
+    {
+        newColor = Colours::purple;
+    }
+    else if(color == LedColor::White)
+    {
+        newColor = Colours::white;
+    }
+    else if(color == LedColor::Yellow)
+    {
+        newColor = Colours::yellow;
+    }
+    
+    return newColor.toString();
 }
 
 

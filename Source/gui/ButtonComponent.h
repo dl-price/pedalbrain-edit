@@ -19,7 +19,7 @@ class ButtonComponent;
 //==============================================================================
 /*
 */
-class ButtonComponent : public Component
+class ButtonComponent : public Component, public ValueListener
 {
 public:
     ButtonComponent();
@@ -28,9 +28,15 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    Value &getLabelValue();
+    ScopedPointer<Value> _colorValue;
+    void valueChanged(Value &value) override;
+    void mouseDoubleClick(const MouseEvent &event) override;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ButtonComponent)
+    ScopedPointer<Label> _label;
+    
 };
 
 

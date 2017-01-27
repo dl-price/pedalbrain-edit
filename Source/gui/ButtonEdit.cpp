@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.0
+  Created with Projucer version: 4.3.1
 
   ------------------------------------------------------------------------------
 
@@ -283,14 +283,14 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="230R 50R 200 24" buttonText="Close"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GROUPCOMPONENT name="new group" id="ed7339e39e40b2a2" memberName="mainGroup"
-                  virtualName="" explicitFocusOrder="0" pos="20 20 47.994% 216"
+                  virtualName="" explicitFocusOrder="0" pos="20 20 47.872% 216"
                   title="Main Settings"/>
   <COMBOBOX name="new combo box" id="dc30121a21934289" memberName="typeComboBox"
             virtualName="" explicitFocusOrder="0" pos="40 20 40M 24" posRelativeY="ed7339e39e40b2a2"
             posRelativeW="ed7339e39e40b2a2" editable="0" layout="33" items=""
             textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <GROUPCOMPONENT name="new group" id="a08e5079e3d1891d" memberName="displayGroup"
-                  virtualName="" explicitFocusOrder="0" pos="20Rr 20 47.994% 216"
+                  virtualName="" explicitFocusOrder="0" pos="20Rr 20 47.872% 216"
                   title="Display"/>
   <TEXTEDITOR name="new text editor" id="812811b0ef74240a" memberName="buttonName"
               virtualName="" explicitFocusOrder="0" pos="20 20 40M 24" posRelativeX="a08e5079e3d1891d"

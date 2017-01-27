@@ -136,10 +136,6 @@ void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
     pedalView->setPage(comboBoxThatHasChanged->getSelectedId());
         //pageNameEditor->setText(BoardController::getDefaultInstance()->getPage(pedalView->getPage())->getName());
         pageNameEditor->getTextValue().referTo(BoardController::getDefaultInstance()->getPage(pedalView->getPage())->getName());
-        for(int i=0; i < appObject->getDefaultBoardController()->getPage(pedalView->getPage())->buttons.size(); i++)
-        {
-            pedalView->labelComponents[i]->getTextValue().referTo( appObject->getDefaultBoardController()->getPage(pedalView->getPage())->buttons[i]->name);
-        }
     }
 }
 

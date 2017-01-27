@@ -11,6 +11,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalView.h"
 #include "../includes.h"
+#include "Macros.h"
 
 
 //==============================================================================
@@ -27,6 +28,8 @@ PedalView::PedalView()
         addAndMakeVisible(newCell);
         
     }*/
+    
+    _showButtonsOn = true;
 
 }
 
@@ -69,6 +72,21 @@ void PedalView::resized()
 void PedalView::pageChanged()
 {
     Logger::outputDebugString(String(_viewingPage));
+    
+    for(int i=0; i < appObject->getDefaultBoardController()->getPage(getPage())->buttons.size(); i++)
+    {
+        buttonComponents[i]->getLabelValue().referTo( appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->name);
+        if(_showButtonsOn.getValue())
+        {
+            buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_onColor);
+        }
+        else
+        {
+            buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_offColor);
+        }
+        
+    }
+    repaint();
 }
 
 void PedalView::presetChanged()

@@ -20,7 +20,7 @@ class ButtonModel;
 class ComponentModel
 {
 };
-class ButtonModel : public SaveableSysExObject
+class ButtonModel : public SaveableSysExObject, ValueListener
 {
 public:
     
@@ -64,10 +64,16 @@ public:
     void updateFromJson(DynamicObject::Ptr obj)override;
 
     File getFile() override;
+    void valueChanged(Value &value);
+    
+    ScopedPointer< Value> _offColor;
+    ScopedPointer<Value> _onColor;
 private:
     BoardController *_boardController;
     PageModel *_pageModel;
     int _index;
+    
+    String convertColorToString(LedColor color);
     
 };
 
