@@ -68,6 +68,8 @@ public:
     
     ScopedPointer< Value> _offColor;
     ScopedPointer<Value> _onColor;
+    
+    static void sysexReceived(DynamicObject::Ptr obj);
 private:
     BoardController *_boardController;
     PageModel *_pageModel;

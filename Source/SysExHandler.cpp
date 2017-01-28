@@ -81,6 +81,14 @@ void SysExHandler::sysexReceived(DynamicObject::Ptr objReceived)
         {
             Device::sysexReceived(objReceived);
         }
+        else if(send == "button")
+        {
+            ButtonModel::sysexReceived(objReceived);
+        }
+        else if(send == "xLog")
+        {
+            Logger::outputDebugString("PBrainDbg: " + objReceived->getProperty("message").toString());
+        }
     }
     
 }

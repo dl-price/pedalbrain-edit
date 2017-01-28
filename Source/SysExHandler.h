@@ -42,6 +42,7 @@ public:
     void sendDevice(ReferenceCountedObjectPtr<Device> device);
     void sendPage(PageModel *page);
     void requestAllParameters();
+    //void sendAllParameters();
     
 private:
     ScopedPointer< MidiInput> usbInput;

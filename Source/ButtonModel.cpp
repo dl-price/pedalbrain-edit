@@ -22,6 +22,12 @@ ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPa
     
     _onColor = new Value();
     _offColor = new Value();
+    
+    ledOn.setValue((int)LedColor::White);
+    ledOff.setValue((int)LedColor::Black);
+    buttonType.setValue(ButtonType::Off);
+    label.setValue(String::empty);
+    name.setValue(String::empty);
 }
 
 void ButtonModel::sendToBoard()
@@ -29,7 +35,7 @@ void ButtonModel::sendToBoard()
     ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     
     message->setProperty("send", "button");
-    message->setProperty("model", var(this));
+    message->setProperty("model", var(toJson()));
     
     BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
 }
@@ -42,6 +48,7 @@ int ButtonModel::getIndex()
 DynamicObject::Ptr ButtonModel::toJson()
 {
     DynamicObject::Ptr obj = new DynamicObject();
+    obj->setProperty("pageIndex", _pageModel->getIndex());
     obj->setProperty("index", _index);
     obj->setProperty("name", name.getValue());
     obj->setProperty("label", label.getValue());
@@ -53,6 +60,7 @@ DynamicObject::Ptr ButtonModel::toJson()
 }
 void ButtonModel::updateFromJson(DynamicObject::Ptr obj)
 {
+    Logger::outputDebugString(obj->getProperty("name"));
     name.setValue(obj->getProperty("name"));
     label.setValue(obj->getProperty("label"));
     ledOn.setValue(obj->getProperty("ledOn"));
@@ -116,6 +124,16 @@ String ButtonModel::convertColorToString(ButtonModel::LedColor color)
     }
     
     return newColor.toString();
+}
+
+void ButtonModel::sysexReceived(DynamicObject::Ptr obj)
+{
+    DynamicObject::Ptr obj2 = obj->getProperty("model").getDynamicObject() ;
+    
+    PageModel *page = BoardController::getDefaultInstance()->pages[obj2->getProperty("pageIndex")];
+    ButtonModel *btn = page->buttons[obj2->getProperty("index")];
+    btn->updateFromJson(obj2);
+    
 }
 
 

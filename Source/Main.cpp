@@ -41,6 +41,8 @@
         _deviceManager = new DeviceManager();
         mainWindow = new MainWindow (getApplicationName());
         
+        if(autoload)
+        {
         if(_appProperties->getUserSettings()->containsKey("recentProject"))
         {
             BoardController *ctrl = new EpicBoardController();
@@ -48,6 +50,7 @@
             ctrl->setProjectDirectory(File(_appProperties->getUserSettings()->getValue("recentProject")));
             ctrl->loadFromFile();
             setDefaultBoardController(ctrl);
+        }
         }
         
     }
@@ -297,6 +300,7 @@ void pedalbraineditApplication::setDefaultBoardController(BoardController *newCt
 {
     _defaultBoardController = newCtrl;
     
+    const MessageManagerLock mmlock;
     for(int i=0; i<BoardController::listeners.size();i++ )
     {
         BoardController::listeners[i]->boardControllerChanged();
