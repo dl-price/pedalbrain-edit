@@ -29,7 +29,9 @@ PedalView::PedalView()
         
     }*/
     
-    _showButtonsOn = true;
+    _showButtonsOn = false;
+    _showButtonsOff = false;
+    _showAttachedState = true;
 
 }
 
@@ -80,9 +82,12 @@ void PedalView::pageChanged()
         {
             buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_onColor);
         }
-        else
+        else if(_showButtonsOff.getValue())
         {
             buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_offColor);
+        }
+        else{
+            buttonComponents[i]->_colorValue->setValue(Colours::yellow.toString());
         }
         
     }

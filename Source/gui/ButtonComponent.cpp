@@ -32,6 +32,7 @@ ButtonComponent::ButtonComponent(int newId)
     //_label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
     
     _colorValue = new Value();
+    _state = new Value();
     
     _colorValue->addListener(this);
 }

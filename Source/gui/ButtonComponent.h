@@ -32,6 +32,7 @@ public:
     ScopedPointer<Value> _colorValue;
     void valueChanged(Value &value) override;
     void mouseDoubleClick(const MouseEvent &event) override;
+    ScopedPointer<Value> _state;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ButtonComponent)

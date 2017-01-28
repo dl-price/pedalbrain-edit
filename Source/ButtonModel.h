@@ -68,6 +68,7 @@ public:
     
     ScopedPointer< Value> _offColor;
     ScopedPointer<Value> _onColor;
+    ScopedPointer<Value> _state;
     
     static void sysexReceived(DynamicObject::Ptr obj);
 private:

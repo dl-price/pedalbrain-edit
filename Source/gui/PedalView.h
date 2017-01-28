@@ -44,6 +44,8 @@ private:
     void pageChanged();
     void presetChanged();
     Value _showButtonsOn;
+    Value _showButtonsOff;
+    Value _showAttachedState;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };
