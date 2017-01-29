@@ -34,6 +34,7 @@ public:
     ScopedPointer<Value> _colorValue;
     void valueChanged(Value &value) override;
     void mouseDoubleClick(const MouseEvent &event) override;
+    void mouseDown(const MouseEvent &event) override;
     Value _state;
     PedalView &getPedalView();
     ButtonModel *getButtonModel();

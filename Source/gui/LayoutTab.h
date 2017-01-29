@@ -35,6 +35,8 @@ public:
     void editButtonOnDoubleClick(bool val);
     bool showPageChangeInterface(bool val = true);
     bool showingPageChangeInterface();
+    bool showPageName(bool val=true);
+    bool showingPageName();
     
     Value &getButtonClickControlsBoard();
     PedalView *getPedalView();
@@ -51,6 +53,7 @@ private:
     
     Value _buttonClickControlsBoard;
     Value _showPageChangeInterface;
+    Value _showPageName;
     
     void changePedalView(PedalView *newView);
     

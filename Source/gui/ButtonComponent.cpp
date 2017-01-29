@@ -29,6 +29,8 @@ ButtonComponent::ButtonComponent(int newId)
     _label->setFont (Font (15.00f, Font::plain));
     _label->setJustificationType (Justification::centredLeft);
     _label->setEditable (false, false, false);
+    _label->setInterceptsMouseClicks(false, false);
+
     //_label->setColour (TextEditor::textColourId, Colours::black);
     //_label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
     
@@ -120,10 +122,7 @@ void ButtonComponent::mouseDoubleClick(const juce::MouseEvent &event)
     val->setValue(!val->getValue());
     valueChanged(_state);*/
     
-    if(getPedalView().buttonClickControlsBoard() )
-    {
-    _state.setValue(!_state.getValue());
-    }
+    
 
     
    // appObject->getDefaultBoardController()->buttonStates[getPedalView().getPageIndex()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->setValue(!(appObject->getDefaultBoardController()->buttonStates[getPage()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->getValue()));
@@ -149,4 +148,12 @@ ButtonModel *ButtonComponent::getButtonModel()
 {
     return appObject->getDefaultBoardController()->getPageForIndex(getPedalView().getPageIndex())->buttons[getPedalView().buttonComponents.indexOf(this)];
     
+}
+
+void ButtonComponent::mouseDown(const juce::MouseEvent &event)
+{
+    if(getPedalView().buttonClickControlsBoard() )
+    {
+        _state.setValue(!_state.getValue());
+    }
 }

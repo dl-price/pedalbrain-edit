@@ -14,7 +14,7 @@
 #include "Macros.h"
 
 //==============================================================================
-PageModel::PageModel(BoardController *controller, int page) : _index(page-1),  _boardController(controller)
+PageModel::PageModel(BoardController *controller, int pageIndex) : _index(pageIndex),  _boardController(controller)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.

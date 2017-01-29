@@ -30,10 +30,13 @@ PedalEdit::PedalEdit()
     layoutTab->getButtonClickControlsBoard().setValue(false);
     layoutTab->getPedalView()->showButtonsOn(true);
     layoutTab->showPageChangeInterface();
+    layoutTab->showPageName();
+    
     liveTab->getPedalView()->editButtonOnDoubleClick(false);
     liveTab->getButtonClickControlsBoard().setValue(true);
     liveTab->getPedalView()->showAttachedButtonState(true);
     liveTab->showPageChangeInterface(false);
+    liveTab->showPageName(false);
     
     addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
     superTabComponent->addTab("Global", juce::Colours::blue, globalTab, false);

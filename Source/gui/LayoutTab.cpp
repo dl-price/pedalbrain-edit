@@ -21,6 +21,7 @@ LayoutTab::LayoutTab()
     // initialise any special settings that your component needs.
     
     _showPageChangeInterface.addListener(this);
+    _showPageName.addListener(this);
     
     pageUpButton = new TextButton();
     pageUpButton->setButtonText("Page Up");
@@ -37,10 +38,10 @@ LayoutTab::LayoutTab()
     pageCombo->addListener(this);
     
     
-    addAndMakeVisible(pageNameLabel = new Label() );
+    pageNameLabel = new Label() ;
     pageNameLabel->setText("Page Name", NotificationType::dontSendNotification);
     
-    addAndMakeVisible(pageNameEditor = new TextEditor());
+    pageNameEditor = new TextEditor();
     
     BoardController::addListener(this);
     pageNameEditor->addListener(this);
@@ -85,10 +86,7 @@ void LayoutTab::resized()
     
     int drawY = (getHeight() - drawHeight)/2;
     
-    if(pedalView)
-    {
-    pedalView->setBounds(Rectangle<int>(20,drawY,drawWidth,drawHeight));
-    }
+    
     
     if(showingPageChangeInterface() && pageDownButton->getParentComponent() != this)
     {
@@ -112,9 +110,34 @@ void LayoutTab::resized()
         removeChildComponent(pageUpButton);
         removeChildComponent(pageCombo);
     }
+    if(showingPageName() && pageNameEditor->getParentComponent() != this)
+    {
+        addAndMakeVisible(pageNameLabel);
+        addAndMakeVisible(pageNameEditor);
+    }
+    if(showingPageName())
+    {
     pageNameLabel->setBounds(pageUpButton->getX()+pageUpButton->getWidth()+20, 20, 100, 24);
     pageNameEditor->setBounds(pageNameLabel->getX()+pageNameLabel->getWidth()+20, 20, 200, 24);
-
+    }
+    if(!showingPageName() && pageNameEditor->getParentComponent() == this)
+    {
+        removeChildComponent(pageNameEditor);
+        removeChildComponent(pageNameLabel);
+    }
+    if(pedalView)
+    {
+        if(showingPageName() || showingPageChangeInterface())
+        {
+        pedalView->setBounds(Rectangle<int>(20,drawY,drawWidth,drawHeight));
+        }
+        else
+        {
+            pedalView->setBounds(20, 20, drawWidth, drawHeight + 20);
+        }
+    }
+    
+    
     
 
 }
@@ -206,6 +229,17 @@ bool LayoutTab::showingPageChangeInterface()
 void LayoutTab::valueChanged(juce::Value &value)
 {
     resized();
+}
+
+bool LayoutTab::showingPageName()
+{
+    return _showPageName.getValue();
+}
+
+bool LayoutTab::showPageName(bool val)
+{
+    _showPageName = val;
+    return val;
 }
 
 

@@ -29,7 +29,7 @@ class PageModel;
 class PageModel : public ReferenceCountedObject, public SaveableSysExObject, Value::Listener
 {
 public:
-    PageModel(BoardController *controller, int page);
+    PageModel(BoardController *controller, int pageIndex);
     ~PageModel();
     OwnedArray<ButtonModel> buttons;
     void updateFromJson(DynamicObject::Ptr obj);
