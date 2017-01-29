@@ -12,6 +12,7 @@
 #include "BoardController.h"
 #include "SysExHandler.h"
 #include "PageModel.h"
+#include "Macros.h"
 
 ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPage), _index(index)
 {
@@ -128,12 +129,45 @@ String ButtonModel::convertColorToString(ButtonModel::LedColor color)
 
 void ButtonModel::sysexReceived(DynamicObject::Ptr obj)
 {
+    if(obj->getProperty("send") == "buttonState")
+    {
+        OwnedArray<Value> *page = appObject->getDefaultBoardController()->buttonStates[obj->getProperty("pageIndex")];
+        Value *btn = page->getUnchecked(obj->getProperty("buttonIndex"));
+        btn->setValue(obj->getProperty("state"));
+    }
+    if(obj->hasProperty("model"))
+    {
     DynamicObject::Ptr obj2 = obj->getProperty("model").getDynamicObject() ;
     
     PageModel *page = BoardController::getDefaultInstance()->pages[obj2->getProperty("pageIndex")];
     ButtonModel *btn = page->buttons[obj2->getProperty("index")];
     btn->updateFromJson(obj2);
+    }
     
+}
+
+void ButtonModel::sendDownToBoard()
+{
+    ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    
+    message->setProperty("send", "buttonState");
+    message->setProperty("pageIndex", _pageModel->getIndex());
+    message->setProperty("buttonIndex", _index);
+    message->setProperty("state", true);
+    
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
+}
+
+void ButtonModel::sendUpToBoard()
+{
+    ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    
+    message->setProperty("send", "buttonState");
+    message->setProperty("pageIndex", _pageModel->getIndex());
+    message->setProperty("buttonIndex", _index);
+    message->setProperty("state", false);
+    
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
 }
 
 

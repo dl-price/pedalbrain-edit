@@ -81,7 +81,7 @@ void SysExHandler::sysexReceived(DynamicObject::Ptr objReceived)
         {
             Device::sysexReceived(objReceived);
         }
-        else if(send == "button")
+        else if(send == "button" || send == "buttonState")
         {
             ButtonModel::sysexReceived(objReceived);
         }
@@ -103,12 +103,17 @@ void SysExHandler::sendPBSysex(String message)
 
 void SysExHandler::sendSysEx(DynamicObject *object)
 {
+    if(this)
+    {
     String newMessage = '}' + JSON::toString(var(object));
     
     CharPointer_UTF8 charPnt = newMessage.getCharPointer();
     
     
+    
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
+    }
+    
     
     
 }

@@ -154,6 +154,14 @@ void ButtonComponent::mouseDown(const juce::MouseEvent &event)
 {
     if(getPedalView().buttonClickControlsBoard() )
     {
-        _state.setValue(!_state.getValue());
+        getButtonModel()->sendDownToBoard();
+    }
+}
+
+void ButtonComponent::mouseUp(const juce::MouseEvent &event)
+{
+    if(getPedalView().buttonClickControlsBoard())
+    {
+        getButtonModel()->sendUpToBoard();
     }
 }
