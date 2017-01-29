@@ -20,7 +20,7 @@
 //==============================================================================
 /*
 */
-class LayoutTab    : public Component, ComboBox::Listener, ButtonListener, BoardControllerListener, TextEditorListener
+class LayoutTab    : public Component, ComboBox::Listener, ButtonListener, BoardControllerListener, TextEditorListener, ValueListener
 {
 public:
     LayoutTab();
@@ -33,9 +33,13 @@ public:
     void buttonClicked(Button *button) override;
     void textEditorTextChanged(TextEditor &editor) override;
     void editButtonOnDoubleClick(bool val);
+    bool showPageChangeInterface(bool val = true);
+    bool showingPageChangeInterface();
     
     Value &getButtonClickControlsBoard();
     PedalView *getPedalView();
+    
+    void valueChanged(Value &value);
 
 private:
     ScopedPointer<Button> pageDownButton;
@@ -46,6 +50,7 @@ private:
     ScopedPointer<PedalView> pedalView;
     
     Value _buttonClickControlsBoard;
+    Value _showPageChangeInterface;
     
     void changePedalView(PedalView *newView);
     

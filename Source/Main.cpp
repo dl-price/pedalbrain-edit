@@ -106,13 +106,12 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
             setUsingNativeTitleBar (true);
             contentComponent = new PedalEdit();
             setContentOwned (contentComponent, true);
-
-            centreWithSize (getWidth(), getHeight());
             
             setMenuBar(contentComponent);
             if (SystemStats::getOperatingSystemType() != SystemStats::OperatingSystemType::iOS) {
             setResizable(true, true);
-            setResizeLimits(1000, 700, 2000, 2000);
+            setResizeLimits(1200, 900, 2000, 2000);
+                centreWithSize (getWidth(), getHeight());
             }
             else
             {

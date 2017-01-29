@@ -20,15 +20,17 @@ LayoutTab::LayoutTab()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     
-    addAndMakeVisible(pageUpButton = new TextButton());
+    _showPageChangeInterface.addListener(this);
+    
+    pageUpButton = new TextButton();
     pageUpButton->setButtonText("Page Up");
     
-    addAndMakeVisible(pageDownButton = new TextButton() );
+    pageDownButton = new TextButton() ;
     //TextButton *child = static_cast<TextButton*>(pageDownButton.get());
     pageDownButton->setButtonText("Page Down");
     
     
-    addAndMakeVisible(pageCombo = new ComboBox());
+    pageCombo = new ComboBox();
     
     
     
@@ -88,12 +90,28 @@ void LayoutTab::resized()
     pedalView->setBounds(Rectangle<int>(20,drawY,drawWidth,drawHeight));
     }
     
+    if(showingPageChangeInterface() && pageDownButton->getParentComponent() != this)
+    {
+        addAndMakeVisible(pageDownButton);
+        addAndMakeVisible(pageCombo);
+        addAndMakeVisible(pageUpButton);
+    }
+    if(showingPageChangeInterface())
+    {
+    
     pageDownButton->setBounds(20, 20, 40, 24);
     pageDownButton->addListener(this);
     
     pageCombo->setBounds(100, 20, 100, 24);
     pageUpButton->setBounds(pageCombo->getX()+pageCombo->getWidth()+20, 20, 40, 24);
     pageUpButton->addListener(this);
+    }
+    if(!showingPageChangeInterface() && pageDownButton->getParentComponent() == this)
+    {
+        removeChildComponent(pageDownButton);
+        removeChildComponent(pageUpButton);
+        removeChildComponent(pageCombo);
+    }
     pageNameLabel->setBounds(pageUpButton->getX()+pageUpButton->getWidth()+20, 20, 100, 24);
     pageNameEditor->setBounds(pageNameLabel->getX()+pageNameLabel->getWidth()+20, 20, 200, 24);
 
@@ -171,6 +189,23 @@ void LayoutTab::changePedalView(PedalView *newView)
 PedalView *LayoutTab::getPedalView()
 {
     return pedalView;
+}
+
+bool LayoutTab::showPageChangeInterface(bool val)
+{
+    _showPageChangeInterface = val;
+    
+    return val;
+}
+
+bool LayoutTab::showingPageChangeInterface()
+{
+    return _showPageChangeInterface.getValue();
+}
+
+void LayoutTab::valueChanged(juce::Value &value)
+{
+    resized();
 }
 
 
