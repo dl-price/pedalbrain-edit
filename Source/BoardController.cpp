@@ -30,9 +30,10 @@ BoardController::BoardController()
     // initialise any special settings that your component needs.
     
     devices = ReferenceCountedArray<Device>();
-    
-    
+
     _projectDirectory = String::empty;
+    
+    
     
     
 }
@@ -40,17 +41,28 @@ BoardController::BoardController()
 void BoardController::init()
 {
     pages.ensureStorageAllocated(getNumberOfPages());
-    for (int i=1; i <= getNumberOfPages(); i++)
+    for (int i=0; i < getNumberOfPages(); i++)
     {
         PageModel *newPage = new PageModel(this, i);
         
         pages.add(newPage);
+        
+        OwnedArray<Value> *values = new OwnedArray<Value>();
+        
+        for(int i2=0;i2 < getNumberOfButtons(); i2++)
+        {
+            values->add(new Value(false) );
+        }
+        
+        buttonStates.add(values);
     }
     devices.ensureStorageAllocated(16);
     for (int i=0; i < getMaxDevices(); i++)
     {
         devices.add(new Device(this, i));
     }
+    
+    
     
    
 

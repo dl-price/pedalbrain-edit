@@ -32,6 +32,7 @@ public:
     void boardControllerChanged() override;
     void buttonClicked(Button *button) override;
     void textEditorTextChanged(TextEditor &editor) override;
+    void editButtonOnDoubleClick(bool val);
 
 private:
     ScopedPointer<Button> pageDownButton;

@@ -34,9 +34,13 @@ public:
     void setPage(int i);
     int getPreset();
     void setPreset(int i);
-    virtual void init() = 0;
+    virtual void init(){};
     
     Array<ButtonComponent*> buttonComponents;
+    void mouseDoubleClick(const MouseEvent &event) override;
+    int getPageIndex() { return getPage() - 1; }
+    bool editButtonOnDoubleClick();
+    void editButtonOnDoubleClick(bool val);
 
 private:
     int _viewingPage = 1;
@@ -46,6 +50,7 @@ private:
     Value _showButtonsOn;
     Value _showButtonsOff;
     Value _showAttachedState;
+    Value _editButtonOnDoubleClick;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };

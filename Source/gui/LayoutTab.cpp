@@ -43,6 +43,8 @@ LayoutTab::LayoutTab()
     BoardController::addListener(this);
     pageNameEditor->addListener(this);
     
+    pedalView = new PedalView();
+    
     
 
     
@@ -124,7 +126,9 @@ void LayoutTab::boardControllerChanged()
      pageCombo->addItem(String(i), i);
      }
     pageCombo->setSelectedId(1);
-    addAndMakeVisible(pedalView = BoardController::getDefaultInstance()->createView());
+    PedalView *newView = BoardController::getDefaultInstance()->createView();
+    newView->editButtonOnDoubleClick(pedalView->editButtonOnDoubleClick());
+    addAndMakeVisible(pedalView = newView);
     pageNameEditor->getTextValue().referTo(BoardController::getDefaultInstance()->getPage(1)->getName());
     resized();
 }
@@ -144,4 +148,9 @@ void LayoutTab::textEditorTextChanged(TextEditor &editor)
     /*PageModel *page = BoardController::getDefaultInstance()->getPage( pedalView->getPage() );
     page->setName(editor.getTextValue().toString());
     Logger::outputDebugString("Changed");*/
+}
+
+void LayoutTab::editButtonOnDoubleClick(bool val)
+{
+    pedalView->editButtonOnDoubleClick(val);
 }

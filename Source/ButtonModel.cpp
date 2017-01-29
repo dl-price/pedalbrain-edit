@@ -22,7 +22,6 @@ ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPa
     
     _onColor = new Value();
     _offColor = new Value();
-    _state = new Value();
     
     ledOn.setValue((int)LedColor::White);
     ledOff.setValue((int)LedColor::Black);

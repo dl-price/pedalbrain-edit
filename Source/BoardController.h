@@ -92,6 +92,7 @@ public:
     const String boardModel;
     void init();
     PageModel *getPage(int id) { return pages[id-1];};
+    PageModel *getPageForIndex(int id) { return pages[id];};
 
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
@@ -105,6 +106,8 @@ public:
     virtual bool ledIsRgbForIndex(int led) { return true;};
     void loadFromFile();
     void saveToFile();
+    
+    OwnedArray<OwnedArray<Value>> buttonStates;
     
     
     

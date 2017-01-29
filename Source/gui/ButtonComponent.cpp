@@ -10,6 +10,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ButtonComponent.h"
+#include "Macros.h"
 
 //==============================================================================
 ButtonComponent::ButtonComponent()
@@ -32,9 +33,9 @@ ButtonComponent::ButtonComponent(int newId)
     //_label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
     
     _colorValue = new Value();
-    _state = new Value();
     
     _colorValue->addListener(this);
+    _state.addListener(this);
 }
 
 ButtonComponent::~ButtonComponent()
@@ -85,14 +86,21 @@ Value &ButtonComponent::getLabelValue()
 void ButtonComponent::valueChanged(juce::Value &value)
 {
     
+
+        if(_state.getValue())
+        {
+            _colorValue->referTo(*getButtonModel()->_onColor);
+        }
+        else{
+            _colorValue->referTo(*getButtonModel()->_offColor);
+        }
+    
+    
     repaint();
 }
 
 void ButtonComponent::mouseDoubleClick(const juce::MouseEvent &event)
 {
-    if(event.eventComponent == this)
-    {
-
             /*if(component)
              {
              BoardController *contrl = BoardController::getDefaultInstance();
@@ -101,10 +109,50 @@ void ButtonComponent::mouseDoubleClick(const juce::MouseEvent &event)
              Logger::outputDebugString("Clicked page " + String(getPage()) + " button index " + String(i));
              return;
              }*/
-            BoardController *ctrl = BoardController::getDefaultInstance();
-            PageModel *page = ctrl->getPage(dynamic_cast<PedalView*>(getParentComponent())->getPage());
-            ButtonModel *btn = page->buttons[dynamic_cast<PedalView*>(getParentComponent())->buttonComponents.indexOf(this)];
-            BoardController::getDefaultInstance()->createEditWindowForButton(btn);
-        
+    
+    if(getPedalView().editButtonOnDoubleClick())
+    {
+            BoardController::getDefaultInstance()->createEditWindowForButton(getButtonModel());
     }
+    
+    /*OwnedArray<Value> *arr = appObject->getDefaultBoardController()->buttonStates[getPedalView().getPageIndex() ];
+    Value *val = arr->getUnchecked(getButtonModel()->getIndex()) ;
+    val->setValue(!val->getValue());
+    valueChanged(_state);*/
+    
+    _state.setValue(!_state.getValue());
+    
+    if(_state.getValue())
+    {
+        _colorValue->referTo(*getButtonModel()->_onColor);
+    }
+    else{
+        _colorValue->referTo(*getButtonModel()->_offColor);
+    }
+    repaint();
+
+    
+   // appObject->getDefaultBoardController()->buttonStates[getPedalView().getPageIndex()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->setValue(!(appObject->getDefaultBoardController()->buttonStates[getPage()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->getValue()));
+    
+    
+}
+
+PedalView &ButtonComponent::getPedalView()
+{
+    
+    Component *comp = this;
+    
+    while(!dynamic_cast<PedalView*>(comp))
+    {
+        comp = comp->getParentComponent();
+    }
+    
+    return *(dynamic_cast<PedalView*>(comp));
+    
+}
+
+ButtonModel *ButtonComponent::getButtonModel()
+{
+    return appObject->getDefaultBoardController()->getPageForIndex(getPedalView().getPageIndex())->buttons[getPedalView().buttonComponents.indexOf(this)];
+    
 }

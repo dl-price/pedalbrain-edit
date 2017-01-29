@@ -32,6 +32,7 @@ PedalView::PedalView()
     _showButtonsOn = false;
     _showButtonsOff = false;
     _showAttachedState = true;
+    _editButtonOnDoubleClick = true;
 
 }
 
@@ -75,7 +76,7 @@ void PedalView::pageChanged()
 {
     Logger::outputDebugString(String(_viewingPage));
     
-    for(int i=0; i < appObject->getDefaultBoardController()->getPage(getPage())->buttons.size(); i++)
+    for(int i=0; i < appObject->getDefaultBoardController()->getPageForIndex (getPageIndex())->buttons.size(); i++)
     {
         buttonComponents[i]->getLabelValue().referTo( appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->name);
         if(_showButtonsOn.getValue())
@@ -86,7 +87,23 @@ void PedalView::pageChanged()
         {
             buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_offColor);
         }
-        else{
+        else if(_showAttachedState.getValue())
+        {
+            OwnedArray<Value> *valArray = appObject->getDefaultBoardController()->buttonStates[getPageIndex()];
+            
+            Value *val = valArray->getUnchecked(i) ;
+            
+            buttonComponents[i]->_state.referTo(*val);
+            
+            if(val->getValue())
+            {
+                buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_onColor);
+            }
+            else{
+                buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_offColor);
+            }
+        }
+        else {
             buttonComponents[i]->_colorValue->setValue(Colours::yellow.toString());
         }
         
@@ -97,5 +114,25 @@ void PedalView::pageChanged()
 void PedalView::presetChanged()
 {
     
+}
+
+void PedalView::mouseDoubleClick(const MouseEvent &event)
+{
+    
+    /*if(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition())));
+    {
+        appObject->getDefaultBoardController()->buttonStates[getPage()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->setValue(!(appObject->getDefaultBoardController()->buttonStates[getPage()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->getValue()));
+        repaint();
+    }*/
+}
+
+bool PedalView::editButtonOnDoubleClick()
+{
+    return _editButtonOnDoubleClick.getValue();
+}
+
+void PedalView::editButtonOnDoubleClick(bool val)
+{
+    _editButtonOnDoubleClick.setValue(val);
 }
 

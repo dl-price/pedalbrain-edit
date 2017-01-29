@@ -44,6 +44,7 @@ protected:
     ScopedPointer<GlobalTab> globalTab;
     ScopedPointer<LayoutTab> layoutTab;
     ScopedPointer<DevicesTab> devicesTab;
+    ScopedPointer<LayoutTab> liveTab;
 
     
     private:

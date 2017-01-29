@@ -15,6 +15,8 @@ class ButtonComponent;
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PedalViewComponents.h"
+#include "ButtonModel.h"
+#include "PedalView.h"
 
 //==============================================================================
 /*
@@ -32,11 +34,14 @@ public:
     ScopedPointer<Value> _colorValue;
     void valueChanged(Value &value) override;
     void mouseDoubleClick(const MouseEvent &event) override;
-    ScopedPointer<Value> _state;
+    Value _state;
+    PedalView &getPedalView();
+    ButtonModel *getButtonModel();
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ButtonComponent)
     ScopedPointer<Label> _label;
+    
     
 };
 

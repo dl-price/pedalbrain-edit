@@ -49,7 +49,7 @@ public:
     void deleteDefaultBoardController();
     ApplicationProperties *getAppProperties();
     
-    const bool autoload = false;
+    const bool autoload = true;
     
     
     

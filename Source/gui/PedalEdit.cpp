@@ -24,11 +24,16 @@ PedalEdit::PedalEdit()
     devicesTab = new DevicesTab();
     layoutTab = new LayoutTab();
     globalTab = new GlobalTab();
+    liveTab = new LayoutTab();
+    
+    layoutTab->editButtonOnDoubleClick(true);
+    liveTab->editButtonOnDoubleClick(false);
     
     addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
     superTabComponent->addTab("Global", juce::Colours::blue, globalTab, false);
     superTabComponent->addTab("Devices", juce::Colours::green, devicesTab, false);
     superTabComponent->addTab("Layout", juce::Colours::blue, layoutTab, false);
+    superTabComponent->addTab("Live", Colours::blue, liveTab, false);
     
     setSize(600,400);
 

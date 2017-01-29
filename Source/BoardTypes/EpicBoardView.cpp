@@ -192,7 +192,7 @@ void EpicBoardView::init()
 
 void EpicBoardView::mouseDoubleClick(const MouseEvent &event)
 {
-    
+    PedalView::mouseDoubleClick(event);
 }
 //[/MiscUserCode]
 
