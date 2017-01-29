@@ -146,3 +146,11 @@ bool PedalView::buttonClickControlsBoard()
     return getLayoutTab()->getButtonClickControlsBoard().getValue();
 }
 
+void PedalView::matchOptionsTo(PedalView *otherView)
+{
+    _showButtonsOn.referTo(otherView->_showButtonsOn);
+    _showButtonsOff.referTo(otherView->_showButtonsOff);
+    _showAttachedState.referTo(otherView->_showAttachedState);
+    _editButtonOnDoubleClick.referTo(otherView->_editButtonOnDoubleClick);
+}
+

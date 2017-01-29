@@ -126,9 +126,7 @@ void LayoutTab::boardControllerChanged()
      pageCombo->addItem(String(i), i);
      }
     pageCombo->setSelectedId(1);
-    PedalView *newView = BoardController::getDefaultInstance()->createView();
-    newView->editButtonOnDoubleClick(pedalView->editButtonOnDoubleClick());
-    addAndMakeVisible(pedalView = newView);
+    changePedalView(appObject->getDefaultBoardController()->createView());
     pageNameEditor->getTextValue().referTo(BoardController::getDefaultInstance()->getPage(1)->getName());
     resized();
 }
@@ -159,3 +157,17 @@ Value &LayoutTab::getButtonClickControlsBoard()
 {
     return _buttonClickControlsBoard;
 }
+
+void LayoutTab::changePedalView(PedalView *newView)
+{
+    if(this->pedalView)
+    {
+        newView->matchOptionsTo(this->pedalView);
+    }
+    this->pedalView = newView;
+    resized();
+}
+
+
+
+

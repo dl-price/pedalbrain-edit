@@ -46,6 +46,8 @@ private:
     
     Value _buttonClickControlsBoard;
     
+    void changePedalView(PedalView *newView);
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutTab)
 };
 

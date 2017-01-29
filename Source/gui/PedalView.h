@@ -45,6 +45,8 @@ public:
     
     LayoutTab *getLayoutTab();
     bool buttonClickControlsBoard();
+    
+    void matchOptionsTo(PedalView *otherView);
 
 private:
     int _viewingPage = 1;

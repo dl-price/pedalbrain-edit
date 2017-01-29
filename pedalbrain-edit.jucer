@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="mQzrKI" name="pedalbrain-edit" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.pedalbrainedit" includeBinaryInAppConfig="1"
-              jucerVersion="4.3.0">
+              jucerVersion="4.3.1">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
       <FILE id="YfMjcO" name="Macros.h" compile="0" resource="0" file="Source/Macros.h"/>
