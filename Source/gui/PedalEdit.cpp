@@ -43,7 +43,7 @@ PedalEdit::PedalEdit()
 
 PedalEdit::~PedalEdit()
 {
-    dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->setMenuBar(NULL);
+    //dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->setMenuBar(NULL);
 }
 
 void PedalEdit::paint (Graphics& g)
