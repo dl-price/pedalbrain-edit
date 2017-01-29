@@ -136,3 +136,13 @@ void PedalView::editButtonOnDoubleClick(bool val)
     _editButtonOnDoubleClick.setValue(val);
 }
 
+LayoutTab *PedalView::getLayoutTab()
+{
+    return dynamic_cast<LayoutTab*>(getParentComponent());
+}
+
+bool PedalView::buttonClickControlsBoard()
+{
+    return getLayoutTab()->getButtonClickControlsBoard().getValue();
+}
+

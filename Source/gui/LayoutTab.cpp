@@ -154,3 +154,8 @@ void LayoutTab::editButtonOnDoubleClick(bool val)
 {
     pedalView->editButtonOnDoubleClick(val);
 }
+
+Value &LayoutTab::getButtonClickControlsBoard()
+{
+    return _buttonClickControlsBoard;
+}

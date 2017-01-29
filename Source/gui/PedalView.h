@@ -16,6 +16,7 @@ class PedalView;
 #include "PedalViewComponents.h"
 #include "../BoardController.h"
 #include "ButtonComponent.h"
+#include "LayoutTab.h"
 
 //#include "../includes.h"
 
@@ -41,6 +42,9 @@ public:
     int getPageIndex() { return getPage() - 1; }
     bool editButtonOnDoubleClick();
     void editButtonOnDoubleClick(bool val);
+    
+    LayoutTab *getLayoutTab();
+    bool buttonClickControlsBoard();
 
 private:
     int _viewingPage = 1;
@@ -51,6 +55,8 @@ private:
     Value _showButtonsOff;
     Value _showAttachedState;
     Value _editButtonOnDoubleClick;
+    
+    
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalView)
 };

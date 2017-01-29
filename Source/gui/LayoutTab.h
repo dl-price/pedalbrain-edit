@@ -33,6 +33,8 @@ public:
     void buttonClicked(Button *button) override;
     void textEditorTextChanged(TextEditor &editor) override;
     void editButtonOnDoubleClick(bool val);
+    
+    Value &getButtonClickControlsBoard();
 
 private:
     ScopedPointer<Button> pageDownButton;
@@ -41,6 +43,8 @@ private:
     ScopedPointer<Label> pageNameLabel;
     ScopedPointer<TextEditor> pageNameEditor;
     ScopedPointer<PedalView> pedalView;
+    
+    Value _buttonClickControlsBoard;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutTab)
 };

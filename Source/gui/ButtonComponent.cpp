@@ -120,16 +120,10 @@ void ButtonComponent::mouseDoubleClick(const juce::MouseEvent &event)
     val->setValue(!val->getValue());
     valueChanged(_state);*/
     
-    _state.setValue(!_state.getValue());
-    
-    if(_state.getValue())
+    if(getPedalView().buttonClickControlsBoard() )
     {
-        _colorValue->referTo(*getButtonModel()->_onColor);
+    _state.setValue(!_state.getValue());
     }
-    else{
-        _colorValue->referTo(*getButtonModel()->_offColor);
-    }
-    repaint();
 
     
    // appObject->getDefaultBoardController()->buttonStates[getPedalView().getPageIndex()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->setValue(!(appObject->getDefaultBoardController()->buttonStates[getPage()]->getUnchecked(buttonComponents.indexOf(dynamic_cast<ButtonComponent*>(event.eventComponent->getComponentAt(event.getPosition()))))->getValue()));
