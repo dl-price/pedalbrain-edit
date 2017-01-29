@@ -139,6 +139,11 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
            subclass also calls the superclass's method.
         */
 
+pedalbraineditApplication::MainWindow::~MainWindow()
+{
+    setMenuBar(nullptr);
+}
+
 void pedalbraineditApplication::MainWindow::resized()
 {
     DocumentWindow::resized();

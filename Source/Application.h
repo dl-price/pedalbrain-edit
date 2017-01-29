@@ -63,6 +63,7 @@ public:
     {
     public:
         MainWindow (String name);
+        ~MainWindow();
         
         void closeButtonPressed() override;
         
