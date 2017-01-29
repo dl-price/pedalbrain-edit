@@ -128,7 +128,6 @@ void LayoutTab::boardControllerChanged()
     pageCombo->setSelectedId(1);
     changePedalView(appObject->getDefaultBoardController()->createView());
     pageNameEditor->getTextValue().referTo(BoardController::getDefaultInstance()->getPage(1)->getName());
-    resized();
 }
 
 void LayoutTab::comboBoxChanged(juce::ComboBox *comboBoxThatHasChanged)
@@ -165,7 +164,13 @@ void LayoutTab::changePedalView(PedalView *newView)
         newView->matchOptionsTo(this->pedalView);
     }
     this->pedalView = newView;
+    addAndMakeVisible(this->pedalView);
     resized();
+}
+
+PedalView *LayoutTab::getPedalView()
+{
+    return pedalView;
 }
 
 

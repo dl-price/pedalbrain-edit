@@ -29,10 +29,8 @@ PedalView::PedalView()
         
     }*/
     
-    _showButtonsOn = false;
-    _showButtonsOff = false;
-    _showAttachedState = true;
-    _editButtonOnDoubleClick = true;
+    _showButtonsOff = true;
+    _editButtonOnDoubleClick = false;
 
 }
 
@@ -152,5 +150,59 @@ void PedalView::matchOptionsTo(PedalView *otherView)
     _showButtonsOff.referTo(otherView->_showButtonsOff);
     _showAttachedState.referTo(otherView->_showAttachedState);
     _editButtonOnDoubleClick.referTo(otherView->_editButtonOnDoubleClick);
+}
+
+bool PedalView::showAttachedButtonState()
+{
+    return _showAttachedState.getValue();
+}
+
+void PedalView::showAttachedButtonState(bool val)
+{
+    if(val)
+    {
+        _showAttachedState.setValue(true);
+        _showButtonsOn.setValue(false);
+        _showButtonsOff.setValue(false);
+    }
+    else {
+        _showAttachedState.setValue(false);
+    }
+}
+
+bool PedalView::showButtonsOn()
+{
+    return _showButtonsOn.getValue();
+}
+
+void PedalView::showButtonsOn(bool val)
+{
+    if(val)
+    {
+        _showButtonsOn.setValue(true);
+        _showButtonsOff.setValue(false);
+        _showAttachedState.setValue(false);
+    }
+    else {
+        _showButtonsOn.setValue(false);
+    }
+}
+
+bool PedalView::showButtonsOff()
+{
+    return _showButtonsOff.getValue();
+}
+
+void PedalView::showButtonsOff(bool val)
+{
+    if (val)
+    {
+        _showButtonsOff.setValue(true);
+        _showButtonsOn.setValue(false);
+        _showAttachedState.setValue(false);
+    }
+    else{
+        _showButtonsOff.setValue(false);
+    }
 }
 

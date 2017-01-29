@@ -35,6 +35,7 @@ public:
     void editButtonOnDoubleClick(bool val);
     
     Value &getButtonClickControlsBoard();
+    PedalView *getPedalView();
 
 private:
     ScopedPointer<Button> pageDownButton;

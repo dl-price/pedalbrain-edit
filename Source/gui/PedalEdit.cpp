@@ -26,10 +26,12 @@ PedalEdit::PedalEdit()
     globalTab = new GlobalTab();
     liveTab = new LayoutTab();
     
-    layoutTab->editButtonOnDoubleClick(true);
+    layoutTab->getPedalView()->editButtonOnDoubleClick(true);
     layoutTab->getButtonClickControlsBoard().setValue(false);
-    liveTab->editButtonOnDoubleClick(false);
+    layoutTab->getPedalView()->showButtonsOn(true);
+    liveTab->getPedalView()->editButtonOnDoubleClick(false);
     liveTab->getButtonClickControlsBoard().setValue(true);
+    liveTab->getPedalView()->showAttachedButtonState(true);
     
     addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
     superTabComponent->addTab("Global", juce::Colours::blue, globalTab, false);

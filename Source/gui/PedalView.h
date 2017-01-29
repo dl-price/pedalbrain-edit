@@ -42,9 +42,17 @@ public:
     int getPageIndex() { return getPage() - 1; }
     bool editButtonOnDoubleClick();
     void editButtonOnDoubleClick(bool val);
+    bool buttonClickControlsBoard();
+    //void buttonClickControlsBoard(bool val);
+    bool showAttachedButtonState();
+    void showAttachedButtonState(bool val);
+    bool showButtonsOn();
+    void showButtonsOn(bool val);
+    bool showButtonsOff();
+    void showButtonsOff(bool val);
     
     LayoutTab *getLayoutTab();
-    bool buttonClickControlsBoard();
+    
     
     void matchOptionsTo(PedalView *otherView);
 
