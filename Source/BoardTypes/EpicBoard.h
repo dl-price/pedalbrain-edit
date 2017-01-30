@@ -43,6 +43,8 @@ public:
     const String boardModel = "TestBoardA";
     const int getNumberOfButtons() override {return 11;}
     const int getNumberOfPages() override {return 15;};
+    int getMaxAudioLoops() override { return 10;};
+    DynamicObject::Ptr getAudioLoopFeaturesForIndex(int i) override;
     PedalView *createView() override;
     //void initFromNothing() override { BoardController::initFromNothing();};
 };

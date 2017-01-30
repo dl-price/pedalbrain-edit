@@ -14,6 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
 #include "DevicesTab.h"
+#include "AudioFeaturesGroup.h"
 
 //==============================================================================
 /*
@@ -45,6 +46,7 @@ protected:
     ScopedPointer<LayoutTab> layoutTab;
     ScopedPointer<DevicesTab> devicesTab;
     ScopedPointer<LayoutTab> liveTab;
+    ScopedPointer<AudioFeaturesGroup> audioTab;
 
     
     private:

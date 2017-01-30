@@ -14,6 +14,7 @@
 #include "PedalEdit.h"
 #include "GlobalTab.h"
 #include "DevicesTab.h"
+#include "AudioFeaturesGroup.h"
 
 //==============================================================================
 PedalEdit::PedalEdit()
@@ -25,6 +26,7 @@ PedalEdit::PedalEdit()
     layoutTab = new LayoutTab();
     globalTab = new GlobalTab();
     liveTab = new LayoutTab();
+    audioTab = new AudioFeaturesGroup();
     
     layoutTab->getPedalView()->editButtonOnDoubleClick(true);
     layoutTab->getButtonClickControlsBoard().setValue(false);
@@ -43,6 +45,7 @@ PedalEdit::PedalEdit()
     superTabComponent->addTab("Devices", juce::Colours::green, devicesTab, false);
     superTabComponent->addTab("Layout", juce::Colours::blue, layoutTab, false);
     superTabComponent->addTab("Live", Colours::blue, liveTab, false);
+    superTabComponent->addTab("Audio", Colours::mintcream, audioTab, false);
     
     setSize(600,400);
 

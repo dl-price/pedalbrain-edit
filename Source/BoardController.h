@@ -97,6 +97,8 @@ public:
     //static void contextMenuFinished(int ModalResult, PedalViewComponent *component, PopupMenu *menu );
     virtual void createEditWindowForButton(ButtonModel *selectedButton);
     virtual int getMaxDevices() {return 16;};
+    virtual int getMaxAudioLoops() {return 0;};
+    virtual DynamicObject::Ptr getAudioLoopFeaturesForIndex(int i) { return nullptr; };
     static void tryConnectToUsb();
     static void tryConnectToUsb(SysExHandler *handler);
     ScopedPointer<SysExHandler> sysexHandler;

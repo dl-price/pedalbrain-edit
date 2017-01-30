@@ -46,4 +46,9 @@ EpicBoardController::EpicBoardController() : BoardController()
     
 }
 
+DynamicObject::Ptr EpicBoardController::getAudioLoopFeaturesForIndex(int i)
+{
+    return new DynamicObject();
+}
+
 
