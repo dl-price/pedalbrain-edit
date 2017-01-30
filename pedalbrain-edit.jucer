@@ -21,6 +21,14 @@
         <FILE id="IG7gmH" name="EpicBoardView.h" compile="0" resource="0" file="Source/BoardTypes/EpicBoardView.h"/>
       </GROUP>
       <GROUP id="{C0CCEBD0-EE76-8C55-A8B7-7E554272C135}" name="gui">
+        <FILE id="COiHDF" name="AudioItemComponent.cpp" compile="1" resource="0"
+              file="Source/gui/AudioItemComponent.cpp"/>
+        <FILE id="TyeuHa" name="AudioItemComponent.h" compile="0" resource="0"
+              file="Source/gui/AudioItemComponent.h"/>
+        <FILE id="BAUUaZ" name="AudioFeaturesGroup.cpp" compile="1" resource="0"
+              file="Source/gui/AudioFeaturesGroup.cpp"/>
+        <FILE id="CE1s7A" name="AudioFeaturesGroup.h" compile="0" resource="0"
+              file="Source/gui/AudioFeaturesGroup.h"/>
         <GROUP id="{5A07E9D1-4A7E-0DA3-B1E4-DCEE6B22842C}" name="edit-views">
           <FILE id="BWjAl3" name="ButtonEdit.cpp" compile="1" resource="0" file="Source/gui/ButtonEdit.cpp"/>
           <FILE id="G1hYZA" name="ButtonEdit.h" compile="0" resource="0" file="Source/gui/ButtonEdit.h"/>
