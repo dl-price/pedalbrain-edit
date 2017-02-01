@@ -20,7 +20,7 @@ class ButtonModel;
 class ComponentModel
 {
 };
-class ButtonModel : public SaveableSysExObject, ValueListener
+class ButtonModel : public DynamicObject, public SaveableSysExObject, ValueListener
 {
 public:
     
