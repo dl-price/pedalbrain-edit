@@ -52,18 +52,23 @@ public:
     void selectType(int typeId);
     void addComboBoxOptions();
     void addLedOptions(ComboBox *box);
+    void refreshMainSettingsComponents();
     //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
+    
+    
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     ButtonModel *_buttonModel;
+    ScopedPointer<FlexBox> mainSettingsFlexBox;
+    OwnedArray<FlexItem> mainSettingsFlexItems;
 
 
     //[/UserVariables]

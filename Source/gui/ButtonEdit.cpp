@@ -94,6 +94,7 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
 
 
     //[UserPreSize]
+    mainSettingsFlexBox = new FlexBox();
     //[/UserPreSize]
 
     setSize (600, 400);
@@ -112,6 +113,8 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     buttonLabel->getTextValue().referTo(_buttonModel->label);
     ledOn->getSelectedIdAsValue().referTo(_buttonModel->ledOn);
     ledOff->getSelectedIdAsValue().referTo(_buttonModel->ledOff);
+    
+    refreshMainSettingsComponents();
 
     /*ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
 
@@ -170,6 +173,7 @@ void ButtonEdit::resized()
     ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
     mainSettingsHolder->setBounds (20 + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 216 - 88);
     //[UserResized] Add your own custom resize handling here..
+    mainSettingsFlexBox->performLayout(mainSettingsHolder->getBounds());
     //[/UserResized]
 }
 
@@ -203,6 +207,7 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     if (comboBoxThatHasChanged == typeComboBox)
     {
         //[UserComboBoxCode_typeComboBox] -- add your combo box handling code here..
+        refreshMainSettingsComponents();
         //[/UserComboBoxCode_typeComboBox]
     }
     else if (comboBoxThatHasChanged == ledOn)
@@ -260,6 +265,24 @@ void ButtonEdit::addComboBoxOptions()
     typeComboBox->addItem("Preset", ButtonModel::ButtonType::Preset);
     typeComboBox->addItem("Preset Up", ButtonModel::ButtonType::PresetUp);
     typeComboBox->addItem("Preset Down", ButtonModel::ButtonType::PresetDown);
+}
+
+void ButtonEdit::refreshMainSettingsComponents()
+{
+    mainSettingsFlexItems.clear();
+    
+    TextEditor *ed = new TextEditor();
+    FlexItem *flItem = new FlexItem(*ed);
+    
+    flItem->minWidth = 150;
+    flItem->minWidth = 24;
+    flItem->flexGrow = 1;
+    flItem->maxHeight = 24;
+    
+    addAndMakeVisible(ed);
+    
+    mainSettingsFlexItems.add(flItem);
+    mainSettingsFlexBox->items.add(*flItem);
 }
 
 //[/MiscUserCode]
