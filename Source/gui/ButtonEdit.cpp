@@ -129,6 +129,11 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
 ButtonEdit::~ButtonEdit()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+    for(int i=0;i< mainSettingsFlexBox->items.size();i++)
+    {
+        ScopedPointer<Component> comp = mainSettingsFlexBox->items[i].associatedComponent;
+        removeChildComponent(comp);
+    }
     //[/Destructor_pre]
 
     closeButton = nullptr;
@@ -269,7 +274,12 @@ void ButtonEdit::addComboBoxOptions()
 
 void ButtonEdit::refreshMainSettingsComponents()
 {
-    mainSettingsFlexItems.clear();
+    for(int i=0;i< mainSettingsFlexBox->items.size(); i++)
+    {
+        ScopedPointer<Component> child = mainSettingsFlexBox->items[i].associatedComponent ;
+        removeChildComponent(child);
+    }
+    mainSettingsFlexBox->items.clear();
     
     TextEditor *ed = new TextEditor();
     FlexItem *flItem = new FlexItem(*ed);
@@ -283,6 +293,8 @@ void ButtonEdit::refreshMainSettingsComponents()
     
     mainSettingsFlexItems.add(flItem);
     mainSettingsFlexBox->items.add(*flItem);
+    
+    resized();
 }
 
 //[/MiscUserCode]
