@@ -48,6 +48,8 @@ LayoutTab::LayoutTab()
     
     pedalView = new PedalView();
     
+    boardControllerChanged();
+    
     
 
     

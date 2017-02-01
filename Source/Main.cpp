@@ -15,6 +15,7 @@
 #include "BoardController.h"
 #include "BoardTypes/EpicBoard.h"
 #include "DeviceManager.h"
+#include "Macros.h"
 
 
 
@@ -104,9 +105,12 @@ pedalbraineditApplication::MainWindow::MainWindow (String name)  : DocumentWindo
             
             
             setUsingNativeTitleBar (true);
+            
+                
             contentComponent = new PedalEdit();
             setContentOwned (contentComponent, true);
-            
+        
+
             setMenuBar(contentComponent);
             if (SystemStats::getOperatingSystemType() != SystemStats::OperatingSystemType::iOS) {
             setResizable(true, true);
@@ -345,11 +349,25 @@ void pedalbraineditApplication::loadProject()
         setDefaultBoardController(ctrl);
     }
     
+    refreshMainComponent();
+    
 }
 
 ApplicationProperties *pedalbraineditApplication::getAppProperties()
 {
     return _appProperties;
+}
+
+void pedalbraineditApplication::refreshMainComponent()
+{
+    mainWindow->refreshMainComponent();
+}
+
+void pedalbraineditApplication::MainWindow::refreshMainComponent()
+{
+    contentComponent = new PedalEdit();
+    
+    setContentOwned(contentComponent, true);
 }
 
 

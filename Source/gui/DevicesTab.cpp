@@ -150,6 +150,8 @@ DevicesTab::DevicesTab ()
     presetTable->getHeader().addColumn("Preset", 1, 100);
     presetTable->getHeader().addColumn("Name", 2, 100);
     presetTable->autoSizeAllColumns();
+    
+    boardControllerChanged();
 
     //[/Constructor]
 }

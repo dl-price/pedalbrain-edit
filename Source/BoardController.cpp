@@ -232,6 +232,8 @@ void BoardController::loadFromFile()
     }
     
     appObject->getAppProperties()->getUserSettings()->setValue("recentProject", _projectDirectory.getFullPathName());
+    
+    
 }
 
 void BoardController::saveToFile()

@@ -22,7 +22,7 @@ AudioFeaturesGroup::AudioFeaturesGroup()
     
     _loopsFlex = new FlexBox();
     
-    for (int i=0; i < appObject->getDefaultBoardController()->getMaxAudioLoops(); i++)
+    /*for (int i=0; i < appObject->getDefaultBoardController()->getMaxAudioLoops(); i++)
     {
         
         FlexItem *item = new FlexItem(*new AudioItemComponent());
@@ -36,7 +36,7 @@ AudioFeaturesGroup::AudioFeaturesGroup()
         _loopsFlex->justifyContent = FlexBox::JustifyContent::center;
         _loopsFlex->alignItems = FlexBox::AlignItems::stretch;
         _loopsFlex->alignContent = FlexBox::AlignContent::stretch;
-    }
+    }*/
     
     
 

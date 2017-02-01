@@ -51,6 +51,8 @@ public:
     
     const bool autoload = true;
     
+    void refreshMainComponent();
+    
     
     
     
@@ -79,6 +81,8 @@ public:
         void resized() override;
         void addButtonEdit(ButtonEdit* newWin);
         void removeButtonEdit();
+        
+        void refreshMainComponent();
         
         
     private:

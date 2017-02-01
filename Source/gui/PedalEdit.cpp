@@ -15,12 +15,18 @@
 #include "GlobalTab.h"
 #include "DevicesTab.h"
 #include "AudioFeaturesGroup.h"
+#include "Macros.h"
 
 //==============================================================================
 PedalEdit::PedalEdit()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    
+    addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
+    
+    if(appObject->getDefaultBoardController())
+    {
     
     devicesTab = new DevicesTab();
     layoutTab = new LayoutTab();
@@ -40,12 +46,13 @@ PedalEdit::PedalEdit()
     liveTab->showPageChangeInterface(false);
     liveTab->showPageName(false);
     
-    addAndMakeVisible(superTabComponent = new TabbedComponent(TabbedButtonBar::Orientation::TabsAtTop));
+    
     superTabComponent->addTab("Global", juce::Colours::blue, globalTab, false);
     superTabComponent->addTab("Devices", juce::Colours::green, devicesTab, false);
     superTabComponent->addTab("Layout", juce::Colours::blue, layoutTab, false);
     superTabComponent->addTab("Live", Colours::blue, liveTab, false);
     superTabComponent->addTab("Audio", Colours::mintcream, audioTab, false);
+    }
     
     setSize(600,400);
 
