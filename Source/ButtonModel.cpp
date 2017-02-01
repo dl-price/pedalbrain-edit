@@ -134,6 +134,8 @@ void ButtonModel::sysexReceived(DynamicObject::Ptr obj)
         OwnedArray<Value> *page = appObject->getDefaultBoardController()->buttonStates[obj->getProperty("pageIndex")];
         Value *btn = page->getUnchecked(obj->getProperty("buttonIndex"));
         btn->setValue(obj->getProperty("state"));
+        
+        
     }
     if(obj->hasProperty("model"))
     {

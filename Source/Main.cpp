@@ -313,6 +313,8 @@ void pedalbraineditApplication::setDefaultBoardController(BoardController *newCt
     {
         BoardController::listeners[i]->boardControllerChanged();
     }
+    
+    appObject->refreshMainComponent();
 }
 
 BoardController *pedalbraineditApplication::getDefaultBoardController()
@@ -365,9 +367,13 @@ void pedalbraineditApplication::refreshMainComponent()
 
 void pedalbraineditApplication::MainWindow::refreshMainComponent()
 {
+    setMenuBar(nullptr);
+    
     contentComponent = new PedalEdit();
     
     setContentOwned(contentComponent, true);
+    
+    setMenuBar(contentComponent);
 }
 
 
