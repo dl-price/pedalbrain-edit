@@ -86,7 +86,7 @@ public:
         
         
     private:
-        ButtonEdit *btnEditComponent = 0;
+        ScopedPointer<ButtonEdit> btnEditComponent;
         ScopedPointer<PedalEdit> contentComponent;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)

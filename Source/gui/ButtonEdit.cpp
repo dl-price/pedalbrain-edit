@@ -193,7 +193,7 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
 
         if(appObject->getDefaultBoardController()->sysexHandler)
         {
-        _buttonModel->sendToBoard();
+            _buttonModel->sendToBoard();
         }
         dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->removeButtonEdit();
 
@@ -279,20 +279,39 @@ void ButtonEdit::refreshMainSettingsComponents()
         ScopedPointer<Component> child = mainSettingsFlexBox->items[i].associatedComponent ;
         removeChildComponent(child);
     }
+    
     mainSettingsFlexBox->items.clear();
     
-    TextEditor *ed = new TextEditor();
-    FlexItem *flItem = new FlexItem(*ed);
+    switch(typeComboBox->getSelectedId())
+    {
+        case ButtonModel::ButtonType::Page:
+            Label *ed = new Label();
+            ed->setText("yes", NotificationType::dontSendNotification);
+            FlexItem *flItem = new FlexItem(*ed);
+            
+            flItem->minWidth = 150;
+            flItem->minHeight = 24;
+            flItem->flexGrow = 1;
+            flItem->maxHeight = 24;
+            
+            addAndMakeVisible(ed);
+            
+            mainSettingsFlexBox->items.add(*flItem);
+            
+            TextEditor *pgEdit = new TextEditor();
+            FlexItem *flItem2 = new FlexItem(*pgEdit);
+            flItem2->minWidth = 150;
+            flItem2->minHeight = 24;
+            flItem2->maxHeight = 24;
+            flItem2->flexGrow = 3;
+            
+            addAndMakeVisible(pgEdit);
+            
+            mainSettingsFlexBox->items.add(*flItem2);
+            break;
+    }
     
-    flItem->minWidth = 150;
-    flItem->minWidth = 24;
-    flItem->flexGrow = 1;
-    flItem->maxHeight = 24;
     
-    addAndMakeVisible(ed);
-    
-    mainSettingsFlexItems.add(flItem);
-    mainSettingsFlexBox->items.add(*flItem);
     
     resized();
 }

@@ -170,8 +170,7 @@ void pedalbraineditApplication::MainWindow::removeButtonEdit()
 {
     jassert(btnEditComponent);
     removeChildComponent(btnEditComponent);
-    delete btnEditComponent;
-    btnEditComponent = 0;
+    btnEditComponent = nullptr;
 }
 
 void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
