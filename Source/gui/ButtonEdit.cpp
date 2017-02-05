@@ -263,6 +263,7 @@ void ButtonEdit::addComboBoxOptions()
     typeComboBox->addItem("Bank Down", ButtonModel::ButtonType::BankDown);
     typeComboBox->addItem("Device PC +", ButtonModel::ButtonType::DevicePCUp);
     typeComboBox->addItem("Device PC -", ButtonModel::ButtonType::DevicePCDown);
+    typeComboBox->addItem("Device PC", ButtonModel::ButtonType::DevicePC);
     typeComboBox->addItem("Store", ButtonModel::ButtonType::Store);
     typeComboBox->addItem("Page", ButtonModel::ButtonType::Page);
     typeComboBox->addItem("Page Up", ButtonModel::ButtonType::PageUp);
@@ -321,6 +322,34 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
             }
             case ButtonModel::ButtonType::DevicePCDown:
             case ButtonModel::ButtonType::DevicePCUp:
+            {
+                createAndAddFlexLabel("Device:", mainSettingsFlexBox);
+                
+                ComboBox *deviceCombo = new ComboBox();
+                deviceCombo->setTextWhenNothingSelected("No device");
+                deviceCombo->setName("mainDeviceId");
+                
+                for(int i=1; i <= appObject->getDefaultBoardController()->devices.size(); i++)
+                {
+                    if(appObject->getDefaultBoardController()->devices[i-1]->getName().toString().length())
+                    {
+                        deviceCombo->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
+                    }
+                }
+                
+                if(_buttonModel->hasProperty("mainDeviceId"))
+                {
+                    deviceCombo->setSelectedId(_buttonModel->getProperty("mainDeviceId"));
+                }
+                addAndMakeVisible(deviceCombo);
+                deviceCombo->addListener(this);
+                
+                FlexItem *flexItem = new FlexItem(*deviceCombo);
+                setupFlexItemForInput(flexItem);
+                mainSettingsFlexBox->items.add(*flexItem);
+                
+                break;
+            }
             case ButtonModel::ButtonType::DevicePC:
             {
                 createAndAddFlexLabel("Device:", mainSettingsFlexBox);
@@ -347,6 +376,8 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
                 FlexItem *flexItem = new FlexItem(*deviceCombo);
                 setupFlexItemForInput(flexItem);
                 mainSettingsFlexBox->items.add(*flexItem);
+                
+                createAndAddFlexLabel("PC Number", mainSettingsFlexBox);
                 
                 break;
             }
