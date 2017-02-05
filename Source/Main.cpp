@@ -164,6 +164,8 @@ void pedalbraineditApplication::MainWindow::addButtonEdit(ButtonEdit *newWin)
     btnEditComponent = newWin;
     juce::Component::addAndMakeVisible(btnEditComponent);
     btnEditComponent->setBoundsInset(BorderSize<int>(0,0,0,0));
+    btnEditComponent->setAlpha(0);
+    Desktop::getInstance().getAnimator().fadeIn(btnEditComponent, 250);
 }
 
 void pedalbraineditApplication::MainWindow::removeButtonEdit()
