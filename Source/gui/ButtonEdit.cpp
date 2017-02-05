@@ -129,11 +129,7 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
 ButtonEdit::~ButtonEdit()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-    for(int i=0;i< mainSettingsFlexBox->items.size();i++)
-    {
-        ScopedPointer<Component> comp = mainSettingsFlexBox->items[i].associatedComponent;
-        removeChildComponent(comp);
-    }
+    removeFlexBoxComponents(mainSettingsFlexBox);
     //[/Destructor_pre]
 
     closeButton = nullptr;
@@ -227,6 +223,10 @@ void ButtonEdit::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     }
 
     //[UsercomboBoxChanged_Post]
+    if(comboBoxThatHasChanged->getName() == "mainDeviceId")
+    {
+        _buttonModel->setProperty("mainDeviceId", comboBoxThatHasChanged->getSelectedId());
+    }
     //[/UsercomboBoxChanged_Post]
 }
 
@@ -274,46 +274,126 @@ void ButtonEdit::addComboBoxOptions()
 
 void ButtonEdit::refreshMainSettingsComponents()
 {
-    for(int i=0;i< mainSettingsFlexBox->items.size(); i++)
+    removeFlexBoxComponents(mainSettingsFlexBox);
+    
+    addFlexBoxComponents(mainSettingsFlexBox, typeComboBox->getSelectedId());
+    
+    resized();
+}
+
+void ButtonEdit::removeFlexBoxComponents(juce::FlexBox *flexBox)
+{
+    for(int i=0;i< flexBox->items.size(); i++)
     {
-        ScopedPointer<Component> child = mainSettingsFlexBox->items[i].associatedComponent ;
+        ScopedPointer<Component> child = flexBox->items[i].associatedComponent ;
         removeChildComponent(child);
     }
     
-    mainSettingsFlexBox->items.clear();
-    
-    switch(typeComboBox->getSelectedId())
+    flexBox->items.clear();
+}
+
+void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
+{
+    if(flexBox == mainSettingsFlexBox)
     {
-        case ButtonModel::ButtonType::Page:
-            Label *ed = new Label();
-            ed->setText("yes", NotificationType::dontSendNotification);
-            FlexItem *flItem = new FlexItem(*ed);
-            
-            flItem->minWidth = 150;
-            flItem->minHeight = 24;
-            flItem->flexGrow = 1;
-            flItem->maxHeight = 24;
-            
-            addAndMakeVisible(ed);
-            
-            mainSettingsFlexBox->items.add(*flItem);
-            
-            TextEditor *pgEdit = new TextEditor();
-            FlexItem *flItem2 = new FlexItem(*pgEdit);
-            flItem2->minWidth = 150;
-            flItem2->minHeight = 24;
-            flItem2->maxHeight = 24;
-            flItem2->flexGrow = 3;
-            
-            addAndMakeVisible(pgEdit);
-            
-            mainSettingsFlexBox->items.add(*flItem2);
-            break;
+        switch(type)
+        {
+            case ButtonModel::ButtonType::Page:
+            {
+                
+                createAndAddFlexLabel("Page Number:", mainSettingsFlexBox);
+                
+                TextEditor *pgEdit = new TextEditor();
+                pgEdit->setTextToShowWhenEmpty("Current", Colours::black);
+                pgEdit->setName("mainPageName");
+                if(_buttonModel->hasProperty("mainPageName"))
+                {
+                    pgEdit->setText(_buttonModel->getProperty("mainPageName"));
+                }
+                pgEdit->addListener(this);
+                addAndMakeVisible(pgEdit);
+                
+                FlexItem *flItem2 = new FlexItem(*pgEdit);
+                setupFlexItemForInput(flItem2);
+                mainSettingsFlexBox->items.add(*flItem2);
+                
+                break;
+            }
+            case ButtonModel::ButtonType::DevicePCDown:
+            case ButtonModel::ButtonType::DevicePCUp:
+            case ButtonModel::ButtonType::DevicePC:
+            {
+                createAndAddFlexLabel("Device:", mainSettingsFlexBox);
+                
+                ComboBox *deviceCombo = new ComboBox();
+                deviceCombo->setTextWhenNothingSelected("No device");
+                deviceCombo->setName("mainDeviceId");
+                
+                for(int i=1; i <= appObject->getDefaultBoardController()->devices.size(); i++)
+                {
+                    if(appObject->getDefaultBoardController()->devices[i-1]->getName().toString().length())
+                    {
+                        deviceCombo->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
+                    }
+                }
+                
+                if(_buttonModel->hasProperty("mainDeviceId"))
+                {
+                    deviceCombo->setSelectedId(_buttonModel->getProperty("mainDeviceId"));
+                }
+                addAndMakeVisible(deviceCombo);
+                deviceCombo->addListener(this);
+                
+                FlexItem *flexItem = new FlexItem(*deviceCombo);
+                setupFlexItemForInput(flexItem);
+                mainSettingsFlexBox->items.add(*flexItem);
+                
+                break;
+            }
+        }
     }
+}
+
+void ButtonEdit::setupFlexItemForInput(juce::FlexItem *flexItem)
+{
+    flexItem->minWidth = 150;
+    flexItem->minHeight = 24;
+    flexItem->maxHeight = 24;
+    flexItem->flexGrow = 3;
+}
+
+void ButtonEdit::setupFlexItemForLabel(juce::FlexItem *flexItem)
+{
+    flexItem->minWidth = 150;
+    flexItem->minHeight = 24;
+    flexItem->flexGrow = 1;
+    flexItem->maxHeight = 24;
+}
+
+void ButtonEdit::valueChanged(Value &valueChanged)
+{
     
+}
+
+void ButtonEdit::textEditorTextChanged(juce::TextEditor &editor)
+{
+    if(editor.getName() == "mainPageName")
+    {
+        _buttonModel->setProperty(editor.getName(), editor.getTextValue().toString());
+    }
+}
+
+FlexItem *ButtonEdit::createAndAddFlexLabel(juce::String labelValue, juce::FlexBox *flexBox)
+{
+    Label *ed = new Label();
+    ed->setText(labelValue, NotificationType::dontSendNotification);
+    addAndMakeVisible(ed);
     
+    FlexItem *flItem = new FlexItem(*ed);
+    setupFlexItemForLabel(flItem);
+    flexBox->items.add(*flItem);
     
-    resized();
+    return flItem;
 }
 
 //[/MiscUserCode]

@@ -40,7 +40,8 @@
 */
 class ButtonEdit  : public Component,
                     public ButtonListener,
-                    public ComboBoxListener
+                    public ComboBoxListener,
+                    public TextEditorListener
 {
 public:
     //==============================================================================
@@ -53,6 +54,9 @@ public:
     void addComboBoxOptions();
     void addLedOptions(ComboBox *box);
     void refreshMainSettingsComponents();
+    void valueChanged(Value &valueChanged);
+    void textEditorTextChanged(TextEditor &editor) override;
+    
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -69,6 +73,12 @@ private:
     ButtonModel *_buttonModel;
     ScopedPointer<FlexBox> mainSettingsFlexBox;
     OwnedArray<FlexItem> mainSettingsFlexItems;
+    
+    void removeFlexBoxComponents(FlexBox *flexBox);
+    void addFlexBoxComponents(FlexBox *flexBox, int type = 0);
+    void setupFlexItemForLabel(FlexItem *flexItem);
+    void setupFlexItemForInput(FlexItem *flexItem);
+    FlexItem *createAndAddFlexLabel(String labelValue, FlexBox *flexBox);
 
 
     //[/UserVariables]
