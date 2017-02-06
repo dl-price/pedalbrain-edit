@@ -48,7 +48,7 @@ int ButtonModel::getIndex()
 
 DynamicObject::Ptr ButtonModel::toJson()
 {
-    DynamicObject::Ptr obj = new DynamicObject();
+    DynamicObject::Ptr obj = clone();
     obj->setProperty("pageIndex", _pageModel->getIndex());
     obj->setProperty("index", _index);
     obj->setProperty("name", name.getValue());
@@ -61,6 +61,21 @@ DynamicObject::Ptr ButtonModel::toJson()
 }
 void ButtonModel::updateFromJson(DynamicObject::Ptr obj)
 {
+    NamedValueSet values = obj->getProperties();
+    for(int i=0; i < values.size(); i++)
+    {
+        // List of property names not to copy into object (they are handled later on)
+        String tmpName = values.getName(i).toString();
+        if(!(tmpName == "name" ||
+             tmpName == "label" ||
+             tmpName == "ledOn" ||
+             tmpName == "ledOff" ||
+             tmpName == "type"))
+        {
+            setProperty(tmpName, values.getValueAt(i));
+        }
+    }
+    // Handle properties that need to be dealt with differently than just copying values into DynamicObject
     Logger::outputDebugString(obj->getProperty("name"));
     name.setValue(obj->getProperty("name"));
     label.setValue(obj->getProperty("label"));
