@@ -114,6 +114,8 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     ledOn->getSelectedIdAsValue().referTo(_buttonModel->ledOn);
     ledOff->getSelectedIdAsValue().referTo(_buttonModel->ledOff);
     
+    mainSettingsFlexBox->flexWrap = FlexBox::Wrap::wrap;
+    
     refreshMainSettingsComponents();
 
     /*ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
@@ -286,8 +288,17 @@ void ButtonEdit::removeFlexBoxComponents(juce::FlexBox *flexBox)
 {
     for(int i=0;i< flexBox->items.size(); i++)
     {
+        if(flexBox->items[i].associatedFlexBox)
+        {
+            ScopedPointer<FlexBox> toDelete = flexBox->items[i].associatedFlexBox;
+            removeFlexBoxComponents(toDelete);
+        }
+        else if(flexBox->items[i].associatedComponent)
+        {
+        
         ScopedPointer<Component> child = flexBox->items[i].associatedComponent ;
         removeChildComponent(child);
+        }
     }
     
     flexBox->items.clear();
@@ -323,7 +334,9 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
             case ButtonModel::ButtonType::DevicePCDown:
             case ButtonModel::ButtonType::DevicePCUp:
             {
-                createAndAddFlexLabel("Device:", mainSettingsFlexBox);
+                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
+                
+                createAndAddFlexLabel("Device:", newBox);
                 
                 ComboBox *deviceCombo = new ComboBox();
                 deviceCombo->setTextWhenNothingSelected("No device");
@@ -346,13 +359,16 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
                 
                 FlexItem *flexItem = new FlexItem(*deviceCombo);
                 setupFlexItemForInput(flexItem);
-                mainSettingsFlexBox->items.add(*flexItem);
+                newBox->items.add(*flexItem);
                 
                 break;
             }
             case ButtonModel::ButtonType::DevicePC:
             {
-                createAndAddFlexLabel("Device:", mainSettingsFlexBox);
+                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
+                FlexBox *newBox2 = createFullWidthRowInFlexBox(mainSettingsFlexBox);
+                
+                createAndAddFlexLabel("Device:", newBox);
                 
                 ComboBox *deviceCombo = new ComboBox();
                 deviceCombo->setTextWhenNothingSelected("No device");
@@ -375,9 +391,27 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
                 
                 FlexItem *flexItem = new FlexItem(*deviceCombo);
                 setupFlexItemForInput(flexItem);
-                mainSettingsFlexBox->items.add(*flexItem);
+                newBox->items.add(*flexItem);
                 
-                createAndAddFlexLabel("PC Number", mainSettingsFlexBox);
+                createAndAddFlexLabel("PC Number", newBox2);
+                
+                
+                
+                TextEditor *noText = new TextEditor();
+                noText->setTextToShowWhenEmpty("Send nothing", Colours::black);
+                noText->setName("mainPCId");
+                
+                if(_buttonModel->hasProperty("mainPCId"))
+                {
+                    noText->setText(_buttonModel->getProperty("mainPCId"));
+                }
+                
+                addAndMakeVisible(noText);
+                noText->addListener(this);
+                
+                FlexItem *flexText = new FlexItem(*noText);
+                setupFlexItemForInput(flexText);
+                newBox2->items.add(*flexText);
                 
                 break;
             }
@@ -408,7 +442,8 @@ void ButtonEdit::valueChanged(Value &valueChanged)
 
 void ButtonEdit::textEditorTextChanged(juce::TextEditor &editor)
 {
-    if(editor.getName() == "mainPageName")
+    if(editor.getName() == "mainPageName" ||
+       editor.getName() == "mainPCId")
     {
         _buttonModel->setProperty(editor.getName(), editor.getTextValue().toString());
     }
@@ -425,6 +460,20 @@ FlexItem *ButtonEdit::createAndAddFlexLabel(juce::String labelValue, juce::FlexB
     flexBox->items.add(*flItem);
     
     return flItem;
+}
+
+FlexBox *ButtonEdit::createFullWidthRowInFlexBox(juce::FlexBox *flexBox)
+{
+    FlexBox *newBox = new FlexBox();
+    FlexItem *newItem = new FlexItem(*newBox);
+    newItem->minWidth = 450;
+    newItem->flexGrow = 1;
+    newItem->minHeight = 40;
+    newItem->maxHeight = 80;
+    
+    flexBox->items.add(*newItem);
+    
+    return newBox;
 }
 
 //[/MiscUserCode]

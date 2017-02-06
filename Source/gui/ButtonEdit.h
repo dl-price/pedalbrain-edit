@@ -79,6 +79,7 @@ private:
     void setupFlexItemForLabel(FlexItem *flexItem);
     void setupFlexItemForInput(FlexItem *flexItem);
     FlexItem *createAndAddFlexLabel(String labelValue, FlexBox *flexBox);
+    FlexBox *createFullWidthRowInFlexBox(FlexBox *flexBox);
 
 
     //[/UserVariables]
