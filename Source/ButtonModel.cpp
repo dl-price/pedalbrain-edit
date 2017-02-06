@@ -33,7 +33,7 @@ ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPa
 
 void ButtonModel::sendToBoard()
 {
-    ReferenceCountedObjectPtr< DynamicObject> message = clone();
+    ReferenceCountedObjectPtr< DynamicObject> message = new DynamicObject();
     
     message->setProperty("send", "button");
     message->setProperty("model", var(toJson()));

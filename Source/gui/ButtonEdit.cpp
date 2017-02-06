@@ -273,6 +273,8 @@ void ButtonEdit::addComboBoxOptions()
     typeComboBox->addItem("Preset", ButtonModel::ButtonType::Preset);
     typeComboBox->addItem("Preset Up", ButtonModel::ButtonType::PresetUp);
     typeComboBox->addItem("Preset Down", ButtonModel::ButtonType::PresetDown);
+    typeComboBox->addItem("Audio Loop", ButtonModel::ButtonType::AudioLoop);
+    typeComboBox->addItem("Audio Mute", ButtonModel::ButtonType::AudioMute);
 }
 
 void ButtonEdit::refreshMainSettingsComponents()
@@ -415,8 +417,54 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
                 
                 break;
             }
+            case ButtonModel::ButtonType::AudioLoop:
+            {
+                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
+                createAndAddFlexLabel("Loop Number:", newBox);
+                
+                TextEditor *textEdit = new TextEditor();
+                textEdit->setTextToShowWhenEmpty("None", Colours::black);
+                textEdit->setName("mainAudioId");
+                
+                createAndAddFlexTextEditor(textEdit, newBox);
+                
+                break;
+            }
+            case ButtonModel::ButtonType::AudioMute:
+            {
+                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
+                createAndAddFlexLabel("Mute after loop:", newBox);
+                
+                TextEditor *textEdit = new TextEditor();
+                textEdit->setTextToShowWhenEmpty("None", Colours::black);
+                textEdit->setName("mainAudioId");
+                
+                createAndAddFlexTextEditor(textEdit, newBox);
+                
+                break;
+            }
         }
     }
+}
+
+FlexItem *ButtonEdit::createAndAddFlexTextEditor(juce::TextEditor *editor, juce::FlexBox *flexBox)
+{
+    jassert(editor->getName().length());
+        // If failed then name is not already set
+    
+    if(_buttonModel->hasProperty(editor->getName()))
+    {
+        editor->setText(_buttonModel->getProperty(editor->getName()));
+    }
+    
+    addAndMakeVisible(editor);
+    editor->addListener(this);
+    
+    FlexItem *flexItem = new FlexItem(*editor);
+    setupFlexItemForInput(flexItem);
+    flexBox->items.add(*flexItem);
+    
+    return flexItem;
 }
 
 void ButtonEdit::setupFlexItemForInput(juce::FlexItem *flexItem)
@@ -442,10 +490,15 @@ void ButtonEdit::valueChanged(Value &valueChanged)
 
 void ButtonEdit::textEditorTextChanged(juce::TextEditor &editor)
 {
-    if(editor.getName() == "mainPageName" ||
-       editor.getName() == "mainPCId")
+    if(editor.getName() == "mainPageName"
+       )
     {
         _buttonModel->setProperty(editor.getName(), editor.getTextValue().toString());
+    }
+    else if(editor.getName() == "mainPCId" ||
+            editor.getName() == "mainAudioId")
+    {
+        _buttonModel->setProperty(editor.getName(), (int)editor.getTextValue().getValue());
     }
 }
 

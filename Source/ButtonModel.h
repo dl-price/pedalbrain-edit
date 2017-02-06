@@ -40,7 +40,9 @@ public:
         PageDown = 11,
         Preset = 12,
         PresetUp = 13,
-        PresetDown = 14
+        PresetDown = 14,
+        AudioLoop = 15,
+        AudioMute = 16
     };
     enum LedColor {
         White = 1,
