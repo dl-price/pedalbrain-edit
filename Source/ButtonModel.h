@@ -79,6 +79,7 @@ private:
     PageModel *_pageModel;
     int _index;
     
+    
     String convertColorToString(LedColor color);
     
 };
