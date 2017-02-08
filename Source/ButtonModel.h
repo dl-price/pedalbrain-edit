@@ -42,7 +42,8 @@ public:
         PresetUp = 13,
         PresetDown = 14,
         AudioLoop = 15,
-        AudioMute = 16
+        AudioMute = 16,
+        DeviceCC = 17
     };
     enum LedColor {
         White = 1,

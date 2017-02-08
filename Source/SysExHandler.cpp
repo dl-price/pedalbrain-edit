@@ -89,6 +89,11 @@ void SysExHandler::sysexReceived(DynamicObject::Ptr objReceived)
         {
             Logger::outputDebugString("PBrainDbg: " + objReceived->getProperty("message").toString());
         }
+        else
+        {
+            // Stop here if weird SysEx received
+            jassert(true);
+        }
     }
     
 }
