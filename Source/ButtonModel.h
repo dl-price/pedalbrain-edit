@@ -67,7 +67,7 @@ public:
     void updateFromJson(DynamicObject::Ptr obj)override;
 
     File getFile() override;
-    void valueChanged(Value &value);
+    void valueChanged(Value &value) override;
     
     ScopedPointer<Value> _offColor;
     ScopedPointer<Value> _onColor;

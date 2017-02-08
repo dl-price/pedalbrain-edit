@@ -365,6 +365,32 @@ void ButtonEdit::refreshMainSettingsComponents()
             
             break;
         }
+        case ButtonModel::ButtonType::AudioLoop:
+        {
+            flexBox = new UberFlexBox(this);
+            
+            FlexItem flexRow = flexBox->createAndAddFlexRow();
+            flexBox->createAndAddFlexLabel("Audio loop:", flexRow);
+            
+            TextEditor *text = new TextEditor();
+            text->setName("mainAudioId");
+            flexBox->createAndAddFlexInput(*text, flexRow);
+            
+            break;
+        }
+        case ButtonModel::ButtonType::AudioMute:
+        {
+            flexBox = new UberFlexBox(this);
+            
+            FlexItem flexRow = flexBox->createAndAddFlexRow();
+            flexBox->createAndAddFlexLabel("Audio loop:", flexRow);
+            
+            TextEditor *text = new TextEditor();
+            text->setName("mainAudioId");
+            flexBox->createAndAddFlexInput(*text, flexRow);
+            
+            break;
+        }
     }
     mainSettingsFlexBox = flexBox;
     
@@ -373,15 +399,15 @@ void ButtonEdit::refreshMainSettingsComponents()
 
 FlexItem &ButtonEdit::createDeviceSelectFlexRow(UberFlexBox &flexBox)
 {
-    FlexItem topBox = flexBox.createAndAddFlexRow();
-    flexBox.createAndAddFlexLabel("Device:", topBox);
+    FlexItem *topBox = &(flexBox.createAndAddFlexRow());
+    flexBox.createAndAddFlexLabel("Device:", *topBox);
     
     ComboBox *deviceCombo = new ComboBox();
     deviceCombo->setName("mainDeviceId");
     addDevicesToCombo(deviceCombo);
-    flexBox.createAndAddFlexInput(*deviceCombo, topBox);
+    flexBox.createAndAddFlexInput(*deviceCombo, *topBox);
     
-    return topBox;
+    return *topBox;
 }
 
 void ButtonEdit::addDevicesToCombo(juce::ComboBox *comboBox)
@@ -393,144 +419,6 @@ void ButtonEdit::addDevicesToCombo(juce::ComboBox *comboBox)
             comboBox->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
         }
     }
-}
-
-void ButtonEdit::removeFlexBoxComponents(juce::FlexBox *flexBox)
-{
-    for(int i=0;i< flexBox->items.size(); i++)
-    {
-        if(flexBox->items[i].associatedFlexBox)
-        {
-            ScopedPointer<FlexBox> toDelete = flexBox->items[i].associatedFlexBox;
-            removeFlexBoxComponents(toDelete);
-        }
-        else if(flexBox->items[i].associatedComponent)
-        {
-        
-        ScopedPointer<Component> child = flexBox->items[i].associatedComponent ;
-        removeChildComponent(child);
-        }
-    }
-    
-    flexBox->items.clear();
-}
-
-void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
-{
-    if(flexBox == mainSettingsFlexBox)
-    {
-        switch(type)
-        {
-            case ButtonModel::ButtonType::AudioLoop:
-            {
-                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                createAndAddFlexLabel("Loop Number:", newBox);
-                
-                TextEditor *textEdit = new TextEditor();
-                textEdit->setTextToShowWhenEmpty("None", Colours::black);
-                textEdit->setName("mainAudioId");
-                
-                createAndAddFlexTextEditor(textEdit, newBox);
-                
-                break;
-            }
-            case ButtonModel::ButtonType::AudioMute:
-            {
-                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                createAndAddFlexLabel("Mute after loop:", newBox);
-                
-                TextEditor *textEdit = new TextEditor();
-                textEdit->setTextToShowWhenEmpty("None", Colours::black);
-                textEdit->setName("mainAudioId");
-                
-                createAndAddFlexTextEditor(textEdit, newBox);
-                
-                break;
-            }
-        }
-    }
-}
-
-FlexItem *ButtonEdit::createAndAddFlexTextEditor(juce::TextEditor *editor, juce::FlexBox *flexBox)
-{
-    jassert(editor->getName().length());
-        // If failed then name is not already set
-    
-    if(_buttonModel->hasProperty(editor->getName()))
-    {
-        editor->setText(_buttonModel->getProperty(editor->getName()));
-    }
-    
-    addAndMakeVisible(editor);
-    editor->addListener(this);
-    
-    FlexItem *flexItem = new FlexItem(*editor);
-    setupFlexItemForInput(flexItem);
-    flexBox->items.add(*flexItem);
-    
-    return flexItem;
-}
-
-void ButtonEdit::setupFlexItemForInput(juce::FlexItem *flexItem)
-{
-    flexItem->minWidth = 150;
-    flexItem->minHeight = 24;
-    flexItem->maxHeight = 24;
-    flexItem->flexGrow = 3;
-}
-
-void ButtonEdit::setupFlexItemForLabel(juce::FlexItem *flexItem)
-{
-    flexItem->minWidth = 150;
-    flexItem->minHeight = 24;
-    flexItem->flexGrow = 1;
-    flexItem->maxHeight = 24;
-}
-
-void ButtonEdit::valueChanged(Value &valueChanged)
-{
-    
-}
-
-void ButtonEdit::textEditorTextChanged(juce::TextEditor &editor)
-{
-    if(editor.getName() == "mainPageName"
-       )
-    {
-        _buttonModel->setProperty(editor.getName(), editor.getTextValue().toString());
-    }
-    else if(editor.getName() == "mainPCId" ||
-            editor.getName() == "mainAudioId")
-    {
-        _buttonModel->setProperty(editor.getName(), (int)editor.getTextValue().getValue());
-    }
-}
-
-FlexItem *ButtonEdit::createAndAddFlexLabel(juce::String labelValue, juce::FlexBox *flexBox)
-{
-    Label *ed = new Label();
-    ed->setText(labelValue, NotificationType::dontSendNotification);
-    addAndMakeVisible(ed);
-    
-    FlexItem *flItem = new FlexItem(*ed);
-    setupFlexItemForLabel(flItem);
-    flexBox->items.add(*flItem);
-    
-    return flItem;
-}
-
-FlexBox *ButtonEdit::createFullWidthRowInFlexBox(juce::FlexBox *flexBox)
-{
-    FlexBox *newBox = new FlexBox();
-    FlexItem *newItem = new FlexItem(*newBox);
-    newItem->minWidth = 450;
-    newItem->flexGrow = 1;
-    newItem->minHeight = 40;
-    newItem->maxHeight = 80;
-    
-    flexBox->items.add(*newItem);
-    
-    return newBox;
 }
 
 //[/MiscUserCode]

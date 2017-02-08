@@ -41,7 +41,7 @@ public:
     Value &getButtonClickControlsBoard();
     PedalView *getPedalView();
     
-    void valueChanged(Value &value);
+    void valueChanged(Value &value) override;
 
 private:
     ScopedPointer<Button> pageDownButton;

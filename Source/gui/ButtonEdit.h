@@ -41,8 +41,7 @@
 */
 class ButtonEdit  : public Component,
                     public ButtonListener,
-                    public ComboBoxListener,
-                    public TextEditorListener
+                    public ComboBoxListener
 {
 public:
     //==============================================================================
@@ -55,8 +54,6 @@ public:
     void addComboBoxOptions();
     void addLedOptions(ComboBox *box);
     void refreshMainSettingsComponents();
-    void valueChanged(Value &valueChanged);
-    void textEditorTextChanged(TextEditor &editor) override;
     ButtonModel *_buttonModel;
     
     //[/UserMethods]

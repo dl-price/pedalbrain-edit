@@ -32,7 +32,7 @@ public:
     PageModel(BoardController *controller, int pageIndex);
     ~PageModel();
     OwnedArray<ButtonModel> buttons;
-    void updateFromJson(DynamicObject::Ptr obj);
+    void updateFromJson(DynamicObject::Ptr obj) override;
     static PageModel *createBlankPage();
     void initFromNothing();
     Value &getName(){return _name;};
