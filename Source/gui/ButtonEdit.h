@@ -24,6 +24,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ComponentEdit.h"
 #include "ButtonModel.h"
+#include "UberFlexBox.h"
 
 
 //[/Headers]
@@ -56,6 +57,7 @@ public:
     void refreshMainSettingsComponents();
     void valueChanged(Value &valueChanged);
     void textEditorTextChanged(TextEditor &editor) override;
+    ButtonModel *_buttonModel;
     
     //[/UserMethods]
 
@@ -70,9 +72,8 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    ButtonModel *_buttonModel;
-    ScopedPointer<FlexBox> mainSettingsFlexBox;
-    OwnedArray<FlexItem> mainSettingsFlexItems;
+    
+    ScopedPointer<UberFlexBox> mainSettingsFlexBox;
     
     void removeFlexBoxComponents(FlexBox *flexBox);
     void addFlexBoxComponents(FlexBox *flexBox, int type = 0);

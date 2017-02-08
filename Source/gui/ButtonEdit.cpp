@@ -20,6 +20,7 @@
 //[Headers] You can add your own extra header files here...
 #include "Application.h"
 #include "Macros.h"
+#include "../UberFlexBox.h"
 //[/Headers]
 
 #include "ButtonEdit.h"
@@ -94,7 +95,7 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
 
 
     //[UserPreSize]
-    mainSettingsFlexBox = new FlexBox();
+    mainSettingsFlexBox = nullptr;
     //[/UserPreSize]
 
     setSize (600, 400);
@@ -113,8 +114,6 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     buttonLabel->getTextValue().referTo(_buttonModel->label);
     ledOn->getSelectedIdAsValue().referTo(_buttonModel->ledOn);
     ledOff->getSelectedIdAsValue().referTo(_buttonModel->ledOff);
-    
-    mainSettingsFlexBox->flexWrap = FlexBox::Wrap::wrap;
     
     refreshMainSettingsComponents();
 
@@ -176,7 +175,10 @@ void ButtonEdit::resized()
     ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
     mainSettingsHolder->setBounds (20 + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 216 - 88);
     //[UserResized] Add your own custom resize handling here..
-    mainSettingsFlexBox->performLayout(mainSettingsHolder->getBounds());
+    if(mainSettingsFlexBox)
+    {
+        mainSettingsFlexBox->performLayout(mainSettingsHolder->getBounds());
+    }
     //[/UserResized]
 }
 
@@ -280,9 +282,30 @@ void ButtonEdit::addComboBoxOptions()
 
 void ButtonEdit::refreshMainSettingsComponents()
 {
-    removeFlexBoxComponents(mainSettingsFlexBox);
+    //removeFlexBoxComponents(mainSettingsFlexBox);
     
-    addFlexBoxComponents(mainSettingsFlexBox, typeComboBox->getSelectedId());
+    //addFlexBoxComponents(mainSettingsFlexBox, typeComboBox->getSelectedId());
+    
+    switch(typeComboBox->getSelectedId())
+    {
+        case ButtonModel::ButtonType::Page:
+        {
+            UberFlexBox *flexBox = new UberFlexBox(this);
+            
+            FlexItem row = flexBox->createAndAddFlexRow();
+            flexBox->createAndAddFlexLabel("Page Number:", row);
+            
+            TextEditor *text = new TextEditor();
+            text->setName("mainPageName");
+            flexBox->createAndAddFlexInput(*text, row);
+            
+            mainSettingsFlexBox = flexBox;
+            
+            break;
+        }
+        default:
+            mainSettingsFlexBox = nullptr;
+    }
     
     resized();
 }

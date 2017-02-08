@@ -16,16 +16,24 @@
 //==============================================================================
 /*
 */
-class UberFlexBox    : public Component
+class UberFlexBox    : public FlexBox, public TextEditorListener, public ComboBoxListener
 {
 public:
-    UberFlexBox();
+    UberFlexBox(Component *newParent);
     ~UberFlexBox();
-
-    void paint (Graphics&) override;
-    void resized() override;
+    
+    void textEditorTextChanged(TextEditor &editor) override;
+    void comboBoxChanged(ComboBox *comboBoxThatHasChanged) override;
+    
+    FlexItem &createAndAddFlexRow();
+    FlexItem &createAndAddFlexLabel(String labelValue, FlexItem &flexRow);
+    FlexItem &createAndAddFlexInput(Component &newComponent, FlexItem &flexRow);
 
 private:
+    Component *_parent;
+    
+    void removeFlexBoxComponents(FlexBox &flexBox);
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UberFlexBox)
 };
 
