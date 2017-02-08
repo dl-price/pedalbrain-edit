@@ -314,6 +314,29 @@ void ButtonEdit::refreshMainSettingsComponents()
             
             break;
         }
+        case ButtonModel::ButtonType::DevicePC:
+        {
+            flexBox = new UberFlexBox(this);
+            
+            createDeviceSelectFlexRow(*flexBox);
+            
+            FlexItem row3 = flexBox->createAndAddFlexRow();
+            FlexItem row4 = flexBox->createAndAddFlexRow();
+            
+            flexBox->createAndAddFlexLabel("PC On:", row3);
+            flexBox->createAndAddFlexLabel("PC Off:", row4);
+            
+            TextEditor *text3 = new TextEditor();
+            TextEditor *text4 = new TextEditor();
+            
+            text3->setName("mainAudioOn");
+            text4->setName("mainAudioOff");
+            
+            flexBox->createAndAddFlexInput(*text3, row3);
+            flexBox->createAndAddFlexInput(*text4, row4);
+            
+            break;
+        }
         case ButtonModel::ButtonType::DeviceCC:
         {
             flexBox = new UberFlexBox(this);
@@ -339,7 +362,6 @@ void ButtonEdit::refreshMainSettingsComponents()
             flexBox->createAndAddFlexInput(*text2, row2);
             flexBox->createAndAddFlexInput(*text3, row3);
             flexBox->createAndAddFlexInput(*text4, row4);
-            
             
             break;
         }
@@ -399,168 +421,6 @@ void ButtonEdit::addFlexBoxComponents(juce::FlexBox *flexBox, int type)
     {
         switch(type)
         {
-            case ButtonModel::ButtonType::Page:
-            {
-                
-                createAndAddFlexLabel("Page Number:", mainSettingsFlexBox);
-                
-                TextEditor *pgEdit = new TextEditor();
-                pgEdit->setTextToShowWhenEmpty("Current", Colours::black);
-                pgEdit->setName("mainPageName");
-                if(_buttonModel->hasProperty("mainPageName"))
-                {
-                    pgEdit->setText(_buttonModel->getProperty("mainPageName"));
-                }
-                pgEdit->addListener(this);
-                addAndMakeVisible(pgEdit);
-                
-                FlexItem *flItem2 = new FlexItem(*pgEdit);
-                setupFlexItemForInput(flItem2);
-                mainSettingsFlexBox->items.add(*flItem2);
-                
-                break;
-            }
-            case ButtonModel::ButtonType::DevicePCDown:
-            case ButtonModel::ButtonType::DevicePCUp:
-            {
-                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                
-                createAndAddFlexLabel("Device:", newBox);
-                
-                ComboBox *deviceCombo = new ComboBox();
-                deviceCombo->setTextWhenNothingSelected("No device");
-                deviceCombo->setName("mainDeviceId");
-                
-                for(int i=1; i <= appObject->getDefaultBoardController()->devices.size(); i++)
-                {
-                    if(appObject->getDefaultBoardController()->devices[i-1]->getName().toString().length())
-                    {
-                        deviceCombo->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
-                    }
-                }
-                
-                if(_buttonModel->hasProperty("mainDeviceId"))
-                {
-                    deviceCombo->setSelectedId(_buttonModel->getProperty("mainDeviceId"));
-                }
-                addAndMakeVisible(deviceCombo);
-                deviceCombo->addListener(this);
-                
-                FlexItem *flexItem = new FlexItem(*deviceCombo);
-                setupFlexItemForInput(flexItem);
-                newBox->items.add(*flexItem);
-                
-                break;
-            }
-            case ButtonModel::ButtonType::DevicePC:
-            {
-                FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                FlexBox *newBox2 = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                
-                createAndAddFlexLabel("Device:", newBox);
-                
-                ComboBox *deviceCombo = new ComboBox();
-                deviceCombo->setTextWhenNothingSelected("No device");
-                deviceCombo->setName("mainDeviceId");
-                
-                for(int i=1; i <= appObject->getDefaultBoardController()->devices.size(); i++)
-                {
-                    if(appObject->getDefaultBoardController()->devices[i-1]->getName().toString().length())
-                    {
-                        deviceCombo->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
-                    }
-                }
-                
-                if(_buttonModel->hasProperty("mainDeviceId"))
-                {
-                    deviceCombo->setSelectedId(_buttonModel->getProperty("mainDeviceId"));
-                }
-                addAndMakeVisible(deviceCombo);
-                deviceCombo->addListener(this);
-                
-                FlexItem *flexItem = new FlexItem(*deviceCombo);
-                setupFlexItemForInput(flexItem);
-                newBox->items.add(*flexItem);
-                
-                createAndAddFlexLabel("PC Number", newBox2);
-                
-                
-                TextEditor *noText = new TextEditor();
-                noText->setTextToShowWhenEmpty("Send nothing", Colours::black);
-                noText->setName("mainPCId");
-                
-                if(_buttonModel->hasProperty("mainPCId"))
-                {
-                    noText->setText(_buttonModel->getProperty("mainPCId"));
-                }
-                
-                addAndMakeVisible(noText);
-                noText->addListener(this);
-                
-                FlexItem *flexText = new FlexItem(*noText);
-                setupFlexItemForInput(flexText);
-                newBox2->items.add(*flexText);
-                
-                break;
-            }
-            case ButtonModel::ButtonType::DeviceCC:
-            {
-                FlexBox *deviceBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                FlexBox *ccBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                FlexBox *onBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                FlexBox *offBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
-                
-                createAndAddFlexLabel("Device:", deviceBox);
-                createAndAddFlexLabel("CC Number:", ccBox);
-                createAndAddFlexLabel("On Value:", onBox);
-                createAndAddFlexLabel("Off Value:", offBox);
-                
-                ComboBox *deviceCombo = new ComboBox();
-                deviceCombo->setTextWhenNothingSelected("No device");
-                deviceCombo->setName("mainDeviceId");
-                
-                for(int i=1; i <= appObject->getDefaultBoardController()->devices.size(); i++)
-                {
-                    if(appObject->getDefaultBoardController()->devices[i-1]->getName().toString().length())
-                    {
-                        deviceCombo->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
-                    }
-                }
-                
-                if(_buttonModel->hasProperty("mainDeviceId"))
-                {
-                    deviceCombo->setSelectedId(_buttonModel->getProperty("mainDeviceId"));
-                }
-                addAndMakeVisible(deviceCombo);
-                deviceCombo->addListener(this);
-                
-                FlexItem *flexItem = new FlexItem(*deviceCombo);
-                setupFlexItemForInput(flexItem);
-                deviceBox->items.add(*flexItem);
-                
-                TextEditor *ccText = new TextEditor();
-                TextEditor *onText = new TextEditor();
-                TextEditor *offText = new TextEditor();
-                
-                addAndMakeVisible(ccText);
-                ccText->setName("mainAudioCC");
-                addAndMakeVisible(onText);
-                onText->setName("mainAudioOn");
-                addAndMakeVisible(offText);
-                offText->setName("mainAudioOff");
-                
-                FlexItem *ccItem = createAndAddFlexTextEditor(ccText, ccBox);
-                FlexItem *onItem = createAndAddFlexTextEditor(onText, onBox);
-                FlexItem *offItem = createAndAddFlexTextEditor(offText, offBox);
-                
-                setupFlexItemForInput(ccItem);
-                setupFlexItemForInput(onItem);
-                setupFlexItemForInput(offItem);
-                
-                
-                
-                break;
-            }
             case ButtonModel::ButtonType::AudioLoop:
             {
                 FlexBox *newBox = createFullWidthRowInFlexBox(mainSettingsFlexBox);
