@@ -88,22 +88,28 @@ FlexItem &UberFlexBox::createAndAddFlexInput(juce::Component &newComponent, Flex
     // Try again
     jassert(parent);
     
+    TextEditor *textEditor = dynamic_cast<TextEditor*>(&newComponent);
+    ComboBox *comboBox = dynamic_cast<ComboBox*>(&newComponent);
+    
     if(parent->_buttonModel->hasProperty(newComponent.getName()))
     {
-        TextEditor *textEditor = dynamic_cast<TextEditor*>(&newComponent);
-        ComboBox *comboBox = dynamic_cast<ComboBox*>(&newComponent);
-        
         if(textEditor)
         {
             textEditor->setText(parent->_buttonModel->getProperty(textEditor->getName()));
-            textEditor->addListener(this);
         }
         if(comboBox)
         {
             comboBox->setSelectedId(parent->_buttonModel->getProperty(comboBox->getName()));
-            comboBox->addListener(this);
         }
-        
+    }
+    
+    if(textEditor)
+    {
+        textEditor->addListener(this);
+    }
+    else if(comboBox)
+    {
+        comboBox->addListener(this);
     }
     
     parent->addAndMakeVisible(newComponent);

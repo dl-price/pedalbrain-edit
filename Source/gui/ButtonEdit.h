@@ -82,6 +82,8 @@ private:
     FlexItem *createAndAddFlexLabel(String labelValue, FlexBox *flexBox);
     FlexItem *createAndAddFlexTextEditor(TextEditor *editor, FlexBox *flexBox);
     FlexBox *createFullWidthRowInFlexBox(FlexBox *flexBox);
+    void addDevicesToCombo(ComboBox *comboBox);
+    FlexItem &createDeviceSelectFlexRow(UberFlexBox &flexBox);
 
 
     //[/UserVariables]

@@ -130,7 +130,7 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
 ButtonEdit::~ButtonEdit()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-    removeFlexBoxComponents(mainSettingsFlexBox);
+    mainSettingsFlexBox = nullptr;
     //[/Destructor_pre]
 
     closeButton = nullptr;
@@ -286,13 +286,15 @@ void ButtonEdit::refreshMainSettingsComponents()
     
     //addFlexBoxComponents(mainSettingsFlexBox, typeComboBox->getSelectedId());
     
+    UberFlexBox *flexBox = nullptr;
+    
     switch(typeComboBox->getSelectedId())
     {
         case ButtonModel::ButtonType::Page:
         {
-            UberFlexBox *flexBox = new UberFlexBox(this);
-            
+            flexBox = new UberFlexBox(this);
             FlexItem row = flexBox->createAndAddFlexRow();
+            
             flexBox->createAndAddFlexLabel("Page Number:", row);
             
             TextEditor *text = new TextEditor();
@@ -303,11 +305,72 @@ void ButtonEdit::refreshMainSettingsComponents()
             
             break;
         }
-        default:
-            mainSettingsFlexBox = nullptr;
+        case ButtonModel::ButtonType::DevicePCUp:
+        case ButtonModel::ButtonType::DevicePCDown:
+        {
+            flexBox = new UberFlexBox(this);
+            
+            createDeviceSelectFlexRow(*flexBox);
+            
+            break;
+        }
+        case ButtonModel::ButtonType::DeviceCC:
+        {
+            flexBox = new UberFlexBox(this);
+            
+            createDeviceSelectFlexRow(*flexBox);
+            
+            FlexItem row2 = flexBox->createAndAddFlexRow();
+            FlexItem row3 = flexBox->createAndAddFlexRow();
+            FlexItem row4 = flexBox->createAndAddFlexRow();
+            
+            flexBox->createAndAddFlexLabel("CC Value:", row2);
+            flexBox->createAndAddFlexLabel("On Value:", row3);
+            flexBox->createAndAddFlexLabel("Off Value:", row4);
+            
+            TextEditor *text2 = new TextEditor();
+            TextEditor *text3 = new TextEditor();
+            TextEditor *text4 = new TextEditor();
+            
+            text2->setName("mainAudioCC");
+            text3->setName("mainAudioOn");
+            text4->setName("mainAudioOff");
+            
+            flexBox->createAndAddFlexInput(*text2, row2);
+            flexBox->createAndAddFlexInput(*text3, row3);
+            flexBox->createAndAddFlexInput(*text4, row4);
+            
+            
+            break;
+        }
     }
+    mainSettingsFlexBox = flexBox;
     
     resized();
+}
+
+FlexItem &ButtonEdit::createDeviceSelectFlexRow(UberFlexBox &flexBox)
+{
+    FlexItem topBox = flexBox.createAndAddFlexRow();
+    flexBox.createAndAddFlexLabel("Device:", topBox);
+    
+    ComboBox *deviceCombo = new ComboBox();
+    deviceCombo->setName("mainDeviceId");
+    addDevicesToCombo(deviceCombo);
+    flexBox.createAndAddFlexInput(*deviceCombo, topBox);
+    
+    return topBox;
+}
+
+void ButtonEdit::addDevicesToCombo(juce::ComboBox *comboBox)
+{
+    for(int i=1; i <= appObject->getDefaultBoardController()->devices.size(); i++)
+    {
+        if(appObject->getDefaultBoardController()->devices[i-1]->getName().toString().length())
+        {
+            comboBox->addItem(appObject->getDefaultBoardController()->devices[i-1]->getName().toString(), i);
+        }
+    }
 }
 
 void ButtonEdit::removeFlexBoxComponents(juce::FlexBox *flexBox)
