@@ -183,6 +183,7 @@ void pedalbraineditApplication::getAllCommands(Array<CommandID> &commands)
     commands.add(PedalBrainCommandTypes::saveProjectAsCmd);
     commands.add(PedalBrainCommandTypes::connectToBoardCmd);
     commands.add(PedalBrainCommandTypes::loadProjectCmd);
+    commands.add(PedalBrainCommandTypes::openTerminalCmd);
 }
 bool pedalbraineditApplication::perform (const InvocationInfo &info)
 {
@@ -212,6 +213,11 @@ bool pedalbraineditApplication::perform (const InvocationInfo &info)
     if(info.commandID == PedalBrainCommandTypes::loadProjectCmd)
     {
         loadProject();
+        return true;
+    }
+    if(info.commandID == PedalBrainCommandTypes::openTerminalCmd)
+    {
+        openTerminal();
         return true;
     }
     
@@ -254,6 +260,11 @@ void pedalbraineditApplication::getCommandInfo (CommandID commandID, Application
     if(commandID == PedalBrainCommandTypes::loadProjectCmd)
     {
         result.shortName = "Load project";
+        result.setActive(true);
+    }
+    if(commandID == PedalBrainCommandTypes::openTerminalCmd)
+    {
+        result.shortName = "Open Terminal";
         result.setActive(true);
     }
     
@@ -375,6 +386,18 @@ void pedalbraineditApplication::MainWindow::refreshMainComponent()
     setContentOwned(contentComponent, true);
     
     setMenuBar(contentComponent);
+}
+
+void pedalbraineditApplication::openTerminal()
+{
+    DialogWindow::LaunchOptions opts;
+    
+    opts.dialogTitle = "Terminal";
+    TextEditor *text = new TextEditor();
+    text->setBounds(0, 0, 500, 24);
+    opts.content.set(text, true);
+    
+    opts.launchAsync();
 }
 
 

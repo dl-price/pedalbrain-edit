@@ -97,7 +97,8 @@ public:
         saveProjectCmd = 0x2002,
         saveProjectAsCmd = 0x2003,
         connectToBoardCmd = 0x2004,
-        loadProjectCmd = 0x2005
+        loadProjectCmd = 0x2005,
+        openTerminalCmd = 0x2006
     };
     
 private:
@@ -112,6 +113,7 @@ private:
     void saveProjectAs();
     void connectToBoard();
     void loadProject();
+    void openTerminal();
 };
 
 

@@ -113,6 +113,7 @@ PopupMenu PedalEdit::getMenuForIndex(int topLevelMenuIndex, const String& menuNa
         
        
             menu.addCommandItem(manager, pedalbraineditApplication::PedalBrainCommandTypes::saveProjectAsCmd);
+            menu.addCommandItem(manager, pedalbraineditApplication::PedalBrainCommandTypes::openTerminalCmd);
         }
         
     }
