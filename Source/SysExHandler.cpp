@@ -114,7 +114,10 @@ void SysExHandler::sendSysEx(DynamicObject *object)
     
     CharPointer_UTF8 charPnt = newMessage.getCharPointer();
     
-    
+    if(charPnt.sizeInBytes() > 250)
+    {
+        // Split up SysEx
+    }
     
     usbOutput->sendMessageNow(MidiMessage::createSysExMessage(charPnt, charPnt.sizeInBytes()));
     }
