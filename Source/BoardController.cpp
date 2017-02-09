@@ -62,9 +62,6 @@ void BoardController::init()
         devices.add(new Device(this, i));
     }
     
-    
-    
-   
 
 }
 
