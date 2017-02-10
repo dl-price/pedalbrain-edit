@@ -191,10 +191,10 @@ void ButtonEdit::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_closeButton] -- add your button handler code here..
 
-        if(appObject->getDefaultBoardController()->sysexHandler)
-        {
+        //if(appObject->getDefaultBoardController()->sysexHandler)
+        //{
             _buttonModel->sendToBoard();
-        }
+        //}
         dynamic_cast<pedalbraineditApplication::MainWindow*>(ResizableWindow::getActiveTopLevelWindow())->removeButtonEdit();
 
         //[/UserButtonCode_closeButton]

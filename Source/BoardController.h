@@ -114,6 +114,7 @@ public:
     OwnedArray<OwnedArray<Value>> buttonStates;
     void setButtonState(int pageIndex, int btnIndex, bool state);
     bool getButtonState(int pageIndex, int btnIndex);
+    Value &getButtonStateAsValue(int pageIndex, int btnIndex);
     
     
     

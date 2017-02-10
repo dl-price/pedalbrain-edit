@@ -33,12 +33,21 @@ ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPa
 
 void ButtonModel::sendToBoard()
 {
-    ReferenceCountedObjectPtr< DynamicObject> message = new DynamicObject();
+    if(buttonType == ButtonModel::ButtonType::AudioLoop)
+    {
+        int i = getProperty("mainAudioId");
+        
+        Value state = appObject->getDefaultBoardController()->getButtonStateAsValue(_pageModel->getIndex(), _index);
+        Value relayState = *appObject->getDefaultBoardController()->relayStates[i];
+        state.referTo(relayState);
+    }
+    
+    /*ReferenceCountedObjectPtr< DynamicObject> message = new DynamicObject();
     
     message->setProperty("send", "button");
     message->setProperty("model", var(toJson()));
     
-    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);*/
 }
 
 int ButtonModel::getIndex()

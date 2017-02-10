@@ -273,6 +273,12 @@ bool BoardController::getButtonState(int pageIndex, int btnIndex)
     return btn.getValue();
 }
 
+Value &BoardController::getButtonStateAsValue(int pageIndex, int btnIndex)
+{
+    OwnedArray<Value> *page = buttonStates[pageIndex];
+    return *page->getUnchecked(btnIndex);
+}
+
 
 
 
