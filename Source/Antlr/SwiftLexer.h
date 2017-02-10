@@ -12,8 +12,8 @@
 class  SwiftLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, Number = 7, 
-    WS = 8
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, Decimal_literal = 5, Pure_decimal_digits = 6, 
+    WS = 7
   };
 
   SwiftLexer(antlr4::CharStream *input);

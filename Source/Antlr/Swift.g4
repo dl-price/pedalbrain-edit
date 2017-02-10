@@ -1,40 +1,42 @@
 grammar Swift;
 
-/* This will be the entry point of our parser. */
-eval
-:    additionExp
+top_level : statement* ;
+
+statement :
+literal
 ;
 
-/* Addition and subtraction have the lowest precedence. */
-additionExp
-:    multiplyExp
-( '+' multiplyExp
-| '-' multiplyExp
-)*
+// GRAMMAR OF LITERALS
+
+literal : numeric_literal | boolean_literal | nil_literal  ;
+
+numeric_literal
+: ('-')? integer_literal
+//| negate_prefix_operator? Floating_point_literal
 ;
 
-/* Multiplication and division have a higher precedence. */
-multiplyExp
-:    atomExp
-( '*' atomExp
-| '/' atomExp
-)*
+boolean_literal : 'true' | 'false' ;
+
+nil_literal : 'nil' ;
+
+// GRAMMAR OF INTEGER LITERAL
+
+integer_literal :
+Decimal_literal
+| Pure_decimal_digits
 ;
 
-/* An expression atom is the smallest part of an expression: a number. Or
-when we encounter parenthesis, we're making a recursive call back to the
-rule 'additionExp'. As you can see, an 'atomExp' has the highest precedence. */
-atomExp
-:    Number
-|    '(' additionExp ')'
-;
+Decimal_literal		: [0-9] [0-9_]* ;
+Pure_decimal_digits : [0-9]+ ;
+fragment Decimal_digit : [0-9] ;
+fragment Decimal_literal_character : Decimal_digit | '_'  ;
+fragment Decimal_literal_characters : Decimal_literal_character+ ;
 
-/* A number: can be an integer value, or a decimal value */
-Number
-:    ('0'..'9')+ ('.' ('0'..'9')+)?
-;
+// GRAMMAR OF A STRING LITERAL
+
+
+
+
 
 /* We're going to ignore all white space characters */
-WS
-:   (' ' | '\t' | '\r'| '\n') -> skip
-;
+WS : [ \n\r\t\u000B\u000C\u0000]+ -> channel(HIDDEN) ;

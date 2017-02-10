@@ -23,13 +23,11 @@
 
 class SomethingVisitor : public SwiftBaseVisitor
 {
-    antlrcpp::Any visitAtomExp(SwiftParser::AtomExpContext *ctx) override {
-        Logger::outputDebugString("Number");
-        return visitChildren(ctx);
-    }
+    antlrcpp::Any visitTop_level(SwiftParser::Top_levelContext *ctx) override {
+        Logger::outputDebugString(ctx->toStringTree());
+        return NULL;
+    };
 };
-
-
 
 
     //==============================================================================
@@ -67,7 +65,15 @@ class SomethingVisitor : public SwiftBaseVisitor
         }
         }
         
+        SwiftLexer *lexer = new SwiftLexer(new antlr4::ANTLRInputStream(""));
         
+        antlr4::CommonTokenStream *tokens = new antlr4::CommonTokenStream(lexer);
+        
+        SwiftParser *parser = new SwiftParser(tokens);
+        
+        SomethingVisitor *visitor = new SomethingVisitor();
+        
+        visitor->visit(parser->top_level());
         
     }
 

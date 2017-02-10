@@ -14,17 +14,26 @@
 class  SwiftListener : public antlr4::tree::ParseTreeListener {
 public:
 
-  virtual void enterEval(SwiftParser::EvalContext *ctx) = 0;
-  virtual void exitEval(SwiftParser::EvalContext *ctx) = 0;
+  virtual void enterTop_level(SwiftParser::Top_levelContext *ctx) = 0;
+  virtual void exitTop_level(SwiftParser::Top_levelContext *ctx) = 0;
 
-  virtual void enterAdditionExp(SwiftParser::AdditionExpContext *ctx) = 0;
-  virtual void exitAdditionExp(SwiftParser::AdditionExpContext *ctx) = 0;
+  virtual void enterStatement(SwiftParser::StatementContext *ctx) = 0;
+  virtual void exitStatement(SwiftParser::StatementContext *ctx) = 0;
 
-  virtual void enterMultiplyExp(SwiftParser::MultiplyExpContext *ctx) = 0;
-  virtual void exitMultiplyExp(SwiftParser::MultiplyExpContext *ctx) = 0;
+  virtual void enterLiteral(SwiftParser::LiteralContext *ctx) = 0;
+  virtual void exitLiteral(SwiftParser::LiteralContext *ctx) = 0;
 
-  virtual void enterAtomExp(SwiftParser::AtomExpContext *ctx) = 0;
-  virtual void exitAtomExp(SwiftParser::AtomExpContext *ctx) = 0;
+  virtual void enterNumeric_literal(SwiftParser::Numeric_literalContext *ctx) = 0;
+  virtual void exitNumeric_literal(SwiftParser::Numeric_literalContext *ctx) = 0;
+
+  virtual void enterBoolean_literal(SwiftParser::Boolean_literalContext *ctx) = 0;
+  virtual void exitBoolean_literal(SwiftParser::Boolean_literalContext *ctx) = 0;
+
+  virtual void enterNil_literal(SwiftParser::Nil_literalContext *ctx) = 0;
+  virtual void exitNil_literal(SwiftParser::Nil_literalContext *ctx) = 0;
+
+  virtual void enterInteger_literal(SwiftParser::Integer_literalContext *ctx) = 0;
+  virtual void exitInteger_literal(SwiftParser::Integer_literalContext *ctx) = 0;
 
 
 };

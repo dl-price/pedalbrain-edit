@@ -16,17 +16,26 @@
 class  SwiftBaseListener : public SwiftListener {
 public:
 
-  virtual void enterEval(SwiftParser::EvalContext * /*ctx*/) override { }
-  virtual void exitEval(SwiftParser::EvalContext * /*ctx*/) override { }
+  virtual void enterTop_level(SwiftParser::Top_levelContext * /*ctx*/) override { }
+  virtual void exitTop_level(SwiftParser::Top_levelContext * /*ctx*/) override { }
 
-  virtual void enterAdditionExp(SwiftParser::AdditionExpContext * /*ctx*/) override { }
-  virtual void exitAdditionExp(SwiftParser::AdditionExpContext * /*ctx*/) override { }
+  virtual void enterStatement(SwiftParser::StatementContext * /*ctx*/) override { }
+  virtual void exitStatement(SwiftParser::StatementContext * /*ctx*/) override { }
 
-  virtual void enterMultiplyExp(SwiftParser::MultiplyExpContext * /*ctx*/) override { }
-  virtual void exitMultiplyExp(SwiftParser::MultiplyExpContext * /*ctx*/) override { }
+  virtual void enterLiteral(SwiftParser::LiteralContext * /*ctx*/) override { }
+  virtual void exitLiteral(SwiftParser::LiteralContext * /*ctx*/) override { }
 
-  virtual void enterAtomExp(SwiftParser::AtomExpContext * /*ctx*/) override { }
-  virtual void exitAtomExp(SwiftParser::AtomExpContext * /*ctx*/) override { }
+  virtual void enterNumeric_literal(SwiftParser::Numeric_literalContext * /*ctx*/) override { }
+  virtual void exitNumeric_literal(SwiftParser::Numeric_literalContext * /*ctx*/) override { }
+
+  virtual void enterBoolean_literal(SwiftParser::Boolean_literalContext * /*ctx*/) override { }
+  virtual void exitBoolean_literal(SwiftParser::Boolean_literalContext * /*ctx*/) override { }
+
+  virtual void enterNil_literal(SwiftParser::Nil_literalContext * /*ctx*/) override { }
+  virtual void exitNil_literal(SwiftParser::Nil_literalContext * /*ctx*/) override { }
+
+  virtual void enterInteger_literal(SwiftParser::Integer_literalContext * /*ctx*/) override { }
+  virtual void exitInteger_literal(SwiftParser::Integer_literalContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
