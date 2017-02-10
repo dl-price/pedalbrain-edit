@@ -5,6 +5,11 @@
               jucerVersion="4.3.1">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <GROUP id="{9C686325-BEF5-5813-9562-BD13B85A5669}" name="Scripting">
+        <FILE id="ZuFM3i" name="ScriptHandler.cpp" compile="1" resource="0"
+              file="Source/ScriptHandler.cpp"/>
+        <FILE id="gIiKhB" name="ScriptHandler.h" compile="0" resource="0" file="Source/ScriptHandler.h"/>
+      </GROUP>
       <GROUP id="{CAF0E02C-1ED0-069A-D6A5-93D4A83A9A7B}" name="Antlr">
         <FILE id="DH64cx" name="Swift.g4" compile="0" resource="1" file="Source/Antlr/Swift.g4"/>
         <FILE id="Cajrci" name="Swift.tokens" compile="0" resource="1" file="Source/Antlr/Swift.tokens"/>

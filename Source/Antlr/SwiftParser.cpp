@@ -81,7 +81,7 @@ SwiftParser::Top_levelContext* SwiftParser::top_level() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(25);
+    setState(31);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
@@ -92,9 +92,9 @@ SwiftParser::Top_levelContext* SwiftParser::top_level() {
       | (1ULL << SwiftParser::Identifier)
       | (1ULL << SwiftParser::Decimal_literal)
       | (1ULL << SwiftParser::Pure_decimal_digits))) != 0)) {
-      setState(22);
+      setState(28);
       statement();
-      setState(27);
+      setState(33);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -154,14 +154,14 @@ SwiftParser::StatementContext* SwiftParser::statement() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(28);
+    setState(34);
     expression();
-    setState(30);
+    setState(36);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == SwiftParser::T__0) {
-      setState(29);
+      setState(35);
       match(SwiftParser::T__0);
     }
    
@@ -181,8 +181,8 @@ SwiftParser::ExpressionContext::ExpressionContext(ParserRuleContext *parent, siz
   : ParserRuleContext(parent, invokingState) {
 }
 
-SwiftParser::Primary_expressionContext* SwiftParser::ExpressionContext::primary_expression() {
-  return getRuleContext<SwiftParser::Primary_expressionContext>(0);
+SwiftParser::Prefix_expressionContext* SwiftParser::ExpressionContext::prefix_expression() {
+  return getRuleContext<SwiftParser::Prefix_expressionContext>(0);
 }
 
 
@@ -219,8 +219,65 @@ SwiftParser::ExpressionContext* SwiftParser::expression() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(32);
-    primary_expression(0);
+    setState(38);
+    prefix_expression();
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Prefix_expressionContext ------------------------------------------------------------------
+
+SwiftParser::Prefix_expressionContext::Prefix_expressionContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+SwiftParser::Postfix_expressionContext* SwiftParser::Prefix_expressionContext::postfix_expression() {
+  return getRuleContext<SwiftParser::Postfix_expressionContext>(0);
+}
+
+
+size_t SwiftParser::Prefix_expressionContext::getRuleIndex() const {
+  return SwiftParser::RulePrefix_expression;
+}
+
+void SwiftParser::Prefix_expressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrefix_expression(this);
+}
+
+void SwiftParser::Prefix_expressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrefix_expression(this);
+}
+
+
+antlrcpp::Any SwiftParser::Prefix_expressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<SwiftVisitor*>(visitor))
+    return parserVisitor->visitPrefix_expression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+SwiftParser::Prefix_expressionContext* SwiftParser::prefix_expression() {
+  Prefix_expressionContext *_localctx = _tracker.createInstance<Prefix_expressionContext>(_ctx, getState());
+  enterRule(_localctx, 6, SwiftParser::RulePrefix_expression);
+
+  auto onExit = finally([=] {
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(40);
+    postfix_expression(0);
    
   }
   catch (RecognitionException &e) {
@@ -244,10 +301,6 @@ SwiftParser::IdentifierContext* SwiftParser::Primary_expressionContext::identifi
 
 SwiftParser::Literal_expressionContext* SwiftParser::Primary_expressionContext::literal_expression() {
   return getRuleContext<SwiftParser::Literal_expressionContext>(0);
-}
-
-SwiftParser::Primary_expressionContext* SwiftParser::Primary_expressionContext::primary_expression() {
-  return getRuleContext<SwiftParser::Primary_expressionContext>(0);
 }
 
 
@@ -275,37 +328,21 @@ antlrcpp::Any SwiftParser::Primary_expressionContext::accept(tree::ParseTreeVisi
     return visitor->visitChildren(this);
 }
 
-
 SwiftParser::Primary_expressionContext* SwiftParser::primary_expression() {
-   return primary_expression(0);
-}
-
-SwiftParser::Primary_expressionContext* SwiftParser::primary_expression(int precedence) {
-  ParserRuleContext *parentContext = _ctx;
-  size_t parentState = getState();
-  SwiftParser::Primary_expressionContext *_localctx = _tracker.createInstance<Primary_expressionContext>(_ctx, parentState);
-  SwiftParser::Primary_expressionContext *previousContext = _localctx;
-  size_t startState = 6;
-  enterRecursionRule(_localctx, 6, SwiftParser::RulePrimary_expression, precedence);
-
-    
+  Primary_expressionContext *_localctx = _tracker.createInstance<Primary_expressionContext>(_ctx, getState());
+  enterRule(_localctx, 8, SwiftParser::RulePrimary_expression);
 
   auto onExit = finally([=] {
-    unrollRecursionContexts(parentContext);
+    exitRule();
   });
   try {
-    size_t alt;
-    enterOuterAlt(_localctx, 1);
-    setState(40);
+    setState(44);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case SwiftParser::Identifier: {
-        setState(35);
-        dynamic_cast<Primary_expressionContext *>(_localctx)->member = identifier();
-        setState(36);
-        match(SwiftParser::T__1);
-        setState(37);
-        match(SwiftParser::T__2);
+        enterOuterAlt(_localctx, 1);
+        setState(42);
+        identifier();
         break;
       }
 
@@ -315,7 +352,8 @@ SwiftParser::Primary_expressionContext* SwiftParser::primary_expression(int prec
       case SwiftParser::T__7:
       case SwiftParser::Decimal_literal:
       case SwiftParser::Pure_decimal_digits: {
-        setState(39);
+        enterOuterAlt(_localctx, 2);
+        setState(43);
         literal_expression();
         break;
       }
@@ -323,33 +361,287 @@ SwiftParser::Primary_expressionContext* SwiftParser::primary_expression(int prec
     default:
       throw NoViableAltException(this);
     }
-    _ctx->stop = _input->LT(-1);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Parenthesized_expressionContext ------------------------------------------------------------------
+
+SwiftParser::Parenthesized_expressionContext::Parenthesized_expressionContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+
+size_t SwiftParser::Parenthesized_expressionContext::getRuleIndex() const {
+  return SwiftParser::RuleParenthesized_expression;
+}
+
+void SwiftParser::Parenthesized_expressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParenthesized_expression(this);
+}
+
+void SwiftParser::Parenthesized_expressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParenthesized_expression(this);
+}
+
+
+antlrcpp::Any SwiftParser::Parenthesized_expressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<SwiftVisitor*>(visitor))
+    return parserVisitor->visitParenthesized_expression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+SwiftParser::Parenthesized_expressionContext* SwiftParser::parenthesized_expression() {
+  Parenthesized_expressionContext *_localctx = _tracker.createInstance<Parenthesized_expressionContext>(_ctx, getState());
+  enterRule(_localctx, 10, SwiftParser::RuleParenthesized_expression);
+
+  auto onExit = finally([=] {
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(46);
+    match(SwiftParser::T__1);
+    setState(47);
+    match(SwiftParser::T__2);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- Postfix_expressionContext ------------------------------------------------------------------
+
+SwiftParser::Postfix_expressionContext::Postfix_expressionContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+
+size_t SwiftParser::Postfix_expressionContext::getRuleIndex() const {
+  return SwiftParser::RulePostfix_expression;
+}
+
+void SwiftParser::Postfix_expressionContext::copyFrom(Postfix_expressionContext *ctx) {
+  ParserRuleContext::copyFrom(ctx);
+}
+
+//----------------- Explicit_member_expressionContext ------------------------------------------------------------------
+
+SwiftParser::Postfix_expressionContext* SwiftParser::Explicit_member_expressionContext::postfix_expression() {
+  return getRuleContext<SwiftParser::Postfix_expressionContext>(0);
+}
+
+SwiftParser::IdentifierContext* SwiftParser::Explicit_member_expressionContext::identifier() {
+  return getRuleContext<SwiftParser::IdentifierContext>(0);
+}
+
+SwiftParser::Explicit_member_expressionContext::Explicit_member_expressionContext(Postfix_expressionContext *ctx) { copyFrom(ctx); }
+
+void SwiftParser::Explicit_member_expressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterExplicit_member_expression(this);
+}
+void SwiftParser::Explicit_member_expressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitExplicit_member_expression(this);
+}
+
+antlrcpp::Any SwiftParser::Explicit_member_expressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<SwiftVisitor*>(visitor))
+    return parserVisitor->visitExplicit_member_expression(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- Explicit_property_expressionContext ------------------------------------------------------------------
+
+SwiftParser::Postfix_expressionContext* SwiftParser::Explicit_property_expressionContext::postfix_expression() {
+  return getRuleContext<SwiftParser::Postfix_expressionContext>(0);
+}
+
+SwiftParser::IdentifierContext* SwiftParser::Explicit_property_expressionContext::identifier() {
+  return getRuleContext<SwiftParser::IdentifierContext>(0);
+}
+
+SwiftParser::Explicit_property_expressionContext::Explicit_property_expressionContext(Postfix_expressionContext *ctx) { copyFrom(ctx); }
+
+void SwiftParser::Explicit_property_expressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterExplicit_property_expression(this);
+}
+void SwiftParser::Explicit_property_expressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitExplicit_property_expression(this);
+}
+
+antlrcpp::Any SwiftParser::Explicit_property_expressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<SwiftVisitor*>(visitor))
+    return parserVisitor->visitExplicit_property_expression(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- Function_call_expressionContext ------------------------------------------------------------------
+
+SwiftParser::Postfix_expressionContext* SwiftParser::Function_call_expressionContext::postfix_expression() {
+  return getRuleContext<SwiftParser::Postfix_expressionContext>(0);
+}
+
+SwiftParser::Parenthesized_expressionContext* SwiftParser::Function_call_expressionContext::parenthesized_expression() {
+  return getRuleContext<SwiftParser::Parenthesized_expressionContext>(0);
+}
+
+SwiftParser::Function_call_expressionContext::Function_call_expressionContext(Postfix_expressionContext *ctx) { copyFrom(ctx); }
+
+void SwiftParser::Function_call_expressionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFunction_call_expression(this);
+}
+void SwiftParser::Function_call_expressionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFunction_call_expression(this);
+}
+
+antlrcpp::Any SwiftParser::Function_call_expressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<SwiftVisitor*>(visitor))
+    return parserVisitor->visitFunction_call_expression(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- PrimaryContext ------------------------------------------------------------------
+
+SwiftParser::Primary_expressionContext* SwiftParser::PrimaryContext::primary_expression() {
+  return getRuleContext<SwiftParser::Primary_expressionContext>(0);
+}
+
+SwiftParser::PrimaryContext::PrimaryContext(Postfix_expressionContext *ctx) { copyFrom(ctx); }
+
+void SwiftParser::PrimaryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPrimary(this);
+}
+void SwiftParser::PrimaryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<SwiftListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPrimary(this);
+}
+
+antlrcpp::Any SwiftParser::PrimaryContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<SwiftVisitor*>(visitor))
+    return parserVisitor->visitPrimary(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+SwiftParser::Postfix_expressionContext* SwiftParser::postfix_expression() {
+   return postfix_expression(0);
+}
+
+SwiftParser::Postfix_expressionContext* SwiftParser::postfix_expression(int precedence) {
+  ParserRuleContext *parentContext = _ctx;
+  size_t parentState = getState();
+  SwiftParser::Postfix_expressionContext *_localctx = _tracker.createInstance<Postfix_expressionContext>(_ctx, parentState);
+  SwiftParser::Postfix_expressionContext *previousContext = _localctx;
+  size_t startState = 12;
+  enterRecursionRule(_localctx, 12, SwiftParser::RulePostfix_expression, precedence);
+
+    
+
+  auto onExit = finally([=] {
+    unrollRecursionContexts(parentContext);
+  });
+  try {
+    size_t alt;
+    enterOuterAlt(_localctx, 1);
+    _localctx = _tracker.createInstance<PrimaryContext>(_localctx);
+    _ctx = _localctx;
+    previousContext = _localctx;
+
     setState(50);
+    primary_expression();
+    _ctx->stop = _input->LT(-1);
+    setState(65);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 4, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        _localctx = _tracker.createInstance<Primary_expressionContext>(parentContext, parentState);
-        _localctx->parentexp = previousContext;
-        pushNewRecursionContext(_localctx, startState, RulePrimary_expression);
-        setState(42);
+        setState(63);
+        _errHandler->sync(this);
+        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx)) {
+        case 1: {
+          auto newContext = _tracker.createInstance<Function_call_expressionContext>(_tracker.createInstance<Postfix_expressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RulePostfix_expression);
+          setState(52);
 
-        if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
-        setState(43);
-        match(SwiftParser::T__3);
-        setState(44);
-        dynamic_cast<Primary_expressionContext *>(_localctx)->member = identifier();
-        setState(45);
-        match(SwiftParser::T__1);
-        setState(46);
-        match(SwiftParser::T__2); 
+          if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
+          setState(53);
+          parenthesized_expression();
+          break;
+        }
+
+        case 2: {
+          auto newContext = _tracker.createInstance<Explicit_member_expressionContext>(_tracker.createInstance<Postfix_expressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RulePostfix_expression);
+          setState(54);
+
+          if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
+          setState(55);
+          match(SwiftParser::T__3);
+          setState(56);
+          identifier();
+          setState(57);
+          match(SwiftParser::T__1);
+          setState(58);
+          match(SwiftParser::T__2);
+          break;
+        }
+
+        case 3: {
+          auto newContext = _tracker.createInstance<Explicit_property_expressionContext>(_tracker.createInstance<Postfix_expressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RulePostfix_expression);
+          setState(60);
+
+          if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
+          setState(61);
+          match(SwiftParser::T__3);
+          setState(62);
+          identifier();
+          break;
+        }
+
+        } 
       }
-      setState(52);
+      setState(67);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 4, _ctx);
     }
   }
   catch (RecognitionException &e) {
@@ -397,14 +689,14 @@ antlrcpp::Any SwiftParser::Literal_expressionContext::accept(tree::ParseTreeVisi
 
 SwiftParser::Literal_expressionContext* SwiftParser::literal_expression() {
   Literal_expressionContext *_localctx = _tracker.createInstance<Literal_expressionContext>(_ctx, getState());
-  enterRule(_localctx, 8, SwiftParser::RuleLiteral_expression);
+  enterRule(_localctx, 14, SwiftParser::RuleLiteral_expression);
 
   auto onExit = finally([=] {
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(53);
+    setState(68);
     literal();
    
   }
@@ -462,20 +754,20 @@ antlrcpp::Any SwiftParser::LiteralContext::accept(tree::ParseTreeVisitor *visito
 
 SwiftParser::LiteralContext* SwiftParser::literal() {
   LiteralContext *_localctx = _tracker.createInstance<LiteralContext>(_ctx, getState());
-  enterRule(_localctx, 10, SwiftParser::RuleLiteral);
+  enterRule(_localctx, 16, SwiftParser::RuleLiteral);
 
   auto onExit = finally([=] {
     exitRule();
   });
   try {
-    setState(58);
+    setState(73);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case SwiftParser::T__4:
       case SwiftParser::Decimal_literal:
       case SwiftParser::Pure_decimal_digits: {
         enterOuterAlt(_localctx, 1);
-        setState(55);
+        setState(70);
         numeric_literal();
         break;
       }
@@ -483,14 +775,14 @@ SwiftParser::LiteralContext* SwiftParser::literal() {
       case SwiftParser::T__5:
       case SwiftParser::T__6: {
         enterOuterAlt(_localctx, 2);
-        setState(56);
+        setState(71);
         boolean_literal();
         break;
       }
 
       case SwiftParser::T__7: {
         enterOuterAlt(_localctx, 3);
-        setState(57);
+        setState(72);
         nil_literal();
         break;
       }
@@ -546,7 +838,7 @@ antlrcpp::Any SwiftParser::Numeric_literalContext::accept(tree::ParseTreeVisitor
 
 SwiftParser::Numeric_literalContext* SwiftParser::numeric_literal() {
   Numeric_literalContext *_localctx = _tracker.createInstance<Numeric_literalContext>(_ctx, getState());
-  enterRule(_localctx, 12, SwiftParser::RuleNumeric_literal);
+  enterRule(_localctx, 18, SwiftParser::RuleNumeric_literal);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -554,15 +846,15 @@ SwiftParser::Numeric_literalContext* SwiftParser::numeric_literal() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(61);
+    setState(76);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == SwiftParser::T__4) {
-      setState(60);
+      setState(75);
       match(SwiftParser::T__4);
     }
-    setState(63);
+    setState(78);
     integer_literal();
    
   }
@@ -608,7 +900,7 @@ antlrcpp::Any SwiftParser::Boolean_literalContext::accept(tree::ParseTreeVisitor
 
 SwiftParser::Boolean_literalContext* SwiftParser::boolean_literal() {
   Boolean_literalContext *_localctx = _tracker.createInstance<Boolean_literalContext>(_ctx, getState());
-  enterRule(_localctx, 14, SwiftParser::RuleBoolean_literal);
+  enterRule(_localctx, 20, SwiftParser::RuleBoolean_literal);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -616,7 +908,7 @@ SwiftParser::Boolean_literalContext* SwiftParser::boolean_literal() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(65);
+    setState(80);
     _la = _input->LA(1);
     if (!(_la == SwiftParser::T__5
 
@@ -671,14 +963,14 @@ antlrcpp::Any SwiftParser::Nil_literalContext::accept(tree::ParseTreeVisitor *vi
 
 SwiftParser::Nil_literalContext* SwiftParser::nil_literal() {
   Nil_literalContext *_localctx = _tracker.createInstance<Nil_literalContext>(_ctx, getState());
-  enterRule(_localctx, 16, SwiftParser::RuleNil_literal);
+  enterRule(_localctx, 22, SwiftParser::RuleNil_literal);
 
   auto onExit = finally([=] {
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(67);
+    setState(82);
     match(SwiftParser::T__7);
    
   }
@@ -728,14 +1020,14 @@ antlrcpp::Any SwiftParser::IdentifierContext::accept(tree::ParseTreeVisitor *vis
 
 SwiftParser::IdentifierContext* SwiftParser::identifier() {
   IdentifierContext *_localctx = _tracker.createInstance<IdentifierContext>(_ctx, getState());
-  enterRule(_localctx, 18, SwiftParser::RuleIdentifier);
+  enterRule(_localctx, 24, SwiftParser::RuleIdentifier);
 
   auto onExit = finally([=] {
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(69);
+    setState(84);
     match(SwiftParser::Identifier);
    
   }
@@ -789,7 +1081,7 @@ antlrcpp::Any SwiftParser::Integer_literalContext::accept(tree::ParseTreeVisitor
 
 SwiftParser::Integer_literalContext* SwiftParser::integer_literal() {
   Integer_literalContext *_localctx = _tracker.createInstance<Integer_literalContext>(_ctx, getState());
-  enterRule(_localctx, 20, SwiftParser::RuleInteger_literal);
+  enterRule(_localctx, 26, SwiftParser::RuleInteger_literal);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -797,7 +1089,7 @@ SwiftParser::Integer_literalContext* SwiftParser::integer_literal() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(71);
+    setState(86);
     _la = _input->LA(1);
     if (!(_la == SwiftParser::Decimal_literal
 
@@ -821,7 +1113,7 @@ SwiftParser::Integer_literalContext* SwiftParser::integer_literal() {
 
 bool SwiftParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
-    case 3: return primary_expressionSempred(dynamic_cast<Primary_expressionContext *>(context), predicateIndex);
+    case 6: return postfix_expressionSempred(dynamic_cast<Postfix_expressionContext *>(context), predicateIndex);
 
   default:
     break;
@@ -829,9 +1121,11 @@ bool SwiftParser::sempred(RuleContext *context, size_t ruleIndex, size_t predica
   return true;
 }
 
-bool SwiftParser::primary_expressionSempred(Primary_expressionContext *_localctx, size_t predicateIndex) {
+bool SwiftParser::postfix_expressionSempred(Postfix_expressionContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 0: return precpred(_ctx, 2);
+    case 0: return precpred(_ctx, 3);
+    case 1: return precpred(_ctx, 2);
+    case 2: return precpred(_ctx, 1);
 
   default:
     break;
@@ -848,7 +1142,8 @@ atn::ATN SwiftParser::_atn;
 std::vector<uint16_t> SwiftParser::_serializedATN;
 
 std::vector<std::string> SwiftParser::_ruleNames = {
-  "top_level", "statement", "expression", "primary_expression", "literal_expression", 
+  "top_level", "statement", "expression", "prefix_expression", "primary_expression", 
+  "parenthesized_expression", "postfix_expression", "literal_expression", 
   "literal", "numeric_literal", "boolean_literal", "nil_literal", "identifier", 
   "integer_literal"
 };
@@ -882,52 +1177,61 @@ SwiftParser::Initializer::Initializer() {
 
   _serializedATN = {
     0x3, 0x430, 0xd6d1, 0x8206, 0xad2d, 0x4417, 0xaef1, 0x8d80, 0xaadd, 
-    0x3, 0xe, 0x4c, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 0x9, 
+    0x3, 0xe, 0x5b, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 0x9, 
     0x4, 0x4, 0x5, 0x9, 0x5, 0x4, 0x6, 0x9, 0x6, 0x4, 0x7, 0x9, 0x7, 0x4, 
     0x8, 0x9, 0x8, 0x4, 0x9, 0x9, 0x9, 0x4, 0xa, 0x9, 0xa, 0x4, 0xb, 0x9, 
-    0xb, 0x4, 0xc, 0x9, 0xc, 0x3, 0x2, 0x7, 0x2, 0x1a, 0xa, 0x2, 0xc, 0x2, 
-    0xe, 0x2, 0x1d, 0xb, 0x2, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x21, 0xa, 0x3, 
-    0x3, 0x4, 0x3, 0x4, 0x3, 0x5, 0x3, 0x5, 0x3, 0x5, 0x3, 0x5, 0x3, 0x5, 
-    0x3, 0x5, 0x5, 0x5, 0x2b, 0xa, 0x5, 0x3, 0x5, 0x3, 0x5, 0x3, 0x5, 0x3, 
-    0x5, 0x3, 0x5, 0x3, 0x5, 0x7, 0x5, 0x33, 0xa, 0x5, 0xc, 0x5, 0xe, 0x5, 
-    0x36, 0xb, 0x5, 0x3, 0x6, 0x3, 0x6, 0x3, 0x7, 0x3, 0x7, 0x3, 0x7, 0x5, 
-    0x7, 0x3d, 0xa, 0x7, 0x3, 0x8, 0x5, 0x8, 0x40, 0xa, 0x8, 0x3, 0x8, 0x3, 
-    0x8, 0x3, 0x9, 0x3, 0x9, 0x3, 0xa, 0x3, 0xa, 0x3, 0xb, 0x3, 0xb, 0x3, 
-    0xc, 0x3, 0xc, 0x3, 0xc, 0x2, 0x3, 0x8, 0xd, 0x2, 0x4, 0x6, 0x8, 0xa, 
-    0xc, 0xe, 0x10, 0x12, 0x14, 0x16, 0x2, 0x4, 0x3, 0x2, 0x8, 0x9, 0x3, 
-    0x2, 0xc, 0xd, 0x47, 0x2, 0x1b, 0x3, 0x2, 0x2, 0x2, 0x4, 0x1e, 0x3, 
-    0x2, 0x2, 0x2, 0x6, 0x22, 0x3, 0x2, 0x2, 0x2, 0x8, 0x2a, 0x3, 0x2, 0x2, 
-    0x2, 0xa, 0x37, 0x3, 0x2, 0x2, 0x2, 0xc, 0x3c, 0x3, 0x2, 0x2, 0x2, 0xe, 
-    0x3f, 0x3, 0x2, 0x2, 0x2, 0x10, 0x43, 0x3, 0x2, 0x2, 0x2, 0x12, 0x45, 
-    0x3, 0x2, 0x2, 0x2, 0x14, 0x47, 0x3, 0x2, 0x2, 0x2, 0x16, 0x49, 0x3, 
-    0x2, 0x2, 0x2, 0x18, 0x1a, 0x5, 0x4, 0x3, 0x2, 0x19, 0x18, 0x3, 0x2, 
-    0x2, 0x2, 0x1a, 0x1d, 0x3, 0x2, 0x2, 0x2, 0x1b, 0x19, 0x3, 0x2, 0x2, 
-    0x2, 0x1b, 0x1c, 0x3, 0x2, 0x2, 0x2, 0x1c, 0x3, 0x3, 0x2, 0x2, 0x2, 
-    0x1d, 0x1b, 0x3, 0x2, 0x2, 0x2, 0x1e, 0x20, 0x5, 0x6, 0x4, 0x2, 0x1f, 
-    0x21, 0x7, 0x3, 0x2, 0x2, 0x20, 0x1f, 0x3, 0x2, 0x2, 0x2, 0x20, 0x21, 
-    0x3, 0x2, 0x2, 0x2, 0x21, 0x5, 0x3, 0x2, 0x2, 0x2, 0x22, 0x23, 0x5, 
-    0x8, 0x5, 0x2, 0x23, 0x7, 0x3, 0x2, 0x2, 0x2, 0x24, 0x25, 0x8, 0x5, 
-    0x1, 0x2, 0x25, 0x26, 0x5, 0x14, 0xb, 0x2, 0x26, 0x27, 0x7, 0x4, 0x2, 
-    0x2, 0x27, 0x28, 0x7, 0x5, 0x2, 0x2, 0x28, 0x2b, 0x3, 0x2, 0x2, 0x2, 
-    0x29, 0x2b, 0x5, 0xa, 0x6, 0x2, 0x2a, 0x24, 0x3, 0x2, 0x2, 0x2, 0x2a, 
-    0x29, 0x3, 0x2, 0x2, 0x2, 0x2b, 0x34, 0x3, 0x2, 0x2, 0x2, 0x2c, 0x2d, 
-    0xc, 0x4, 0x2, 0x2, 0x2d, 0x2e, 0x7, 0x6, 0x2, 0x2, 0x2e, 0x2f, 0x5, 
-    0x14, 0xb, 0x2, 0x2f, 0x30, 0x7, 0x4, 0x2, 0x2, 0x30, 0x31, 0x7, 0x5, 
-    0x2, 0x2, 0x31, 0x33, 0x3, 0x2, 0x2, 0x2, 0x32, 0x2c, 0x3, 0x2, 0x2, 
-    0x2, 0x33, 0x36, 0x3, 0x2, 0x2, 0x2, 0x34, 0x32, 0x3, 0x2, 0x2, 0x2, 
-    0x34, 0x35, 0x3, 0x2, 0x2, 0x2, 0x35, 0x9, 0x3, 0x2, 0x2, 0x2, 0x36, 
-    0x34, 0x3, 0x2, 0x2, 0x2, 0x37, 0x38, 0x5, 0xc, 0x7, 0x2, 0x38, 0xb, 
-    0x3, 0x2, 0x2, 0x2, 0x39, 0x3d, 0x5, 0xe, 0x8, 0x2, 0x3a, 0x3d, 0x5, 
-    0x10, 0x9, 0x2, 0x3b, 0x3d, 0x5, 0x12, 0xa, 0x2, 0x3c, 0x39, 0x3, 0x2, 
-    0x2, 0x2, 0x3c, 0x3a, 0x3, 0x2, 0x2, 0x2, 0x3c, 0x3b, 0x3, 0x2, 0x2, 
-    0x2, 0x3d, 0xd, 0x3, 0x2, 0x2, 0x2, 0x3e, 0x40, 0x7, 0x7, 0x2, 0x2, 
-    0x3f, 0x3e, 0x3, 0x2, 0x2, 0x2, 0x3f, 0x40, 0x3, 0x2, 0x2, 0x2, 0x40, 
-    0x41, 0x3, 0x2, 0x2, 0x2, 0x41, 0x42, 0x5, 0x16, 0xc, 0x2, 0x42, 0xf, 
-    0x3, 0x2, 0x2, 0x2, 0x43, 0x44, 0x9, 0x2, 0x2, 0x2, 0x44, 0x11, 0x3, 
-    0x2, 0x2, 0x2, 0x45, 0x46, 0x7, 0xa, 0x2, 0x2, 0x46, 0x13, 0x3, 0x2, 
-    0x2, 0x2, 0x47, 0x48, 0x7, 0xb, 0x2, 0x2, 0x48, 0x15, 0x3, 0x2, 0x2, 
-    0x2, 0x49, 0x4a, 0x9, 0x3, 0x2, 0x2, 0x4a, 0x17, 0x3, 0x2, 0x2, 0x2, 
-    0x8, 0x1b, 0x20, 0x2a, 0x34, 0x3c, 0x3f, 
+    0xb, 0x4, 0xc, 0x9, 0xc, 0x4, 0xd, 0x9, 0xd, 0x4, 0xe, 0x9, 0xe, 0x4, 
+    0xf, 0x9, 0xf, 0x3, 0x2, 0x7, 0x2, 0x20, 0xa, 0x2, 0xc, 0x2, 0xe, 0x2, 
+    0x23, 0xb, 0x2, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x27, 0xa, 0x3, 0x3, 0x4, 
+    0x3, 0x4, 0x3, 0x5, 0x3, 0x5, 0x3, 0x6, 0x3, 0x6, 0x5, 0x6, 0x2f, 0xa, 
+    0x6, 0x3, 0x7, 0x3, 0x7, 0x3, 0x7, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 
+    0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 
+    0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x7, 0x8, 0x42, 0xa, 0x8, 0xc, 0x8, 
+    0xe, 0x8, 0x45, 0xb, 0x8, 0x3, 0x9, 0x3, 0x9, 0x3, 0xa, 0x3, 0xa, 0x3, 
+    0xa, 0x5, 0xa, 0x4c, 0xa, 0xa, 0x3, 0xb, 0x5, 0xb, 0x4f, 0xa, 0xb, 0x3, 
+    0xb, 0x3, 0xb, 0x3, 0xc, 0x3, 0xc, 0x3, 0xd, 0x3, 0xd, 0x3, 0xe, 0x3, 
+    0xe, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x2, 0x3, 0xe, 0x10, 0x2, 0x4, 0x6, 
+    0x8, 0xa, 0xc, 0xe, 0x10, 0x12, 0x14, 0x16, 0x18, 0x1a, 0x1c, 0x2, 0x4, 
+    0x3, 0x2, 0x8, 0x9, 0x3, 0x2, 0xc, 0xd, 0x55, 0x2, 0x21, 0x3, 0x2, 0x2, 
+    0x2, 0x4, 0x24, 0x3, 0x2, 0x2, 0x2, 0x6, 0x28, 0x3, 0x2, 0x2, 0x2, 0x8, 
+    0x2a, 0x3, 0x2, 0x2, 0x2, 0xa, 0x2e, 0x3, 0x2, 0x2, 0x2, 0xc, 0x30, 
+    0x3, 0x2, 0x2, 0x2, 0xe, 0x33, 0x3, 0x2, 0x2, 0x2, 0x10, 0x46, 0x3, 
+    0x2, 0x2, 0x2, 0x12, 0x4b, 0x3, 0x2, 0x2, 0x2, 0x14, 0x4e, 0x3, 0x2, 
+    0x2, 0x2, 0x16, 0x52, 0x3, 0x2, 0x2, 0x2, 0x18, 0x54, 0x3, 0x2, 0x2, 
+    0x2, 0x1a, 0x56, 0x3, 0x2, 0x2, 0x2, 0x1c, 0x58, 0x3, 0x2, 0x2, 0x2, 
+    0x1e, 0x20, 0x5, 0x4, 0x3, 0x2, 0x1f, 0x1e, 0x3, 0x2, 0x2, 0x2, 0x20, 
+    0x23, 0x3, 0x2, 0x2, 0x2, 0x21, 0x1f, 0x3, 0x2, 0x2, 0x2, 0x21, 0x22, 
+    0x3, 0x2, 0x2, 0x2, 0x22, 0x3, 0x3, 0x2, 0x2, 0x2, 0x23, 0x21, 0x3, 
+    0x2, 0x2, 0x2, 0x24, 0x26, 0x5, 0x6, 0x4, 0x2, 0x25, 0x27, 0x7, 0x3, 
+    0x2, 0x2, 0x26, 0x25, 0x3, 0x2, 0x2, 0x2, 0x26, 0x27, 0x3, 0x2, 0x2, 
+    0x2, 0x27, 0x5, 0x3, 0x2, 0x2, 0x2, 0x28, 0x29, 0x5, 0x8, 0x5, 0x2, 
+    0x29, 0x7, 0x3, 0x2, 0x2, 0x2, 0x2a, 0x2b, 0x5, 0xe, 0x8, 0x2, 0x2b, 
+    0x9, 0x3, 0x2, 0x2, 0x2, 0x2c, 0x2f, 0x5, 0x1a, 0xe, 0x2, 0x2d, 0x2f, 
+    0x5, 0x10, 0x9, 0x2, 0x2e, 0x2c, 0x3, 0x2, 0x2, 0x2, 0x2e, 0x2d, 0x3, 
+    0x2, 0x2, 0x2, 0x2f, 0xb, 0x3, 0x2, 0x2, 0x2, 0x30, 0x31, 0x7, 0x4, 
+    0x2, 0x2, 0x31, 0x32, 0x7, 0x5, 0x2, 0x2, 0x32, 0xd, 0x3, 0x2, 0x2, 
+    0x2, 0x33, 0x34, 0x8, 0x8, 0x1, 0x2, 0x34, 0x35, 0x5, 0xa, 0x6, 0x2, 
+    0x35, 0x43, 0x3, 0x2, 0x2, 0x2, 0x36, 0x37, 0xc, 0x5, 0x2, 0x2, 0x37, 
+    0x42, 0x5, 0xc, 0x7, 0x2, 0x38, 0x39, 0xc, 0x4, 0x2, 0x2, 0x39, 0x3a, 
+    0x7, 0x6, 0x2, 0x2, 0x3a, 0x3b, 0x5, 0x1a, 0xe, 0x2, 0x3b, 0x3c, 0x7, 
+    0x4, 0x2, 0x2, 0x3c, 0x3d, 0x7, 0x5, 0x2, 0x2, 0x3d, 0x42, 0x3, 0x2, 
+    0x2, 0x2, 0x3e, 0x3f, 0xc, 0x3, 0x2, 0x2, 0x3f, 0x40, 0x7, 0x6, 0x2, 
+    0x2, 0x40, 0x42, 0x5, 0x1a, 0xe, 0x2, 0x41, 0x36, 0x3, 0x2, 0x2, 0x2, 
+    0x41, 0x38, 0x3, 0x2, 0x2, 0x2, 0x41, 0x3e, 0x3, 0x2, 0x2, 0x2, 0x42, 
+    0x45, 0x3, 0x2, 0x2, 0x2, 0x43, 0x41, 0x3, 0x2, 0x2, 0x2, 0x43, 0x44, 
+    0x3, 0x2, 0x2, 0x2, 0x44, 0xf, 0x3, 0x2, 0x2, 0x2, 0x45, 0x43, 0x3, 
+    0x2, 0x2, 0x2, 0x46, 0x47, 0x5, 0x12, 0xa, 0x2, 0x47, 0x11, 0x3, 0x2, 
+    0x2, 0x2, 0x48, 0x4c, 0x5, 0x14, 0xb, 0x2, 0x49, 0x4c, 0x5, 0x16, 0xc, 
+    0x2, 0x4a, 0x4c, 0x5, 0x18, 0xd, 0x2, 0x4b, 0x48, 0x3, 0x2, 0x2, 0x2, 
+    0x4b, 0x49, 0x3, 0x2, 0x2, 0x2, 0x4b, 0x4a, 0x3, 0x2, 0x2, 0x2, 0x4c, 
+    0x13, 0x3, 0x2, 0x2, 0x2, 0x4d, 0x4f, 0x7, 0x7, 0x2, 0x2, 0x4e, 0x4d, 
+    0x3, 0x2, 0x2, 0x2, 0x4e, 0x4f, 0x3, 0x2, 0x2, 0x2, 0x4f, 0x50, 0x3, 
+    0x2, 0x2, 0x2, 0x50, 0x51, 0x5, 0x1c, 0xf, 0x2, 0x51, 0x15, 0x3, 0x2, 
+    0x2, 0x2, 0x52, 0x53, 0x9, 0x2, 0x2, 0x2, 0x53, 0x17, 0x3, 0x2, 0x2, 
+    0x2, 0x54, 0x55, 0x7, 0xa, 0x2, 0x2, 0x55, 0x19, 0x3, 0x2, 0x2, 0x2, 
+    0x56, 0x57, 0x7, 0xb, 0x2, 0x2, 0x57, 0x1b, 0x3, 0x2, 0x2, 0x2, 0x58, 
+    0x59, 0x9, 0x3, 0x2, 0x2, 0x59, 0x1d, 0x3, 0x2, 0x2, 0x2, 0x9, 0x21, 
+    0x26, 0x2e, 0x41, 0x43, 0x4b, 0x4e, 
   };
 
   atn::ATNDeserializer deserializer;

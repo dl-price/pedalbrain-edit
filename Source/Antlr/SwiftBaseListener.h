@@ -25,8 +25,26 @@ public:
   virtual void enterExpression(SwiftParser::ExpressionContext * /*ctx*/) override { }
   virtual void exitExpression(SwiftParser::ExpressionContext * /*ctx*/) override { }
 
+  virtual void enterPrefix_expression(SwiftParser::Prefix_expressionContext * /*ctx*/) override { }
+  virtual void exitPrefix_expression(SwiftParser::Prefix_expressionContext * /*ctx*/) override { }
+
   virtual void enterPrimary_expression(SwiftParser::Primary_expressionContext * /*ctx*/) override { }
   virtual void exitPrimary_expression(SwiftParser::Primary_expressionContext * /*ctx*/) override { }
+
+  virtual void enterParenthesized_expression(SwiftParser::Parenthesized_expressionContext * /*ctx*/) override { }
+  virtual void exitParenthesized_expression(SwiftParser::Parenthesized_expressionContext * /*ctx*/) override { }
+
+  virtual void enterExplicit_member_expression(SwiftParser::Explicit_member_expressionContext * /*ctx*/) override { }
+  virtual void exitExplicit_member_expression(SwiftParser::Explicit_member_expressionContext * /*ctx*/) override { }
+
+  virtual void enterExplicit_property_expression(SwiftParser::Explicit_property_expressionContext * /*ctx*/) override { }
+  virtual void exitExplicit_property_expression(SwiftParser::Explicit_property_expressionContext * /*ctx*/) override { }
+
+  virtual void enterFunction_call_expression(SwiftParser::Function_call_expressionContext * /*ctx*/) override { }
+  virtual void exitFunction_call_expression(SwiftParser::Function_call_expressionContext * /*ctx*/) override { }
+
+  virtual void enterPrimary(SwiftParser::PrimaryContext * /*ctx*/) override { }
+  virtual void exitPrimary(SwiftParser::PrimaryContext * /*ctx*/) override { }
 
   virtual void enterLiteral_expression(SwiftParser::Literal_expressionContext * /*ctx*/) override { }
   virtual void exitLiteral_expression(SwiftParser::Literal_expressionContext * /*ctx*/) override { }

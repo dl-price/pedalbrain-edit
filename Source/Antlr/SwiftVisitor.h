@@ -25,7 +25,19 @@ public:
 
     virtual antlrcpp::Any visitExpression(SwiftParser::ExpressionContext *context) = 0;
 
+    virtual antlrcpp::Any visitPrefix_expression(SwiftParser::Prefix_expressionContext *context) = 0;
+
     virtual antlrcpp::Any visitPrimary_expression(SwiftParser::Primary_expressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitParenthesized_expression(SwiftParser::Parenthesized_expressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitExplicit_member_expression(SwiftParser::Explicit_member_expressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitExplicit_property_expression(SwiftParser::Explicit_property_expressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitFunction_call_expression(SwiftParser::Function_call_expressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitPrimary(SwiftParser::PrimaryContext *context) = 0;
 
     virtual antlrcpp::Any visitLiteral_expression(SwiftParser::Literal_expressionContext *context) = 0;
 

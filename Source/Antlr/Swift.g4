@@ -8,11 +8,22 @@ expression ';'?
 
 // GRAMMAR OF EXPRESSIONS
 
-expression : primary_expression ;
+expression : prefix_expression ;
 
-primary_expression : member=identifier '(' ')'
-| parentexp=primary_expression '.' member=identifier '(' ')'
-| literal_expression ;
+prefix_expression : postfix_expression ;
+
+primary_expression : identifier |
+literal_expression ;
+
+parenthesized_expression : '(' ')'
+;
+
+postfix_expression :
+primary_expression # primary
+| postfix_expression parenthesized_expression # function_call_expression
+| postfix_expression '.' identifier '(' ')' # explicit_member_expression
+| postfix_expression '.' identifier # explicit_property_expression
+;
 
 literal_expression : literal ;
 

@@ -21,19 +21,7 @@
 #include "Antlr/SwiftBaseVisitor.h"
 #include "Antlr/SwiftParser.h"
 
-class SomethingVisitor : public SwiftBaseVisitor
-{
-    virtual antlrcpp::Any visitPrimary_expression(SwiftParser::Primary_expressionContext *ctx) override {
-        if(!ctx->parentexp)
-        {
-        if(appObject->globalMethods.hasMethod((String)ctx->identifier()->getText()))
-        {
-            appObject->globalMethods.invokeMethod((String)ctx->identifier()->getText(), var::NativeFunctionArgs(appObject, new var(), 0));
-        }
-        }
-        return visitChildren(ctx);
-    }
-};
+
 
     //==============================================================================
     void pedalbraineditApplication::initialise (const String& commandLine)
@@ -69,12 +57,10 @@ class SomethingVisitor : public SwiftBaseVisitor
             setDefaultBoardController(ctrl);
         }
         }
+        
+        scriptHandler = new ScriptHandler();
 
-        juce::var::NativeFunction func;
         
-        func = &pedalbraineditApplication::testScripting;
-        
-        globalMethods.setMethod("testScripting", func);
         
     }
 
@@ -428,15 +414,7 @@ void pedalbraineditApplication::textEditorEscapeKeyPressed(juce::TextEditor &edi
 {
     if (editor.getName() == "Terminal")
     {
-        SwiftLexer *lexer = new SwiftLexer(new antlr4::ANTLRInputStream(editor.getText().toStdString()));
-        
-        antlr4::CommonTokenStream *tokens = new antlr4::CommonTokenStream(lexer);
-        
-        SwiftParser *parser = new SwiftParser(tokens);
-        
-        SomethingVisitor *visitor = new SomethingVisitor();
-        
-        visitor->visit(parser->top_level());
+        scriptHandler->runScript(editor.getText());
     }
 }
 
