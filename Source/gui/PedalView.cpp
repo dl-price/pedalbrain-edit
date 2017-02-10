@@ -87,13 +87,15 @@ void PedalView::pageChanged()
         }
         else if(_showAttachedState.getValue())
         {
-            OwnedArray<Value> *valArray = appObject->getDefaultBoardController()->buttonStates[getPageIndex()];
+            //OwnedArray<Value> *valArray = appObject->getDefaultBoardController()->buttonStates[getPageIndex()];
             
-            Value *val = valArray->getUnchecked(i) ;
+            //Value *val = valArray->getUnchecked(i) ;
             
-            buttonComponents[i]->_state.referTo(*val);
+            Value val = appObject->getDefaultBoardController()->getButtonStateAsValue(getPageIndex(), i);
             
-            if(val->getValue())
+            buttonComponents[i]->_state.referTo(val);
+            
+            if(val.getValue())
             {
                 buttonComponents[i]->_colorValue->referTo(*appObject->getDefaultBoardController()->getPage(getPage())->buttons[i]->_onColor);
             }

@@ -87,8 +87,6 @@ Value &ButtonComponent::getLabelValue()
 
 void ButtonComponent::valueChanged(juce::Value &value)
 {
-    
-
         if(_state.getValue())
         {
             _colorValue->referTo(*getButtonModel()->_onColor);
@@ -96,7 +94,6 @@ void ButtonComponent::valueChanged(juce::Value &value)
         else{
             _colorValue->referTo(*getButtonModel()->_offColor);
         }
-    
     
     repaint();
 }
