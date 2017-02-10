@@ -55,23 +55,21 @@ public:
     void addLedOptions(ComboBox *box);
     void refreshMainSettingsComponents();
     ButtonModel *_buttonModel;
-    
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
-    
-    
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    
+
     ScopedPointer<UberFlexBox> mainSettingsFlexBox;
-    
+
     void removeFlexBoxComponents(FlexBox *flexBox);
     void addFlexBoxComponents(FlexBox *flexBox, int type = 0);
     void setupFlexItemForLabel(FlexItem *flexItem);

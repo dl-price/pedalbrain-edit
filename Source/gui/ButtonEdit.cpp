@@ -114,7 +114,7 @@ ButtonEdit::ButtonEdit (ButtonModel *model)
     buttonLabel->getTextValue().referTo(_buttonModel->label);
     ledOn->getSelectedIdAsValue().referTo(_buttonModel->ledOn);
     ledOff->getSelectedIdAsValue().referTo(_buttonModel->ledOff);
-    
+
     refreshMainSettingsComponents();
 
     /*ButtonController *cast_control = dynamic_cast<ButtonController*>(s_model);
@@ -166,14 +166,14 @@ void ButtonEdit::resized()
     //[/UserPreResize]
 
     closeButton->setBounds (getWidth() - 230, getHeight() - 50, 200, 24);
-    mainGroup->setBounds (20, 20, proportionOfWidth (0.4799f), 216);
-    typeComboBox->setBounds (40, 20 + 20, proportionOfWidth (0.4799f) - 40, 24);
-    displayGroup->setBounds (getWidth() - 20 - proportionOfWidth (0.4799f), 20, proportionOfWidth (0.4799f), 216);
-    buttonName->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, 20 + 20, proportionOfWidth (0.4799f) - 40, 24);
-    buttonLabel->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
-    ledOn->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, ((20 + 20) + 24 - -20) + 36, proportionOfWidth (0.4799f) - 40, 24);
-    ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4799f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4799f) - 40, 24);
-    mainSettingsHolder->setBounds (20 + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4799f) - 40, 216 - 88);
+    mainGroup->setBounds (20, 20, proportionOfWidth (0.4787f), 216);
+    typeComboBox->setBounds (40, 20 + 20, proportionOfWidth (0.4787f) - 40, 24);
+    displayGroup->setBounds (getWidth() - 20 - proportionOfWidth (0.4787f), 20, proportionOfWidth (0.4787f), 216);
+    buttonName->setBounds ((getWidth() - 20 - proportionOfWidth (0.4787f)) + 20, 20 + 20, proportionOfWidth (0.4787f) - 40, 24);
+    buttonLabel->setBounds ((getWidth() - 20 - proportionOfWidth (0.4787f)) + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4787f) - 40, 24);
+    ledOn->setBounds ((getWidth() - 20 - proportionOfWidth (0.4787f)) + 20, ((20 + 20) + 24 - -20) + 36, proportionOfWidth (0.4787f) - 40, 24);
+    ledOff->setBounds ((getWidth() - 20 - proportionOfWidth (0.4787f)) + 20, (((20 + 20) + 24 - -20) + 36) + 24 - -20, proportionOfWidth (0.4787f) - 40, 24);
+    mainSettingsHolder->setBounds (20 + 20, (20 + 20) + 24 - -20, proportionOfWidth (0.4787f) - 40, 216 - 88);
     //[UserResized] Add your own custom resize handling here..
     if(mainSettingsFlexBox)
     {
@@ -283,117 +283,117 @@ void ButtonEdit::addComboBoxOptions()
 void ButtonEdit::refreshMainSettingsComponents()
 {
     //removeFlexBoxComponents(mainSettingsFlexBox);
-    
+
     //addFlexBoxComponents(mainSettingsFlexBox, typeComboBox->getSelectedId());
-    
+
     UberFlexBox *flexBox = nullptr;
-    
+
     switch(typeComboBox->getSelectedId())
     {
         case ButtonModel::ButtonType::Page:
         {
             flexBox = new UberFlexBox(this);
             FlexItem row = flexBox->createAndAddFlexRow();
-            
+
             flexBox->createAndAddFlexLabel("Page Number:", row);
-            
+
             TextEditor *text = new TextEditor();
             text->setName("mainPageName");
             flexBox->createAndAddFlexInput(*text, row);
-            
+
             mainSettingsFlexBox = flexBox;
-            
+
             break;
         }
         case ButtonModel::ButtonType::DevicePCUp:
         case ButtonModel::ButtonType::DevicePCDown:
         {
             flexBox = new UberFlexBox(this);
-            
+
             createDeviceSelectFlexRow(*flexBox);
-            
+
             break;
         }
         case ButtonModel::ButtonType::DevicePC:
         {
             flexBox = new UberFlexBox(this);
-            
+
             createDeviceSelectFlexRow(*flexBox);
-            
+
             FlexItem row3 = flexBox->createAndAddFlexRow();
             FlexItem row4 = flexBox->createAndAddFlexRow();
-            
+
             flexBox->createAndAddFlexLabel("PC On:", row3);
             flexBox->createAndAddFlexLabel("PC Off:", row4);
-            
+
             TextEditor *text3 = new TextEditor();
             TextEditor *text4 = new TextEditor();
-            
+
             text3->setName("mainAudioOn");
             text4->setName("mainAudioOff");
-            
+
             flexBox->createAndAddFlexInput(*text3, row3);
             flexBox->createAndAddFlexInput(*text4, row4);
-            
+
             break;
         }
         case ButtonModel::ButtonType::DeviceCC:
         {
             flexBox = new UberFlexBox(this);
-            
+
             createDeviceSelectFlexRow(*flexBox);
-            
+
             FlexItem row2 = flexBox->createAndAddFlexRow();
             FlexItem row3 = flexBox->createAndAddFlexRow();
             FlexItem row4 = flexBox->createAndAddFlexRow();
-            
+
             flexBox->createAndAddFlexLabel("CC Value:", row2);
             flexBox->createAndAddFlexLabel("On Value:", row3);
             flexBox->createAndAddFlexLabel("Off Value:", row4);
-            
+
             TextEditor *text2 = new TextEditor();
             TextEditor *text3 = new TextEditor();
             TextEditor *text4 = new TextEditor();
-            
+
             text2->setName("mainAudioCC");
             text3->setName("mainAudioOn");
             text4->setName("mainAudioOff");
-            
+
             flexBox->createAndAddFlexInput(*text2, row2);
             flexBox->createAndAddFlexInput(*text3, row3);
             flexBox->createAndAddFlexInput(*text4, row4);
-            
+
             break;
         }
         case ButtonModel::ButtonType::AudioLoop:
         {
             flexBox = new UberFlexBox(this);
-            
+
             FlexItem flexRow = flexBox->createAndAddFlexRow();
             flexBox->createAndAddFlexLabel("Audio loop:", flexRow);
-            
+
             TextEditor *text = new TextEditor();
             text->setName("mainAudioId");
             flexBox->createAndAddFlexInput(*text, flexRow);
-            
+
             break;
         }
         case ButtonModel::ButtonType::AudioMute:
         {
             flexBox = new UberFlexBox(this);
-            
+
             FlexItem flexRow = flexBox->createAndAddFlexRow();
             flexBox->createAndAddFlexLabel("Audio loop:", flexRow);
-            
+
             TextEditor *text = new TextEditor();
             text->setName("mainAudioId");
             flexBox->createAndAddFlexInput(*text, flexRow);
-            
+
             break;
         }
     }
     mainSettingsFlexBox = flexBox;
-    
+
     resized();
 }
 
@@ -401,12 +401,12 @@ FlexItem &ButtonEdit::createDeviceSelectFlexRow(UberFlexBox &flexBox)
 {
     FlexItem *topBox = &(flexBox.createAndAddFlexRow());
     flexBox.createAndAddFlexLabel("Device:", *topBox);
-    
+
     ComboBox *deviceCombo = new ComboBox();
     deviceCombo->setName("mainDeviceId");
     addDevicesToCombo(deviceCombo);
     flexBox.createAndAddFlexInput(*deviceCombo, *topBox);
-    
+
     return *topBox;
 }
 
