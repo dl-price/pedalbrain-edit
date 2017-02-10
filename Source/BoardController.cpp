@@ -61,6 +61,13 @@ void BoardController::init()
     {
         devices.add(new Device(this, i));
     }
+    relayStates.ensureStorageAllocated(getMaxAudioLoops());
+    for(int i=0; i < getMaxAudioLoops(); i++)
+    {
+        Value *val = new Value(false);
+        val->addListener(this);
+        relayStates.add(val);
+    }
     
 
 }
@@ -250,6 +257,20 @@ void BoardController::saveToFile()
     }
     
     appObject->getAppProperties()->getUserSettings()->setValue("recentProject", _projectDirectory.getFullPathName());
+}
+
+void BoardController::setButtonState(int pageIndex, int btnIndex, bool state)
+{
+    OwnedArray<Value> *page = buttonStates[pageIndex];
+    Value btn = *page->getUnchecked(btnIndex);
+    btn.setValue(state);
+}
+
+bool BoardController::getButtonState(int pageIndex, int btnIndex)
+{
+    OwnedArray<Value> *page = buttonStates[pageIndex];
+    Value btn = *page->getUnchecked(btnIndex);
+    return btn.getValue();
 }
 
 

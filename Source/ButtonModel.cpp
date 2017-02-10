@@ -165,26 +165,28 @@ void ButtonModel::sysexReceived(DynamicObject::Ptr obj)
 
 void ButtonModel::sendDownToBoard()
 {
-    ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    /*ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     
     message->setProperty("send", "buttonState");
     message->setProperty("pageIndex", _pageModel->getIndex());
     message->setProperty("buttonIndex", _index);
     message->setProperty("state", true);
     
-    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);*/
+    
+    appObject->getDefaultBoardController()->setButtonState(_pageModel->getIndex(), _index, !(appObject->getDefaultBoardController()->getButtonState(_pageModel->getIndex(), _index)));
 }
 
 void ButtonModel::sendUpToBoard()
 {
-    ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    /*ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     
     message->setProperty("send", "buttonState");
     message->setProperty("pageIndex", _pageModel->getIndex());
     message->setProperty("buttonIndex", _index);
     message->setProperty("state", false);
     
-    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);*/
 }
 
 

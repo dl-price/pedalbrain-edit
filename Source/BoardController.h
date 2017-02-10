@@ -68,7 +68,7 @@ public:
     
 };
 
-class BoardController : public ReferenceCountedObject
+class BoardController : public ReferenceCountedObject, public ValueListener
 {
     
 public:
@@ -108,8 +108,12 @@ public:
     virtual bool ledIsRgbForIndex(int led) { return true;};
     void loadFromFile();
     void saveToFile();
+    OwnedArray<Value> relayStates;
+    void valueChanged(Value &val) override {};
     
     OwnedArray<OwnedArray<Value>> buttonStates;
+    void setButtonState(int pageIndex, int btnIndex, bool state);
+    bool getButtonState(int pageIndex, int btnIndex);
     
     
     
