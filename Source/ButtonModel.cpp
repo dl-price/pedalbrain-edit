@@ -13,6 +13,9 @@
 #include "SysExHandler.h"
 #include "PageModel.h"
 #include "Macros.h"
+#include <tuple>
+#include <boost/optional.hpp>
+
 
 ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPage), _index(index)
 {
@@ -184,6 +187,21 @@ void ButtonModel::sendDownToBoard()
     BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);*/
     
     appObject->getDefaultBoardController()->setButtonState(_pageModel->getIndex(), _index, !(appObject->getDefaultBoardController()->getButtonState(_pageModel->getIndex(), _index)));
+    
+    boost::optional<int> i1;
+    int i2;
+    
+    std::tie(i1, i2) = getIndices();
+    
+    if(i1)
+    {
+    Logger::outputDebugString((String)i1.get());
+    }
+    else
+    {
+        Logger::outputDebugString("No page");
+    }
+    Logger::outputDebugString((String)i2);
 }
 
 void ButtonModel::sendUpToBoard()
@@ -196,6 +214,11 @@ void ButtonModel::sendUpToBoard()
     message->setProperty("state", false);
     
     BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);*/
+}
+
+std::tuple<boost::optional<int>, int> ButtonModel::getIndices()
+{
+    return { _pageModel->getIndex(), _index };
 }
 
 

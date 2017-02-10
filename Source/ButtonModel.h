@@ -16,6 +16,9 @@ class ButtonModel;
 #include "PageModel.h"
 #include "BoardController.h"
 #include "SysExObject.h"
+#include <tuple>
+#include <boost/optional.hpp>
+
 
 class ComponentModel
 {
@@ -75,6 +78,9 @@ public:
     static void sysexReceived(DynamicObject::Ptr obj);
     void sendDownToBoard();
     void sendUpToBoard();
+    std::tuple< boost::optional<int>, int> getIndices();
+    
+    
 private:
     BoardController *_boardController;
     PageModel *_pageModel;
