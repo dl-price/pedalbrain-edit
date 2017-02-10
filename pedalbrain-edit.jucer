@@ -109,9 +109,11 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" customXcodeResourceFolders="Config"
-               externalLibraries="">
+               externalLibraries="antlr4-runtime" keepCustomXcodeSchemes="1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="pedalbrain-edit"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="pedalbrain-edit"
+                       headerPath="/Users/Dan/Downloads/antlr4-cpp-runtime-source/runtime/src&#10;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/boost/boost_1_63_0"
+                       libraryPath="$(PROJECT_DIR)/../../../"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="pedalbrain-edit"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
