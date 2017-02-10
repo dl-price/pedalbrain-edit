@@ -23,10 +23,14 @@
 
 class SomethingVisitor : public SwiftBaseVisitor
 {
-    antlrcpp::Any visitTop_level(SwiftParser::Top_levelContext *ctx) override {
-        Logger::outputDebugString(ctx->toStringTree());
-        return NULL;
-    };
+    virtual antlrcpp::Any visitPrimary_expression(SwiftParser::Primary_expressionContext *ctx) override {
+        if(ctx->parentexp)
+        {
+            Logger::outputDebugString("Parent is " + ctx->parentexp->identifier()->getText());
+        }
+        Logger::outputDebugString("This is " + ctx->identifier()->getText());
+        return visitChildren(ctx);
+    }
 };
 
 
@@ -65,7 +69,7 @@ class SomethingVisitor : public SwiftBaseVisitor
         }
         }
         
-        SwiftLexer *lexer = new SwiftLexer(new antlr4::ANTLRInputStream(""));
+        SwiftLexer *lexer = new SwiftLexer(new antlr4::ANTLRInputStream("yes().next()"));
         
         antlr4::CommonTokenStream *tokens = new antlr4::CommonTokenStream(lexer);
         

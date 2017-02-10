@@ -12,13 +12,15 @@
 class  SwiftParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, Decimal_literal = 5, Pure_decimal_digits = 6, 
-    WS = 7
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
+    T__7 = 8, Identifier = 9, Decimal_literal = 10, Pure_decimal_digits = 11, 
+    WS = 12
   };
 
   enum {
-    RuleTop_level = 0, RuleStatement = 1, RuleLiteral = 2, RuleNumeric_literal = 3, 
-    RuleBoolean_literal = 4, RuleNil_literal = 5, RuleInteger_literal = 6
+    RuleTop_level = 0, RuleStatement = 1, RuleExpression = 2, RulePrimary_expression = 3, 
+    RuleLiteral_expression = 4, RuleLiteral = 5, RuleNumeric_literal = 6, 
+    RuleBoolean_literal = 7, RuleNil_literal = 8, RuleIdentifier = 9, RuleInteger_literal = 10
   };
 
   SwiftParser(antlr4::TokenStream *input);
@@ -33,10 +35,14 @@ public:
 
   class Top_levelContext;
   class StatementContext;
+  class ExpressionContext;
+  class Primary_expressionContext;
+  class Literal_expressionContext;
   class LiteralContext;
   class Numeric_literalContext;
   class Boolean_literalContext;
   class Nil_literalContext;
+  class IdentifierContext;
   class Integer_literalContext; 
 
   class  Top_levelContext : public antlr4::ParserRuleContext {
@@ -59,7 +65,7 @@ public:
   public:
     StatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    LiteralContext *literal();
+    ExpressionContext *expression();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -69,6 +75,55 @@ public:
   };
 
   StatementContext* statement();
+
+  class  ExpressionContext : public antlr4::ParserRuleContext {
+  public:
+    ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    Primary_expressionContext *primary_expression();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ExpressionContext* expression();
+
+  class  Primary_expressionContext : public antlr4::ParserRuleContext {
+  public:
+    SwiftParser::Primary_expressionContext *parentexp = nullptr;;
+    SwiftParser::IdentifierContext *member = nullptr;;
+    Primary_expressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    IdentifierContext *identifier();
+    Literal_expressionContext *literal_expression();
+    Primary_expressionContext *primary_expression();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Primary_expressionContext* primary_expression();
+  Primary_expressionContext* primary_expression(int precedence);
+  class  Literal_expressionContext : public antlr4::ParserRuleContext {
+  public:
+    Literal_expressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    LiteralContext *literal();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  Literal_expressionContext* literal_expression();
 
   class  LiteralContext : public antlr4::ParserRuleContext {
   public:
@@ -130,6 +185,21 @@ public:
 
   Nil_literalContext* nil_literal();
 
+  class  IdentifierContext : public antlr4::ParserRuleContext {
+  public:
+    IdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *Identifier();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  IdentifierContext* identifier();
+
   class  Integer_literalContext : public antlr4::ParserRuleContext {
   public:
     Integer_literalContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -146,6 +216,9 @@ public:
 
   Integer_literalContext* integer_literal();
 
+
+  virtual bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
+  bool primary_expressionSempred(Primary_expressionContext *_localctx, size_t predicateIndex);
 
 private:
   static std::vector<antlr4::dfa::DFA> _decisionToDFA;

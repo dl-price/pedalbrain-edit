@@ -22,6 +22,15 @@ public:
   virtual void enterStatement(SwiftParser::StatementContext * /*ctx*/) override { }
   virtual void exitStatement(SwiftParser::StatementContext * /*ctx*/) override { }
 
+  virtual void enterExpression(SwiftParser::ExpressionContext * /*ctx*/) override { }
+  virtual void exitExpression(SwiftParser::ExpressionContext * /*ctx*/) override { }
+
+  virtual void enterPrimary_expression(SwiftParser::Primary_expressionContext * /*ctx*/) override { }
+  virtual void exitPrimary_expression(SwiftParser::Primary_expressionContext * /*ctx*/) override { }
+
+  virtual void enterLiteral_expression(SwiftParser::Literal_expressionContext * /*ctx*/) override { }
+  virtual void exitLiteral_expression(SwiftParser::Literal_expressionContext * /*ctx*/) override { }
+
   virtual void enterLiteral(SwiftParser::LiteralContext * /*ctx*/) override { }
   virtual void exitLiteral(SwiftParser::LiteralContext * /*ctx*/) override { }
 
@@ -33,6 +42,9 @@ public:
 
   virtual void enterNil_literal(SwiftParser::Nil_literalContext * /*ctx*/) override { }
   virtual void exitNil_literal(SwiftParser::Nil_literalContext * /*ctx*/) override { }
+
+  virtual void enterIdentifier(SwiftParser::IdentifierContext * /*ctx*/) override { }
+  virtual void exitIdentifier(SwiftParser::IdentifierContext * /*ctx*/) override { }
 
   virtual void enterInteger_literal(SwiftParser::Integer_literalContext * /*ctx*/) override { }
   virtual void exitInteger_literal(SwiftParser::Integer_literalContext * /*ctx*/) override { }

@@ -23,6 +23,18 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitExpression(SwiftParser::ExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPrimary_expression(SwiftParser::Primary_expressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitLiteral_expression(SwiftParser::Literal_expressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitLiteral(SwiftParser::LiteralContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -36,6 +48,10 @@ public:
   }
 
   virtual antlrcpp::Any visitNil_literal(SwiftParser::Nil_literalContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitIdentifier(SwiftParser::IdentifierContext *ctx) override {
     return visitChildren(ctx);
   }
 
