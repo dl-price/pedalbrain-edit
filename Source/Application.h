@@ -16,7 +16,7 @@
 #include "BoardController.h"
 #include "ButtonEdit.h"
 
-class pedalbraineditApplication  : public JUCEApplication
+class pedalbraineditApplication  : public JUCEApplication, public TextEditorListener
 {
 public:
     //==============================================================================
@@ -53,7 +53,14 @@ public:
     
     void refreshMainComponent();
     
+    void textEditorEscapeKeyPressed(TextEditor &editor) override;
     
+    DynamicObject globalMethods;
+    
+    static var testScripting(const var::NativeFunctionArgs &args) {
+        Logger::outputDebugString("Called");
+        return var();
+        };
     
     
     //==============================================================================

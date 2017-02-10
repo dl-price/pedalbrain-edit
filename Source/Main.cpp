@@ -24,15 +24,16 @@
 class SomethingVisitor : public SwiftBaseVisitor
 {
     virtual antlrcpp::Any visitPrimary_expression(SwiftParser::Primary_expressionContext *ctx) override {
-        if(ctx->parentexp)
+        if(!ctx->parentexp)
         {
-            Logger::outputDebugString("Parent is " + ctx->parentexp->identifier()->getText());
+        if(appObject->globalMethods.hasMethod((String)ctx->identifier()->getText()))
+        {
+            appObject->globalMethods.invokeMethod((String)ctx->identifier()->getText(), var::NativeFunctionArgs(appObject, new var(), 0));
         }
-        Logger::outputDebugString("This is " + ctx->identifier()->getText());
+        }
         return visitChildren(ctx);
     }
 };
-
 
     //==============================================================================
     void pedalbraineditApplication::initialise (const String& commandLine)
@@ -68,16 +69,12 @@ class SomethingVisitor : public SwiftBaseVisitor
             setDefaultBoardController(ctrl);
         }
         }
+
+        juce::var::NativeFunction func;
         
-        SwiftLexer *lexer = new SwiftLexer(new antlr4::ANTLRInputStream("yes().next()"));
+        func = &pedalbraineditApplication::testScripting;
         
-        antlr4::CommonTokenStream *tokens = new antlr4::CommonTokenStream(lexer);
-        
-        SwiftParser *parser = new SwiftParser(tokens);
-        
-        SomethingVisitor *visitor = new SomethingVisitor();
-        
-        visitor->visit(parser->top_level());
+        globalMethods.setMethod("testScripting", func);
         
     }
 
@@ -419,10 +416,28 @@ void pedalbraineditApplication::openTerminal()
     
     opts.dialogTitle = "Terminal";
     TextEditor *text = new TextEditor();
+    text->setName("Terminal");
+    text->addListener(this);
     text->setBounds(0, 0, 500, 24);
     opts.content.set(text, true);
     
     opts.launchAsync();
+}
+
+void pedalbraineditApplication::textEditorEscapeKeyPressed(juce::TextEditor &editor)
+{
+    if (editor.getName() == "Terminal")
+    {
+        SwiftLexer *lexer = new SwiftLexer(new antlr4::ANTLRInputStream(editor.getText().toStdString()));
+        
+        antlr4::CommonTokenStream *tokens = new antlr4::CommonTokenStream(lexer);
+        
+        SwiftParser *parser = new SwiftParser(tokens);
+        
+        SomethingVisitor *visitor = new SomethingVisitor();
+        
+        visitor->visit(parser->top_level());
+    }
 }
 
 
