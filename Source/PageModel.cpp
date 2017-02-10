@@ -95,9 +95,9 @@ void PageModel::valueChanged(juce::Value &value)
     sendSysex();
 }
 
-BoardController *PageModel::getBoardController()
+BoardController &PageModel::getBoardController()
 {
-    return _boardController;
+    return *_boardController;
 }
 
 File PageModel::getFile()

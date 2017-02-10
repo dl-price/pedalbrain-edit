@@ -19,7 +19,7 @@
 
 ButtonModel::ButtonModel(PageModel *parentPage, int index) : _pageModel(parentPage), _index(index)
 {
-    _boardController = parentPage->getBoardController();
+    _boardController = &parentPage->getBoardController();
     
     ledOn.addListener(this);
     ledOff.addListener(this);

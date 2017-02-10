@@ -44,7 +44,7 @@ public:
     boost::optional<int> getIndex() { return _index; };
     boost::optional<int> getPageNo();
     void valueChanged(Value &value) override;
-    BoardController *getBoardController();
+    BoardController &getBoardController();
     File getFile() override;
 
 private:

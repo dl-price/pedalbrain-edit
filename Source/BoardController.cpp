@@ -149,7 +149,7 @@ void BoardController::createEditWindowForButton(ButtonModel *selectedButton)
 
 void BoardController::tryConnectToUsb(SysExHandler *handler)
 {
-    if(BoardController::getDefaultInstance())
+    /*if(BoardController::getDefaultInstance())
     {
         BoardController *boardInstance = BoardController::getDefaultInstance();
         if(boardInstance->boardModel.compare( handler->boardInfo.model));
@@ -175,7 +175,13 @@ void BoardController::tryConnectToUsb(SysExHandler *handler)
     else{
         createAndReadFromBoard(handler);
         
-    }
+    }*/
+    
+    appObject->getDefaultBoardController()->sysexHandler = handler;
+    
+    appObject->getDefaultBoardController()->tempSysExHandler = nullptr;
+    
+    appObject->getDefaultBoardController()->sysexHandler->solidfyConnection();
 }
 
 void BoardController::createAndReadFromBoard(SysExHandler *handler)
