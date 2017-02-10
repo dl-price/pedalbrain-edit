@@ -98,7 +98,7 @@ void ButtonModel::updateFromJson(DynamicObject::Ptr obj)
 
 File ButtonModel::getFile()
 {
-    File file = _boardController->getProjectDirectory().getChildFile("buttons/p" + String(_pageModel->getIndex()) + "/" + String(_index) + ".txt");
+    File file = _boardController->getProjectDirectory().getChildFile("buttons/p" + String(*(_pageModel->getIndex())) + "/" + String(_index) + ".txt");
     file.getParentDirectory().createDirectory();
     return file;
 }
