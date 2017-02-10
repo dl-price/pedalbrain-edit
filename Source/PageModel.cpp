@@ -80,9 +80,11 @@ void PageModel::sendSysex()
 
 DynamicObject::Ptr PageModel::toJson()
 {
+    jassert(getIndex());
+    
     DynamicObject::Ptr obj = new DynamicObject();
-    obj->setProperty("index", _index);
-    obj->setProperty("page", _index+1);
+    obj->setProperty("index", *getIndex());
+    obj->setProperty("page", *getPageNo());
     obj->setProperty("name", _name.getValue());
     
     return obj;
@@ -100,6 +102,20 @@ BoardController *PageModel::getBoardController()
 
 File PageModel::getFile()
 {
-    return _boardController->getProjectDirectory().getChildFile("pages/" + (String)getIndex() + ".txt");
+    jassert(getIndex());
+    return _boardController->getProjectDirectory().getChildFile("pages/" + (String)*getIndex() + ".txt");
+}
+
+boost::optional<int> PageModel::getPageNo()
+{
+    boost::optional<int> i = getIndex();
+    if(i)
+    {
+        return *i + 1;
+    }
+    else
+    {
+        return boost::optional<int>();
+    }
 }
 

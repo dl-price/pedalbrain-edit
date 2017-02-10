@@ -19,6 +19,7 @@ class PageModel;
 #include "ButtonModel.h"
 #include "SysExObject.h"
 #include "BoardController.h"
+#include <boost/optional.hpp>
 
 
 //==============================================================================
@@ -40,8 +41,8 @@ public:
     void sendSysex();
     void updated();
     DynamicObject::Ptr toJson() override;
-    int getIndex() { return _index; };
-    int getPageNo() { return _index+1;};
+    boost::optional<int> getIndex() { return _index; };
+    boost::optional<int> getPageNo();
     void valueChanged(Value &value) override;
     BoardController *getBoardController();
     File getFile() override;
@@ -49,7 +50,7 @@ public:
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PageModel)
     Value _name;
-    int _index;
+    boost::optional<int> _index;
     BoardController *_boardController;
 };
 

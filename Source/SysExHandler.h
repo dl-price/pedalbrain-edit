@@ -42,11 +42,12 @@ public:
     void sendDevice(ReferenceCountedObjectPtr<Device> device);
     void sendPage(PageModel *page);
     void requestAllParameters();
+    ScopedPointer< MidiInput> usbInput;
+    ScopedPointer< MidiOutput> usbOutput;
     //void sendAllParameters();
     
 private:
-    ScopedPointer< MidiInput> usbInput;
-    ScopedPointer< MidiOutput> usbOutput;
+    
     void finishedReceivingBoardInfo();
     bool _isSolidified;
 };

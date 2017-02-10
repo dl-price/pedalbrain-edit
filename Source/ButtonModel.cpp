@@ -40,7 +40,7 @@ void ButtonModel::sendToBoard()
     {
         int i = getProperty("mainAudioId");
         
-        Value state = appObject->getDefaultBoardController()->getButtonStateAsValue(_pageModel->getIndex(), _index);
+        Value state = appObject->getDefaultBoardController()->getButtonStateAsValue(*(_pageModel->getIndex()), _index);
         Value relayState = *appObject->getDefaultBoardController()->relayStates[i];
         state.referTo(relayState);
     }
@@ -61,7 +61,7 @@ int ButtonModel::getIndex()
 DynamicObject::Ptr ButtonModel::toJson()
 {
     DynamicObject::Ptr obj = clone();
-    obj->setProperty("pageIndex", _pageModel->getIndex());
+    obj->setProperty("pageIndex", *(_pageModel->getIndex()));
     obj->setProperty("index", _index);
     obj->setProperty("name", name.getValue());
     obj->setProperty("label", label.getValue());
@@ -177,16 +177,16 @@ void ButtonModel::sysexReceived(DynamicObject::Ptr obj)
 
 void ButtonModel::sendDownToBoard()
 {
-    /*ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
+    ReferenceCountedObjectPtr< DynamicObject> message = ReferenceCountedObjectPtr<DynamicObject>(new DynamicObject());
     
     message->setProperty("send", "buttonState");
-    message->setProperty("pageIndex", _pageModel->getIndex());
+    message->setProperty("pageIndex", *(_pageModel->getIndex()));
     message->setProperty("buttonIndex", _index);
     message->setProperty("state", true);
     
-    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);*/
+    BoardController::getDefaultInstance()->sysexHandler->sendSysEx(message);
     
-    appObject->getDefaultBoardController()->setButtonState(_pageModel->getIndex(), _index, !(appObject->getDefaultBoardController()->getButtonState(_pageModel->getIndex(), _index)));
+    appObject->getDefaultBoardController()->setButtonState(*(_pageModel->getIndex()), _index, !(appObject->getDefaultBoardController()->getButtonState(*(_pageModel->getIndex()), _index)));
     
     boost::optional<int> i1;
     int i2;
