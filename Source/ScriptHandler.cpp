@@ -70,12 +70,6 @@ ScriptHandler::ScriptHandler()
     
     setupStack();
     
-    juce::var::NativeFunction func;
-    
-    func = &pedalbraineditApplication::testScripting;
-    
-    appObject->globalMethods.setMethod("testScripting", func);
-    
 }
 
 ScriptHandler::~ScriptHandler()

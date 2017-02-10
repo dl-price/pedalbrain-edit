@@ -60,14 +60,6 @@ public:
     
     ScopedPointer<ScriptHandler> scriptHandler;
     
-    
-    
-    static var testScripting(const var::NativeFunctionArgs &args) {
-        Logger::outputDebugString("Called");
-        return var();
-        };
-    
-    
     //==============================================================================
     /*
      This class implements the desktop window that contains an instance of
