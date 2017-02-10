@@ -5,6 +5,30 @@
               jucerVersion="4.3.1">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <GROUP id="{CAF0E02C-1ED0-069A-D6A5-93D4A83A9A7B}" name="Antlr">
+        <FILE id="DH64cx" name="Swift.g4" compile="0" resource="1" file="Source/Antlr/Swift.g4"/>
+        <FILE id="Cajrci" name="Swift.tokens" compile="0" resource="1" file="Source/Antlr/Swift.tokens"/>
+        <FILE id="dMQdeQ" name="SwiftBaseListener.cpp" compile="1" resource="0"
+              file="Source/Antlr/SwiftBaseListener.cpp"/>
+        <FILE id="Svqxs8" name="SwiftBaseListener.h" compile="0" resource="0"
+              file="Source/Antlr/SwiftBaseListener.h"/>
+        <FILE id="XRYRUH" name="SwiftBaseVisitor.cpp" compile="1" resource="0"
+              file="Source/Antlr/SwiftBaseVisitor.cpp"/>
+        <FILE id="OeabsU" name="SwiftBaseVisitor.h" compile="0" resource="0"
+              file="Source/Antlr/SwiftBaseVisitor.h"/>
+        <FILE id="K9k1BD" name="SwiftLexer.cpp" compile="1" resource="0" file="Source/Antlr/SwiftLexer.cpp"/>
+        <FILE id="tU9gdc" name="SwiftLexer.h" compile="0" resource="0" file="Source/Antlr/SwiftLexer.h"/>
+        <FILE id="GC2ob0" name="SwiftLexer.tokens" compile="0" resource="1"
+              file="Source/Antlr/SwiftLexer.tokens"/>
+        <FILE id="A8A08t" name="SwiftListener.cpp" compile="1" resource="0"
+              file="Source/Antlr/SwiftListener.cpp"/>
+        <FILE id="ZKgpuF" name="SwiftListener.h" compile="0" resource="0" file="Source/Antlr/SwiftListener.h"/>
+        <FILE id="ByDm6j" name="SwiftParser.cpp" compile="1" resource="0" file="Source/Antlr/SwiftParser.cpp"/>
+        <FILE id="x3DhuD" name="SwiftParser.h" compile="0" resource="0" file="Source/Antlr/SwiftParser.h"/>
+        <FILE id="RgMBVe" name="SwiftVisitor.cpp" compile="1" resource="0"
+              file="Source/Antlr/SwiftVisitor.cpp"/>
+        <FILE id="xcjQfX" name="SwiftVisitor.h" compile="0" resource="0" file="Source/Antlr/SwiftVisitor.h"/>
+      </GROUP>
       <FILE id="cPg2Bu" name="UberFlexBox.cpp" compile="1" resource="0" file="Source/UberFlexBox.cpp"/>
       <FILE id="lTdQO7" name="UberFlexBox.h" compile="0" resource="0" file="Source/UberFlexBox.h"/>
       <FILE id="YfMjcO" name="Macros.h" compile="0" resource="0" file="Source/Macros.h"/>

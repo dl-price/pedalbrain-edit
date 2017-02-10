@@ -16,6 +16,19 @@
 #include "BoardTypes/EpicBoard.h"
 #include "DeviceManager.h"
 #include "Macros.h"
+#include "antlr4-runtime.h"
+#include "Antlr/SwiftLexer.h"
+#include "Antlr/SwiftBaseVisitor.h"
+#include "Antlr/SwiftParser.h"
+
+class SomethingVisitor : public SwiftBaseVisitor
+{
+    antlrcpp::Any visitAtomExp(SwiftParser::AtomExpContext *ctx) override {
+        Logger::outputDebugString("Number");
+        return visitChildren(ctx);
+    }
+};
+
 
 
 
@@ -53,6 +66,8 @@
             setDefaultBoardController(ctrl);
         }
         }
+        
+        
         
     }
 
