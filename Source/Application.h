@@ -60,6 +60,10 @@ public:
     
     ScopedPointer<ScriptHandler> scriptHandler;
     
+    void setupScripting();
+    
+    static var printSomething(const var::NativeFunctionArgs&);
+    
     //==============================================================================
     /*
      This class implements the desktop window that contains an instance of
@@ -87,7 +91,6 @@ public:
         void removeButtonEdit();
         
         void refreshMainComponent();
-        
         
     private:
         ScopedPointer<ButtonEdit> btnEditComponent;

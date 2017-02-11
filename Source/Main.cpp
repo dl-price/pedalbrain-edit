@@ -60,9 +60,27 @@
         
         scriptHandler = new ScriptHandler();
 
-        
+        setupScripting();
         
     }
+
+void pedalbraineditApplication::setupScripting()
+{
+    DynamicObject *stackObject = new DynamicObject();
+    
+    stackObject->setMethod("printSomething", &pedalbraineditApplication::printSomething);
+    
+    scriptHandler->stack.setMethod("printSomething", &pedalbraineditApplication::printSomething);
+    
+    scriptHandler->stack.setProperty("app", new var(stackObject));
+}
+
+var pedalbraineditApplication::printSomething(const var::NativeFunctionArgs &args)
+{
+    Logger::outputDebugString("Print something");
+    
+    return var();
+}
 
     void pedalbraineditApplication::shutdown()
     {

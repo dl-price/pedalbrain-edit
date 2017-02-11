@@ -25,10 +25,14 @@ class SomethingVisitor : public SwiftBaseVisitor
         
         if(context->identifier())
         {
-            if(context->identifier()->getText() == "pbController")
+            String id = (String)context->identifier()->getText();
+            if(!appObject->scriptHandler->stack.hasProperty(id))
             {
-                return appObject->globalMethods;
+                Logger::outputDebugString("Nope");
+                return NULL;
             }
+            
+            return appObject->scriptHandler->stack.getProperty(id);
         }
         
         return NULL;
@@ -37,7 +41,14 @@ class SomethingVisitor : public SwiftBaseVisitor
     
     antlrcpp::Any visitExplicit_member_expression(SwiftParser::Explicit_member_expressionContext *ctx) override {
         
-        DynamicObject obj = visit(ctx->postfix_expression()).as<DynamicObject>();
+        antlrcpp::Any returnVal = visit(ctx->postfix_expression());
+        
+        if(returnVal.isNull())
+        {
+            return NULL;
+        }
+        
+        DynamicObject obj = returnVal.as<DynamicObject>();
         
         if(obj.hasMethod((String)ctx->identifier()->getText()))
         {

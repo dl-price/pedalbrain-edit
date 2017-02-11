@@ -9,6 +9,9 @@
 */
 
 #include "PhysicalBoard.h"
+#include "Application.h"
+#include "Macros.h"
+#include "ScriptHandler.h"
 
 PhysicalBoard::PhysicalBoard(String &midiDeviceName, Features &features)
 {
@@ -42,6 +45,17 @@ PhysicalBoard::PhysicalBoard(String &midiDeviceName, Features &features)
     {
         mutes.add(new Mute(this));
     }
+    
+    setupScripting();
+}
+
+void PhysicalBoard::setupScripting()
+{
+    appObject->scriptHandler->stack.removeProperty("physicalBoard");
+    
+    DynamicObject::Ptr stackObject = new DynamicObject();
+    
+    appObject->scriptHandler->stack.setProperty("physicalBoard", var(stackObject));
 }
 
 const PhysicalBoard::Button &PhysicalBoard::getButton(int index)

@@ -61,6 +61,8 @@ public:
     const MidiInput &getUsbMidiIn();
     const MidiOutput &getUsbMidiOut();
     
+    void setupScripting();
+    
 private:
     ScopedPointer<MidiInput> usbMidiIn;
     ScopedPointer<MidiOutput> usbMidiOut;
