@@ -5,6 +5,9 @@
               jucerVersion="4.3.1">
   <MAINGROUP id="dWd8Na" name="pedalbrain-edit">
     <GROUP id="{43994E59-50EC-AD8B-A464-ADCE86534B73}" name="Source">
+      <FILE id="b8JxOB" name="PhysicalBoard.cpp" compile="1" resource="0"
+            file="Source/PhysicalBoard.cpp"/>
+      <FILE id="E1WIN0" name="PhysicalBoard.h" compile="0" resource="0" file="Source/PhysicalBoard.h"/>
       <GROUP id="{9C686325-BEF5-5813-9562-BD13B85A5669}" name="Scripting">
         <FILE id="ZuFM3i" name="ScriptHandler.cpp" compile="1" resource="0"
               file="Source/ScriptHandler.cpp"/>

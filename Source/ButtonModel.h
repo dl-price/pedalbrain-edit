@@ -58,6 +58,7 @@ public:
         Purple = 7,
         Black = 8
     };
+    
     Value buttonType;
     Value name;
     Value label;
@@ -80,11 +81,14 @@ public:
     void sendUpToBoard();
     std::tuple< boost::optional<int>, int> getIndices();
     
-    
 private:
     BoardController *_boardController;
     PageModel *_pageModel;
     int _index;
+    
+    void downOnBoard();
+    void upOnBoard();
+    
     
     
     String convertColorToString(LedColor color);

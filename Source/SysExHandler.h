@@ -16,6 +16,7 @@ class SysExHandler;
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Device.h"
 #include "PageModel.h"
+#include "ButtonModel.h"
 
 struct BoardInfo
 {
@@ -26,6 +27,7 @@ struct BoardInfo
 
 class SysExHandler : public MidiInputCallback
 {
+    friend class ButtonModel;
 public:
     SysExHandler();
     SysExHandler(MidiInputCallback *newCallback);
