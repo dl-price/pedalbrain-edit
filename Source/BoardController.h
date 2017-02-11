@@ -14,6 +14,9 @@
 
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <boost/optional.hpp>
+#include "PhysicalBoard.h"
+
 class BoardType;
 class BoardController;
 class BoardControllerListener;
@@ -116,12 +119,13 @@ public:
     bool getButtonState(int pageIndex, int btnIndex);
     Value &getButtonStateAsValue(int pageIndex, int btnIndex);
     
-    
+    boost::optional<PhysicalBoard&> getPhysicalBoard();
     
 protected:
     static SysExHandler *tempSysExHandler;
 private:
     File _projectDirectory;
+    ScopedPointer<PhysicalBoard> physBoard;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BoardController)
 };

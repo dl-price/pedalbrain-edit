@@ -285,6 +285,15 @@ Value &BoardController::getButtonStateAsValue(int pageIndex, int btnIndex)
     return *page->getUnchecked(btnIndex);
 }
 
+boost::optional<PhysicalBoard&> BoardController::getPhysicalBoard()
+{
+    if(physBoard)
+    {
+        return *physBoard;
+    }
+    return boost::optional<PhysicalBoard&>();
+}
+
 
 
 
