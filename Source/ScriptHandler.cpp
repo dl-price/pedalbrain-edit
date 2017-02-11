@@ -29,7 +29,7 @@ class SomethingVisitor : public SwiftBaseVisitor
             if(!appObject->scriptHandler->stack.hasProperty(id))
             {
                 Logger::outputDebugString("Nope");
-                return NULL;
+                return antlrcpp::Any() ;
             }
             
             return appObject->scriptHandler->stack.getProperty(id);
@@ -48,11 +48,13 @@ class SomethingVisitor : public SwiftBaseVisitor
             return NULL;
         }
         
-        DynamicObject obj = returnVal.as<DynamicObject>();
+        var vars = returnVal.as<var>();
         
-        if(obj.hasMethod((String)ctx->identifier()->getText()))
+        DynamicObject *obj = vars.getDynamicObject();
+        
+        if(obj->hasMethod((String)ctx->identifier()->getText()))
         {
-            juce::var::NativeFunction func = obj.getProperty((String)ctx->identifier()->getText()).getNativeFunction();
+            juce::var::NativeFunction func = obj->getProperty((String)ctx->identifier()->getText()).getNativeFunction();
             func( var::NativeFunctionArgs(var(), new var(), 0) );
         }
         else

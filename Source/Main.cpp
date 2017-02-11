@@ -72,7 +72,7 @@ void pedalbraineditApplication::setupScripting()
     
     scriptHandler->stack.setMethod("printSomething", &pedalbraineditApplication::printSomething);
     
-    scriptHandler->stack.setProperty("app", new var(stackObject));
+    scriptHandler->stack.setProperty("app", var(stackObject));
 }
 
 var pedalbraineditApplication::printSomething(const var::NativeFunctionArgs &args)
