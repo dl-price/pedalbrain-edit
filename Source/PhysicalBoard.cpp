@@ -61,6 +61,11 @@ PhysicalBoard::PhysicalBoard(String &midiDeviceName, Features features) : boardI
     setupScripting();
 }
 
+const PhysicalBoard::Features &PhysicalBoard::getBoardInfo()
+{
+    return boardInfo;
+}
+
 void PhysicalBoard::setupScripting()
 {
     appObject->scriptHandler->stack.removeProperty("physicalBoard");

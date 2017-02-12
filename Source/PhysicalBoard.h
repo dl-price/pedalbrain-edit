@@ -57,6 +57,7 @@ class PhysicalBoard : public MidiInputCallback, ActionBroadcaster
 public:
     PhysicalBoard(String &midiDeviceName, Features features);
     
+    const Features &getBoardInfo();
     const Button &getButton(int index);
     const Led &getLed(int index);
     const Relay &getRelay(int index);
