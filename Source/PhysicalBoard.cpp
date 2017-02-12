@@ -104,10 +104,10 @@ void PhysicalBoard::requestBoards()
 {
     // If not temp MIDI handler exists, create it
     
-    /*if(!PhysicalBoard::tempMidiHandler)
+    if(!PhysicalBoard::tempMidiHandler)
     {
         PhysicalBoard::tempMidiHandler = new PhysicalBoard();
-    }*/
+    }
     
     // Setup all temp inputs
     
@@ -135,6 +135,7 @@ void PhysicalBoard::requestBoards()
     std::thread([]() {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         PhysicalBoard::finishedReceivingBoards = true;
+        tempMidiHandler = nullptr;
     }).detach();
 }
 

@@ -76,9 +76,9 @@ public:
     static boost::tribool isBoardConnected();
     
 private:
-    PhysicalBoard();
+    PhysicalBoard() {};
     
-    const Features boardInfo;
+    Features boardInfo;
     
     ScopedPointer<MidiInput> usbMidiIn;
     ScopedPointer<MidiOutput> usbMidiOut;
