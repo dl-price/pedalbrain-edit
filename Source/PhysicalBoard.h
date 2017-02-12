@@ -12,10 +12,14 @@
 #define PHYSICALBOARD_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <boost/optional.hpp>
+#include <boost/logic/tribool.hpp>
 
 class PhysicalBoard : public MidiInputCallback, ActionBroadcaster
 {
     struct Features {
+        String usbMidiIn;
+        String usbMidiOut;
         int buttons;
         int leds;
         int relays;
@@ -51,7 +55,7 @@ class PhysicalBoard : public MidiInputCallback, ActionBroadcaster
     };
     
 public:
-    PhysicalBoard(String &midiDeviceName, Features &features);
+    PhysicalBoard(String &midiDeviceName, Features features);
     
     const Button &getButton(int index);
     const Led &getLed(int index);
@@ -61,11 +65,31 @@ public:
     const MidiInput &getUsbMidiIn();
     const MidiOutput &getUsbMidiOut();
     
+    void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message) override;
+    
     void setupScripting();
     
+    /**
+     Sends SysEx to all available MIDI outputs and listens on all MIDI inputs for recognizable response. Listens for max 100 ms. Populates PhysicalBoard::connectedBoards with board info.
+     */
+    static void requestBoards();
+    static boost::tribool isBoardConnected();
+    
 private:
+    PhysicalBoard();
+    
+    const Features boardInfo;
+    
     ScopedPointer<MidiInput> usbMidiIn;
     ScopedPointer<MidiOutput> usbMidiOut;
+    
+    static OwnedArray<MidiInput> tempInputs;
+    static OwnedArray<MidiOutput> tempOutputs;
+    static ScopedPointer<PhysicalBoard> tempMidiHandler;
+    static OwnedArray<Features> connectedBoards;
+    static bool attemptedToReceiveBoards;
+    static bool finishedReceivingBoards;
+    
     
     OwnedArray<Button> buttons;
     OwnedArray<Led> leds;

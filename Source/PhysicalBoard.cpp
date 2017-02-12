@@ -12,8 +12,20 @@
 #include "Application.h"
 #include "Macros.h"
 #include "ScriptHandler.h"
+#include <algorithm>
+#include <thread>
+#include <chrono>
+#include <boost/optional.hpp>
+#include <boost/logic/tribool.hpp>
 
-PhysicalBoard::PhysicalBoard(String &midiDeviceName, Features &features)
+OwnedArray<MidiInput> PhysicalBoard::tempInputs;
+OwnedArray<MidiOutput> PhysicalBoard::tempOutputs;
+ScopedPointer<PhysicalBoard> PhysicalBoard::tempMidiHandler;
+OwnedArray<PhysicalBoard::Features> PhysicalBoard::connectedBoards;
+bool PhysicalBoard::attemptedToReceiveBoards = false;
+bool PhysicalBoard::finishedReceivingBoards = false;
+
+PhysicalBoard::PhysicalBoard(String &midiDeviceName, Features features) : boardInfo(features)
 {
     const int inIndex = MidiInput::getDevices().indexOf(midiDeviceName);
     const int outIndex = MidiOutput::getDevices().indexOf(midiDeviceName);
@@ -86,4 +98,58 @@ const MidiInput &PhysicalBoard::getUsbMidiIn()
 const MidiOutput &PhysicalBoard::getUsbMidiOut()
 {
     return *usbMidiOut;
+}
+
+void PhysicalBoard::requestBoards()
+{
+    // If not temp MIDI handler exists, create it
+    
+    /*if(!PhysicalBoard::tempMidiHandler)
+    {
+        PhysicalBoard::tempMidiHandler = new PhysicalBoard();
+    }*/
+    
+    // Setup all temp inputs
+    
+    for(int i=0; i < MidiInput::getDevices().size(); i++)
+    {
+        PhysicalBoard::tempInputs.add(MidiInput::openDevice(i, static_cast<MidiInputCallback*>(PhysicalBoard::tempMidiHandler)));
+    }
+    
+    // Setup all temp outputs
+    
+    for(int i=0; i < MidiOutput::getDevices().size(); i++)
+    {
+        PhysicalBoard::tempOutputs.add(MidiOutput::openDevice(i));
+    }
+    
+    // Send request message to all outputs, send slightly different message on each channel so in and out can be identified
+    
+    // For every message received store temp features (Done in handleIncomingMidiMessage)
+    
+    // After some time elapses move temp features to static array and notify that it's finished
+    
+    PhysicalBoard::connectedBoards.clear();
+    PhysicalBoard::attemptedToReceiveBoards = true;
+    
+    std::thread([]() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        PhysicalBoard::finishedReceivingBoards = true;
+    }).detach();
+}
+
+boost::tribool PhysicalBoard::isBoardConnected()
+{
+    if(PhysicalBoard::connectedBoards.size())
+        return true;
+    
+    if(PhysicalBoard::finishedReceivingBoards)
+        return false;
+    
+    return boost::indeterminate;
+}
+
+void PhysicalBoard::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)
+{
+    
 }
