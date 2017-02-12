@@ -64,7 +64,11 @@
         setupScripting();
         
         PhysicalBoard::requestBoards([](){
-            Logger::outputDebugString("Finished");
+            
+            if(PhysicalBoard::isBoardConnected())
+                Logger::outputDebugString("Replace this with attempt to connect to board");
+            else
+                Logger::outputDebugString("No board connected");
         });
         
     }
