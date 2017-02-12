@@ -105,7 +105,7 @@ const MidiOutput &PhysicalBoard::getUsbMidiOut()
     return *usbMidiOut;
 }
 
-void PhysicalBoard::requestBoards()
+void PhysicalBoard::requestBoards(void (*callback)())
 {
     // If not temp MIDI handler exists, create it
     
@@ -137,11 +137,13 @@ void PhysicalBoard::requestBoards()
     PhysicalBoard::connectedBoards.clear();
     PhysicalBoard::attemptedToReceiveBoards = true;
     
-    std::thread([]() {
+    std::thread([](void (*callback)()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         PhysicalBoard::finishedReceivingBoards = true;
         tempMidiHandler = nullptr;
-    }).detach();
+        if(callback)
+            callback();
+    }, callback).detach();
 }
 
 boost::tribool PhysicalBoard::isBoardConnected()

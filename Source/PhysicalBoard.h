@@ -70,10 +70,13 @@ public:
     
     void setupScripting();
     
+    
     /**
      Sends SysEx to all available MIDI outputs and listens on all MIDI inputs for recognizable response. Listens for max 100 ms. Populates PhysicalBoard::connectedBoards with board info.
+
+     @param callback Callback function when request timeouts
      */
-    static void requestBoards();
+    static void requestBoards(void (*callback)() = NULL);
     static boost::tribool isBoardConnected();
     
 private:
@@ -96,6 +99,8 @@ private:
     OwnedArray<Led> leds;
     OwnedArray<Relay> relays;
     OwnedArray<Mute> mutes;
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PhysicalBoard)
 };
 
 

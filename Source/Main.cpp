@@ -20,6 +20,7 @@
 #include "Antlr/SwiftLexer.h"
 #include "Antlr/SwiftBaseVisitor.h"
 #include "Antlr/SwiftParser.h"
+#include "PhysicalBoard.h"
 
 
 
@@ -61,6 +62,10 @@
         scriptHandler = new ScriptHandler();
 
         setupScripting();
+        
+        PhysicalBoard::requestBoards([](){
+            Logger::outputDebugString("Finished");
+        });
         
     }
 
