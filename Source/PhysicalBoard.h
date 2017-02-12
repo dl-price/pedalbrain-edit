@@ -55,7 +55,7 @@ class PhysicalBoard : public MidiInputCallback, ActionBroadcaster
     };
     
 public:
-    PhysicalBoard(String &midiDeviceName, Features features);
+    PhysicalBoard(Features features);
     
     const Features &getBoardInfo();
     const Button &getButton(int index);
@@ -78,6 +78,7 @@ public:
      */
     static void requestBoards(void (*callback)() = NULL);
     static boost::tribool isBoardConnected();
+    static PhysicalBoard *getConnectedBoard(int index);
     
 private:
     PhysicalBoard() {};
@@ -93,7 +94,6 @@ private:
     static OwnedArray<Features> connectedBoards;
     static bool attemptedToReceiveBoards;
     static bool finishedReceivingBoards;
-    
     
     OwnedArray<Button> buttons;
     OwnedArray<Led> leds;

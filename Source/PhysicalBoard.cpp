@@ -25,10 +25,10 @@ OwnedArray<PhysicalBoard::Features> PhysicalBoard::connectedBoards;
 bool PhysicalBoard::attemptedToReceiveBoards = false;
 bool PhysicalBoard::finishedReceivingBoards = false;
 
-PhysicalBoard::PhysicalBoard(String &midiDeviceName, Features features) : boardInfo(features)
+PhysicalBoard::PhysicalBoard(Features features) : boardInfo(features)
 {
-    const int inIndex = MidiInput::getDevices().indexOf(midiDeviceName);
-    const int outIndex = MidiOutput::getDevices().indexOf(midiDeviceName);
+    const int inIndex = MidiInput::getDevices().indexOf(features.usbMidiIn);
+    const int outIndex = MidiOutput::getDevices().indexOf(features.usbMidiOut);
     
     usbMidiIn = MidiInput::openDevice(inIndex, this);
     usbMidiOut = MidiOutput::openDevice(outIndex);
@@ -107,6 +107,9 @@ const MidiOutput &PhysicalBoard::getUsbMidiOut()
 
 void PhysicalBoard::requestBoards(void (*callback)())
 {
+    
+    PhysicalBoard::finishedReceivingBoards = false;
+    
     // If not temp MIDI handler exists, create it
     
     if(!PhysicalBoard::tempMidiHandler)
@@ -139,8 +142,11 @@ void PhysicalBoard::requestBoards(void (*callback)())
     
     std::thread([](void (*callback)()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        PhysicalBoard::finishedReceivingBoards = true;
         tempMidiHandler = nullptr;
+        PhysicalBoard::tempInputs.clear();
+        PhysicalBoard::tempOutputs.clear();
+        PhysicalBoard::attemptedToReceiveBoards = false;
+        PhysicalBoard::finishedReceivingBoards = true;
         if(callback)
             callback();
     }, callback).detach();
@@ -155,6 +161,16 @@ boost::tribool PhysicalBoard::isBoardConnected()
         return false;
     
     return boost::indeterminate;
+}
+
+PhysicalBoard *PhysicalBoard::getConnectedBoard(int index)
+{
+    Features info = *PhysicalBoard::connectedBoards[index];
+    
+    if(&info)
+        return new PhysicalBoard(info);
+    
+    return NULL;
 }
 
 void PhysicalBoard::handleIncomingMidiMessage(juce::MidiInput *source, const juce::MidiMessage &message)
