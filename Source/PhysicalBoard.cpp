@@ -11,7 +11,6 @@
 #include "PhysicalBoard.h"
 #include "Application.h"
 #include "Macros.h"
-#include "ScriptHandler.h"
 #include <algorithm>
 #include <thread>
 #include <chrono>
@@ -64,15 +63,6 @@ PhysicalBoard::PhysicalBoard(Features features) : boardInfo(features)
 const PhysicalBoard::Features &PhysicalBoard::getBoardInfo()
 {
     return boardInfo;
-}
-
-void PhysicalBoard::setupScripting()
-{
-    appObject->scriptHandler->stack.removeProperty("physicalBoard");
-    
-    DynamicObject::Ptr stackObject = new DynamicObject();
-    
-    appObject->scriptHandler->stack.setProperty("physicalBoard", var(stackObject));
 }
 
 const PhysicalBoard::Button &PhysicalBoard::getButton(int index)

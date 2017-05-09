@@ -15,7 +15,6 @@
 #include "PedalEdit.h"
 #include "BoardController.h"
 #include "ButtonEdit.h"
-#include "ScriptHandler.h"
 
 class pedalbraineditApplication  : public JUCEApplication, public TextEditorListener
 {
@@ -57,8 +56,6 @@ public:
     void textEditorEscapeKeyPressed(TextEditor &editor) override;
     
     DynamicObject globalMethods;
-    
-    ScopedPointer<ScriptHandler> scriptHandler;
     
     void setupScripting();
     

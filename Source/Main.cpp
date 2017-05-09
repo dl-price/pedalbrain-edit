@@ -16,10 +16,6 @@
 #include "BoardTypes/EpicBoard.h"
 #include "DeviceManager.h"
 #include "Macros.h"
-#include "antlr4-runtime.h"
-#include "Antlr/SwiftLexer.h"
-#include "Antlr/SwiftBaseVisitor.h"
-#include "Antlr/SwiftParser.h"
 #include "PhysicalBoard.h"
 
 
@@ -58,8 +54,6 @@
             setDefaultBoardController(ctrl);
         }
         }
-        
-        scriptHandler = new ScriptHandler();
 
         setupScripting();
         
@@ -72,17 +66,6 @@
         });
         
     }
-
-void pedalbraineditApplication::setupScripting()
-{
-    DynamicObject *stackObject = new DynamicObject();
-    
-    stackObject->setMethod("printSomething", &pedalbraineditApplication::printSomething);
-    
-    scriptHandler->stack.setMethod("printSomething", &pedalbraineditApplication::printSomething);
-    
-    scriptHandler->stack.setProperty("app", var(stackObject));
-}
 
 var pedalbraineditApplication::printSomething(const var::NativeFunctionArgs &args)
 {
@@ -435,14 +418,6 @@ void pedalbraineditApplication::openTerminal()
     opts.content.set(text, true);
     
     opts.launchAsync();
-}
-
-void pedalbraineditApplication::textEditorEscapeKeyPressed(juce::TextEditor &editor)
-{
-    if (editor.getName() == "Terminal")
-    {
-        scriptHandler->runScript(editor.getText());
-    }
 }
 
 
